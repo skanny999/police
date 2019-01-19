@@ -99,13 +99,14 @@
 		8B155EBA21F1319C00783C23 /* Police */ = {
 			isa = PBXGroup;
 			children = (
-				8B155EBB21F1319C00783C23 /* AppDelegate.swift */,
-				8B155EBD21F1319C00783C23 /* ViewController.swift */,
-				8B155EBF21F1319C00783C23 /* Main.storyboard */,
-				8B155EC521F1319F00783C23 /* Assets.xcassets */,
-				8B155EC721F131A000783C23 /* LaunchScreen.storyboard */,
-				8B155ECA21F131A000783C23 /* Info.plist */,
-				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
+				8B155EEE21F1408600783C23 /* AppDelegate */,
+				8B155EF221F141E800783C23 /* Extensions */,
+				8B155EF321F1421A00783C23 /* Services */,
+				8B155EEC21F1400600783C23 /* Model */,
+				8B155EEF21F140AC00783C23 /* ViewControllers */,
+				8B155EED21F1403D00783C23 /* Storyboards */,
+				8B155EF021F1410E00783C23 /* Assets */,
+				8B155EF121F1413300783C23 /* Support Files */,
 			);
 			path = Police;
 			sourceTree = "<group>";
@@ -126,6 +127,101 @@
 				8B155EE021F131A000783C23 /* Info.plist */,
 			);
 			path = PoliceUITests;
+			sourceTree = "<group>";
+		};
+		8B155EEC21F1400600783C23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8B155EED21F1403D00783C23 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8B155EC721F131A000783C23 /* LaunchScreen.storyboard */,
+				8B155EBF21F1319C00783C23 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8B155EEE21F1408600783C23 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				8B155EBB21F1319C00783C23 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		8B155EEF21F140AC00783C23 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B155EBD21F1319C00783C23 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8B155EF021F1410E00783C23 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8B155EC521F1319F00783C23 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		8B155EF121F1413300783C23 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8B155ECA21F131A000783C23 /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		8B155EF221F141E800783C23 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8B155EF321F1421A00783C23 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8B155EF421F1422C00783C23 /* CoreData */,
+				8B155EF521F1424400783C23 /* Networking */,
+				8B155EF621F1429400783C23 /* UpdateManager */,
+				8B155EF721F142AD00783C23 /* UpdateProcessor */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8B155EF421F1422C00783C23 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8B155EF521F1424400783C23 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8B155EF621F1429400783C23 /* UpdateManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UpdateManager;
+			sourceTree = "<group>";
+		};
+		8B155EF721F142AD00783C23 /* UpdateProcessor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UpdateProcessor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
