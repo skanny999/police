@@ -15,7 +15,6 @@
 		8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC721F131A000783C23 /* LaunchScreen.storyboard */; };
 		8B155ED421F131A000783C23 /* PoliceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155ED321F131A000783C23 /* PoliceTests.swift */; };
 		8B155EDF21F131A000783C23 /* PoliceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EDE21F131A000783C23 /* PoliceUITests.swift */; };
-		8BEBCAE221F65CBF0004AFDE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCAE121F65CBF0004AFDE /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,7 +328,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BEBCAE221F65CBF0004AFDE /* Info.plist in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
 				8B155EC121F1319C00783C23 /* Main.storyboard in Resources */,
