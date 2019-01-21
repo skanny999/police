@@ -15,6 +15,7 @@
 		8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC721F131A000783C23 /* LaunchScreen.storyboard */; };
 		8B155ED421F131A000783C23 /* PoliceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155ED321F131A000783C23 /* PoliceTests.swift */; };
 		8B155EDF21F131A000783C23 /* PoliceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EDE21F131A000783C23 /* PoliceUITests.swift */; };
+		8BBAD3FF21F5E168003BF7D2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BBAD3FE21F5E168003BF7D2 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,13 +43,14 @@
 		8B155EC321F1319C00783C23 /* Police.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Police.xcdatamodel; sourceTree = "<group>"; };
 		8B155EC521F1319F00783C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B155EC821F131A000783C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8B155ECA21F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B155ECA21F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../SupportFiles/Info.plist; sourceTree = "<group>"; };
 		8B155ECF21F131A000783C23 /* PoliceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoliceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155ED321F131A000783C23 /* PoliceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceTests.swift; sourceTree = "<group>"; };
 		8B155ED521F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B155EDA21F131A000783C23 /* PoliceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoliceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155EDE21F131A000783C23 /* PoliceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceUITests.swift; sourceTree = "<group>"; };
 		8B155EE021F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BBAD3FE21F5E168003BF7D2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		8B155EAF21F1319C00783C23 = {
 			isa = PBXGroup;
 			children = (
+				8BBAD3FE21F5E168003BF7D2 /* Default-568h@2x.png */,
 				8B155EBA21F1319C00783C23 /* Police */,
 				8B155ED221F131A000783C23 /* PoliceTests */,
 				8B155EDD21F131A000783C23 /* PoliceUITests */,
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
+				8BBAD3FF21F5E168003BF7D2 /* Default-568h@2x.png in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
 				8B155EC121F1319C00783C23 /* Main.storyboard in Resources */,
 			);
