@@ -28,7 +28,7 @@ extension Crime {
     @NSManaged public var streetName: String?
     @NSManaged public var year: String?
     @NSManaged public var location: Location?
-    @NSManaged public var outcomes: Set?
+    @NSManaged public var outcomes: Set<Outcome>?
 
 }
 

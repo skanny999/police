@@ -21,7 +21,7 @@ extension Force {
     @NSManaged public var longDescription: String?
     @NSManaged public var name: String?
     @NSManaged public var contact: Contact?
-    @NSManaged public var officers: Set?
+    @NSManaged public var officers: Set<Officer>?
 
 }
 
