@@ -39,6 +39,23 @@
 		8BEBCB6521F8DC840004AFDE /* Force+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */; };
 		8BEBCB6621F8DC840004AFDE /* Force+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */; };
 		8BEBCB6A21F932700004AFDE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBCB6921F932700004AFDE /* Alamofire.framework */; };
+		8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB6B21FCAAB80004AFDE /* NetworkProvider.swift */; };
+		8BEBCB6E21FCAB090004AFDE /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB6D21FCAB090004AFDE /* URLFactory.swift */; };
+		8BEBCB7121FCAE870004AFDE /* ListOfForces.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7021FCAE870004AFDE /* ListOfForces.json */; };
+		8BEBCB7321FCAF150004AFDE /* JSONFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7221FCAF150004AFDE /* JSONFiles.swift */; };
+		8BEBCB7F21FCB0170004AFDE /* ListOfForces copy 7.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7421FCB0160004AFDE /* ListOfForces copy 7.json */; };
+		8BEBCB8021FCB0170004AFDE /* ListOfForces copy 6.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7521FCB0160004AFDE /* ListOfForces copy 6.json */; };
+		8BEBCB8121FCB0170004AFDE /* Crimes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7621FCB0160004AFDE /* Crimes.json */; };
+		8BEBCB8221FCB0170004AFDE /* ListOfForces copy 8.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7721FCB0160004AFDE /* ListOfForces copy 8.json */; };
+		8BEBCB8321FCB0170004AFDE /* Outcomes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7821FCB0160004AFDE /* Outcomes.json */; };
+		8BEBCB8421FCB0170004AFDE /* ListOfForces copy 5.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7921FCB0170004AFDE /* ListOfForces copy 5.json */; };
+		8BEBCB8521FCB0170004AFDE /* ListOfForces copy 10.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7A21FCB0170004AFDE /* ListOfForces copy 10.json */; };
+		8BEBCB8621FCB0170004AFDE /* ListOfForces copy 9.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7B21FCB0170004AFDE /* ListOfForces copy 9.json */; };
+		8BEBCB8721FCB0170004AFDE /* ListOfForces copy 11.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7C21FCB0170004AFDE /* ListOfForces copy 11.json */; };
+		8BEBCB8821FCB0170004AFDE /* ListOfForces copy 4.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7D21FCB0170004AFDE /* ListOfForces copy 4.json */; };
+		8BEBCB8921FCB0170004AFDE /* SpecificForce.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7E21FCB0170004AFDE /* SpecificForce.json */; };
+		8BEBCB8B21FCB2F40004AFDE /* FileExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8A21FCB2F40004AFDE /* FileExtractor.swift */; };
+		8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +114,23 @@
 		8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Force+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Force+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8BEBCB6921F932700004AFDE /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		8BEBCB6B21FCAAB80004AFDE /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		8BEBCB6D21FCAB090004AFDE /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
+		8BEBCB7021FCAE870004AFDE /* ListOfForces.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ListOfForces.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		8BEBCB7221FCAF150004AFDE /* JSONFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFiles.swift; sourceTree = "<group>"; };
+		8BEBCB7421FCB0160004AFDE /* ListOfForces copy 7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 7.json"; sourceTree = "<group>"; };
+		8BEBCB7521FCB0160004AFDE /* ListOfForces copy 6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 6.json"; sourceTree = "<group>"; };
+		8BEBCB7621FCB0160004AFDE /* Crimes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Crimes.json; sourceTree = "<group>"; };
+		8BEBCB7721FCB0160004AFDE /* ListOfForces copy 8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 8.json"; sourceTree = "<group>"; };
+		8BEBCB7821FCB0160004AFDE /* Outcomes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Outcomes.json; sourceTree = "<group>"; };
+		8BEBCB7921FCB0170004AFDE /* ListOfForces copy 5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 5.json"; sourceTree = "<group>"; };
+		8BEBCB7A21FCB0170004AFDE /* ListOfForces copy 10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 10.json"; sourceTree = "<group>"; };
+		8BEBCB7B21FCB0170004AFDE /* ListOfForces copy 9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 9.json"; sourceTree = "<group>"; };
+		8BEBCB7C21FCB0170004AFDE /* ListOfForces copy 11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 11.json"; sourceTree = "<group>"; };
+		8BEBCB7D21FCB0170004AFDE /* ListOfForces copy 4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 4.json"; sourceTree = "<group>"; };
+		8BEBCB7E21FCB0170004AFDE /* SpecificForce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SpecificForce.json; sourceTree = "<group>"; };
+		8BEBCB8A21FCB2F40004AFDE /* FileExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtractor.swift; sourceTree = "<group>"; };
+		8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +239,7 @@
 				8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */,
 				8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */,
 				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
+				8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,6 +314,9 @@
 		8B155EF521F1424400783C23 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8BEBCB6F21FCADBF0004AFDE /* JSONResponses */,
+				8BEBCB6B21FCAAB80004AFDE /* NetworkProvider.swift */,
+				8BEBCB6D21FCAB090004AFDE /* URLFactory.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -303,6 +341,27 @@
 				8BEBCB6921F932700004AFDE /* Alamofire.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8BEBCB6F21FCADBF0004AFDE /* JSONResponses */ = {
+			isa = PBXGroup;
+			children = (
+				8BEBCB7221FCAF150004AFDE /* JSONFiles.swift */,
+				8BEBCB7021FCAE870004AFDE /* ListOfForces.json */,
+				8BEBCB7E21FCB0170004AFDE /* SpecificForce.json */,
+				8BEBCB7621FCB0160004AFDE /* Crimes.json */,
+				8BEBCB7821FCB0160004AFDE /* Outcomes.json */,
+				8BEBCB7D21FCB0170004AFDE /* ListOfForces copy 4.json */,
+				8BEBCB7921FCB0170004AFDE /* ListOfForces copy 5.json */,
+				8BEBCB7521FCB0160004AFDE /* ListOfForces copy 6.json */,
+				8BEBCB7421FCB0160004AFDE /* ListOfForces copy 7.json */,
+				8BEBCB7721FCB0160004AFDE /* ListOfForces copy 8.json */,
+				8BEBCB7B21FCB0170004AFDE /* ListOfForces copy 9.json */,
+				8BEBCB7A21FCB0170004AFDE /* ListOfForces copy 10.json */,
+				8BEBCB7C21FCB0170004AFDE /* ListOfForces copy 11.json */,
+				8BEBCB8A21FCB2F40004AFDE /* FileExtractor.swift */,
+			);
+			path = JSONResponses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,9 +469,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEBCB8821FCB0170004AFDE /* ListOfForces copy 4.json in Resources */,
+				8BEBCB8521FCB0170004AFDE /* ListOfForces copy 10.json in Resources */,
+				8BEBCB7F21FCB0170004AFDE /* ListOfForces copy 7.json in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
+				8BEBCB8021FCB0170004AFDE /* ListOfForces copy 6.json in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
 				8B155EC121F1319C00783C23 /* Main.storyboard in Resources */,
+				8BEBCB8421FCB0170004AFDE /* ListOfForces copy 5.json in Resources */,
+				8BEBCB8721FCB0170004AFDE /* ListOfForces copy 11.json in Resources */,
+				8BEBCB8321FCB0170004AFDE /* Outcomes.json in Resources */,
+				8BEBCB8121FCB0170004AFDE /* Crimes.json in Resources */,
+				8BEBCB8221FCB0170004AFDE /* ListOfForces copy 8.json in Resources */,
+				8BEBCB7121FCAE870004AFDE /* ListOfForces.json in Resources */,
+				8BEBCB8921FCB0170004AFDE /* SpecificForce.json in Resources */,
+				8BEBCB8621FCB0170004AFDE /* ListOfForces copy 9.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +535,7 @@
 			files = (
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
 				8BEBCB5C21F8DC840004AFDE /* Location+CoreDataProperties.swift in Sources */,
+				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
 				8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */,
 				8B155EBE21F1319C00783C23 /* ViewController.swift in Sources */,
@@ -474,11 +546,15 @@
 				8B155EBC21F1319C00783C23 /* AppDelegate.swift in Sources */,
 				8BEBCB5521F8DC840004AFDE /* Crime+CoreDataClass.swift in Sources */,
 				8BEBCB6421F8DC840004AFDE /* StopAndSearch+CoreDataProperties.swift in Sources */,
+				8BEBCB7321FCAF150004AFDE /* JSONFiles.swift in Sources */,
 				8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */,
 				8BEBCB5A21F8DC840004AFDE /* Place+CoreDataProperties.swift in Sources */,
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
 				8BEBCB6621F8DC840004AFDE /* Force+CoreDataProperties.swift in Sources */,
+				8BEBCB8B21FCB2F40004AFDE /* FileExtractor.swift in Sources */,
+				8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */,
 				8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */,
+				8BEBCB6E21FCAB090004AFDE /* URLFactory.swift in Sources */,
 				8BEBCB6521F8DC840004AFDE /* Force+CoreDataClass.swift in Sources */,
 				8BEBCB5721F8DC840004AFDE /* Officer+CoreDataClass.swift in Sources */,
 				8BEBCB5421F8DC840004AFDE /* Event+CoreDataProperties.swift in Sources */,
