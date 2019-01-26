@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
@@ -16,15 +17,25 @@ class ViewController: UIViewController {
         Alamofire.request("https://httpbin.org/get").responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
+            print("Result: \(response.result)") // response serialization result
             
-            if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
-            }
+            let swiftyJSON = JSON(response.result.value as Any)
+            let origin = swiftyJSON["origin"].string
+            print(origin!)
+            
+//            if let json = response.result.value {
+//                let swifty = JSON(json)
+//
+//                let origin = swifty["origin"].string
+//                print(origin)
+//            }
             
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 print("Data: \(utf8Text)") // original server data as UTF8 string
             }
+            
+            
+            
         }
     }
 
