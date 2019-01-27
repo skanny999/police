@@ -7,25 +7,22 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
+
 
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let listOfForces = JSON(FileExtractor.extractJsonFile(withName: JSONFile.Forces.list))
-        
-        let forces = listOfForces.array!
-        for force in forces {
-            
-            print(force["name"].string!)
-        }
+        ForceProcessor.createJsonFile()
         
     }
+    
+    @IBAction func exportPlist(_ sender: Any) {
+        
+    }
+    
+    
 }
-
-
 
 

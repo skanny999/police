@@ -51,6 +51,7 @@
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="force" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="neighbourhoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="force" inverseEntity="Neighbourhood" syncable="YES"/>
         <relationship name="officers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Officer" inverseName="force" inverseEntity="Officer" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES">
@@ -69,6 +70,7 @@
         <attribute name="population" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="neighbourhood" inverseEntity="Contact" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="neighbourhood" inverseEntity="Event" syncable="YES"/>
+        <relationship name="force" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Force" inverseName="neighbourhoods" inverseEntity="Force" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="neighbourhood" inverseEntity="Location" syncable="YES"/>
         <relationship name="officers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Officer" inverseName="neighbourhood" inverseEntity="Officer" syncable="YES"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="neighbourhood" inverseEntity="Place" syncable="YES"/>
@@ -128,9 +130,9 @@
         <element name="Contact" positionX="393.72265625" positionY="-598.5234375" width="128" height="330"/>
         <element name="Crime" positionX="-446.37890625" positionY="-604.0703125" width="128" height="225"/>
         <element name="Event" positionX="-83.6875" positionY="-620.640625" width="128" height="180"/>
-        <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="120"/>
+        <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
         <element name="Location" positionX="-227.3046875" positionY="-484.03515625" width="128" height="150"/>
-        <element name="Neighbourhood" positionX="132.4375" positionY="-564.4609375" width="128" height="195"/>
+        <element name="Neighbourhood" positionX="132.4375" positionY="-564.4609375" width="128" height="208"/>
         <element name="Officer" positionX="192.91796875" positionY="-157.0546875" width="128" height="135"/>
         <element name="Outcome" positionX="-447.93359375" positionY="-305.95703125" width="128" height="105"/>
         <element name="Place" positionX="-223.06640625" positionY="-311.13671875" width="128" height="165"/>

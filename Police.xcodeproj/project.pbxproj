@@ -48,14 +48,17 @@
 		8BEBCB8121FCB0170004AFDE /* Crimes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7621FCB0160004AFDE /* Crimes.json */; };
 		8BEBCB8221FCB0170004AFDE /* ListOfForces copy 8.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7721FCB0160004AFDE /* ListOfForces copy 8.json */; };
 		8BEBCB8321FCB0170004AFDE /* Outcomes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7821FCB0160004AFDE /* Outcomes.json */; };
-		8BEBCB8421FCB0170004AFDE /* ListOfForces copy 5.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7921FCB0170004AFDE /* ListOfForces copy 5.json */; };
+		8BEBCB8421FCB0170004AFDE /* Neighbourhood.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7921FCB0170004AFDE /* Neighbourhood.json */; };
 		8BEBCB8521FCB0170004AFDE /* ListOfForces copy 10.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7A21FCB0170004AFDE /* ListOfForces copy 10.json */; };
 		8BEBCB8621FCB0170004AFDE /* ListOfForces copy 9.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7B21FCB0170004AFDE /* ListOfForces copy 9.json */; };
 		8BEBCB8721FCB0170004AFDE /* ListOfForces copy 11.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7C21FCB0170004AFDE /* ListOfForces copy 11.json */; };
-		8BEBCB8821FCB0170004AFDE /* ListOfForces copy 4.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7D21FCB0170004AFDE /* ListOfForces copy 4.json */; };
+		8BEBCB8821FCB0170004AFDE /* Outcome.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7D21FCB0170004AFDE /* Outcome.json */; };
 		8BEBCB8921FCB0170004AFDE /* SpecificForce.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7E21FCB0170004AFDE /* SpecificForce.json */; };
 		8BEBCB8B21FCB2F40004AFDE /* FileExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8A21FCB2F40004AFDE /* FileExtractor.swift */; };
 		8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */; };
+		8BEBCB8F21FD0D3D0004AFDE /* AllForces.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */; };
+		8BEBCB9121FDE5870004AFDE /* ForceProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB9021FDE5870004AFDE /* ForceProcessor.swift */; };
+		8BEBCB9421FE187A0004AFDE /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB9321FE187A0004AFDE /* Structs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,14 +126,17 @@
 		8BEBCB7621FCB0160004AFDE /* Crimes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Crimes.json; sourceTree = "<group>"; };
 		8BEBCB7721FCB0160004AFDE /* ListOfForces copy 8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 8.json"; sourceTree = "<group>"; };
 		8BEBCB7821FCB0160004AFDE /* Outcomes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Outcomes.json; sourceTree = "<group>"; };
-		8BEBCB7921FCB0170004AFDE /* ListOfForces copy 5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 5.json"; sourceTree = "<group>"; };
+		8BEBCB7921FCB0170004AFDE /* Neighbourhood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Neighbourhood.json; sourceTree = "<group>"; };
 		8BEBCB7A21FCB0170004AFDE /* ListOfForces copy 10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 10.json"; sourceTree = "<group>"; };
 		8BEBCB7B21FCB0170004AFDE /* ListOfForces copy 9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 9.json"; sourceTree = "<group>"; };
 		8BEBCB7C21FCB0170004AFDE /* ListOfForces copy 11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 11.json"; sourceTree = "<group>"; };
-		8BEBCB7D21FCB0170004AFDE /* ListOfForces copy 4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ListOfForces copy 4.json"; sourceTree = "<group>"; };
+		8BEBCB7D21FCB0170004AFDE /* Outcome.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Outcome.json; sourceTree = "<group>"; };
 		8BEBCB7E21FCB0170004AFDE /* SpecificForce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SpecificForce.json; sourceTree = "<group>"; };
 		8BEBCB8A21FCB2F40004AFDE /* FileExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtractor.swift; sourceTree = "<group>"; };
 		8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllForces.json; sourceTree = "<group>"; };
+		8BEBCB9021FDE5870004AFDE /* ForceProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceProcessor.swift; sourceTree = "<group>"; };
+		8BEBCB9321FE187A0004AFDE /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,30 +222,9 @@
 		8B155EEC21F1400600783C23 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
-				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
-				8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */,
-				8BEBCB3E21F8DC840004AFDE /* Event+CoreDataProperties.swift */,
-				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
-				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
-				8BEBCB4121F8DC840004AFDE /* Officer+CoreDataClass.swift */,
-				8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */,
-				8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */,
-				8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */,
-				8BEBCB4521F8DC840004AFDE /* Location+CoreDataClass.swift */,
-				8BEBCB4621F8DC840004AFDE /* Location+CoreDataProperties.swift */,
-				8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */,
-				8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */,
-				8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */,
-				8BEBCB4A21F8DC840004AFDE /* Contact+CoreDataProperties.swift */,
-				8BEBCB4B21F8DC840004AFDE /* Outcome+CoreDataClass.swift */,
-				8BEBCB4C21F8DC840004AFDE /* Outcome+CoreDataProperties.swift */,
-				8BEBCB4D21F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift */,
-				8BEBCB4E21F8DC840004AFDE /* StopAndSearch+CoreDataProperties.swift */,
-				8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */,
-				8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */,
-				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
+				8BEBCB9221FE184E0004AFDE /* CoreData */,
 				8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */,
+				8BEBCB9321FE187A0004AFDE /* Structs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				8B155EBD21F1319C00783C23 /* ViewController.swift */,
+				8BEBCB9021FDE5870004AFDE /* ForceProcessor.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -351,17 +337,48 @@
 				8BEBCB7E21FCB0170004AFDE /* SpecificForce.json */,
 				8BEBCB7621FCB0160004AFDE /* Crimes.json */,
 				8BEBCB7821FCB0160004AFDE /* Outcomes.json */,
-				8BEBCB7D21FCB0170004AFDE /* ListOfForces copy 4.json */,
-				8BEBCB7921FCB0170004AFDE /* ListOfForces copy 5.json */,
+				8BEBCB7D21FCB0170004AFDE /* Outcome.json */,
+				8BEBCB7921FCB0170004AFDE /* Neighbourhood.json */,
 				8BEBCB7521FCB0160004AFDE /* ListOfForces copy 6.json */,
 				8BEBCB7421FCB0160004AFDE /* ListOfForces copy 7.json */,
 				8BEBCB7721FCB0160004AFDE /* ListOfForces copy 8.json */,
 				8BEBCB7B21FCB0170004AFDE /* ListOfForces copy 9.json */,
 				8BEBCB7A21FCB0170004AFDE /* ListOfForces copy 10.json */,
 				8BEBCB7C21FCB0170004AFDE /* ListOfForces copy 11.json */,
+				8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */,
 				8BEBCB8A21FCB2F40004AFDE /* FileExtractor.swift */,
 			);
 			path = JSONResponses;
+			sourceTree = "<group>";
+		};
+		8BEBCB9221FE184E0004AFDE /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
+				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
+				8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */,
+				8BEBCB3E21F8DC840004AFDE /* Event+CoreDataProperties.swift */,
+				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
+				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
+				8BEBCB4121F8DC840004AFDE /* Officer+CoreDataClass.swift */,
+				8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */,
+				8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */,
+				8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */,
+				8BEBCB4521F8DC840004AFDE /* Location+CoreDataClass.swift */,
+				8BEBCB4621F8DC840004AFDE /* Location+CoreDataProperties.swift */,
+				8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */,
+				8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */,
+				8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */,
+				8BEBCB4A21F8DC840004AFDE /* Contact+CoreDataProperties.swift */,
+				8BEBCB4B21F8DC840004AFDE /* Outcome+CoreDataClass.swift */,
+				8BEBCB4C21F8DC840004AFDE /* Outcome+CoreDataProperties.swift */,
+				8BEBCB4D21F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift */,
+				8BEBCB4E21F8DC840004AFDE /* StopAndSearch+CoreDataProperties.swift */,
+				8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */,
+				8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */,
+				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,17 +486,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BEBCB8821FCB0170004AFDE /* ListOfForces copy 4.json in Resources */,
+				8BEBCB8821FCB0170004AFDE /* Outcome.json in Resources */,
 				8BEBCB8521FCB0170004AFDE /* ListOfForces copy 10.json in Resources */,
 				8BEBCB7F21FCB0170004AFDE /* ListOfForces copy 7.json in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8BEBCB8021FCB0170004AFDE /* ListOfForces copy 6.json in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
 				8B155EC121F1319C00783C23 /* Main.storyboard in Resources */,
-				8BEBCB8421FCB0170004AFDE /* ListOfForces copy 5.json in Resources */,
+				8BEBCB8421FCB0170004AFDE /* Neighbourhood.json in Resources */,
 				8BEBCB8721FCB0170004AFDE /* ListOfForces copy 11.json in Resources */,
 				8BEBCB8321FCB0170004AFDE /* Outcomes.json in Resources */,
 				8BEBCB8121FCB0170004AFDE /* Crimes.json in Resources */,
+				8BEBCB8F21FD0D3D0004AFDE /* AllForces.json in Resources */,
 				8BEBCB8221FCB0170004AFDE /* ListOfForces copy 8.json in Resources */,
 				8BEBCB7121FCAE870004AFDE /* ListOfForces.json in Resources */,
 				8BEBCB8921FCB0170004AFDE /* SpecificForce.json in Resources */,
@@ -562,7 +580,9 @@
 				8BEBCB6121F8DC840004AFDE /* Outcome+CoreDataClass.swift in Sources */,
 				8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */,
 				8BEBCB5621F8DC840004AFDE /* Crime+CoreDataProperties.swift in Sources */,
+				8BEBCB9421FE187A0004AFDE /* Structs.swift in Sources */,
 				8BEBCB6221F8DC840004AFDE /* Outcome+CoreDataProperties.swift in Sources */,
+				8BEBCB9121FDE5870004AFDE /* ForceProcessor.swift in Sources */,
 				8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
