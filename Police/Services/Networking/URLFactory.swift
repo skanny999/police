@@ -76,13 +76,13 @@ struct URLFactory {
         return completeUrl(with: endPoint)
     }
     
-    static func urlForOutcomesByLocation(location: Location, period: Period) -> URL {
+    static func urlForOutcomesByLocation(location: Location, period: Period?) -> URL {
         
         let endpoint = String(format: Outcomes.byLocation.rawValue, dateString(for: period), location.latitude, location.longitude)
         return completeUrl(with: endpoint)
     }
     
-    static func urlForSpecificOutcome(for crimeId: String) -> URL {
+    static func urlForSpecificOutcome(forCrime crimeId: String) -> URL {
         
         let endpoint = String(format: Outcomes.specificOutcome.rawValue, crimeId)
         return completeUrl(with:endpoint)
@@ -96,9 +96,9 @@ struct URLFactory {
     
     // Neighbourood
     
-    static func urlForNeighbourhood(neighbourhoodId: String, policeForce: Force, infoType: NeighborhoodInfoType) -> URL {
+    static func urlForNeighbourhood(neighbourhoodId: String, policeForceId: String, infoType: NeighborhoodInfoType) -> URL {
         
-        let endpoint = String(format: "%@/%@%@", neighbourhoodId, policeForce.identifier!, infoType.rawValue)
+        let endpoint = String(format: "%@/%@%@", policeForceId, neighbourhoodId, infoType.rawValue)
         return completeUrl(with: endpoint)
     }
     
@@ -108,36 +108,38 @@ struct URLFactory {
         return completeUrl(with: endpoint)
     }
     
-    enum NeighborhoodInfoType: String {
-        case specific = "" //force, neighbourhoodId
-        case boudaries = "/boundary" //as above
-        case team = "/people" //as above
-        case events = "/events" //as above
-        case priorities = "/priorities" //as above
-    }
-    
     
     //Stop and search
     
-    static func urlForStopAndSearch(fromLocationId locationId: String, period: Period) -> URL {
+    static func urlForStopAndSearch(fromLocationId locationId: String, period: Period?) -> URL {
         
         let endpoint = String(format: StopSearch.byExactLocationId.rawValue, locationId, dateString(for: period))
+        
+        
         return completeUrl(with: endpoint)
     }
     
-    static func urlForStopAndSearchByMileRadius(fromLocation location: Location, period: Period) -> URL {
+    static func urlForStopAndSearchByMileRadius(fromLocation location: Location, period: Period?) -> URL {
         
         let endpoint = String(format: StopSearch.byLocationRadius.rawValue, location.latitude, location.longitude, dateString(for: period))
         return completeUrl(with: endpoint)
     }
     
-    static func urlForStopAnsSearchByPoliceForce(withIdentifier forceId: String, period: Period) -> URL {
+    static func urlForStopAnsSearchByPoliceForce(withIdentifier forceId: String, period: Period?) -> URL {
         
         let endpoint = String(format: StopSearch.byForceNoLocation.rawValue, forceId, dateString(for: period))
         return completeUrl(with:endpoint)
     }
+    
 }
 
+enum NeighborhoodInfoType: String {
+    case specific = "" //force, neighbourhoodId
+    case boudaries = "/boundary" //as above
+    case team = "/people" //as above
+    case events = "/events" //as above
+    case priorities = "/priorities" //as above
+}
 
 
 private extension URLFactory {
@@ -165,7 +167,7 @@ private enum Crimes: String {
     case byExactLocation = "crimes-at-location?%@lat=%@&lng=%@" // crimes-at-location?date=2017-02&lat=52.629729&lng=-1.131592outcome
     case byLocationRadius = "crimes-street/all-crime?lat=%@&lng=%@%@" //crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2017-01
     case byArea = "crimes-street/all-crime?poly=%@%@" //lat,long:lat,long:...
-    case addDate = "&date=%@-%@" //year,month
+    case addDate = "&date=%@-%@&" //year,month
 }
 
 private enum Outcomes: String {
@@ -177,10 +179,10 @@ private enum Outcomes: String {
 
 
 private enum StopSearch: String {
-    case byExactLocationId = "stops-at-location?%@location_id=%@%@" //api/stops-at-location?location_id=883407&date=2017-01
+    case byExactLocationId = "stops-at-location?location_id=%@%@" //api/stops-at-location?location_id=883407&date=2017-01
     case byForceNoLocation = "stops-no-location?force=%@%@" // police force
-    case byLocationRadius = "stop-street/all-crime?lat=%@&lng=%@%@" //stops-street?lat=52.629729&lng=-1.131592&date=2018-06
-    case byArea = "crimes-street/stop-street?poly=%@" //lat,long:lat,long:...
+    case byLocationRadius = "stops-street?lat=%@&lng=%@%@" //stops-street?lat=52.629729&lng=-1.131592&date=2018-06
+    case byArea = "stops-street?poly=%@" //lat,long:lat,long:...
     case addDate = "&date=%@-%@" //year,month
 }
 

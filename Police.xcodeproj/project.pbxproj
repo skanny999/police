@@ -59,6 +59,8 @@
 		8BEBCB8F21FD0D3D0004AFDE /* AllForces.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */; };
 		8BEBCB9121FDE5870004AFDE /* ForceProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB9021FDE5870004AFDE /* ForceProcessor.swift */; };
 		8BEBCB9421FE187A0004AFDE /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB9321FE187A0004AFDE /* Structs.swift */; };
+		8BEBCB9821FE2E480004AFDE /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB9721FE2E480004AFDE /* URLTests.swift */; };
+		8BEBCB9921FE3C0D0004AFDE /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBCB6921F932700004AFDE /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,7 @@
 		8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllForces.json; sourceTree = "<group>"; };
 		8BEBCB9021FDE5870004AFDE /* ForceProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceProcessor.swift; sourceTree = "<group>"; };
 		8BEBCB9321FE187A0004AFDE /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		8BEBCB9721FE2E480004AFDE /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEBCB9921FE3C0D0004AFDE /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +210,7 @@
 			children = (
 				8B155ED321F131A000783C23 /* PoliceTests.swift */,
 				8B155ED521F131A000783C23 /* Info.plist */,
+				8BEBCB9721FE2E480004AFDE /* URLTests.swift */,
 			);
 			path = PoliceTests;
 			sourceTree = "<group>";
@@ -592,6 +597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B155ED421F131A000783C23 /* PoliceTests.swift in Sources */,
+				8BEBCB9821FE2E480004AFDE /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +811,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2GM46VBD99;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PoliceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -826,6 +836,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2GM46VBD99;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PoliceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
