@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import Alamofire
 @testable import Police
 
 
@@ -31,16 +30,12 @@ class URLTests: XCTestCase {
             
             let expectation = self.expectation(description: "response")
             var success = false
-            Alamofire.request(url).validate(statusCode:200..<300).responseData { response in
+            NetworkProvider.getRequest(forUrl: url) { (data , error) in
                 
-                switch response.result {
-                case .success:
-                    success = true
-                case .failure:
-                    success = false
-                }
+                success = error == nil
                 expectation.fulfill()
             }
+            
             waitForExpectations(timeout: 5, handler: nil)
             
             XCTAssertTrue(success, "URL \(url) is invalid")

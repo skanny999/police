@@ -1,0 +1,50 @@
+[
+    {
+        "age_range": "18-24",
+        "self_defined_ethnicity": "Mixed - Any other Mixed ethnic background (M9)",
+        "outcome_linked_to_object_of_search": null,
+        "datetime": "2017-01-01T02:24:09+00:00",
+        "removal_of_more_than_outer_clothing": false,
+        "operation": false,
+        "officer_defined_ethnicity": "Other",
+        "object_of_search": "Controlled drugs",
+        "involved_person": true,
+        "gender": "Male",
+        "legislation": "Misuse of Drugs Act 1971 (section 23)",
+        "location": {
+            "latitude": "51.127234",
+            "street": {
+                "id": 532290,
+                "name": "On or near Nightclub"
+            },
+            "longitude": "-3.008284"
+        },
+        "outcome": false,
+        "type": "Person search",
+        "operation_name": null
+    },
+    {
+        "age_range": "18-24",
+        "self_defined_ethnicity": "White - White British (W1)",
+        "outcome_linked_to_object_of_search": null,
+        "datetime": "2017-01-01T04:03:36+00:00",
+        "removal_of_more_than_outer_clothing": false,
+        "operation": false,
+        "officer_defined_ethnicity": "White",
+        "object_of_search": "Offensive weapons",
+        "involved_person": true,
+        "gender": "Male",
+        "legislation": "Police and Criminal Evidence Act 1984 (section 1)",
+        "location": {
+            "latitude": "51.528031",
+            "street": {
+                "id": 548506,
+                "name": "On or near Frome View"
+            },
+            "longitude": "-2.482884"
+        },
+        "outcome": false,
+        "type": "Person search",
+        "operation_name": null
+    }
+]

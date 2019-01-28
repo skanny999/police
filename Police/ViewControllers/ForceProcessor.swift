@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import Alamofire
 
 
 struct ForceDetails: Codable {
@@ -16,38 +15,11 @@ struct ForceDetails: Codable {
     let id: String
     let name: String
     var neighbourhoods: [NeighbourhoodDetails]?
-    
-//    var dictionary: [String: Any] {
-//
-//        let neighbourhoodsArray: NSMutableArray = NSMutableArray()
-//
-//        for neighnourhood in neighbourhoods! {
-//            neighbourhoodsArray.add(neighnourhood.nsdictionary)
-//        }
-//
-//        return ["name":name,
-//                "id":id,
-//                "neighbourhoods":neighbourhoodsArray]
-//    }
-//
-//    var nsdictionary: NSDictionary {
-//
-//        return dictionary as NSDictionary
-//    }
 }
 
 struct NeighbourhoodDetails: Codable {
     let name: String
     let id: String
-    
-//    var dictionary: [String: Any] {
-//        return["name": name,
-//               "id": id]
-//    }
-//
-//    var nsdictionary: NSDictionary {
-//        return dictionary as NSDictionary
-//    }
 }
 
 
@@ -66,7 +38,6 @@ class ForceProcessor {
                 print(jsonString)
                 ForceProcessor.saveJsonLocally(json: encodedObject)
             }
-            
         }
     }
     
@@ -79,7 +50,6 @@ class ForceProcessor {
         } catch {
             print(error)
         }
-    
     }
     
     
@@ -95,10 +65,11 @@ class ForceProcessor {
         for force in forces {
             
             var forceDetail = ForceDetails(id: force["id"].string!, name: force["name"].string!, neighbourhoods: nil)
+            let url = URL(string: "https://data.police.uk/api/\(force["id"].string!)/neighbourhoods")!
             
-            Alamofire.request("https://data.police.uk/api/\(force["id"].string!)/neighbourhoods").response { (response) in
+            NetworkProvider.getRequest(forUrl: url) { (data, error) in
                 
-                let jsonArray = try! JSON(data: response.data!).array!
+                let jsonArray = try! JSON(data:data!).array!
                 
                 var allNeighbourhoodDetails:[NeighbourhoodDetails] = []
                 for json in jsonArray {
@@ -113,6 +84,7 @@ class ForceProcessor {
                     completion(allForcesDetails)
                 }
             }
+            
         }
     }
     
