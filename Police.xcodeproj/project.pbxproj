@@ -13,7 +13,6 @@
 		8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EC221F1319C00783C23 /* Police.xcdatamodeld */; };
 		8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC521F1319F00783C23 /* Assets.xcassets */; };
 		8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC721F131A000783C23 /* LaunchScreen.storyboard */; };
-		8B155ED421F131A000783C23 /* PoliceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155ED321F131A000783C23 /* PoliceTests.swift */; };
 		8B155EDF21F131A000783C23 /* PoliceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EDE21F131A000783C23 /* PoliceUITests.swift */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
 		8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */; };
@@ -83,7 +82,6 @@
 		8B155EC521F1319F00783C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B155EC821F131A000783C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B155ECF21F131A000783C23 /* PoliceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoliceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B155ED321F131A000783C23 /* PoliceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceTests.swift; sourceTree = "<group>"; };
 		8B155ED521F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B155EDA21F131A000783C23 /* PoliceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoliceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155EDE21F131A000783C23 /* PoliceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceUITests.swift; sourceTree = "<group>"; };
@@ -195,10 +193,9 @@
 		8B155ED221F131A000783C23 /* PoliceTests */ = {
 			isa = PBXGroup;
 			children = (
-				8B155ED321F131A000783C23 /* PoliceTests.swift */,
-				8B155ED521F131A000783C23 /* Info.plist */,
 				8BEBCB9721FE2E480004AFDE /* URLTests.swift */,
 				8BEBCB9A21FF95A70004AFDE /* NetworkingTest.swift */,
+				8BEBCB9C21FFC3E30004AFDE /* SupportFiles */,
 			);
 			path = PoliceTests;
 			sourceTree = "<group>";
@@ -366,6 +363,14 @@
 				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8BEBCB9C21FFC3E30004AFDE /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8B155ED521F131A000783C23 /* Info.plist */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,7 +576,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B155ED421F131A000783C23 /* PoliceTests.swift in Sources */,
 				8BEBCB9B21FF95A70004AFDE /* NetworkingTest.swift in Sources */,
 				8BEBCB9821FE2E480004AFDE /* URLTests.swift in Sources */,
 			);

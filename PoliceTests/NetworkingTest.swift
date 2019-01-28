@@ -18,73 +18,46 @@ class NetworkingTest: XCTestCase {
     override func tearDown() {
         
     }
-    
-    
-    
+  
     func testSuccesfulNetworkGetRequest() {
         
-        let expectation = self.expectation(description: "SuccesfulGetRequest")
-        var connectionError: NSError? = nil
-        
-        NetworkProvider.getRequest(forUrl: Task.response200.url) { (data, error) in
+        networkRequest(forUrl: Task.succesful.url) { (error) in
             
-            connectionError = error
-            expectation.fulfill()
+            XCTAssertNil(error)
         }
-        
-        self.waitForExpectations(timeout: 3) { (error) in
-            
-            print(error.debugDescription)
-        }
-        print(connectionError?.code)
-        XCTAssertNil(connectionError)
     }
     
     func testErrorNetworkGetRequest() {
         
-        let expectation = self.expectation(description: "ErrorGetRequest")
-        var connectionError: NSError? = nil
-        
-        NetworkProvider.getRequest(forUrl: Task.error.url) { (data, error) in
+        networkRequest(forUrl: Task.error.url) { (error) in
             
-            connectionError = error
-            expectation.fulfill()
+            XCTAssertNotNil(error)
         }
-        
-        self.waitForExpectations(timeout: 3) { (error) in
-            
-            print(error.debugDescription)
-        }
-        
-        XCTAssertNotNil(connectionError, "\(connectionError.debugDescription)")
     }
     
     
     func testTooLongGetRequest() {
         
-        let expectation = self.expectation(description: "TooLongGetRequest")
-        var connectionError: NSError? = nil
-        
-        NetworkProvider.getRequest(forUrl: Task.response503.url) { (data, error) in
+        networkRequest(forUrl: Task.exceedResultLimit.url) { (error) in
             
-            connectionError = error
-            expectation.fulfill()
+            XCTAssert(error?.code == 503)
         }
-        
-        self.waitForExpectations(timeout: 10) { (error) in
-            
-            print(error.debugDescription)
-        }
-
-        XCTAssert(connectionError?.code == 503)
     }
     
     func testTooManyCrimesGetRequest() {
         
-        let expectation = self.expectation(description: "TooLongGetRequest")
+        networkRequest(forUrl: Task.longQuery.url) { (error) in
+            
+            XCTAssert(error?.code == 400)
+        }
+    }
+    
+    private func networkRequest(forUrl url: URL, completion: (NSError?) -> Void) {
+        
+        let expectation = self.expectation(description: "Request")
         var connectionError: NSError? = nil
         
-        NetworkProvider.getRequest(forUrl: Task.response400.url) { (data, error) in
+        NetworkProvider.getRequest(forUrl: url) { (data, error) in
             
             connectionError = error
             expectation.fulfill()
@@ -94,24 +67,24 @@ class NetworkingTest: XCTestCase {
             
             print(error.debugDescription)
         }
-
-        XCTAssert(connectionError?.code == 400)
+        
+        completion(connectionError)
     }
     
     
     enum Task {
         
-        case response200, error, response400, response503
+        case succesful, error, longQuery, exceedResultLimit
         
         var url: URL {
             
             switch self {
-            case .response200:
-                return URL(string:"http://httpbin.org/get")!
-            case .response400:
+            case .succesful:
+                return URL(string:"https://data.police.uk/api/crime-last-updated")!
+            case .longQuery:
                 return URL(string: longRequest)!
-            case .response503:
-                return URL(string: "https://httpstat.us/503")!
+            case .exceedResultLimit:
+                return URL(string: "https://data.police.uk/api/crimes-street/all-crime?poly=50.068,-5.543:51.134,1.338:57.130,-2.278:56.4130,-6.278&date=2017-01")!
             case .error:
                 return URL(string: "randomString")!
             }
@@ -119,6 +92,4 @@ class NetworkingTest: XCTestCase {
     }
     
     static let longRequest = "https://data.police.uk/api/stops-street?poly=52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88:52.2,0.5:52.8,0.2:52.1,0.88"
-
-
 }
