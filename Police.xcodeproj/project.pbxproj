@@ -16,7 +16,6 @@
 		8B155EDF21F131A000783C23 /* PoliceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EDE21F131A000783C23 /* PoliceUITests.swift */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
 		8B3F604D2200A1BC001D6651 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */; };
-		8B3F604E2200A5FA001D6651 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */; };
 		8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */; };
 		8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */; };
 		8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */; };
@@ -145,7 +144,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B3F604E2200A5FA001D6651 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,10 +750,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2GM46VBD99;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = Police/SupportFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -774,10 +769,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2GM46VBD99;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = Police/SupportFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
