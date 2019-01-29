@@ -15,6 +15,7 @@
 		8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC721F131A000783C23 /* LaunchScreen.storyboard */; };
 		8B155EDF21F131A000783C23 /* PoliceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EDE21F131A000783C23 /* PoliceUITests.swift */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
+		8B3F604D2200A1BC001D6651 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */; };
 		8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */; };
 		8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */; };
 		8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */; };
@@ -87,6 +88,7 @@
 		8B155EDE21F131A000783C23 /* PoliceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceUITests.swift; sourceTree = "<group>"; };
 		8B155EE021F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		8BEBCAE121F65CBF0004AFDE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neighbourhood+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B3F604D2200A1BC001D6651 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +317,7 @@
 		8BEBCB6821F9326F0004AFDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
