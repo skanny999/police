@@ -17,10 +17,7 @@ class ViewController: UIViewController {
 //        ForceProcessor.createJsonFile()
         
     }
-    
-    @IBAction func exportPlist(_ sender: Any) {
-        
-    }
+
     
     
 }
