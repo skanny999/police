@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//import SwiftyJSON
+import SwiftyJSON
 
 
 struct ForceDetails: Codable {
@@ -56,36 +56,36 @@ class ForceProcessor {
     
     class func retrieveForcesDetails(completion: @escaping ([ForceDetails]) -> Void) {
         
-//        var allForcesDetails:[ForceDetails] = []
-//        
-//        let forces = JSON(FileExtractor.extractJsonFile(withName: "AllForces")).array!
-//        
-//        var counter = 0
-//
-//        for force in forces {
-//            
-//            var forceDetail = ForceDetails(id: force["id"].string!, name: force["name"].string!, neighbourhoods: nil)
-//            let url = URL(string: "https://data.police.uk/api/\(force["id"].string!)/neighbourhoods")!
-//            
-//            NetworkProvider.getRequest(forUrl: url) { (data, error) in
-//                
-//                let jsonArray = try! JSON(data:data!).array!
-//                
-//                var allNeighbourhoodDetails:[NeighbourhoodDetails] = []
-//                for json in jsonArray {
-//                    allNeighbourhoodDetails.append(NeighbourhoodDetails(name: json["name"].string!, id: json["id"].string!))
-//                }
-//                
-//                forceDetail.neighbourhoods = allNeighbourhoodDetails
-//                allForcesDetails.append(forceDetail)
-//                
-//                counter += 1
-//                if counter == forces.count {
-//                    completion(allForcesDetails)
-//                }
-//            }
-//            
-//        }
+        var allForcesDetails:[ForceDetails] = []
+        
+        let forces = JSON(FileExtractor.extractJsonFile(withName: "AllForces")).array!
+        
+        var counter = 0
+
+        for force in forces {
+            
+            var forceDetail = ForceDetails(id: force["id"].string!, name: force["name"].string!, neighbourhoods: nil)
+            let url = URL(string: "https://data.police.uk/api/\(force["id"].string!)/neighbourhoods")!
+            
+            NetworkProvider.getRequest(forUrl: url) { (data, error) in
+                
+                let jsonArray = try! JSON(data:data!).array!
+                
+                var allNeighbourhoodDetails:[NeighbourhoodDetails] = []
+                for json in jsonArray {
+                    allNeighbourhoodDetails.append(NeighbourhoodDetails(name: json["name"].string!, id: json["id"].string!))
+                }
+                
+                forceDetail.neighbourhoods = allNeighbourhoodDetails
+                allForcesDetails.append(forceDetail)
+                
+                counter += 1
+                if counter == forces.count {
+                    completion(allForcesDetails)
+                }
+            }
+            
+        }
     }
     
     
