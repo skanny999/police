@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CrimeCategory: String {
+enum CrimeCategory: String, CaseIterable {
     
     case allCrime = "all-crime"
     case antiSocialBehaviour = "anti-social-behaviour"
@@ -62,8 +62,7 @@ enum CrimeCategory: String {
     }
 }
 
-enum OutcomeCategory: String {
-    
+enum OutcomeCategory: String, CaseIterable {
     
     case awaiting = "awaiting-court-result"
     case resultUnavailable = "court-result-unavailable"

@@ -10,10 +10,12 @@ import Foundation
 
 class FileExtractor {
     
-    static func extractJsonFile(withName name: String) -> Data {
+    static func extractJsonFile(withName name: String, forClass bundleClass: AnyClass) -> Data {
         
         do {
-            guard let url = Bundle(for: self).url(forResource: name, withExtension: "json") else {
+            guard let url = Bundle(for: bundleClass).url(forResource: name, withExtension: "json") else {
+                
+                
                 fatalError("json file \(name) not found")
             }
             

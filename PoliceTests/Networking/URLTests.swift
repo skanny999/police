@@ -49,7 +49,7 @@ class URLTests: XCTestCase {
     
     func allURLs() -> [URL] {
         
-        let period = Period(month: "08", year: "2017")
+        let period = Period(fromMonth: "2016-08")
         
         return [URLFactory.dateLastUpdated(),
         URLFactory.urlForAllForces(),

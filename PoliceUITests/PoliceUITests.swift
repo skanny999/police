@@ -2,7 +2,7 @@
 //  PoliceUITests.swift
 //  PoliceUITests
 //
-//  Created by Riccardo on 17/01/2019.
+//  Created by Riccardo on 29/01/2019.
 //  Copyright © 2019 RiccardoScanavacca. All rights reserved.
 //
 
@@ -26,9 +26,5 @@ class PoliceUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
 
 }
