@@ -63,7 +63,7 @@ class NetworkingTest: XCTestCase {
             expectation.fulfill()
         }
         
-        self.waitForExpectations(timeout: 3) { (error) in
+        self.waitForExpectations(timeout: 10) { (error) in
             
             print(error.debugDescription)
         }
