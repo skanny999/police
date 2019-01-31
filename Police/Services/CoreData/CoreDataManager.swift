@@ -26,7 +26,17 @@ final class CoreDataManager {
     private init() {
         
         container = NSPersistentContainer(name: "Police")
+        
+        if AppStatus.isTesting {
+            
+        }
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            
+            if AppStatus.isTesting {
+                precondition(storeDescription.type == NSInMemoryStoreType)
+            }
+            
             if let error = error as NSError? {
 
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -55,5 +65,13 @@ final class CoreDataManager {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    static func setInMemoryStoreType(container: NSPersistentContainer) {
+        
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        description.shouldAddStoreAsynchronously = false
+        container.persistentStoreDescriptions = [description]
     }
 }

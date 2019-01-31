@@ -8,12 +8,19 @@
 
 import UIKit
 
+import Foundation
+
 
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if AppStatus.isTesting {
+            print("testing")
+        } else {
+            print("not testing")
+        }
         
     }
 
