@@ -40,7 +40,7 @@ class NetworkingTest: XCTestCase {
         
         networkRequest(forUrl: Task.exceedResultLimit.url) { (error) in
             
-            XCTAssert(error?.code == 503)
+            XCTAssert(error?.code == 503, "Error code was \(String(describing: error?.code))")
         }
     }
     

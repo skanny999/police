@@ -29,6 +29,7 @@ final class CoreDataManager {
         
         if AppStatus.isTesting {
             
+            CoreDataManager.setInMemoryStoreType(for: container)
         }
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -54,8 +55,7 @@ final class CoreDataManager {
         block(CoreDataManager.shared().container.viewContext)
     }
     
-    func saveContext () {
-        let context = container.viewContext
+    func save(_ context: NSManagedObjectContext) {
         if context.hasChanges {
             do {
                 try context.save()
@@ -67,7 +67,7 @@ final class CoreDataManager {
         }
     }
     
-    static func setInMemoryStoreType(container: NSPersistentContainer) {
+    static func setInMemoryStoreType(for container: NSPersistentContainer) {
         
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType

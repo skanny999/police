@@ -35,7 +35,7 @@ class NetworkProvider {
             return (nil, error)
         }
         
-        if response.statusCode == 200 {
+        if 200..<300 ~= response.statusCode {
             
             return (data, nil)
             
