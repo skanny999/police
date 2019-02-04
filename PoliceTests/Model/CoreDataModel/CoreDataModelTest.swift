@@ -66,7 +66,9 @@ class CoreDataModelTest: XCTestCase {
     
     func crimeProperty(forKey key: String, from data: Data, isEqualTo string: String) -> Bool {
         
-        let crimeId = try! JSON(data: data)[key].number
-        return Crime.crime(withId: crimeId!)?.locationTypeCode == string
+        let crimeId = try! JSON(data: data)[key].number?.stringValue
+//        print("Crimelocation: \(Crime.object(withId: crimeId)?.locationTypeCode)")
+        
+        return Crime.object(withId: crimeId!)?.locationTypeCode == string
     }
 }

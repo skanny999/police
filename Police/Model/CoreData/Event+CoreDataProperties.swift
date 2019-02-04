@@ -16,7 +16,7 @@ extension Event {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Event> {
         return NSFetchRequest<Event>(entityName: "Event")
     }
-
+    //delete and parse
     @NSManaged public var address: String?
     @NSManaged public var endDate: NSDate?
     @NSManaged public var longDescription: String?

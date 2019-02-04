@@ -15,7 +15,7 @@ class UpdateProcessor {
         
         CoreDataManager.performBackgroundTask { (context) in
             
-            Crime.crime(withData: data, in: context)
+            Crime.managedObject(withData: data, in: context)
             CoreDataManager.shared().save(context)
             DispatchQueue.main.async {
                 completion(true)

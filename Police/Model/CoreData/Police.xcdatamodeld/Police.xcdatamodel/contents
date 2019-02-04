@@ -24,7 +24,7 @@
     <entity name="Crime" representedClassName="Crime" syncable="YES">
         <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="extraContent" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="identifier" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="locationSubtypeCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationTypeCode" optional="YES" attributeType="String" syncable="YES"/>

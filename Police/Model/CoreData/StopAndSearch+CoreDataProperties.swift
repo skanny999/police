@@ -16,7 +16,8 @@ extension StopAndSearch {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<StopAndSearch> {
         return NSFetchRequest<StopAndSearch>(entityName: "StopAndSearch")
     }
-
+    
+    //identifier is datetime
     @NSManaged public var ageRange: String?
     @NSManaged public var dateTime: NSDate?
     @NSManaged public var genderCode: String?

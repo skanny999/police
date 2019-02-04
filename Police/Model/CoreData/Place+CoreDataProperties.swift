@@ -16,7 +16,8 @@ extension Place {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Place> {
         return NSFetchRequest<Place>(entityName: "Place")
     }
-
+    
+    //delete and parse
     @NSManaged public var address: String?
     @NSManaged public var longDescription: String?
     @NSManaged public var name: String?

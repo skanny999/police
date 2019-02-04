@@ -385,12 +385,13 @@
 		8BEBCB9221FE184E0004AFDE /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */,
+				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
+				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
 				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
 				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
 				8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */,
 				8BEBCB3E21F8DC840004AFDE /* Event+CoreDataProperties.swift */,
-				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
-				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
 				8BEBCB4121F8DC840004AFDE /* Officer+CoreDataClass.swift */,
 				8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */,
 				8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */,
@@ -408,7 +409,6 @@
 				8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */,
 				8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */,
 				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
-				8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";

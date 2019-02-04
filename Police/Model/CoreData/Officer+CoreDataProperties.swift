@@ -16,7 +16,7 @@ extension Officer {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Officer> {
         return NSFetchRequest<Officer>(entityName: "Officer")
     }
-
+    //delete and parse
     @NSManaged public var bio: String?
     @NSManaged public var name: String?
     @NSManaged public var rank: String?

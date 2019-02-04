@@ -19,7 +19,7 @@ extension Crime {
 
     @NSManaged public var categoryCode: String?
     @NSManaged public var extraContent: String?
-    @NSManaged public var identifier: NSNumber
+    @NSManaged public var identifier: String
     @NSManaged public var locationId: NSNumber?
     @NSManaged public var locationSubtypeCode: String?
     @NSManaged public var locationTypeCode: String?

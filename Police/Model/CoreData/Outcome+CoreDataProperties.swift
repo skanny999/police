@@ -16,6 +16,8 @@ extension Outcome {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Outcome> {
         return NSFetchRequest<Outcome>(entityName: "Outcome")
     }
+    
+    //delete and parse
 
     @NSManaged public var categoryCode: String?
     @NSManaged public var date: NSDate?

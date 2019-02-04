@@ -17,6 +17,7 @@ extension Priority {
         return NSFetchRequest<Priority>(entityName: "Priority")
     }
 
+    //delete and parse
     @NSManaged public var action: String?
     @NSManaged public var actionDate: NSDate?
     @NSManaged public var issue: String?
