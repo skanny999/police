@@ -15,6 +15,7 @@ import SwiftyJSON
 public class Crime: NSManagedObject, Managed {
 
     static var dataIdentifier: String = "id"
+    static var objectIdentifier: String = "identifier"
     
     struct Key {
         
@@ -42,7 +43,6 @@ public class Crime: NSManagedObject, Managed {
         object.locationSubtypeCode = json[Key.locationSubtype].string
         object.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
     }
-    
 }
 
     

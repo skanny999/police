@@ -13,6 +13,7 @@ import SwiftyJSON
 protocol Managed: class, NSFetchRequestResult {
 
     static var dataIdentifier: String { get set }
+    static var objectIdentifier: String { get set }
     
     static var entityName: String { get }
     static var defaultSortDescriptors: [NSSortDescriptor] { get }
@@ -67,7 +68,7 @@ extension Managed where Self: NSManagedObject {
         
         let request = self.sortedFetchRequest
 
-        request.predicate = NSPredicate(format: "identifier == %@", id)
+        request.predicate = NSPredicate(format: "%K == %@", objectIdentifier, id)
         return request as! NSFetchRequest<NSFetchRequestResult>
     }
     
