@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(Event)
-public class Event: NSManagedObject {
+public class Event: NSManagedObject, Locatable {
     
     struct Key {
         let description = "description"

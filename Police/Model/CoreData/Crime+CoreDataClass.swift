@@ -12,7 +12,7 @@ import CoreData
 import SwiftyJSON
 
 @objc(Crime)
-public class Crime: NSManagedObject, Managed {
+public class Crime: NSManagedObject, Updatable, Locatable {
 
     static var dataIdentifier: String = "id"
     static var objectIdentifier: String = "identifier"
@@ -26,6 +26,8 @@ public class Crime: NSManagedObject, Managed {
         
         static let locationType = "location_type"
         static let locationSubtype = "location_subtype"
+        static let latitude = "latitude"
+        static let longitude = "longitude"
         
         static let location = "location"
         static let streetName = (street: "street", name: "name")
@@ -42,6 +44,9 @@ public class Crime: NSManagedObject, Managed {
         object.locationTypeCode = json[Key.locationType].string
         object.locationSubtypeCode = json[Key.locationSubtype].string
         object.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
+        object.latitude = json[Key.location][Key.latitude].string
+        object.longitude = json[Key.location][Key.longitude].string
+        
     }
 }
 

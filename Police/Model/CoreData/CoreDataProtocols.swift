@@ -10,22 +10,19 @@ import Foundation
 import CoreData
 import SwiftyJSON
 
+// MARK: - Managed protocol
+
 protocol Managed: class, NSFetchRequestResult {
 
-    static var dataIdentifier: String { get set }
-    static var objectIdentifier: String { get set }
-    
     static var entityName: String { get }
     static var defaultSortDescriptors: [NSSortDescriptor] { get }
     
     static func managedObject(withData data: Data, in context: NSManagedObjectContext)
-    static func update(_ object: Self, with json: JSON)
+
 }
 
-
-
 extension Managed {
-
+    
     static var defaultSortDescriptors: [NSSortDescriptor] {
         return []
     }
@@ -39,6 +36,48 @@ extension Managed {
 }
 
 extension Managed where Self: NSManagedObject {
+    
+    static var entityName: String {
+        return entity().name!
+    }
+}
+
+// MARK: - Locatable
+
+protocol Locatable {
+    
+    var latitude: String? { get set }
+    var longitude: String? { get set }
+
+}
+
+extension Locatable {
+    
+    var coordinates: (lat: String, long: String)? {
+        
+        guard let lat = latitude, let long = longitude else { return nil }
+        return (lat, long)
+    }
+    
+    var hasCoordinates: Bool {
+        
+        return latitude != nil && longitude != nil
+    }
+}
+
+
+// MARK: - Updatable sub protocol
+
+protocol Updatable: Managed {
+    
+    static var dataIdentifier: String { get set }
+    static var objectIdentifier: String { get set }
+    
+    static func update(_ object: Self, with json: JSON)
+    
+}
+
+extension Updatable where Self: NSManagedObject {
     
     static func managedObject(withData data: Data, in context: NSManagedObjectContext) {
         
@@ -71,8 +110,6 @@ extension Managed where Self: NSManagedObject {
         request.predicate = NSPredicate(format: "%K == %@", objectIdentifier, id)
         return request as! NSFetchRequest<NSFetchRequestResult>
     }
-    
-    static var entityName: String {
-        return entity().name!
-    }
 }
+
+

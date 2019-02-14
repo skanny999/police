@@ -13,16 +13,14 @@ import XCTest
 class URLTests: XCTestCase {
     
     let managedObjectContext = CoreDataManager.shared().container.viewContext
-    var location: Location?
+    let location = Location(hasCoordinates: true, coordinates: ("52.629729","-1.131592"),
+                            latitude: "52.629729" , longitude: "-1.131592")
 
     override func setUp() {
         
-        createLocation()
     }
     
     func testURLsWithStandardLocation() {
-        
-        setStandardLocation()
         
         let urls = allURLs()
         
@@ -43,7 +41,7 @@ class URLTests: XCTestCase {
     }
 
     override func tearDown() {
-        location = nil
+
     }
 
     
@@ -57,37 +55,40 @@ class URLTests: XCTestCase {
         URLFactory.urlForForceOfficers(for: "leicestershire"),
         URLFactory.urlForCrimesByExactLocationId(locationId: "884227", period: nil),
         URLFactory.urlForCrimesByExactLocationId(locationId: "884227", period: period),
-        URLFactory.urlForCrimesByExactLocation(location!, period: nil),
-        URLFactory.urlForCrimesByExactLocation(location!, period: period),
-        URLFactory.urlForCrimesByMileRadious(from: location!, period: nil),
-        URLFactory.urlForCrimesByMileRadious(from: location!, period: period),
+        URLFactory.urlForCrimesByExactLocation(location, period: nil),
+        URLFactory.urlForCrimesByExactLocation(location, period: period),
+        URLFactory.urlForCrimesByMileRadious(from: location, period: nil),
+        URLFactory.urlForCrimesByMileRadious(from: location, period: period),
         URLFactory.urlForOutcomesByExactLocationId(locationId: "884227", period: nil),
         URLFactory.urlForOutcomesByExactLocationId(locationId: "884227", period: period),
-        URLFactory.urlForOutcomesByLocation(location: location!, period: nil),
-        URLFactory.urlForOutcomesByLocation(location: location!, period: period),
+        URLFactory.urlForOutcomesByLocation(location: location, period: nil),
+        URLFactory.urlForOutcomesByLocation(location: location, period: period),
         URLFactory.urlForSpecificOutcome(forCrime: "590d68b69228a9ff95b675bb4af591b38de561aa03129dc09a03ef34f537588c"),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .specific),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .boudaries),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .team),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .events),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .priorities),
-        URLFactory.urlToLocateNeigbourhood(from: location!),
+        URLFactory.urlToLocateNeigbourhood(from: location),
         URLFactory.urlForStopAndSearch(fromLocationId: "884227", period: nil),
         URLFactory.urlForStopAndSearch(fromLocationId: "884227", period: period),
-        URLFactory.urlForStopAndSearchByMileRadius(fromLocation: location!, period: period),
-        URLFactory.urlForStopAndSearchByMileRadius(fromLocation: location!, period: nil),
+        URLFactory.urlForStopAndSearchByMileRadius(fromLocation: location, period: period),
+        URLFactory.urlForStopAndSearchByMileRadius(fromLocation: location, period: nil),
         URLFactory.urlForStopAnsSearchByPoliceForce(withIdentifier: "leicestershire", period: period)]
     }
     
     
-    func createLocation() {
+    struct Location: Locatable {
         
-        location = Location(context: managedObjectContext)
-    }
-    
-    func setStandardLocation() {
-        location?.latitude = 52.629729
-        location?.longitude = -1.131592
+        var hasCoordinates: Bool = false
+        
+        var coordinates: (lat: String, long: String)?
+        
+        var latitude: String?
+        
+        var longitude: String?
     }
 
 }
+
+

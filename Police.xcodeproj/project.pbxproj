@@ -33,8 +33,6 @@
 		8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */; };
 		8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */; };
 		8BEBCB5A21F8DC840004AFDE /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */; };
-		8BEBCB5B21F8DC840004AFDE /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4521F8DC840004AFDE /* Location+CoreDataClass.swift */; };
-		8BEBCB5C21F8DC840004AFDE /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4621F8DC840004AFDE /* Location+CoreDataProperties.swift */; };
 		8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */; };
 		8BEBCB5E21F8DC840004AFDE /* Priority+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */; };
 		8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */; };
@@ -118,8 +116,6 @@
 		8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Officer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		8BEBCB4521F8DC840004AFDE /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
-		8BEBCB4621F8DC840004AFDE /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Priority+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Priority+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -396,8 +392,6 @@
 				8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */,
 				8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */,
 				8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */,
-				8BEBCB4521F8DC840004AFDE /* Location+CoreDataClass.swift */,
-				8BEBCB4621F8DC840004AFDE /* Location+CoreDataProperties.swift */,
 				8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */,
 				8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */,
 				8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */,
@@ -619,13 +613,11 @@
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
 				8B9117802203B7DE0024CCFA /* CoreData+Utils.swift in Sources */,
 				8B9117782203AD210024CCFA /* Constants.swift in Sources */,
-				8BEBCB5C21F8DC840004AFDE /* Location+CoreDataProperties.swift in Sources */,
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,
 				8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */,
 				8B155EBE21F1319C00783C23 /* ViewController.swift in Sources */,
-				8BEBCB5B21F8DC840004AFDE /* Location+CoreDataClass.swift in Sources */,
 				8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */,
 				8BEBCB5E21F8DC840004AFDE /* Priority+CoreDataProperties.swift in Sources */,
 				8BEBCB6021F8DC840004AFDE /* Contact+CoreDataProperties.swift in Sources */,

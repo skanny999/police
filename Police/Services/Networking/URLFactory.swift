@@ -49,15 +49,15 @@ struct URLFactory {
         return completeUrl(with: endPoint)
     }
     
-    static func urlForCrimesByExactLocation(_ location: Location, period: Period?) -> URL {
+    static func urlForCrimesByExactLocation(_ location: Locatable, period: Period?) -> URL {
         
-        let endpoint = String(format: Crimes.byExactLocation.rawValue, dateString(for: period), location.latitude, location.longitude)
+        let endpoint = String(format: Crimes.byExactLocation.rawValue, dateString(for: period), location.latitude!, location.longitude!)
         return completeUrl(with: endpoint)
     }
     
-    static func urlForCrimesByMileRadious(from location: Location, period: Period?) -> URL {
+    static func urlForCrimesByMileRadious(from location: Locatable, period: Period?) -> URL {
         
-        let endpoint = String(format: Crimes.byLocationRadius.rawValue, location.latitude, location.longitude, dateString(for: period))
+        let endpoint = String(format: Crimes.byLocationRadius.rawValue, location.latitude!, location.longitude!, dateString(for: period))
         return completeUrl(with: endpoint)
     }
     
@@ -76,9 +76,13 @@ struct URLFactory {
         return completeUrl(with: endPoint)
     }
     
-    static func urlForOutcomesByLocation(location: Location, period: Period?) -> URL {
+    static func urlForOutcomesByLocation(location: Locatable, period: Period?) -> URL {
         
-        let endpoint = String(format: Outcomes.byLocation.rawValue, dateString(for: period), location.latitude, location.longitude)
+        if !location.hasCoordinates {
+            fatalError("Location must have coordinates")
+        }
+        
+        let endpoint = String(format: Outcomes.byLocation.rawValue, dateString(for: period), location.coordinates!.lat, location.coordinates!.long)
         return completeUrl(with: endpoint)
     }
     
@@ -102,9 +106,13 @@ struct URLFactory {
         return completeUrl(with: endpoint)
     }
     
-    static func urlToLocateNeigbourhood(from location: Location) -> URL {
+    static func urlToLocateNeigbourhood(from location: Locatable) -> URL {
         
-        let endpoint = String(format: "locate-neighbourhood?q=%@,%@", location.latitude, location.longitude)
+        if !location.hasCoordinates {
+            fatalError("Location must have coordinates")
+        }
+        
+        let endpoint = String(format: "locate-neighbourhood?q=%@,%@", location.coordinates!.lat, location.coordinates!.long)
         return completeUrl(with: endpoint)
     }
     
@@ -119,9 +127,13 @@ struct URLFactory {
         return completeUrl(with: endpoint)
     }
     
-    static func urlForStopAndSearchByMileRadius(fromLocation location: Location, period: Period?) -> URL {
+    static func urlForStopAndSearchByMileRadius(fromLocation location: Locatable, period: Period?) -> URL {
         
-        let endpoint = String(format: StopSearch.byLocationRadius.rawValue, location.latitude, location.longitude, dateString(for: period))
+        if !location.hasCoordinates {
+            fatalError("Location must have coordinates")
+        }
+        
+        let endpoint = String(format: StopSearch.byLocationRadius.rawValue, location.coordinates!.lat, location.coordinates!.long, dateString(for: period))
         return completeUrl(with: endpoint)
     }
     

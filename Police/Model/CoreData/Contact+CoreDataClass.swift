@@ -9,27 +9,53 @@
 
 import Foundation
 import CoreData
+import SwiftyJSON
 
 @objc(Contact)
 public class Contact: NSManagedObject {
     
     struct Key {
         
-        let address = "address"
-        let blog = "blog"
-        let email = "email"
-        let eMessaging = "e-messaging"
-        let facebook = "facebook"
-        let fax = "fax"
-        let flickr = "flickr"
-        let forum = "forum"
-        let googlePlus = "google-plus"
-        let mobile = "mobile"
-        let rss = "rss"
-        let telephone = "telephone"
-        let twitter = "twitter"
-        let website = "web"
-        let youtube = "youtube"
+        static let address = "address"
+        static let blog = "blog"
+        static let email = "email"
+        static let eMessaging = "e-messaging"
+        static let facebook = "facebook"
+        static let fax = "fax"
+        static let flickr = "flickr"
+        static let forum = "forum"
+        static let googlePlus = "google-plus"
+        static let mobile = "mobile"
+        static let rss = "rss"
+        static let telephone = "telephone"
+        static let twitter = "twitter"
+        static let website = "web"
+        static let urlForce = "url_force"
+        static let youtube = "youtube"
+        static let contacts = "contacts"
+    }
+    
+    static func updateContacts(for neighbourhood: Neighbourhood, with json: JSON) {
+        
+        if let contact = neighbourhood.contact {
+            
+            contact.parseNeighbourhoodContact(from: json)
+            
+        } else {
+            
+            let contact = Contact(entity: Contact.entity(), insertInto: neighbourhood.managedObjectContext)
+            contact.parseNeighbourhoodContact(from: json)
+            neighbourhood.contact = contact
+        }
+    }
+    
+    func parseNeighbourhoodContact(from json: JSON) {
+        
+        self.website = json[Key.urlForce].string
+        self.twitter = json[Key.contacts][Key.twitter].string
+        self.facebook = json[Key.contacts][Key.facebook].string
+        self.telephone = json[Key.contacts][Key.telephone].string
+        self.email = json[Key.contacts][Key.email].string
     }
 
 }

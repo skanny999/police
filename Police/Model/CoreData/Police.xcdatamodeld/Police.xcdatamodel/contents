@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="blog" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,25 +25,27 @@
         <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="extraContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="locationSubtypeCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationTypeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="persistentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="crime" inverseEntity="Location" syncable="YES"/>
         <relationship name="outcomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Outcome" inverseName="crime" inverseEntity="Outcome" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="event" inverseEntity="Contact" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="event" inverseEntity="Location" syncable="YES"/>
         <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="events" inverseEntity="Neighbourhood" syncable="YES"/>
     </entity>
     <entity name="Force" representedClassName="Force" syncable="YES">
@@ -54,24 +56,16 @@
         <relationship name="neighbourhoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="force" inverseEntity="Neighbourhood" syncable="YES"/>
         <relationship name="officers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Officer" inverseName="force" inverseEntity="Officer" syncable="YES"/>
     </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES">
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="crime" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crime" inverseName="location" inverseEntity="Crime" syncable="YES"/>
-        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="location" inverseEntity="Event" syncable="YES"/>
-        <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="location" inverseEntity="Neighbourhood" syncable="YES"/>
-        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="location" inverseEntity="Place" syncable="YES"/>
-        <relationship name="stopAndSearch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StopAndSearch" inverseName="location" inverseEntity="StopAndSearch" syncable="YES"/>
-    </entity>
     <entity name="Neighbourhood" representedClassName="Neighbourhood" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="population" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="neighbourhood" inverseEntity="Contact" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="neighbourhood" inverseEntity="Event" syncable="YES"/>
         <relationship name="force" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Force" inverseName="neighbourhoods" inverseEntity="Force" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="neighbourhood" inverseEntity="Location" syncable="YES"/>
         <relationship name="officers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Officer" inverseName="neighbourhood" inverseEntity="Officer" syncable="YES"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="neighbourhood" inverseEntity="Place" syncable="YES"/>
         <relationship name="priorities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Priority" inverseName="neighbourhood" inverseEntity="Priority" syncable="YES"/>
@@ -92,12 +86,13 @@
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="place" inverseEntity="Location" syncable="YES"/>
         <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="places" inverseEntity="Neighbourhood" syncable="YES"/>
     </entity>
     <entity name="Priority" representedClassName="Priority" syncable="YES">
@@ -111,8 +106,10 @@
         <attribute name="ageRange" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="genderCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="legislation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="objectOfSearch" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="officerEthnicity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="operationName" optional="YES" attributeType="String" syncable="YES"/>
@@ -124,19 +121,17 @@
         <attribute name="stripSearch" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="suspectEthnicity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="stopAndSearch" inverseEntity="Location" syncable="YES"/>
     </entity>
     <elements>
         <element name="Contact" positionX="393.72265625" positionY="-598.5234375" width="128" height="330"/>
-        <element name="Crime" positionX="-446.37890625" positionY="-604.0703125" width="128" height="225"/>
-        <element name="Event" positionX="-83.6875" positionY="-620.640625" width="128" height="180"/>
+        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="238"/>
+        <element name="Event" positionX="-83.6875" positionY="-620.640625" width="128" height="193"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
-        <element name="Location" positionX="-227.3046875" positionY="-484.03515625" width="128" height="150"/>
-        <element name="Neighbourhood" positionX="132.4375" positionY="-564.4609375" width="128" height="208"/>
+        <element name="Neighbourhood" positionX="132.4375" positionY="-564.4609375" width="128" height="223"/>
         <element name="Officer" positionX="192.91796875" positionY="-157.0546875" width="128" height="135"/>
-        <element name="Outcome" positionX="-447.93359375" positionY="-305.95703125" width="128" height="105"/>
-        <element name="Place" positionX="-223.06640625" positionY="-311.13671875" width="128" height="165"/>
+        <element name="Outcome" positionX="-275.5234375" positionY="-395.01171875" width="128" height="105"/>
+        <element name="Place" positionX="-88.04296875" positionY="-381.90625" width="128" height="178"/>
         <element name="Priority" positionX="-76.625" positionY="-122.046875" width="128" height="120"/>
-        <element name="StopAndSearch" positionX="-449.46484375" positionY="-152.6484375" width="128" height="300"/>
+        <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="313"/>
     </elements>
 </model>

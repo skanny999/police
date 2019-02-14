@@ -41,14 +41,18 @@ class CoreDataModelTest: XCTestCase {
         
         updateCrime(withData: data) { [weak self] in
 
-            XCTAssertTrue(self?.crimeProperty(forKey: "id", from: data, isEqualTo: "Force") ?? false)
+            let crime = self?.savedCrime(from: data)
+            XCTAssertTrue(crime!.locationTypeCode == "Force")
         }
         
         data = FileExtractor.extractJsonFile(withName: "CrimeEdited", forClass: type(of: self))
         
         updateCrime(withData: data) { [weak self] in
             
-            XCTAssertTrue(self?.crimeProperty(forKey: "id", from: data, isEqualTo: "Travel") ?? false)
+            let crime = self?.savedCrime(from: data)
+            XCTAssertTrue(crime!.locationTypeCode == "Travel")
+            XCTAssertTrue(crime!.coordinates!.lat == "52.640961")
+            XCTAssertTrue(crime!.coordinates!.long == "-1.126371")
         }
     }
     
@@ -63,12 +67,14 @@ class CoreDataModelTest: XCTestCase {
         waitForExpectations(timeout: 3, handler: nil)
         completion()
     }
-    
-    func crimeProperty(forKey key: String, from data: Data, isEqualTo string: String) -> Bool {
+
+    func savedCrime(from data: Data) -> Crime {
         
-        let crimeId = try! JSON(data: data)[key].number?.stringValue
-//        print("Crimelocation: \(Crime.object(withId: crimeId)?.locationTypeCode)")
-        
-        return Crime.object(withId: crimeId!)?.locationTypeCode == string
+        if let crimeId = try! JSON(data: data)[Crime.dataIdentifier].number?.stringValue,
+            let crime = Crime.object(withId: crimeId) {
+            return crime
+        }
+        fatalError("crime not parsed")
     }
+
 }
