@@ -42,7 +42,21 @@ class CoreDataModelTest: XCTestCase {
         updateCrime(withData: data) { [weak self] in
 
             let crime = self?.savedCrime(from: data)
-            XCTAssertTrue(crime!.locationTypeCode == "Force")
+            XCTAssertTrue(crime?.locationTypeCode == "Force")
+            XCTAssertTrue(crime?.category == .antiSocialBehaviour)
+            XCTAssertTrue(crime?.extraContent == "")
+            XCTAssertTrue(crime?.identifier == "54164419")
+            XCTAssertTrue(crime?.locationId == 0)
+            XCTAssertTrue(crime?.locationSubtypeCode == "")
+            XCTAssertTrue(crime?.month == "01")
+            XCTAssertTrue(crime?.persistentId == "fsdfskdjfslkdjfsldkfsdlskd")
+            XCTAssertTrue(crime?.streetName == "On or near Wharf Street North")
+            XCTAssertTrue(crime?.year == "2017")
+            XCTAssertTrue(crime?.latitude == "52.640961")
+            XCTAssertTrue(crime?.longitude == "-1.126371")
+            XCTAssertTrue(crime?.outcomes?.first?.category == .underInvestigation)
+            XCTAssertTrue(crime?.outcomes?.first?.date == "2017-05")
+            XCTAssertTrue(crime?.outcomes?.first?.personId == nil)
         }
         
         data = FileExtractor.extractJsonFile(withName: "CrimeEdited", forClass: type(of: self))
@@ -50,9 +64,28 @@ class CoreDataModelTest: XCTestCase {
         updateCrime(withData: data) { [weak self] in
             
             let crime = self?.savedCrime(from: data)
-            XCTAssertTrue(crime!.locationTypeCode == "Travel")
-            XCTAssertTrue(crime!.coordinates!.lat == "52.640961")
-            XCTAssertTrue(crime!.coordinates!.long == "-1.126371")
+            XCTAssertTrue(crime?.locationTypeCode == "Travel")
+            XCTAssertTrue(crime?.category == .antiSocialBehaviour)
+            XCTAssertTrue(crime?.extraContent == "")
+            XCTAssertTrue(crime?.identifier == "54164419")
+            XCTAssertTrue(crime?.locationId == 0)
+            XCTAssertTrue(crime?.locationSubtypeCode == "")
+            XCTAssertTrue(crime?.month == "01")
+            XCTAssertTrue(crime?.persistentId == "fsdfskdjfslkdjfsldkfsdlskd")
+            XCTAssertTrue(crime?.streetName == "On or near Wharf Street North")
+            XCTAssertTrue(crime?.year == "2017")
+            XCTAssertTrue(crime?.latitude == "52.640961")
+            XCTAssertTrue(crime?.longitude == "-1.126371")
+            
+            let outcomes = crime?.outcomes?.sorted{$0.date! < $1.date!}
+
+            XCTAssertTrue(outcomes?.first?.category == .underInvestigation)
+            XCTAssertTrue(outcomes?.first?.date == "2017-05")
+            XCTAssertTrue(outcomes?.first?.personId == nil)
+            XCTAssertTrue(outcomes?.last?.category == .formalActionNotInPublicInterest)
+            XCTAssertTrue(outcomes?.last?.date == "2017-06")
+            XCTAssertTrue(outcomes?.last?.personId == nil)
+            
         }
     }
     
@@ -76,5 +109,16 @@ class CoreDataModelTest: XCTestCase {
         }
         fatalError("crime not parsed")
     }
+    
+    // MARK: - Neighbourhood
+    
+    func testNeighbourhoodObject() {
+        
+//        var data = FileExtractor.extractJsonFile(withName: "Neighbourhood", forClass: type(of: self))
+        
+        
+        
+    }
+    
 
 }

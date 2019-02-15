@@ -80,7 +80,7 @@
     </entity>
     <entity name="Outcome" representedClassName="Outcome" syncable="YES">
         <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="crime" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crime" inverseName="outcomes" inverseEntity="Crime" syncable="YES"/>
     </entity>
@@ -123,15 +123,15 @@
         <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="393.72265625" positionY="-598.5234375" width="128" height="330"/>
+        <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="330"/>
         <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="238"/>
-        <element name="Event" positionX="-83.6875" positionY="-620.640625" width="128" height="193"/>
+        <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="193"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
-        <element name="Neighbourhood" positionX="132.4375" positionY="-564.4609375" width="128" height="223"/>
-        <element name="Officer" positionX="192.91796875" positionY="-157.0546875" width="128" height="135"/>
-        <element name="Outcome" positionX="-275.5234375" positionY="-395.01171875" width="128" height="105"/>
-        <element name="Place" positionX="-88.04296875" positionY="-381.90625" width="128" height="178"/>
-        <element name="Priority" positionX="-76.625" positionY="-122.046875" width="128" height="120"/>
+        <element name="Neighbourhood" positionX="21.40625" positionY="-343.328125" width="128" height="223"/>
+        <element name="Officer" positionX="105.046875" positionY="-36.625" width="128" height="135"/>
+        <element name="Outcome" positionX="-271.21875" positionY="-376.51171875" width="128" height="103"/>
+        <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="178"/>
+        <element name="Priority" positionX="-142.6015625" positionY="-111.18359375" width="128" height="120"/>
         <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="313"/>
     </elements>
 </model>

@@ -13,6 +13,8 @@ import CoreData
 @objc(StopAndSearch)
 public class StopAndSearch: NSManagedObject {
     
+
+    
     struct Key {
         let ageRange = "age_range"
         let dateTime = "datetime"

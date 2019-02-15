@@ -20,7 +20,7 @@ extension Outcome {
     //delete and parse
 
     @NSManaged public var categoryCode: String?
-    @NSManaged public var date: NSDate?
+    @NSManaged public var date: String?
     @NSManaged public var personId: String?
     @NSManaged public var crime: Crime?
 

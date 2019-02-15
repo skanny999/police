@@ -10,8 +10,17 @@
         "longitude": "-1.126371"
     },
     "context": "",
-    "outcome_status": null,
-    "persistent_id": "",
+    "outcome_status": [
+        {
+            "category": {
+                "code": "under-investigation",
+                "name": "Under investigation"
+            },
+            "date": "2017-05",
+            "person_id": null
+        }
+    ],
+    "persistent_id": "fsdfskdjfslkdjfsldkfsdlskd",
     "id": 54164419,
     "location_subtype": "",
     "month": "2017-01"

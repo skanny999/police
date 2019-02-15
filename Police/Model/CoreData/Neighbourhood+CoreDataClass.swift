@@ -37,6 +37,7 @@ public class Neighbourhood: NSManagedObject, Updatable {
         object.latitude = json[Key.centre][Key.latitude].string
         object.longitude = json[Key.centre][Key.longitude].string
         Contact.updateContacts(for: object, with: json)
+        
         //add places
         //add officers
         //add priorities
