@@ -19,11 +19,13 @@ struct JSONFile {
     struct Crimes {
     
         static let crimes = "Crimes"
+        static let crime = "Crime"
+        static let crimeEdited = "CrimeEdited"
         static let outcomes = "Outcomes"
         static let outcome = "Outcome"
     }
     
-    struct neighbourhood {
+    struct Neighbourhood {
         
         static let specificNeighbourhood = "Neighbourhood"
     }

@@ -7,24 +7,18 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class UpdateProcessor {
     
-    static func updateCrime(fromData data: Data, completion: @escaping (Bool) -> Void) {
+    static func updateObject<T: Updatable>(ofType updatableClass: T.Type, fromData data: Data, completion: @escaping (Bool) -> Void) {
         
         CoreDataManager.performBackgroundTask { (context) in
             
-            Crime.managedObject(withData: data, in: context)
+            updatableClass.managedObject(withData: data, in: context)
             CoreDataManager.shared().save(context)
             DispatchQueue.main.async {
                 completion(true)
             }
         }
     }
-    
-    
-    
-    
-    
 }

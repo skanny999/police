@@ -335,6 +335,40 @@
 			path = UpdateProcessor;
 			sourceTree = "<group>";
 		};
+		8B3DD0122217095D00B98FE5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
+				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
+				8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */,
+				8BEBCB4121F8DC840004AFDE /* Officer+CoreDataClass.swift */,
+				8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */,
+				8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */,
+				8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */,
+				8BEBCB4B21F8DC840004AFDE /* Outcome+CoreDataClass.swift */,
+				8BEBCB4D21F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift */,
+				8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		8B3DD0142217098C00B98FE5 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
+				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
+				8BEBCB3E21F8DC840004AFDE /* Event+CoreDataProperties.swift */,
+				8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */,
+				8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */,
+				8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */,
+				8BEBCB4A21F8DC840004AFDE /* Contact+CoreDataProperties.swift */,
+				8BEBCB4C21F8DC840004AFDE /* Outcome+CoreDataProperties.swift */,
+				8BEBCB4E21F8DC840004AFDE /* StopAndSearch+CoreDataProperties.swift */,
+				8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */,
+			);
+			path = Properties;
+			sourceTree = "<group>";
+		};
 		8B56E2AA220754920061D1CF /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,26 +416,8 @@
 			isa = PBXGroup;
 			children = (
 				8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */,
-				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
-				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
-				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
-				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
-				8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */,
-				8BEBCB3E21F8DC840004AFDE /* Event+CoreDataProperties.swift */,
-				8BEBCB4121F8DC840004AFDE /* Officer+CoreDataClass.swift */,
-				8BEBCB4221F8DC840004AFDE /* Officer+CoreDataProperties.swift */,
-				8BEBCB4321F8DC840004AFDE /* Place+CoreDataClass.swift */,
-				8BEBCB4421F8DC840004AFDE /* Place+CoreDataProperties.swift */,
-				8BEBCB4721F8DC840004AFDE /* Priority+CoreDataClass.swift */,
-				8BEBCB4821F8DC840004AFDE /* Priority+CoreDataProperties.swift */,
-				8BEBCB4921F8DC840004AFDE /* Contact+CoreDataClass.swift */,
-				8BEBCB4A21F8DC840004AFDE /* Contact+CoreDataProperties.swift */,
-				8BEBCB4B21F8DC840004AFDE /* Outcome+CoreDataClass.swift */,
-				8BEBCB4C21F8DC840004AFDE /* Outcome+CoreDataProperties.swift */,
-				8BEBCB4D21F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift */,
-				8BEBCB4E21F8DC840004AFDE /* StopAndSearch+CoreDataProperties.swift */,
-				8BEBCB4F21F8DC840004AFDE /* Force+CoreDataClass.swift */,
-				8BEBCB5021F8DC840004AFDE /* Force+CoreDataProperties.swift */,
+				8B3DD0122217095D00B98FE5 /* Classes */,
+				8B3DD0142217098C00B98FE5 /* Properties */,
 				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
 			);
 			path = CoreData;
