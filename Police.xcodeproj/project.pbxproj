@@ -13,9 +13,10 @@
 		8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EC221F1319C00783C23 /* Police.xcdatamodeld */; };
 		8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC521F1319F00783C23 /* Assets.xcassets */; };
 		8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC721F131A000783C23 /* LaunchScreen.storyboard */; };
+		8B3DD0162219B06400B98FE5 /* NeighbourhoodEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
 		8B3F604F2200B894001D6651 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */; };
-		8B56E2A92207548C0061D1CF /* CoreDataModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */; };
+		8B56E2A92207548C0061D1CF /* CoreDataModelTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2A82207548C0061D1CF /* CoreDataModelTestHelper.swift */; };
 		8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */; };
 		8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */; };
 		8B56E2B022077A620061D1CF /* Crime.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2AF22077A620061D1CF /* Crime.json */; };
@@ -95,9 +96,10 @@
 		8B155ED521F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B155EDA21F131A000783C23 /* PoliceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoliceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155EE021F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodEdited.json; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelTest.swift; sourceTree = "<group>"; };
+		8B56E2A82207548C0061D1CF /* CoreDataModelTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelTestHelper.swift; sourceTree = "<group>"; };
 		8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocols.swift; sourceTree = "<group>"; };
 		8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProcessor.swift; sourceTree = "<group>"; };
 		8B56E2AF22077A620061D1CF /* Crime.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Crime.json; sourceTree = "<group>"; };
@@ -372,7 +374,7 @@
 		8B56E2AA220754920061D1CF /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */,
+				8B56E2A82207548C0061D1CF /* CoreDataModelTestHelper.swift */,
 			);
 			path = CoreDataModel;
 			sourceTree = "<group>";
@@ -405,6 +407,7 @@
 				8BEBCB7821FCB0160004AFDE /* Outcomes.json */,
 				8BEBCB7D21FCB0170004AFDE /* Outcome.json */,
 				8BEBCB7921FCB0170004AFDE /* Neighbourhood.json */,
+				8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */,
 				8BEBCB7521FCB0160004AFDE /* StopAndSearch.json */,
 				8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */,
 				8BEBCBA7220119460004AFDE /* FileExtractorTest.swift */,
@@ -585,6 +588,7 @@
 				8BEBCBB022011A860004AFDE /* Neighbourhood.json in Resources */,
 				8BEBCBAD22011A860004AFDE /* Crimes.json in Resources */,
 				8B56E2B022077A620061D1CF /* Crime.json in Resources */,
+				8B3DD0162219B06400B98FE5 /* NeighbourhoodEdited.json in Resources */,
 				8BEBCBAC22011A860004AFDE /* SpecificForce.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,7 +677,7 @@
 				8BEBCB9B21FF95A70004AFDE /* NetworkingTest.swift in Sources */,
 				8BEBCBA22200F8690004AFDE /* CategoriesTest.swift in Sources */,
 				8B91177E2203B4CF0024CCFA /* PersistentContainerTest.swift in Sources */,
-				8B56E2A92207548C0061D1CF /* CoreDataModelTest.swift in Sources */,
+				8B56E2A92207548C0061D1CF /* CoreDataModelTestHelper.swift in Sources */,
 				8BEBCB9821FE2E480004AFDE /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
