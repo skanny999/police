@@ -20,7 +20,7 @@ extension Neighbourhood {
     @NSManaged public var identifier: String?
     @NSManaged public var longDescription: String?
     @NSManaged public var name: String?
-    @NSManaged public var population: NSNumber?
+    @NSManaged public var population: String?
     @NSManaged public var latitude: String?
     @NSManaged public var longitude: String?
     @NSManaged public var contact: Contact?

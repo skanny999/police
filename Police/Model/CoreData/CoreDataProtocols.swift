@@ -83,7 +83,9 @@ extension Updatable where Self: NSManagedObject {
         
         let objectData = try! JSON(data: data)
         
-        guard let objectId = objectData.dictionary?[dataIdentifier]?.number?.stringValue else { return }
+        guard
+            let objectId = objectData.dictionary?[dataIdentifier]?.number?.stringValue
+            ?? objectData.dictionary?[dataIdentifier]?.string else { return }
         
         if let object = Self.object(withId: objectId) {
             

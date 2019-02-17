@@ -95,11 +95,45 @@ class CoreDataModelTest: XCTestCase {
         
         let data = FileExtractor.extractJsonFile(withName: JSONFile.Neighbourhood.specificNeighbourhood, forClass: type(of: self))
         
-        updateObject(type: Neighbourhood.self, withData: data) {
+        let longDescription = "<p>The Castle neighbourhood is a diverse covering all of the City Centre. In addition it covers De Montfort University, the University of Leicester, Leicester Royal Infirmary, the Leicester Tigers rugby ground and the Clarendon Park and Riverside communities.</p>\n<p>The Highcross and Haymarket shopping centres and Leicester's famous Market are all covered by this neighbourhood.</p>"
+
+        updateObject(type: Neighbourhood.self, withData: data) { [weak self] in
             
-            // write tests
+            let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: data)
+            XCTAssertTrue(neighbourhood?.identifier == "NC04", neighbourhood?.identifier ?? "nil")
+            XCTAssertTrue(neighbourhood?.longDescription == longDescription, neighbourhood?.longDescription ?? "nil")
+            XCTAssertTrue(neighbourhood?.name == "City Centre",neighbourhood?.name ?? "nil")
+            XCTAssertTrue(neighbourhood?.population == "0",neighbourhood?.population ?? "nil")
+            XCTAssertTrue(neighbourhood?.coordinates?.lat == "52.6389", neighbourhood?.coordinates?.lat ?? "nil")
+            XCTAssertTrue(neighbourhood?.coordinates?.long == "-1.13619", neighbourhood?.coordinates?.long ?? "nil")
+            //Contact
+            XCTAssertTrue(neighbourhood?.contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk", neighbourhood?.contact?.email ?? "nil")
+            XCTAssertTrue(neighbourhood?.contact?.telephone == "101", neighbourhood?.contact?.telephone ?? "nil")
+            XCTAssertTrue(neighbourhood?.contact?.facebook == "http://www.facebook.com/leicspolice", neighbourhood?.contact?.facebook ?? "nil")
+            XCTAssertTrue(neighbourhood?.contact?.twitter == "http://www.twitter.com/centralleicsNPA", neighbourhood?.contact?.twitter ?? "nil")
+            XCTAssertTrue(neighbourhood?.contact?.forceUrl == "http://www.leics.police.uk/local-policing/city-centre", neighbourhood?.contact?.forceUrl ?? "nil")
+            XCTAssertTrue(neighbourhood?.contact?.website == "http://www.leicester.gov.uk/", neighbourhood?.contact?.website ?? "nil")
+            //Locations
+            XCTAssertTrue(neighbourhood?.places?.first?.name == "Mansfield House", neighbourhood?.places?.first?.name ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.postcode == "LE1 3GG", neighbourhood?.places?.first?.postcode ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.address == "74 Belgrave Gate\n, Leicester", neighbourhood?.places?.first?.address ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.typeCode == "station", neighbourhood?.places?.first?.typeCode ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.longDescription == nil, neighbourhood?.places?.first?.longDescription ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.coordinates?.lat == nil, neighbourhood?.places?.first?.coordinates?.lat ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.coordinates?.long == nil, neighbourhood?.places?.first?.coordinates?.long ?? "nil")
+            
+//            {
+//                "name": "Mansfield House",
+//                "longitude": null,
+//                "postcode": "LE1 3GG",
+//                "address": "74 Belgrave Gate\n, Leicester",
+//                "latitude": null,
+//                "type": "station",
+//                "description": null
+//            }
             
         }
+
     }
     
     
@@ -120,8 +154,9 @@ class CoreDataModelTest: XCTestCase {
     
     func savedObject<T: Updatable>(ofType objectClass: T.Type, withData data: Data) -> T where T: NSManagedObject {
         
-        if let objectId = try! JSON(data: data)[objectClass.dataIdentifier].number?.stringValue,
-            let object = objectClass.object(withId: objectId){
+        if let json = try? JSON(data: data),
+            let objectId = json[objectClass.dataIdentifier].number?.stringValue ?? json[objectClass.dataIdentifier].string,
+            let object = objectClass.object(withId: objectId) {
             
             return object
         }

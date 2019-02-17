@@ -33,6 +33,7 @@ extension Contact {
     @NSManaged public var telephone: String?
     @NSManaged public var twitter: String?
     @NSManaged public var website: String?
+    @NSManaged public var forceUrl: String?
     @NSManaged public var youtube: String?
     @NSManaged public var event: Event?
     @NSManaged public var force: Force?

@@ -8,6 +8,7 @@
         <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fax" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flickr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forceUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="forum" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="googlePlus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
@@ -62,7 +63,7 @@
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="population" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="population" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="neighbourhood" inverseEntity="Contact" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="neighbourhood" inverseEntity="Event" syncable="YES"/>
         <relationship name="force" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Force" inverseName="neighbourhoods" inverseEntity="Force" syncable="YES"/>
@@ -123,7 +124,7 @@
         <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="330"/>
+        <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="343"/>
         <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="238"/>
         <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="193"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
