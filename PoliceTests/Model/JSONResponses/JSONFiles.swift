@@ -30,4 +30,9 @@ struct JSONFile {
         static let specificNeighbourhood = "Neighbourhood"
         static let neighbourhoodEdited = "NeighbourhoodEdited"
     }
+    
+    struct Events {
+        
+        static let events = "Events"
+    }
 }

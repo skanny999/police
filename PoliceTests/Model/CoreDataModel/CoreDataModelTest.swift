@@ -31,7 +31,7 @@ class CoreDataModelTest: XCTestCase {
     
     func testCrimeObject() {
         
-       var data = FileExtractor.extractJsonFile(withName: JSONFile.Crimes.crime, forClass: type(of: self))
+       var data = dataFromFile(JSONFile.Crimes.crime)
         
         updateObject(type: Crime.self, withData: data) { [weak self] in
             
@@ -53,7 +53,7 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(crime?.outcomes?.first?.personId == nil)
         }
         
-        data = FileExtractor.extractJsonFile(withName: JSONFile.Crimes.crimeEdited, forClass: type(of: self))
+        data = dataFromFile(JSONFile.Crimes.crimeEdited)
         
         updateObject(type: Crime.self, withData: data) { [weak self] in
             
@@ -90,7 +90,7 @@ class CoreDataModelTest: XCTestCase {
         let longDescription = "<p>The Castle neighbourhood is a diverse covering all of the City Centre. In addition it covers De Montfort University, the University of Leicester, Leicester Royal Infirmary, the Leicester Tigers rugby ground and the Clarendon Park and Riverside communities.</p>\n<p>The Highcross and Haymarket shopping centres and Leicester's famous Market are all covered by this neighbourhood.</p>"
         
         // Original data
-        let data = FileExtractor.extractJsonFile(withName: JSONFile.Neighbourhood.specificNeighbourhood, forClass: type(of: self))
+        let data = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
         
         updateObject(type: Neighbourhood.self, withData: data) { [weak self] in
             
@@ -119,7 +119,7 @@ class CoreDataModelTest: XCTestCase {
         }
         
         // Edited data
-        let editedData = FileExtractor.extractJsonFile(withName: JSONFile.Neighbourhood.neighbourhoodEdited, forClass: type(of: self))
+        let editedData = dataFromFile(JSONFile.Neighbourhood.neighbourhoodEdited)
         
         updateObject(type: Neighbourhood.self, withData: editedData) { [weak self] in
             
@@ -157,6 +157,60 @@ class CoreDataModelTest: XCTestCase {
         }
     }
     
+    // MARK: - Events
+    
+    func testEventsObject() {
+        
+        let neigbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
+        updateObject(type: Neighbourhood.self, withData: neigbourhoodData) { [weak self] in
+            
+            let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: neigbourhoodData)
+            let eventsData = self!.dataFromFile(JSONFile.Events.events)
+            let eventsJson = try! JSON(data: eventsData).array
+            neighbourhood?.addEvents(from: eventsJson)
+            
+            let events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
+            
+            XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
+            XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
+            XCTAssertTrue(events?.first?.address == "Merlin Heights Reception, Bath lane", events?.first?.address ?? "nil")
+            XCTAssertTrue(events?.first?.typeCode == "meeting", events?.first?.typeCode ?? "nil")
+            
+            if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
+                
+                XCTAssertTrue(self?.component(from: startDate).month == 2)
+                XCTAssertTrue(self?.component(from: startDate).day == 18)
+                XCTAssertTrue(self?.component(from: startDate).hour == 9)
+                XCTAssertTrue(self?.component(from: endDate).month == 2)
+                XCTAssertTrue(self?.component(from: endDate).day == 18)
+                XCTAssertTrue(self?.component(from: endDate).hour == 10)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            XCTAssertTrue(events?.last?.title == "Community Engagement, Guru Nanak Gurdwara", events?.last?.title ?? "nil")
+            XCTAssertTrue(events?.last?.longDescription == nil, events?.last?.longDescription ?? "nil")
+            XCTAssertTrue(events?.last?.address == "Guru Nanak Gurdwara,", events?.last?.address ?? "nil")
+            XCTAssertTrue(events?.last?.typeCode == "meeting", events?.last?.typeCode ?? "nil")
+            
+            if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
+                
+                XCTAssertTrue(self?.component(from: startDate).month == 2)
+                XCTAssertTrue(self?.component(from: startDate).day == 19)
+                XCTAssertTrue(self?.component(from: startDate).hour == 11)
+                XCTAssertTrue(self?.component(from: endDate).month == 2)
+                XCTAssertTrue(self?.component(from: endDate).day == 19)
+                XCTAssertTrue(self?.component(from: endDate).hour == 12)
+            } else {
+                XCTFail("Event date is nil")
+            }
+
+        }
+
+        
+        
+    }
+    
     // MARK: - Generic helpers
     
     func updateObject<T: Updatable>(type: T.Type, withData data: Data, completion: @escaping () -> Void) {
@@ -181,6 +235,23 @@ class CoreDataModelTest: XCTestCase {
             return object
         }
         fatalError("Couldn't parse neighbourhood")
+    }
+    
+    func dataFromFile(_ fileName: String) -> Data {
+        
+        return FileExtractor.extractJsonFile(withName: fileName, forClass: type(of: self))
+    }
+    
+    func component(from date: NSDate) -> (day: Int, month: Int, hour: Int) {
+        
+        let date = date as Date
+        let calendar = Calendar.current
+        
+        let day = calendar.component(.day, from: date)
+        let month = calendar.component(.month, from: date)
+        let hour = calendar.component(.hour, from: date)
+        
+        return (day: day, month: month, hour:hour)
     }
 
 }

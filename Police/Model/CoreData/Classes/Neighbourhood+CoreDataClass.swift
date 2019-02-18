@@ -40,7 +40,6 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
         Contact.updateContacts(for: object, with: json)
         object.updatePlaces(from: json[Key.locations].array)
         
-        //add places
         //add priorities
         //add events
         //add officers
@@ -65,7 +64,20 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
         }
     }
     
-    
+    func addEvents(from json: [JSON]?) {
+        
+        if  let events = self.events, !events.isEmpty {
+            for event in events {
+                self.managedObjectContext?.delete(event)
+            }
+        }
+        
+        if let eventsJson = json, let context = self.managedObjectContext {
+            for event in eventsJson {
+                self.addToEvents(Event.createEvent(from: event, in: context))
+            }
+        }
+    }
 
 
 }

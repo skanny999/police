@@ -27,5 +27,4 @@ extension Event {
     @NSManaged public var longitude: String?
     @NSManaged public var contact: Contact?
     @NSManaged public var neighbourhood: Neighbourhood?
-
 }
