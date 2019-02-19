@@ -40,4 +40,8 @@ struct JSONFile {
         static let allContacts = "AllContacts"
         static let partialContacts = "PartialContacts"
     }
+    
+    struct Priorities {
+        static let priorities = "Priorities"
+    }
 }

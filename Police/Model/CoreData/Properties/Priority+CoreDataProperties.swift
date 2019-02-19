@@ -18,10 +18,10 @@ extension Priority {
     }
 
     //delete and parse
-    @NSManaged public var action: String?
-    @NSManaged public var actionDate: NSDate?
     @NSManaged public var issue: String?
     @NSManaged public var issueDate: NSDate?
+    @NSManaged public var action: String?
+    @NSManaged public var actionDate: NSDate?
     @NSManaged public var neighbourhood: Neighbourhood?
 
 }

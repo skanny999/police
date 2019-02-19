@@ -31,22 +31,11 @@ public class Event: NSManagedObject, Locatable {
         event.title = json[Key.title].string
         event.address = json[Key.address].string
         event.typeCode = json[Key.type].string
-        event.startDate = date(fromString: json[Key.startDate].string)
-        event.endDate = date(fromString: json[Key.endDate].string)
+        event.startDate = json[Key.startDate].string?.dateValue
+        event.endDate = json[Key.endDate].string?.dateValue
         event.contact = Contact.newContacts(from: json[Key.contactDetails], in: context)
         
         return event
     }
-    
-    private static func date(fromString string: String?) -> NSDate? {
-        
-        guard let dateString = string else { return nil }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_GB")
-        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
-        return dateFormatter.date(from: dateString) as NSDate?
-    }
+
 }

@@ -25,9 +25,9 @@ public class Place: NSManagedObject, Locatable {
 
     }
     
-    class func createPlace(for neighbourhood: Neighbourhood, from json: JSON) -> Place {
+    class func createPlace(from json: JSON, in context: NSManagedObjectContext?) -> Place {
         
-        let place = Place(entity: Place.entity(), insertInto: neighbourhood.managedObjectContext)
+        let place = Place(entity: Place.entity(), insertInto: context)
         place.updatePlace(from: json)
         return place
     }

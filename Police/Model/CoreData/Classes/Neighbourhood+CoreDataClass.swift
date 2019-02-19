@@ -41,7 +41,6 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
         object.updatePlaces(from: json[Key.locations].array)
         
         //add priorities
-        //add events
         //add officers
     }
 
@@ -54,23 +53,21 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
             if let currentLocations = self.places, !currentLocations.isEmpty {
                 
                 if !currentLocations.contains { $0.name == location["name"].string } {
-                    self.addToPlaces(Place.createPlace(for: self, from: location))
+                    self.addToPlaces(Place.createPlace(from: location, in: self.managedObjectContext))
                 }
                 
             } else {
                 
-                self.addToPlaces(Place.createPlace(for: self, from: location))
+                self.addToPlaces(Place.createPlace(from: location, in: self.managedObjectContext))
             }
         }
     }
     
+    #warning("check if events will return an empty array")
+    
     func addEvents(from json: [JSON]?) {
         
-        if  let events = self.events, !events.isEmpty {
-            for event in events {
-                self.managedObjectContext?.delete(event)
-            }
-        }
+        eraseCurrent(elements: self.events)
         
         if let eventsJson = json, let context = self.managedObjectContext {
             for event in eventsJson {
@@ -78,6 +75,24 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
             }
         }
     }
-
-
+    
+    func addPriorities(from jsons: [JSON]?) {
+        
+        eraseCurrent(elements: self.priorities)
+        
+        if let priorityJsons = jsons {
+            for json in priorityJsons {
+                self.addToPriorities(Priority.createPriority(from: json, in: self.managedObjectContext))
+            }
+        }
+    }
+    
+    func eraseCurrent<T: NSManagedObject>(elements: Set<T>?) {
+        
+        if let elements = elements, !elements.isEmpty {
+            for element in elements {
+                self.managedObjectContext?.delete(element)
+            }
+        }
+    }
 }

@@ -35,6 +35,5 @@ public class Outcome: NSManagedObject {
         return outcome
     }
     
-    
 
 }

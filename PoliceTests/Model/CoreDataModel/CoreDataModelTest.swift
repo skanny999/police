@@ -169,7 +169,7 @@ class CoreDataModelTest: XCTestCase {
             let eventsJson = try! JSON(data: eventsData).array
             neighbourhood?.addEvents(from: eventsJson)
             
-            let events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
+            var events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
             
             XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
             XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
@@ -178,12 +178,12 @@ class CoreDataModelTest: XCTestCase {
             
             if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
                 
-                XCTAssertTrue(self?.component(from: startDate).month == 2)
-                XCTAssertTrue(self?.component(from: startDate).day == 18)
-                XCTAssertTrue(self?.component(from: startDate).hour == 9)
-                XCTAssertTrue(self?.component(from: endDate).month == 2)
-                XCTAssertTrue(self?.component(from: endDate).day == 18)
-                XCTAssertTrue(self?.component(from: endDate).hour == 10)
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 18)
+                XCTAssertTrue(startDate.component.hour == 9)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 18)
+                XCTAssertTrue(endDate.component.hour == 10)
             } else {
                 XCTFail("Event date is nil")
             }
@@ -195,16 +195,85 @@ class CoreDataModelTest: XCTestCase {
             
             if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
                 
-                XCTAssertTrue(self?.component(from: startDate).month == 2)
-                XCTAssertTrue(self?.component(from: startDate).day == 19)
-                XCTAssertTrue(self?.component(from: startDate).hour == 11)
-                XCTAssertTrue(self?.component(from: endDate).month == 2)
-                XCTAssertTrue(self?.component(from: endDate).day == 19)
-                XCTAssertTrue(self?.component(from: endDate).hour == 12)
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 19)
+                XCTAssertTrue(startDate.component.hour == 11)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 19)
+                XCTAssertTrue(endDate.component.hour == 12)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            //repeat elements to test if the previous ones are deleted
+            
+            neighbourhood?.addEvents(from: eventsJson)
+            
+            events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
+            
+            XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
+            XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
+            XCTAssertTrue(events?.first?.address == "Merlin Heights Reception, Bath lane", events?.first?.address ?? "nil")
+            XCTAssertTrue(events?.first?.typeCode == "meeting", events?.first?.typeCode ?? "nil")
+            
+            if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
+                
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 18)
+                XCTAssertTrue(startDate.component.hour == 9)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 18)
+                XCTAssertTrue(endDate.component.hour == 10)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            XCTAssertTrue(events?.last?.title == "Community Engagement, Guru Nanak Gurdwara", events?.last?.title ?? "nil")
+            XCTAssertTrue(events?.last?.longDescription == nil, events?.last?.longDescription ?? "nil")
+            XCTAssertTrue(events?.last?.address == "Guru Nanak Gurdwara,", events?.last?.address ?? "nil")
+            XCTAssertTrue(events?.last?.typeCode == "meeting", events?.last?.typeCode ?? "nil")
+            
+            if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
+                
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 19)
+                XCTAssertTrue(startDate.component.hour == 11)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 19)
+                XCTAssertTrue(endDate.component.hour == 12)
             } else {
                 XCTFail("Event date is nil")
             }
         }
+    }
+    
+    // MARK: - Priorities
+    
+    
+    func testPriorities() {
+        
+        let neighbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
+        updateObject(type: Neighbourhood.self, withData: neighbourhoodData) { [weak self] in
+            let neighbourhood = self!.savedObject(ofType: Neighbourhood.self, withData: neighbourhoodData)
+            let prioritiesJson = try! JSON(data: self!.dataFromFile(JSONFile.Priorities.priorities)).array
+            neighbourhood.addPriorities(from: prioritiesJson)
+            XCTAssert(neighbourhood.priorities?.count == 60)
+            
+            let priorities = neighbourhood.priorities?.sorted { $0.issueDate!.compare($1.issueDate! as Date) == ComparisonResult.orderedDescending }
+            
+//            XCTAssert(priorities?.first == 60)
+            XCTAssert(priorities?.first?.issueDate?.component.day == 1)
+            XCTAssert(priorities?.first?.issueDate?.component.month == 2)
+            XCTAssert(priorities?.first?.issueDate?.component.year == 2019, "\(String(describing: priorities?.first?.issueDate?.component.year))")
+            XCTAssert(priorities?.first?.issue == "Robberies Once again we have growing concerns about the number of robberies we’ve seen in the City over the last month and have therefore made it a priority for us again this month. We have seen a number of cases reported where groups of suspects appear to work together to target lone males.\n")
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.action == nil)
+            
+            
+        }
+        
     }
     
     // MARK: - Contacts
@@ -229,9 +298,13 @@ class CoreDataModelTest: XCTestCase {
         XCTAssertTrue(contact?.rss == "notizie")
         XCTAssertTrue(contact?.website == "ilSito")
         XCTAssertTrue(contact?.youtube == "iutubbe")
-        
         XCTAssertTrue(contact?.allContacts.count == 15)
-        XCTAssertTrue(contact?.activeContacts.count == 10)
+        
+        let emptyDict: [String: Any] = [:]
+        let emptyJson = JSON(arrayLiteral: emptyDict)
+        let emptyContact = Contact.newContacts(from: emptyJson, in: mockContainer!.viewContext)
+        XCTAssertTrue(emptyContact!.isEmpty)
+
         
         let allContactsJson = try! JSON(data: dataFromFile(JSONFile.Contacts.allContacts))
         contact?.updateContacts(fromContactDetails: allContactsJson)
@@ -251,9 +324,9 @@ class CoreDataModelTest: XCTestCase {
         XCTAssertTrue(contact?.rss == "notizie")
         XCTAssertTrue(contact?.website == "ilSito")
         XCTAssertTrue(contact?.youtube == "iutubbe")
-        
-        
     }
+    
+    
     
     // MARK: - Generic helpers
     
@@ -286,16 +359,6 @@ class CoreDataModelTest: XCTestCase {
         return FileExtractor.extractJsonFile(withName: fileName, forClass: type(of: self))
     }
     
-    func component(from date: NSDate) -> (day: Int, month: Int, hour: Int) {
-        
-        let date = date as Date
-        let calendar = Calendar.current
-        
-        let day = calendar.component(.day, from: date)
-        let month = calendar.component(.month, from: date)
-        let hour = calendar.component(.hour, from: date)
-        
-        return (day: day, month: month, hour:hour)
-    }
+
 
 }
