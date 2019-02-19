@@ -35,4 +35,9 @@ struct JSONFile {
         
         static let events = "Events"
     }
+    
+    struct Contacts {
+        static let allContacts = "AllContacts"
+        static let partialContacts = "PartialContacts"
+    }
 }

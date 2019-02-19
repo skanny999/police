@@ -21,6 +21,7 @@ public class Event: NSManagedObject, Locatable {
         static let type = "type"
         static let startDate = "start_date"
         static let endDate = "end_date"
+        static let contactDetails = "contact_details"
     }
     
     static func createEvent(from json: JSON, in context: NSManagedObjectContext) -> Event {
@@ -32,6 +33,8 @@ public class Event: NSManagedObject, Locatable {
         event.typeCode = json[Key.type].string
         event.startDate = date(fromString: json[Key.startDate].string)
         event.endDate = date(fromString: json[Key.endDate].string)
+        event.contact = Contact.newContacts(from: json[Key.contactDetails], in: context)
+        
         return event
     }
     

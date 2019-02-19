@@ -204,9 +204,53 @@ class CoreDataModelTest: XCTestCase {
             } else {
                 XCTFail("Event date is nil")
             }
-
         }
-
+    }
+    
+    // MARK: - Contacts
+    
+    func testContactObject() {
+        
+        let partionaContactsJson = try! JSON(data: dataFromFile(JSONFile.Contacts.partialContacts))
+        let contact = Contact.newContacts(from: partionaContactsJson, in: mockContainer!.viewContext)
+        
+        XCTAssertTrue(contact?.twitter == "http://www.twitter.com/centralleicsNPA")
+        XCTAssertTrue(contact?.facebook == "http://www.facebook.com/leicspolice")
+        XCTAssertTrue(contact?.telephone == "101")
+        XCTAssertTrue(contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk")
+        XCTAssertTrue(contact?.address == "indirizzo")
+        XCTAssertTrue(contact?.blog == "diario")
+        XCTAssertTrue(contact?.eMessaging == nil)
+        XCTAssertTrue(contact?.fax == nil)
+        XCTAssertTrue(contact?.flickr == nil)
+        XCTAssertTrue(contact?.forum == nil)
+        XCTAssertTrue(contact?.googlePlus == nil)
+        XCTAssertTrue(contact?.mobile == "telefonino")
+        XCTAssertTrue(contact?.rss == "notizie")
+        XCTAssertTrue(contact?.website == "ilSito")
+        XCTAssertTrue(contact?.youtube == "iutubbe")
+        
+        XCTAssertTrue(contact?.allContacts.count == 15)
+        XCTAssertTrue(contact?.activeContacts.count == 10)
+        
+        let allContactsJson = try! JSON(data: dataFromFile(JSONFile.Contacts.allContacts))
+        contact?.updateContacts(fromContactDetails: allContactsJson)
+        
+        XCTAssertTrue(contact?.twitter == "http://www.twitter.com/centralleicsNPA")
+        XCTAssertTrue(contact?.facebook == "http://www.facebook.com/leicspolice")
+        XCTAssertTrue(contact?.telephone == "101")
+        XCTAssertTrue(contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk")
+        XCTAssertTrue(contact?.address == "indirizzo")
+        XCTAssertTrue(contact?.blog == "diario")
+        XCTAssertTrue(contact?.eMessaging == "messaggio")
+        XCTAssertTrue(contact?.fax == "ilFax")
+        XCTAssertTrue(contact?.flickr == "leFoto")
+        XCTAssertTrue(contact?.forum == "ilForum")
+        XCTAssertTrue(contact?.googlePlus == "googleSocial")
+        XCTAssertTrue(contact?.mobile == "telefonino")
+        XCTAssertTrue(contact?.rss == "notizie")
+        XCTAssertTrue(contact?.website == "ilSito")
+        XCTAssertTrue(contact?.youtube == "iutubbe")
         
         
     }

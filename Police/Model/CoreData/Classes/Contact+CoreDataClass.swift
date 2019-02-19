@@ -14,24 +14,29 @@ import SwiftyJSON
 @objc(Contact)
 public class Contact: NSManagedObject {
     
-    var hasNoContacts: Bool {
-        
-        return  self.address == nil &&
-                self.blog == nil &&
-                self.email == nil &&
-                self.eMessaging == nil &&
-                self.facebook == nil &&
-                self.fax == nil &&
-                self.flickr == nil &&
-                self.forum == nil &&
-                self.googlePlus == nil &&
-                self.mobile == nil &&
-                self.rss == nil &&
-                self.telephone == nil &&
-                self.twitter == nil &&
-                self.website == nil &&
-                self.youtube == nil 
+    var allContacts: [String?] {
+        return  [self.address,
+                 self.blog,
+                 self.email,
+                 self.eMessaging,
+                 self.facebook,
+                 self.fax,
+                 self.flickr,
+                 self.forum,
+                 self.googlePlus,
+                 self.mobile,
+                 self.rss,
+                 self.telephone,
+                 self.twitter,
+                 self.website,
+                 self.youtube]
     }
+    
+    var isEmpty: Bool {
+        
+        return allContacts.filter { $0 != nil }.count == 0
+    }
+    
     
     struct Key {
         
