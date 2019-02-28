@@ -33,6 +33,17 @@ extension String {
         dateFormatter.locale = Locale(identifier: "en_GB")
         dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateString = self.count > 19 ? String(self[..<self.index(self.startIndex, offsetBy: 19)]) : self
+        
+        return  dateFormatter.date(from:dateString) as NSDate?
+    }
+    
+    var dateTime: NSDate? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_GB")
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss Z"
         return  dateFormatter.date(from: self) as NSDate?
     }
     

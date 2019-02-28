@@ -48,7 +48,6 @@ protocol Locatable {
     
     var latitude: String? { get set }
     var longitude: String? { get set }
-
 }
 
 extension Locatable {
