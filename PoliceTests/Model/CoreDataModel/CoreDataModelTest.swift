@@ -165,8 +165,7 @@ class CoreDataModelTest: XCTestCase {
         updateObject(type: Neighbourhood.self, withData: neigbourhoodData) { [weak self] in
             
             let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: neigbourhoodData)
-            let eventsData = self!.dataFromFile(JSONFile.Events.events)
-            let eventsJson = try! JSON(data: eventsData).array
+            let eventsJson = try! JSON(data: self!.dataFromFile(JSONFile.Events.events)).array
             neighbourhood?.addEvents(from: eventsJson)
             
             var events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
@@ -249,7 +248,6 @@ class CoreDataModelTest: XCTestCase {
     
     // MARK: - Priorities
     
-    
     func testPriorities() {
         
         let neighbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
@@ -270,9 +268,10 @@ class CoreDataModelTest: XCTestCase {
             XCTAssert(priorities?.first?.actionDate?.component.day == nil)
             XCTAssert(priorities?.first?.actionDate?.component.day == nil)
             XCTAssert(priorities?.first?.action == nil)
-            
-            
         }
+    }
+    
+    func testOfficers() {
         
     }
     
@@ -326,7 +325,31 @@ class CoreDataModelTest: XCTestCase {
         XCTAssertTrue(contact?.youtube == "iutubbe")
     }
     
-    
+    func testStopAndSearchObject() {
+        
+        let data = dataFromFile(JSONFile.StopAndSearch.original)
+        updateObject(type: StopAndSearch.self, withData: data) { [weak self] in
+            
+            let stopAndSearch = self?.savedObject(ofType: StopAndSearch.self, withData: data)
+            XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
+            XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
+            XCTAssertTrue(stopAndSearch?.genderCode == "Male")
+            XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
+            XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
+            XCTAssertTrue(stopAndSearch?.officerEthnicity == "White")
+            XCTAssertTrue(stopAndSearch?.operationName == nil)
+            XCTAssertTrue(stopAndSearch?.outCome == "A no further action disposal")
+            XCTAssertTrue(stopAndSearch?.outcomeIsLinkedToSearch == false)
+            XCTAssertTrue(stopAndSearch?.personIsInvolved == true)
+            XCTAssertTrue(stopAndSearch?.stripSearch == false)
+            XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
+            XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
+            XCTAssertTrue(stopAndSearch?.latitude == "52.264860")
+            XCTAssertTrue(stopAndSearch?.longitude == "0.699943")
+            XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
+        }
+        
+    }
     
     // MARK: - Generic helpers
     

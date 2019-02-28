@@ -24,7 +24,7 @@ public class Event: NSManagedObject, Locatable {
         static let contactDetails = "contact_details"
     }
     
-    static func createEvent(from json: JSON, in context: NSManagedObjectContext) -> Event {
+    static func createEvent(from json: JSON, in context: NSManagedObjectContext?) -> Event {
         
         let event = Event(entity: Event.entity(), insertInto: context)
         event.longDescription = json[Key.description].string?.stripOutHtml()

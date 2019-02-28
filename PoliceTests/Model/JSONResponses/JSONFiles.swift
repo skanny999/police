@@ -11,13 +11,11 @@ import Foundation
 struct JSONFile {
     
     struct Forces {
-        
         static let list = "ListOfForces"
         static let specific = "SpecificForce"
     }
     
     struct Crimes {
-    
         static let crimes = "Crimes"
         static let crime = "Crime"
         static let crimeEdited = "CrimeEdited"
@@ -26,13 +24,11 @@ struct JSONFile {
     }
     
     struct Neighbourhood {
-        
         static let specificNeighbourhood = "Neighbourhood"
         static let neighbourhoodEdited = "NeighbourhoodEdited"
     }
     
     struct Events {
-        
         static let events = "Events"
     }
     
@@ -43,5 +39,14 @@ struct JSONFile {
     
     struct Priorities {
         static let priorities = "Priorities"
+    }
+    
+    struct Officers {
+        static let officers = "Officers"
+    }
+    
+    struct StopAndSearch {
+        static let original = "StopAndSearch"
+        static let edited = "StopAndSearchEdited"
     }
 }

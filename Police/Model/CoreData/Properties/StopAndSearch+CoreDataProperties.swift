@@ -17,7 +17,7 @@ extension StopAndSearch {
         return NSFetchRequest<StopAndSearch>(entityName: "StopAndSearch")
     }
     
-    //identifier is datetime
+    @NSManaged public var identifier: String?
     @NSManaged public var ageRange: String?
     @NSManaged public var dateTime: NSDate?
     @NSManaged public var genderCode: String?
@@ -27,11 +27,11 @@ extension StopAndSearch {
     @NSManaged public var officerEthnicity: String?
     @NSManaged public var operationName: String?
     @NSManaged public var outCome: String?
-    @NSManaged public var outcomeIsLinkedToSearch: NSNumber
+    @NSManaged public var outcomeIsLinkedToSearch: NSNumber?
     @NSManaged public var outcomeObject: String?
-    @NSManaged public var personIsInvolved: NSNumber
+    @NSManaged public var personIsInvolved: NSNumber?
     @NSManaged public var streetName: String?
-    @NSManaged public var stripSearch: NSNumber
+    @NSManaged public var stripSearch: NSNumber?
     @NSManaged public var suspectEthnicity: String?
     @NSManaged public var typeCode: String?
     @NSManaged public var latitude: String?

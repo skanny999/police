@@ -61,7 +61,7 @@ public class Contact: NSManagedObject {
         static let urlForce = "url_force"
     }
     
-    static func newContacts(from json: JSON?, in context: NSManagedObjectContext) -> Contact? {
+    static func newContacts(from json: JSON?, in context: NSManagedObjectContext?) -> Contact? {
         
         guard let contactJson = json else { return nil }
         let contacts = Contact(entity: Contact.entity(), insertInto: context)
