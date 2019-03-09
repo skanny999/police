@@ -273,6 +273,33 @@ class CoreDataModelTest: XCTestCase {
     
     func testOfficers() {
         
+        let neighbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
+        updateObject(type: Neighbourhood.self, withData: neighbourhoodData) { [weak self] in
+            
+            let neighbourhood = self!.savedObject(ofType: Neighbourhood.self, withData: neighbourhoodData)
+            let officersJson = try! JSON(data: self!.dataFromFile(JSONFile.Officers.officers)).array
+            neighbourhood.addOfficers(form: officersJson)
+            
+            XCTAssertTrue(neighbourhood.officers?.count == 12, "\(neighbourhood.officers?.count ?? 0)")
+            let officers = neighbourhood.officers?.sorted { $0.name! < $1.name! }
+            
+            let firstOfficerBio = "I started as a police community support officer in 2006; I have spent this time working in the city centre which I thoroughly enjoy.\nI am looking forward to the new challenges that come along.\nPlease feel free to speak to me about any issues, or even for just a social chat.\n"
+            
+            XCTAssertTrue(officers?.first?.name == "Alice Forfar")
+            XCTAssertTrue(officers?.first?.rank == "Sgt")
+            XCTAssertTrue(officers?.first?.bio == firstOfficerBio, officers?.first?.bio ?? "No bio")
+            XCTAssertTrue(officers?.first?.contact?.isEmpty ?? false)
+            XCTAssertTrue(officers?.last?.name == "Tim Jones")
+            XCTAssertTrue(officers?.last?.rank == "PCSO")
+            XCTAssertTrue(officers?.last?.bio == nil)
+            XCTAssertTrue(officers?.last?.contact?.isEmpty ?? false)
+            
+            
+        }
+        
+        
+        
+        
     }
     
     // MARK: - Contacts

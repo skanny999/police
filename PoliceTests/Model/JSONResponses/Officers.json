@@ -1,6 +1,14 @@
 [
     {
-        "bio": "<p>I joined the Police almost 16 yrs ago, starting off at Charles Street and moving to Mansfield House when it opened. <br \/>I spent about 3 years in the City before moving to a Detective role.<br \/>Since that time I have worked within the Force Serious Crime Team, MOSOVO (which involves the management of sexual and violent offenders), Child Abuse Investigation and Domestic Abuse Investigation. I have also supported teams targeting knife crime and drug offences. <br \/>I was fortunate enough to be successful at the last Promotion process and now look forward to my new role in the City.<br \/>I am passionate about caring for victims and ensuring the public are protected from the dangerous individuals. <\/p>",
+        "bio": "<p>I started as a police community support officer in 2006; I have spent this time working in the city centre which I thoroughly enjoy.<\/p>\n<p>I am looking forward to the new challenges that come along.<\/p>\n<p>Please feel free to speak to me about any issues, or even for just a social chat.<\/p>",
+        "contact_details": {
+            
+        },
+        "name": "Alice Forfar",
+        "rank": "Sgt"
+    },
+    {
+        "bio": "<p>I started as a police community support officer in 2006; I have spent this time working in the city centre which I thoroughly enjoy.<\/p>\n<p>I am looking forward to the new challenges that come along.<\/p>\n<p>Please feel free to speak to me about any issues, or even for just a social chat.<\/p>",
         "contact_details": {
             
         },
@@ -14,14 +22,6 @@
         },
         "name": "Joe Postlethwaite",
         "rank": "Sgt"
-    },
-    {
-        "bio": null,
-        "contact_details": {
-            
-        },
-        "name": "Alice Forfar",
-        "rank": "PC"
     },
     {
         "bio": "<p>I joined in the Summer of 1995 having come from a catering back ground; I cut my teeth in and around the Beaumont Leys and New Parks Estates of which I enjoyed, but it was time for a change. <\/p>\n<p>I came to the City and since then I've now taken the role of a Neighbourhood Officer within the City centre and describe myself as having a no nonsense approach to Policing but approachable to all.<\/p>",
@@ -88,7 +88,7 @@
         "rank": "PCSO"
     },
     {
-        "bio": "<p>I joined Leicester police in 2007 and I have enjoyed the challenges it produces.  It can be very challenging but the variety of jobs and the people I meet make it a very rewarding job.  <\/p>",
+        "bio": null,
         "contact_details": {
             
         },

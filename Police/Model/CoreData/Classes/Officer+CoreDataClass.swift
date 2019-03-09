@@ -24,6 +24,7 @@ public class Officer: NSManagedObject {
     class func createOfficer(from json: JSON, in context: NSManagedObjectContext?) -> Officer {
         
         let officer = Officer(entity: self.entity(), insertInto: context)
+        officer.updateOfficer(with: json)
         return officer
     }
     
