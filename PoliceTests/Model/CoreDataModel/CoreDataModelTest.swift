@@ -293,13 +293,8 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(officers?.last?.rank == "PCSO")
             XCTAssertTrue(officers?.last?.bio == nil)
             XCTAssertTrue(officers?.last?.contact?.isEmpty ?? false)
-            
-            
+
         }
-        
-        
-        
-        
     }
     
     // MARK: - Contacts
@@ -354,28 +349,72 @@ class CoreDataModelTest: XCTestCase {
     
     func testStopAndSearchObject() {
         
-        let data = dataFromFile(JSONFile.StopAndSearch.original)
-        updateObject(type: StopAndSearch.self, withData: data) { [weak self] in
+        var data = dataFromFile(JSONFile.StopAndSearch.original)
+        
+        let firstExpectation = self.expectation(description: "StopAndSearch")
+        
+        UpdateProcessor.updateStopAndSearch(fromData: data) { (completed) in
             
-            let stopAndSearch = self?.savedObject(ofType: StopAndSearch.self, withData: data)
-            XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
-            XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
-            XCTAssertTrue(stopAndSearch?.genderCode == "Male")
-            XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
-            XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
-            XCTAssertTrue(stopAndSearch?.officerEthnicity == "White")
-            XCTAssertTrue(stopAndSearch?.operationName == nil)
-            XCTAssertTrue(stopAndSearch?.outCome == "A no further action disposal")
-            XCTAssertTrue(stopAndSearch?.outcomeIsLinkedToSearch == false)
-            XCTAssertTrue(stopAndSearch?.personIsInvolved == true)
-            XCTAssertTrue(stopAndSearch?.stripSearch == false)
-            XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
-            XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
-            XCTAssertTrue(stopAndSearch?.latitude == "52.264860")
-            XCTAssertTrue(stopAndSearch?.longitude == "0.699943")
-            XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
+            firstExpectation.fulfill()
+            
+            if let json = try? JSON(data: data) {
+                let objectId = StopAndSearch.identifier(from: json)
+                let stopAndSearch = StopAndSearch.object(withId: objectId)
+                
+                XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
+                XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
+                XCTAssertTrue(stopAndSearch?.genderCode == "Male")
+                XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
+                XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
+                XCTAssertTrue(stopAndSearch?.officerEthnicity == "White")
+                XCTAssertTrue(stopAndSearch?.operationName == nil)
+                XCTAssertTrue(stopAndSearch?.outCome == "A no further action disposal")
+                XCTAssertTrue(stopAndSearch?.outcomeIsLinkedToSearch == false)
+                XCTAssertTrue(stopAndSearch?.personIsInvolved == true)
+                XCTAssertTrue(stopAndSearch?.stripSearch == false)
+                XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
+                XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
+                XCTAssertTrue(stopAndSearch?.latitude == "52.264860")
+                XCTAssertTrue(stopAndSearch?.longitude == "0.699943")
+                XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
+
+            }
         }
         
+        waitForExpectations(timeout: 3, handler: nil)
+        
+        let secondExpectation = self.expectation(description: "sasSecond")
+        
+        data = dataFromFile(JSONFile.StopAndSearch.edited)
+        
+        UpdateProcessor.updateStopAndSearch(fromData: data) { (completed) in
+            
+            secondExpectation.fulfill()
+            
+            if let json = try? JSON(data: data) {
+                let objectId = StopAndSearch.identifier(from: json)
+                let stopAndSearch = StopAndSearch.object(withId: objectId)
+                
+                XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
+                XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
+                XCTAssertTrue(stopAndSearch?.genderCode == "Female")
+                XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
+                XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
+                XCTAssertTrue(stopAndSearch?.officerEthnicity == "White")
+                XCTAssertTrue(stopAndSearch?.operationName == nil)
+                XCTAssertTrue(stopAndSearch?.outCome == "A no further action disposal")
+                XCTAssertTrue(stopAndSearch?.outcomeIsLinkedToSearch == false)
+                XCTAssertTrue(stopAndSearch?.personIsInvolved == true)
+                XCTAssertTrue(stopAndSearch?.stripSearch == false)
+                XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
+                XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
+                XCTAssertTrue(stopAndSearch?.latitude == "52.264860")
+                XCTAssertTrue(stopAndSearch?.longitude == "0.699943")
+                XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
+                
+            }
+        }
+        waitForExpectations(timeout: 3, handler: nil)
     }
     
     // MARK: - Generic helpers

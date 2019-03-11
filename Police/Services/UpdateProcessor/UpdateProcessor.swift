@@ -21,4 +21,16 @@ class UpdateProcessor {
             }
         }
     }
+    
+    static func updateStopAndSearch(fromData data: Data, completion: @escaping (Bool) -> Void) {
+        
+        CoreDataManager.performViewTask { (context) in
+            
+            StopAndSearch.managedObject(withData: data, in: context)
+            CoreDataManager.shared().save(context)
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        }
+    }
 }

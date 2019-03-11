@@ -12,7 +12,7 @@ import CoreData
 import SwiftyJSON
 
 @objc(StopAndSearch)
-public class StopAndSearch: NSManagedObject, Updatable {
+public class StopAndSearch: NSManagedObject, Managed {
     
     static var dataIdentifier: String = "datetime"
     static var objectIdentifier: String = "identifier"
@@ -41,11 +41,9 @@ public class StopAndSearch: NSManagedObject, Updatable {
         static let latitude = "latitude"
     }
     
-
     
     static func update(_ object: StopAndSearch, with json: JSON) {
         
-        object.identifier = json[Key.identifier].string
         object.ageRange = json[Key.ageRange].string
         object.dateTime = json[Key.dateTime].string?.dateValue
         object.genderCode = json[Key.genderCode].string
@@ -62,7 +60,41 @@ public class StopAndSearch: NSManagedObject, Updatable {
         object.latitude = json[Key.location][Key.latitude].string
         object.longitude = json[Key.location][Key.longitude].string
         object.streetName = json[Key.location][Key.street][Key.name].string
+        object.identifier = identifier(from: json)
     }
-
+    
+    static func identifier(from json: JSON) -> String {
+        
+        return "\(json[Key.dateTime].string!)\(json[Key.location][Key.latitude].string!)\(json[Key.location][Key.longitude].string!)"
+    }
+    
+    static func managedObject(withData data: Data, in context: NSManagedObjectContext) {
+        
+        let objectData = try! JSON(data: data)
+        
+        if let object = StopAndSearch.object(withId: identifier(from: objectData)) {
+            
+            update(object, with: objectData)
+            
+        } else {
+            
+            let object = StopAndSearch(entity: self.entity(), insertInto: context)
+            
+            update(object, with: objectData)
+        }
+    }
+    
+    static func object(withId id: String) -> StopAndSearch? {
+        
+        return try! CoreDataManager.shared().container.viewContext.fetch(fetchRequest(forId: id)).first as? StopAndSearch
+    }
+    
+    private static func fetchRequest(forId id: String) -> NSFetchRequest<NSFetchRequestResult> {
+        
+        let request = self.sortedFetchRequest
+        
+        request.predicate = NSPredicate(format: "%K == %@", objectIdentifier, id)
+        return request as! NSFetchRequest<NSFetchRequestResult>
+    }
     
 }

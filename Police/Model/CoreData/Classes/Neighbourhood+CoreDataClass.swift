@@ -60,8 +60,6 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
         }
     }
     
-    #warning("check if events will return an empty array")
-    
     func addEvents(from jsons: [JSON]?) {
         
         eraseCurrent(elements: self.events)
