@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8B155EBC21F1319C00783C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EBB21F1319C00783C23 /* AppDelegate.swift */; };
-		8B155EC121F1319C00783C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EBF21F1319C00783C23 /* Main.storyboard */; };
 		8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EC221F1319C00783C23 /* Police.xcdatamodeld */; };
 		8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC521F1319F00783C23 /* Assets.xcassets */; };
 		8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC721F131A000783C23 /* LaunchScreen.storyboard */; };
@@ -93,7 +92,6 @@
 /* Begin PBXFileReference section */
 		8B155EB821F1319C00783C23 /* Police.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Police.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155EBB21F1319C00783C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B155EC021F1319C00783C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B155EC321F1319C00783C23 /* Police.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Police.xcdatamodel; sourceTree = "<group>"; };
 		8B155EC521F1319F00783C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B155EC821F131A000783C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				8B155EC721F131A000783C23 /* LaunchScreen.storyboard */,
-				8B155EBF21F1319C00783C23 /* Main.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -589,7 +586,6 @@
 			files = (
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
-				8B155EC121F1319C00783C23 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,14 +726,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8B155EBF21F1319C00783C23 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8B155EC021F1319C00783C23 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8B155EC721F131A000783C23 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
