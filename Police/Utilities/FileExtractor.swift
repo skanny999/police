@@ -15,7 +15,6 @@ class FileExtractor {
         do {
             guard let url = Bundle(for: bundleClass).url(forResource: name, withExtension: "json") else {
                 
-                
                 fatalError("json file \(name) not found")
             }
             
