@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B13636422347CD400ACB0B2 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13636322347CD400ACB0B2 /* MapViewModel.swift */; };
 		8B155EBC21F1319C00783C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EBB21F1319C00783C23 /* AppDelegate.swift */; };
-		8B155EBE21F1319C00783C23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EBD21F1319C00783C23 /* ViewController.swift */; };
 		8B155EC121F1319C00783C23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EBF21F1319C00783C23 /* Main.storyboard */; };
 		8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EC221F1319C00783C23 /* Police.xcdatamodeld */; };
 		8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC521F1319F00783C23 /* Assets.xcassets */; };
@@ -93,10 +91,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8B13636322347CD400ACB0B2 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		8B155EB821F1319C00783C23 /* Police.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Police.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155EBB21F1319C00783C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B155EBD21F1319C00783C23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B155EC021F1319C00783C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B155EC321F1319C00783C23 /* Police.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Police.xcdatamodel; sourceTree = "<group>"; };
 		8B155EC521F1319F00783C23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -280,8 +276,6 @@
 		8B155EEF21F140AC00783C23 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8B155EBD21F1319C00783C23 /* ViewController.swift */,
-				8B13636322347CD400ACB0B2 /* MapViewModel.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -668,7 +662,6 @@
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,
 				8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */,
-				8B155EBE21F1319C00783C23 /* ViewController.swift in Sources */,
 				8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */,
 				8BEBCB5E21F8DC840004AFDE /* Priority+CoreDataProperties.swift in Sources */,
 				8BEBCB6021F8DC840004AFDE /* Contact+CoreDataProperties.swift in Sources */,
@@ -679,7 +672,6 @@
 				8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */,
 				8BEBCB7321FCAF150004AFDE /* JSONFiles.swift in Sources */,
 				8BEBCBAA22011A140004AFDE /* FileExtractor.swift in Sources */,
-				8B13636422347CD400ACB0B2 /* MapViewModel.swift in Sources */,
 				8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */,
 				8BEBCB5A21F8DC840004AFDE /* Place+CoreDataProperties.swift in Sources */,
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
