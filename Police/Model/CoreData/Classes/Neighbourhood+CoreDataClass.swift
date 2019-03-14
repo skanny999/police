@@ -15,7 +15,6 @@ import SwiftyJSON
 public class Neighbourhood: NSManagedObject, Updatable, Locatable {
     
     struct Key {
-        
         static let id = "id"
         static let description = "description"
         static let name = "name"
@@ -29,16 +28,16 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
     static var dataIdentifier: String = Key.id
     static var objectIdentifier: String = "identifier"
     
-    static func update(_ object: Neighbourhood, with json: JSON) {
+    func update(with json: JSON) {
         
-        object.identifier = json[Key.id].string
-        object.longDescription = json[Key.description].string
-        object.name = json[Key.name].string
-        object.population = json[Key.population].string
-        object.latitude = json[Key.centre][Key.latitude].string
-        object.longitude = json[Key.centre][Key.longitude].string
-        Contact.updateContacts(for: object, with: json)
-        object.updatePlaces(from: json[Key.locations].array)
+        self.identifier = json[Key.id].string
+        self.longDescription = json[Key.description].string
+        self.name = json[Key.name].string
+        self.population = json[Key.population].string
+        self.latitude = json[Key.centre][Key.latitude].string
+        self.longitude = json[Key.centre][Key.longitude].string
+        Contact.updateContacts(for: self, with: json)
+        self.updatePlaces(from: json[Key.locations].array)
     }
 
     func updatePlaces(from json: [JSON]?) {

@@ -72,7 +72,7 @@ protocol Updatable: Managed {
     static var dataIdentifier: String { get set }
     static var objectIdentifier: String { get set }
     
-    static func update(_ object: Self, with json: JSON)
+    func update(with json: JSON)
     
 }
 
@@ -88,13 +88,13 @@ extension Updatable where Self: NSManagedObject {
         
         if let object = Self.object(withId: objectId) {
             
-            update(object, with: objectData)
+            object.update(with: objectData)
             
         } else {
             
             let object = Self(entity: self.entity(), insertInto: context)
             
-            update(object, with: objectData)
+            object.update(with: objectData)
         }
     }
     

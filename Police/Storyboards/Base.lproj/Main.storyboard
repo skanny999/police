@@ -18,37 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vXt-ma-chr">
-                                <rect key="frame" x="0.0" y="120" width="375" height="55"/>
-                                <color key="backgroundColor" red="0.41960784309999999" green="0.69803921570000005" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="cDw-90-IAb"/>
-                                </constraints>
-                            </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-Bo-RCp">
-                                <rect key="frame" x="0.0" y="175" width="375" height="443"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-Bo-RCp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ZmF-k0-jTK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="jg9-eg-cJd"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZmF-k0-jTK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1gO-J3-doj"/>
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2HS-hA-PXz"/>
-                            <constraint firstItem="vXt-ma-chr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6ji-p1-nao"/>
-                            <constraint firstItem="ZmF-k0-jTK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GDs-Yp-fzx"/>
-                            <constraint firstItem="vXt-ma-chr" firstAttribute="top" secondItem="ZmF-k0-jTK" secondAttribute="bottom" id="NTD-x3-PT6"/>
-                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="vXt-ma-chr" secondAttribute="bottom" id="SU8-xB-Ph9"/>
+                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FBZ-E6-tlA"/>
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dtn-WW-lem"/>
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="emX-Fr-zcl"/>
-                            <constraint firstItem="vXt-ma-chr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hqg-Yb-Emm"/>
-                            <constraint firstItem="ZmF-k0-jTK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kOh-YL-ccF"/>
-                            <constraint firstItem="vXt-ma-chr" firstAttribute="top" secondItem="ZmF-k0-jTK" secondAttribute="bottom" id="myk-95-SXk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -57,14 +36,41 @@
                         <barButtonItem key="rightBarButtonItem" title="Policing" id="CCz-RP-zkk"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="filtersView" destination="vXt-ma-chr" id="PaA-S9-RBY"/>
                         <outlet property="mapView" destination="qOv-Bo-RCp" id="x5r-G1-fow"/>
-                        <outlet property="searchBar" destination="ZmF-k0-jTK" id="Mhc-PU-2LY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2018.4000000000001" y="97.601199400299862"/>
+        </scene>
+        <!--Search Results Controller-->
+        <scene sceneID="mcH-tf-5C2">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchResultsController" id="Y7P-dn-VfA" customClass="SearchResultsController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cEN-PC-7GV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RESULT_CELL" id="Yn1-Hj-pKm">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yn1-Hj-pKm" id="mZd-IH-4H3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Y7P-dn-VfA" id="oPY-Uc-o7B"/>
+                            <outlet property="delegate" destination="Y7P-dn-VfA" id="0Bc-x6-cYi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Sb7-Zd-HYB"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C8s-ws-b1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2902" y="98"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NUq-UC-Ayy">
@@ -72,6 +78,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sZ8-nQ-F0F" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c2n-YB-YSe">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

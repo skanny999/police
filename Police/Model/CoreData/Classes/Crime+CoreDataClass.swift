@@ -42,23 +42,23 @@ public class Crime: NSManagedObject, Updatable, Locatable {
     }
     
     
-     static func update(_ object: Crime, with json: JSON) {
+     func update(with json: JSON) {
         
-        object.identifier = json[Key.id].number!.stringValue
-        object.categoryCode = json[Key.category].string
-        object.persistentId = json[Key.persistentId].string
-        object.extraContent = json[Key.context].string
-        object.locationTypeCode = json[Key.locationType].string
-        object.locationSubtypeCode = json[Key.locationSubtype].string
-        object.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
-        object.latitude = json[Key.location][Key.latitude].string
-        object.longitude = json[Key.location][Key.longitude].string
+        self.identifier = json[Key.id].number!.stringValue
+        self.categoryCode = json[Key.category].string
+        self.persistentId = json[Key.persistentId].string
+        self.extraContent = json[Key.context].string
+        self.locationTypeCode = json[Key.locationType].string
+        self.locationSubtypeCode = json[Key.locationSubtype].string
+        self.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
+        self.latitude = json[Key.location][Key.latitude].string
+        self.longitude = json[Key.location][Key.longitude].string
         if let period = Period(fromMonth: json[Key.date].string) {
-            object.month = period.month
-            object.year = period.year
+            self.month = period.month
+            self.year = period.year
         }
         
-        object.addOutcomes(from: json[Key.latestOutcome].array)
+        self.addOutcomes(from: json[Key.latestOutcome].array)
     }
     
     func addOutcomes(from jsons: [JSON]?) {

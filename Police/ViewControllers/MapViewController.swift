@@ -11,20 +11,36 @@ import Foundation
 import MapKit
 
 class MapViewController: UIViewController {
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var filtersView: UIView!
+
     @IBOutlet weak var mapView: MKMapView!
     
+    var searchController: UISearchController?
+
+    
+    let viewModel = MapViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
+        mapView.delegate = viewModel
+        configureSearchResultsController()
     }
 
     
+    private func configureSearchResultsController() {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let searchResultsController = storyBoard.instantiateViewController(withIdentifier: "SearchResultsController") as? SearchResultsController
+        searchResultsController?.mapView = mapView
+        searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController?.searchResultsUpdater = searchResultsController
+        searchController?.searchBar.sizeToFit()
+        searchController?.searchBar.placeholder = "Find a location"
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.dimsBackgroundDuringPresentation = true
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
     
 }
 
