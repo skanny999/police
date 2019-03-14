@@ -19,9 +19,7 @@ class MapViewModel: NSObject {
     
     var mapMode: Mode = .none
     let locationManager = CLLocationManager()
-    var searchCompleter = MKLocalSearchCompleter()
     var mapItems: [MKMapItem] = []
-    var searchResults: [MKLocalSearchCompletion] = []
     var tableview: UITableView?
     
     
@@ -29,18 +27,12 @@ class MapViewModel: NSObject {
         super.init()
         setDelegates()
         permissionForLocation()
-        configureSearchCompleter()
     }
     
     private func setDelegates() {
         locationManager.delegate = self
-        searchCompleter.delegate = self
     }
-    
-    private func configureSearchCompleter() {
-        
-        searchCompleter.filterType = .locationsOnly
-    }
+
 }
 
 
@@ -59,35 +51,19 @@ extension MapViewModel: MKMapViewDelegate {
         request.naturalLanguageQuery = text
         let search = MKLocalSearch(request: request)
         
-        search.start { (response, error) in
-            
+        search.start {  [weak self] (response, error) in
+    
             if let response = response {
-                
-                print(response.mapItems)
+                self?.mapItems = response.mapItems
             }
         }
     }
 }
 
-
-extension MapViewModel: UISearchResultsUpdating, MKLocalSearchCompleterDelegate {
-    
-    func updateSearchResults(for searchController: UISearchController) {
+extension MapViewModel: SearchResultsDelegate {
+    func searchResultsController(_ sec: SearchResultsController, didSelectLocation description: String) {
         
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            searchCompleter.queryFragment = searchText
-        }
-    }
-    
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        
-        searchResults = completer.results
-        tableview?.reloadData()
-    }
-    
-    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        
-        print(error)
+        findMapItems(with: description)
     }
 }
 
@@ -95,7 +71,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        searchCompleter.region = MKCoordinateRegion(center: locations.first!.coordinate, latitudinalMeters: 1000000, longitudinalMeters: 1000000)
+        //zoom in
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

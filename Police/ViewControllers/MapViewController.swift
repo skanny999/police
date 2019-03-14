@@ -32,7 +32,9 @@ class MapViewController: UIViewController {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let searchResultsController = storyBoard.instantiateViewController(withIdentifier: "SearchResultsController") as? SearchResultsController
         searchResultsController?.mapView = mapView
+        searchResultsController?.delegate = viewModel
         searchController = UISearchController(searchResultsController: searchResultsController)
+        searchResultsController?.searchBar = searchController?.searchBar
         searchController?.searchResultsUpdater = searchResultsController
         searchController?.searchBar.sizeToFit()
         searchController?.searchBar.placeholder = "Find a location"

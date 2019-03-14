@@ -9,22 +9,29 @@
 import UIKit
 import MapKit
 
+protocol SearchResultsDelegate {
+    
+    func searchResultsController(_ sec: SearchResultsController, didSelectLocation: String)
+}
+
 class SearchResultsController: UITableViewController {
     
-    var searchCompleter = MKLocalSearchCompleter()
-    var matchingItems: [MKLocalSearchCompletion] = []
+    private var searchCompleter = MKLocalSearchCompleter()
+    private var matchingItems: [MKLocalSearchCompletion] = []
     var mapView: MKMapView?
+    var searchBar: UISearchBar?
+    var delegate: SearchResultsDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCompleter()
-
     }
     
     private func configureCompleter() {
         
         guard let mapView = mapView else { fatalError("mapview is nil") }
         searchCompleter.region = mapView.region
+        searchCompleter.filterType = .locationsOnly
         searchCompleter.delegate = self
     }
  
@@ -36,9 +43,16 @@ class SearchResultsController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "RESULT_CELL", for: indexPath)
-        let result = matchingItems[indexPath.row] as MKLocalSearchCompletion
+        let result = matchingItems[indexPath.row]
         cell.textLabel?.text = result.title
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedResult = matchingItems[indexPath.row]
+        delegate?.searchResultsController(self, didSelectLocation: selectedResult.title)
+        searchBar?.text = selectedResult.title
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -48,13 +62,11 @@ extension SearchResultsController: MKLocalSearchCompleterDelegate {
         
         matchingItems = completer.results
         tableView.reloadData()
-        
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         print(error)
     }
-    
 }
 
 
