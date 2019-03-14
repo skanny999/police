@@ -17,22 +17,20 @@ enum Mode {
 
 class MapViewModel: NSObject {
     
-    var mapMode: Mode = .none
-    let locationManager = CLLocationManager()
-    var mapItems: [MKMapItem] = []
-    var tableview: UITableView?
+    private var mapView: MKMapView!
     
-    
-    override init() {
-        super.init()
-        setDelegates()
-        permissionForLocation()
-    }
-    
-    private func setDelegates() {
-        locationManager.delegate = self
-    }
+    private var mapMode: Mode = .none
+    private let locationManager = CLLocationManager()
+    private var mapItems: [MKMapItem] = []
 
+    init(with mapview: MKMapView) {
+        
+        super.init()
+        mapView = mapview
+        mapView.delegate = self
+        permissionForLocation()
+        
+    }
 }
 
 
@@ -58,9 +56,17 @@ extension MapViewModel: MKMapViewDelegate {
             }
         }
     }
+
+    func zoom(into location: CLLocation) {
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+    }
 }
 
 extension MapViewModel: SearchResultsDelegate {
+    
     func searchResultsController(_ sec: SearchResultsController, didSelectLocation description: String) {
         
         findMapItems(with: description)
@@ -71,7 +77,10 @@ extension MapViewModel: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        //zoom in
+        if let location = locations.first {
+            
+            zoom(into: location)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -83,6 +92,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     
     private func permissionForLocation() {
         
+        locationManager.delegate = self
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()

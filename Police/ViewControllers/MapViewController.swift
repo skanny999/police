@@ -17,24 +17,22 @@ class MapViewController: UIViewController {
     var searchController: UISearchController?
 
     
-    let viewModel = MapViewModel()
+    var viewModel: MapViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        mapView.delegate = viewModel
+        viewModel = MapViewModel(with: mapView)
         configureSearchResultsController()
     }
 
     
     private func configureSearchResultsController() {
-        
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let searchResultsController = storyBoard.instantiateViewController(withIdentifier: "SearchResultsController") as? SearchResultsController
-        searchResultsController?.mapView = mapView
-        searchResultsController?.delegate = viewModel
+
+        let searchResultsController = Storyboard.searchResultsController()
         searchController = UISearchController(searchResultsController: searchResultsController)
-        searchResultsController?.searchBar = searchController?.searchBar
+        searchResultsController.mapView = mapView
+        searchResultsController.delegate = viewModel
+        searchResultsController.searchBar = searchController?.searchBar
         searchController?.searchResultsUpdater = searchResultsController
         searchController?.searchBar.sizeToFit()
         searchController?.searchBar.placeholder = "Find a location"

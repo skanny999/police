@@ -15,6 +15,7 @@
 		8B1A2F2F2238139E0022F6C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B1A2F2D2238139E0022F6C0 /* Main.storyboard */; };
 		8B1A2F32223813AE0022F6C0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A2F30223813AE0022F6C0 /* MapViewController.swift */; };
 		8B1A2F33223813AE0022F6C0 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A2F31223813AE0022F6C0 /* MapViewModel.swift */; };
+		8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A2F34223AB4AF0022F6C0 /* StoryboardHelper.swift */; };
 		8B3DD0162219B06400B98FE5 /* NeighbourhoodEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */; };
 		8B3DD01A221A2FEC00B98FE5 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD019221A2FEC00B98FE5 /* Events.json */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
@@ -107,6 +108,7 @@
 		8B1A2F2E2238139E0022F6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B1A2F30223813AE0022F6C0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8B1A2F31223813AE0022F6C0 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		8B1A2F34223AB4AF0022F6C0 /* StoryboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodEdited.json; sourceTree = "<group>"; };
 		8B3DD019221A2FEC00B98FE5 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				8B155EC721F131A000783C23 /* LaunchScreen.storyboard */,
 				8B1A2F2D2238139E0022F6C0 /* Main.storyboard */,
+				8B1A2F34223AB4AF0022F6C0 /* StoryboardHelper.swift */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8B7827E9221CC411008DE3E0 /* NSDate+Utils.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
+				8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,
 				8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */,
 				8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */,
