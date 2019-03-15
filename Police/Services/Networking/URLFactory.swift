@@ -9,6 +9,7 @@
 
 
 import Foundation
+import MapKit
 
 struct URLFactory {
     
@@ -62,9 +63,11 @@ struct URLFactory {
     }
     
     
-    private static func urlForCrimesByArea() {
+    static func urlForCrimesByArea(_ mapRect: MKMapRect) -> URL {
         
-        // Create area object with array of locations
+        let endpoint = String(format: Crimes.byArea.rawValue, mapRect.coordinatesString)
+        return completeUrl(with: endpoint)
+        
     }
     
     
@@ -178,7 +181,7 @@ private enum Crimes: String {
     case byExactLocationId = "crimes-at-location?%@location_id=%@" //crimes-at-location?date=2017-02&location_id=884227
     case byExactLocation = "crimes-at-location?%@lat=%@&lng=%@" // crimes-at-location?date=2017-02&lat=52.629729&lng=-1.131592outcome
     case byLocationRadius = "crimes-street/all-crime?lat=%@&lng=%@%@" //crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2017-01
-    case byArea = "crimes-street/all-crime?poly=%@%@" //lat,long:lat,long:...
+    case byArea = "crimes-street/all-crime?poly=%@" //lat,long:lat,long:...
     case addDate = "&date=%@-%@&" //year,month
 }
 

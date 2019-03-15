@@ -86,7 +86,7 @@ extension Updatable where Self: NSManagedObject {
             let objectId = objectData.dictionary?[dataIdentifier]?.number?.stringValue
             ?? objectData.dictionary?[dataIdentifier]?.string else { return }
         
-        if let object = Self.object(withId: objectId) {
+        if let object = Self.object(withId: objectId, in: context) {
             
             object.update(with: objectData)
             
@@ -98,10 +98,15 @@ extension Updatable where Self: NSManagedObject {
         }
     }
     
-    static func object(withId id: String) -> Self? {
+    static func object(withId id: String, in context: NSManagedObjectContext) -> Self? {
         
-        let object = try! CoreDataManager.shared().container.viewContext.fetch(fetchRequest(forId: id)).first as? Self
-        return object
+        return (try? context.fetch(fetchRequest(forId: id)).first as? Self) ?? nil
+
+    }
+    
+    static func fetchAll() -> [Self] {
+        
+        return (try? CoreDataManager.shared().container.viewContext.fetch(self.sortedFetchRequest) as [Self]) ?? []
     }
     
     private static func fetchRequest(forId id: String) -> NSFetchRequest<NSFetchRequestResult> {

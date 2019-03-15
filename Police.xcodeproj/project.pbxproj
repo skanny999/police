@@ -33,7 +33,8 @@
 		8B7827EB221DC170008DE3E0 /* Officers.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827EA221DC170008DE3E0 /* Officers.json */; };
 		8B9117782203AD210024CCFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9117772203AD210024CCFA /* Constants.swift */; };
 		8B91177E2203B4CF0024CCFA /* PersistentContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177D2203B4CF0024CCFA /* PersistentContainerTest.swift */; };
-		8B9117802203B7DE0024CCFA /* CoreData+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177F2203B7DE0024CCFA /* CoreData+Utils.swift */; };
+		8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */; };
+		8BD71704223BC9020009E038 /* MapKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD71703223BC9020009E038 /* MapKit+Utils.swift */; };
 		8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */; };
 		8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */; };
 		8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */; };
@@ -126,7 +127,8 @@
 		8B7827EA221DC170008DE3E0 /* Officers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Officers.json; sourceTree = "<group>"; };
 		8B9117772203AD210024CCFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B91177D2203B4CF0024CCFA /* PersistentContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerTest.swift; sourceTree = "<group>"; };
-		8B91177F2203B7DE0024CCFA /* CoreData+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Utils.swift"; sourceTree = "<group>"; };
+		8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Utils.swift"; sourceTree = "<group>"; };
+		8BD71703223BC9020009E038 /* MapKit+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+Utils.swift"; sourceTree = "<group>"; };
 		8BEBCAE121F65CBF0004AFDE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neighbourhood+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -313,7 +315,8 @@
 			children = (
 				8BEBCBA5220109E20004AFDE /* String+Utils.swift */,
 				8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */,
-				8B91177F2203B7DE0024CCFA /* CoreData+Utils.swift */,
+				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
+				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -667,7 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
-				8B9117802203B7DE0024CCFA /* CoreData+Utils.swift in Sources */,
+				8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */,
 				8B9117782203AD210024CCFA /* Constants.swift in Sources */,
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8B7827E9221CC411008DE3E0 /* NSDate+Utils.swift in Sources */,
@@ -697,6 +700,7 @@
 				8BEBCB6521F8DC840004AFDE /* Force+CoreDataClass.swift in Sources */,
 				8BEBCB5721F8DC840004AFDE /* Officer+CoreDataClass.swift in Sources */,
 				8BEBCB5421F8DC840004AFDE /* Event+CoreDataProperties.swift in Sources */,
+				8BD71704223BC9020009E038 /* MapKit+Utils.swift in Sources */,
 				8BEBCB6321F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift in Sources */,
 				8BEBCB6121F8DC840004AFDE /* Outcome+CoreDataClass.swift in Sources */,
 				8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */,

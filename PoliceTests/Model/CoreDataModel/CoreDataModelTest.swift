@@ -436,7 +436,7 @@ class CoreDataModelTest: XCTestCase {
         
         if let json = try? JSON(data: data),
             let objectId = json[objectClass.dataIdentifier].number?.stringValue ?? json[objectClass.dataIdentifier].string,
-            let object = objectClass.object(withId: objectId) {
+            let object = objectClass.object(withId: objectId, in: CoreDataManager.shared().container.viewContext) {
             
             return object
         }

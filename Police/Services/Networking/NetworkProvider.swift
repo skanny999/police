@@ -13,12 +13,31 @@ class NetworkProvider {
     class func getRequest(forUrl url: URL, completion: @escaping (_ data: Data?, _ error:  NSError?) -> Void) {
         
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: url) { (data: Data?, response: URLResponse?, error: Error?) in
             
-            let result = self.processTaskResult(data: data, response: response, error: error)
+            if let error = error {
+                completion(nil, error as NSError)
+                return
+            }
             
-            completion(result.data, result.error)
+            guard let response = response as? HTTPURLResponse else {
+                
+                let error = NSError(domain: "", code: 404, userInfo: nil)
+                completion(nil, error)
+                return
+            }
+            
+            if 200..<300 ~= response.statusCode {
+                
+                completion(data, nil)
+                
+            } else {
+                
+                let error = NSError(domain:"", code:response.statusCode, userInfo:nil)
+                completion(nil, error)
+            }
         }
+        
         task.resume()
     }
     

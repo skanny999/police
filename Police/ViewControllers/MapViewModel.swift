@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 
 enum Mode {
-    case criminal, police, none
+    case crime, police, none
 }
 
 
@@ -21,7 +21,7 @@ class MapViewModel: NSObject {
     
     private var mapMode: Mode = .none
     private let locationManager = CLLocationManager()
-    private var mapItems: [MKMapItem] = []
+    private var location: CLLocation?
 
     init(with mapview: MKMapView) {
         
@@ -33,10 +33,55 @@ class MapViewModel: NSObject {
     }
 }
 
+extension MapViewModel: MapViewControllerDelegate {
+    
+    func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
+        
+        switch mode {
+        case .crime:
+            print(mode)
+            findCrimes()
+        case .police:
+            print(mode)
+            // make call for police
+        case .none:
+            break
+        }
+    }
+    
+    
+    func findCrimes() {
+        
+        let mapViewRect = mapView.visibleMapRect
+        
+        NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapViewRect)) { (data, error) in
+            if let data = data {
+            UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { [weak self] (updated) in
+                
+                let crimes = Crime.fetchAll()
+                
+                if let mapview = self?.mapView {
+                    
+                    mapview.removeAnnotations(mapview.annotations)
+                    
+                    for crime in crimes {
+                        print(crime.categoryCode!)
+                        let annotation = MKPointAnnotation()
+                        annotation.coordinate = crime.coordinate
+                        annotation.title = crime.categoryCode
+                        mapview.addAnnotation(annotation)
+                    }
+                }
+            })
+        }
+        }
+    }
+}
+
 
 
 extension MapViewModel: MKMapViewDelegate {
-    
+
     
     private func findLocations(with text: String) {
         
@@ -52,9 +97,16 @@ extension MapViewModel: MKMapViewDelegate {
         search.start {  [weak self] (response, error) in
     
             if let response = response {
-                self?.mapItems = response.mapItems
+                let responceLocation = CLLocation(latitude: response.boundingRegion.center.latitude, longitude: response.boundingRegion.center.longitude)
+                self?.location = responceLocation
+                self?.zoom(into: responceLocation)
             }
         }
+    }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        
+
     }
 
     func zoom(into location: CLLocation) {
@@ -63,6 +115,21 @@ extension MapViewModel: MKMapViewDelegate {
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if !annotation.isKind(of: MKUserLocation.self) {
+            
+            let reuseId = "pin"
+            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView?.canShowCallout = true
+            
+            return pinView
+        }
+         return nil
+    }
+
 }
 
 extension MapViewModel: SearchResultsDelegate {

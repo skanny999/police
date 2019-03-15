@@ -10,9 +10,25 @@
 import Foundation
 import CoreData
 import SwiftyJSON
+import MapKit
 
 @objc(Crime)
-public class Crime: NSManagedObject, Updatable, Locatable {
+public class Crime: NSManagedObject, Updatable, Locatable, MKAnnotation {
+    
+    public var coordinate: CLLocationCoordinate2D {
+        
+        return CLLocationCoordinate2D(latitude: Double(latitude!)!, longitude: Double(longitude!)!)
+    }
+    
+    public var title: String? {
+        return self.category?.description
+    }
+    
+    public var subtitle: String? {
+        
+        return ""
+    }
+    
 
     static var dataIdentifier: String = "id"
     static var objectIdentifier: String = "identifier"
@@ -53,10 +69,10 @@ public class Crime: NSManagedObject, Updatable, Locatable {
         self.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
         self.latitude = json[Key.location][Key.latitude].string
         self.longitude = json[Key.location][Key.longitude].string
-        if let period = Period(fromMonth: json[Key.date].string) {
-            self.month = period.month
-            self.year = period.year
-        }
+//        if let period = Period(fromMonth: json[Key.date].string) {
+//            self.month = period.month
+//            self.year = period.year
+//        }
         
         self.addOutcomes(from: json[Key.latestOutcome].array)
     }
