@@ -69,12 +69,14 @@ public class Crime: NSManagedObject, Updatable, Locatable, MKAnnotation {
         self.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
         self.latitude = json[Key.location][Key.latitude].string
         self.longitude = json[Key.location][Key.longitude].string
-//        if let period = Period(fromMonth: json[Key.date].string) {
-//            self.month = period.month
-//            self.year = period.year
-//        }
+        if let period = Period(fromMonth: json[Key.date].string) {
+            self.month = period.month
+            self.year = period.year
+        }
         
         self.addOutcomes(from: json[Key.latestOutcome].array)
+        
+        print(self)
     }
     
     func addOutcomes(from jsons: [JSON]?) {

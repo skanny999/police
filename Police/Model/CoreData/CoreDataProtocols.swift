@@ -17,7 +17,7 @@ protocol Managed: class, NSFetchRequestResult {
     static var entityName: String { get }
     static var defaultSortDescriptors: [NSSortDescriptor] { get }
     
-    static func managedObject(withData data: Data, in context: NSManagedObjectContext)
+    static func managedObject(withJson data: JSON, in context: NSManagedObjectContext)
 
 }
 
@@ -78,23 +78,21 @@ protocol Updatable: Managed {
 
 extension Updatable where Self: NSManagedObject {
     
-    static func managedObject(withData data: Data, in context: NSManagedObjectContext) {
-        
-        let objectData = try! JSON(data: data)
+    static func managedObject(withJson json: JSON, in context: NSManagedObjectContext) {
         
         guard
-            let objectId = objectData.dictionary?[dataIdentifier]?.number?.stringValue
-            ?? objectData.dictionary?[dataIdentifier]?.string else { return }
+            let objectId = json.dictionary?[dataIdentifier]?.number?.stringValue
+            ?? json.dictionary?[dataIdentifier]?.string else { return }
         
         if let object = Self.object(withId: objectId, in: context) {
             
-            object.update(with: objectData)
+            object.update(with: json)
             
         } else {
             
             let object = Self(entity: self.entity(), insertInto: context)
             
-            object.update(with: objectData)
+            object.update(with: json)
         }
     }
     

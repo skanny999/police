@@ -68,19 +68,17 @@ public class StopAndSearch: NSManagedObject, Managed {
         return "\(json[Key.dateTime].string!)\(json[Key.location][Key.latitude].string!)\(json[Key.location][Key.longitude].string!)"
     }
     
-    static func managedObject(withData data: Data, in context: NSManagedObjectContext) {
-        
-        let objectData = try! JSON(data: data)
-        
-        if let object = StopAndSearch.object(withId: identifier(from: objectData)) {
+    static func managedObject(withJson json: JSON, in context: NSManagedObjectContext) {
+
+        if let object = StopAndSearch.object(withId: identifier(from: json)) {
             
-            update(object, with: objectData)
+            update(object, with: json)
             
         } else {
             
             let object = StopAndSearch(entity: self.entity(), insertInto: context)
             
-            update(object, with: objectData)
+            update(object, with: json)
         }
     }
     

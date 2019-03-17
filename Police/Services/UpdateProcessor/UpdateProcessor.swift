@@ -15,10 +15,17 @@ class UpdateProcessor {
         
         CoreDataManager.performBackgroundTask { (context) in
             
-            updatableClass.managedObject(withData: data, in: context)
-            CoreDataManager.shared().save(context)
-            DispatchQueue.main.async {
-                completion(true)
+            if let json = try? JSON(data: data) {
+                updatableClass.managedObject(withJson: json, in: context)
+                CoreDataManager.shared().save()
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } else {
+                
+                DispatchQueue.main.async {
+                    completion(false)
+                }
             }
         }
     }
@@ -30,32 +37,34 @@ class UpdateProcessor {
             if let jsonArray = try! JSON(data: data).array {
                 
                 for objectData in jsonArray {
-                    
-                    let rawData = try! objectData.rawData(options: .prettyPrinted)
-                    
-                    updatableClass.managedObject(withData: rawData, in: context)
 
+                    updatableClass.managedObject(withJson: objectData, in: context)
                 }
                 
-                CoreDataManager.shared().save(context)
+                CoreDataManager.shared().save()
                 DispatchQueue.main.async {
                     completion(true)
                 }
             }
-            
-
         }
     }
     
     static func updateStopAndSearch(fromData data: Data, completion: @escaping (Bool) -> Void) {
         
-        CoreDataManager.performViewTask { (context) in
+        CoreDataManager.performBackgroundTask { (context) in
             
-            StopAndSearch.managedObject(withData: data, in: context)
-            CoreDataManager.shared().save(context)
-            DispatchQueue.main.async {
-                completion(true)
+            if let json = try? JSON(data: data) {
+                StopAndSearch.managedObject(withJson: json, in: context)
+                CoreDataManager.shared().save()
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(true)
+                }
             }
+
         }
     }
 }

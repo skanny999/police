@@ -22,10 +22,13 @@ final class CoreDataManager {
     }
     
     public var container: NSPersistentContainer
+    private var backgroundContext: NSManagedObjectContext
     
     private init() {
         
         container = NSPersistentContainer(name: "Police")
+        backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        backgroundContext.parent = container.viewContext
         
         if AppStatus.isTesting {
             
@@ -47,7 +50,11 @@ final class CoreDataManager {
     
     static func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         
-        CoreDataManager.shared().container.performBackgroundTask(block)
+        CoreDataManager.shared().backgroundContext.perform {
+            block(CoreDataManager.shared().backgroundContext)
+        }
+        
+//        CoreDataManager.shared().container.(block)
     }
     
     static func performViewTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
@@ -55,16 +62,23 @@ final class CoreDataManager {
         block(CoreDataManager.shared().container.viewContext)
     }
     
-    func save(_ context: NSManagedObjectContext) {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+    func save() {
+        
+        try? backgroundContext.save()
+        container.viewContext.performAndWait {
+            // Save viewContext on the main queue in order to store changes persistently
+            try? container.viewContext.save()
         }
+        
+//        if context.hasChanges {
+//            do {
+//                try context.save()
+//            } catch {
+//
+//                let nserror = error as NSError
+//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//            }
+//        }
     }
     
     static func setInMemoryStoreType(for container: NSPersistentContainer) {

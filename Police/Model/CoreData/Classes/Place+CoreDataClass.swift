@@ -22,7 +22,6 @@ public class Place: NSManagedObject, Locatable {
         static let description = "description"
         static let latitude = "latitude"
         static let longitude = "longitude"
-
     }
     
     class func createPlace(from json: JSON, in context: NSManagedObjectContext?) -> Place {
