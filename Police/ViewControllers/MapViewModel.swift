@@ -58,19 +58,36 @@ extension MapViewModel: MapViewControllerDelegate {
             if let data = data {
             UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { [weak self] (updated) in
                 
-                let crimes = Crime.fetchAll()
+                let crimes = CoreDataManager.shared().allCrimes()
                 
                 if let mapview = self?.mapView {
                     
-                    mapview.removeAnnotations(mapview.annotations)
-                    
-                    for crime in crimes {
-                        print(crime.categoryCode!)
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = crime.coordinate
-                        annotation.title = crime.categoryCode
-                        mapview.addAnnotation(annotation)
+                    DispatchQueue.main.async {
+                        mapview.removeAnnotations(mapview.annotations)
+                        
+                        for crime in crimes {
+                            
+                            if CLLocationCoordinate2DIsValid(crime.coordinate) {
+                                
+//                                let mock = Mock(withCoordinate: crime.coordinate)
+                                
+                                mapview.addAnnotation(crime)
+                            }
+                            
+                        }
                     }
+                    
+//                    mapview.removeAnnotations(mapview.annotations)
+//
+//                    mapview.addAnnotations(crimes as [MKAnnotation])
+                    
+//                    for crime in crimes {
+//                        print(crime.categoryCode!)
+//                        let annotation = MKPointAnnotation()
+//                        annotation.coordinate = crime.coordinate
+//                        annotation.title = crime.categoryCode
+//                        mapview.addAnnotation(annotation)
+//                    }
                 }
             })
         }
@@ -120,14 +137,24 @@ extension MapViewModel: MKMapViewDelegate {
         
         if !annotation.isKind(of: MKUserLocation.self) {
             
-            let reuseId = "pin"
-            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView?.canShowCallout = true
+            return annotationView(for: annotation)
             
-            return pinView
+//            let reuseId = "pin"
+//            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+//            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+//            pinView?.canShowCallout = true
+            
+//            return pinView
         }
          return nil
+    }
+    
+    func annotationView(for annotation: MKAnnotation) -> MKAnnotationView {
+        
+        let identifier = "truck"
+        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        
+        return annotationView.view(forAnnotation:annotation)
     }
 
 }

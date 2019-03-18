@@ -50,11 +50,10 @@ final class CoreDataManager {
     
     static func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         
-        CoreDataManager.shared().backgroundContext.perform {
-            block(CoreDataManager.shared().backgroundContext)
+        let backgroundContext = CoreDataManager.shared().backgroundContext
+        backgroundContext.perform {
+            block(backgroundContext)
         }
-        
-//        CoreDataManager.shared().container.(block)
     }
     
     static func performViewTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
@@ -66,19 +65,9 @@ final class CoreDataManager {
         
         try? backgroundContext.save()
         container.viewContext.performAndWait {
-            // Save viewContext on the main queue in order to store changes persistently
+
             try? container.viewContext.save()
         }
-        
-//        if context.hasChanges {
-//            do {
-//                try context.save()
-//            } catch {
-//
-//                let nserror = error as NSError
-//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//            }
-//        }
     }
     
     static func setInMemoryStoreType(for container: NSPersistentContainer) {
@@ -87,5 +76,12 @@ final class CoreDataManager {
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false
         container.persistentStoreDescriptions = [description]
+    }
+    
+    func allCrimes() -> [Crime] {
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Crime")
+        fetchRequest.sortDescriptors = []
+        return try! CoreDataManager.shared().container.viewContext.fetch(fetchRequest) as! [Crime]
     }
 }

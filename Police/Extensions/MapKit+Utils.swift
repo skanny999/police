@@ -29,6 +29,21 @@ extension MKMapRect {
         
         return "\(nw.latitude.short),\(nw.longitude.short):\(ne.latitude.short),\(ne.longitude.short):\(se.latitude.short),\(se.longitude.short):\(sw.latitude.short),\(sw.longitude.short)"
     }
+}
+
+extension MKAnnotationView {
     
+    func view(forAnnotation annotation: MKAnnotation) -> MKAnnotationView {
+        
+        self.tintColor = .purple
+        self.isEnabled = true
+        self.canShowCallout = true
+        self.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        self.annotation = annotation
+        self.image = UIImage(named: "Circle-orange")
+        
+        return self
+    }
     
+
 }
