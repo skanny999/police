@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8B136368223964E700ACB0B2 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B136367223964E700ACB0B2 /* SearchResultsController.swift */; };
+		8B13636C224040ED00ACB0B2 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */; };
+		8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */; };
 		8B155EBC21F1319C00783C23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EBB21F1319C00783C23 /* AppDelegate.swift */; };
 		8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B155EC221F1319C00783C23 /* Police.xcdatamodeld */; };
 		8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B155EC521F1319F00783C23 /* Assets.xcassets */; };
@@ -98,6 +100,8 @@
 
 /* Begin PBXFileReference section */
 		8B136367223964E700ACB0B2 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
+		8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeAnnotationView.swift; sourceTree = "<group>"; };
 		8B155EB821F1319C00783C23 /* Police.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Police.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155EBB21F1319C00783C23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B155EC321F1319C00783C23 /* Police.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Police.xcdatamodel; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 				8B1A2F30223813AE0022F6C0 /* MapViewController.swift */,
 				8B1A2F31223813AE0022F6C0 /* MapViewModel.swift */,
 				8B136367223964E700ACB0B2 /* SearchResultsController.swift */,
+				8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */,
+				8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */,
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
 				8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */,
 				8B9117782203AD210024CCFA /* Constants.swift in Sources */,
@@ -712,6 +719,7 @@
 				8BEBCB5621F8DC840004AFDE /* Crime+CoreDataProperties.swift in Sources */,
 				8BEBCB9421FE187A0004AFDE /* Structs.swift in Sources */,
 				8BEBCB6221F8DC840004AFDE /* Outcome+CoreDataProperties.swift in Sources */,
+				8B13636C224040ED00ACB0B2 /* ClusterAnnotationView.swift in Sources */,
 				8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,9 +17,10 @@ class Mock: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     
-    init(withCoordinate coordinate: CLLocationCoordinate2D) {
-        self.title = "test"
-        self.coordinate = coordinate
+    init(withAnnotation annotation: MKAnnotation) {
+        
+        self.title = annotation.title ?? ""
+        self.coordinate = annotation.coordinate
         super.init()
     }
     

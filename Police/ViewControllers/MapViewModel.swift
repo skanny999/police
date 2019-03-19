@@ -29,7 +29,13 @@ class MapViewModel: NSObject {
         mapView = mapview
         mapView.delegate = self
         permissionForLocation()
+        registerAnnotationViewClass()
         
+    }
+    
+    private func registerAnnotationViewClass() {
+        
+        mapView.register(CrimeAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
     }
 }
 
@@ -69,25 +75,13 @@ extension MapViewModel: MapViewControllerDelegate {
                             
                             if CLLocationCoordinate2DIsValid(crime.coordinate) {
                                 
-//                                let mock = Mock(withCoordinate: crime.coordinate)
+                                let mock = Mock(withAnnotation: crime)
                                 
-                                mapview.addAnnotation(crime)
+                                mapview.addAnnotation(mock)
                             }
                             
                         }
                     }
-                    
-//                    mapview.removeAnnotations(mapview.annotations)
-//
-//                    mapview.addAnnotations(crimes as [MKAnnotation])
-                    
-//                    for crime in crimes {
-//                        print(crime.categoryCode!)
-//                        let annotation = MKPointAnnotation()
-//                        annotation.coordinate = crime.coordinate
-//                        annotation.title = crime.categoryCode
-//                        mapview.addAnnotation(annotation)
-//                    }
                 }
             })
         }
@@ -137,24 +131,10 @@ extension MapViewModel: MKMapViewDelegate {
         
         if !annotation.isKind(of: MKUserLocation.self) {
             
-            return annotationView(for: annotation)
+            return CrimeAnnotationView(annotation: annotation, reuseIdentifier: CrimeAnnotationView.reuseID)
             
-//            let reuseId = "pin"
-//            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-//            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-//            pinView?.canShowCallout = true
-            
-//            return pinView
         }
          return nil
-    }
-    
-    func annotationView(for annotation: MKAnnotation) -> MKAnnotationView {
-        
-        let identifier = "truck"
-        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-        
-        return annotationView.view(forAnnotation:annotation)
     }
 
 }
