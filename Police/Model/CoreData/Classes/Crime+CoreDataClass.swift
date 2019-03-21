@@ -13,7 +13,11 @@ import SwiftyJSON
 import MapKit
 
 @objc(Crime)
-public class Crime: NSManagedObject, Updatable, Locatable, MKAnnotation {
+public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
+    
+    var colour: UIColor {
+        return self.category?.colour ?? .red
+    }
     
     public var coordinate: CLLocationCoordinate2D {
         

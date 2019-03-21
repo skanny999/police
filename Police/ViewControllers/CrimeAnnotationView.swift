@@ -15,8 +15,12 @@ class CrimeAnnotationView: MKMarkerAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        clusteringIdentifier = "crime"
+        if let annotation = annotation as? Annotable{
+            markerTintColor = annotation.colour
+            clusteringIdentifier = "crime"
+        }
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -25,10 +29,5 @@ class CrimeAnnotationView: MKMarkerAnnotationView {
     override func prepareForDisplay() {
         super.prepareForDisplay()
         displayPriority = .defaultHigh
-        markerTintColor = .red
-        image = UIImage(named: "Circle-orange")
-        
     }
-    
-
 }

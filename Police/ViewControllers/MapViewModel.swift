@@ -36,6 +36,7 @@ class MapViewModel: NSObject {
     private func registerAnnotationViewClass() {
         
         mapView.register(CrimeAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
 }
 
@@ -61,7 +62,9 @@ extension MapViewModel: MapViewControllerDelegate {
         let mapViewRect = mapView.visibleMapRect
         
         NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapViewRect)) { (data, error) in
+            
             if let data = data {
+                
             UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { [weak self] (updated) in
                 
                 let crimes = CoreDataManager.shared().allCrimes()
@@ -69,15 +72,16 @@ extension MapViewModel: MapViewControllerDelegate {
                 if let mapview = self?.mapView {
                     
                     DispatchQueue.main.async {
+                        
                         mapview.removeAnnotations(mapview.annotations)
                         
                         for crime in crimes {
                             
                             if CLLocationCoordinate2DIsValid(crime.coordinate) {
                                 
-                                let mock = Mock(withAnnotation: crime)
+                                let annotation = Annotation(with: crime)
                                 
-                                mapview.addAnnotation(mock)
+                                mapview.addAnnotation(annotation)
                             }
                             
                         }
@@ -129,13 +133,21 @@ extension MapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if !annotation.isKind(of: MKUserLocation.self) {
+        if annotation.conforms(to: Annotable.self)  {
             
-            return CrimeAnnotationView(annotation: annotation, reuseIdentifier: CrimeAnnotationView.reuseID)
+            return CrimeAnnotationView(annotation: annotation as! Annotable, reuseIdentifier: CrimeAnnotationView.reuseID)
             
         }
          return nil
     }
+    
+    
+//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+//
+//
+//
+//        return MKClusterAnnotation(memberAnnotations: memberAnnotations)
+//    }
 
 }
 

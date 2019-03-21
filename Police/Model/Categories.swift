@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum CrimeCategory: String, CaseIterable {
     
@@ -60,6 +61,33 @@ enum CrimeCategory: String, CaseIterable {
             return "Other crime"
         }
     }
+    
+    var gravity: CrimeGravity {
+        
+        switch self {
+        case .antiSocialBehaviour, .drugs, .publicOder, .shoplifting, .vehicle, .other:
+            return .medium
+        case .burglary, .arson, .bicicleTheft, .theftFromPerson, .otherTheft:
+            return .bad
+        case .allCrime, .violent, .weapon, .robbery:
+            return .veryBad
+        }
+    }
+    
+    var colour: UIColor {
+        switch self.gravity {
+        case .medium:
+            return UIColor(red: 250/255, green: 220/255, blue: 85/255, alpha: 1)
+        case .bad:
+            return .orange
+        case .veryBad:
+            return .red
+        }
+    }
+}
+
+enum CrimeGravity {
+    case medium, bad, veryBad
 }
 
 enum OutcomeCategory: String, CaseIterable {
