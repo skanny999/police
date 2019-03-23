@@ -26,11 +26,11 @@
         <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="extraContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="locationSubtypeCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationTypeCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="persistentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,9 +40,9 @@
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -59,9 +59,9 @@
     </entity>
     <entity name="Neighbourhood" representedClassName="Neighbourhood" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="population" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="neighbourhood" inverseEntity="Contact" syncable="YES"/>
@@ -87,9 +87,9 @@
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
@@ -108,10 +108,10 @@
         <attribute name="dateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="genderCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="legislation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="objectOfSearch" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="officerEthnicity" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="operationName" optional="YES" attributeType="String" syncable="YES"/>
@@ -126,13 +126,13 @@
     </entity>
     <elements>
         <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="343"/>
-        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="238"/>
-        <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="193"/>
+        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="240"/>
+        <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="195"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
-        <element name="Neighbourhood" positionX="21.40625" positionY="-343.328125" width="128" height="223"/>
+        <element name="Neighbourhood" positionX="21.40625" positionY="-343.328125" width="128" height="225"/>
         <element name="Officer" positionX="105.046875" positionY="-36.625" width="128" height="135"/>
         <element name="Outcome" positionX="-271.21875" positionY="-376.51171875" width="128" height="103"/>
-        <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="178"/>
+        <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="180"/>
         <element name="Priority" positionX="-142.6015625" positionY="-111.18359375" width="128" height="120"/>
         <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="330"/>
     </elements>

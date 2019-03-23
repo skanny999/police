@@ -57,8 +57,8 @@ public class StopAndSearch: NSManagedObject, Managed {
         object.stripSearch = json[Key.stripSearch].number
         object.suspectEthnicity = json[Key.suspectEthnicity].string
         object.typeCode = json[Key.typeCode].string
-        object.latitude = json[Key.location][Key.latitude].string
-        object.longitude = json[Key.location][Key.longitude].string
+        object.latitude = json[Key.location][Key.latitude].string.number
+        object.longitude = json[Key.location][Key.longitude].string.number
         object.streetName = json[Key.location][Key.street][Key.name].string
         object.identifier = identifier(from: json)
     }

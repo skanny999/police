@@ -85,7 +85,7 @@ struct URLFactory {
             fatalError("Location must have coordinates")
         }
         
-        let endpoint = String(format: Outcomes.byLocation.rawValue, dateString(for: period), location.coordinates!.lat, location.coordinates!.long)
+        let endpoint = String(format: Outcomes.byLocation.rawValue, dateString(for: period), location.latitude!, location.longitude!)
         return completeUrl(with: endpoint)
     }
     
@@ -115,7 +115,7 @@ struct URLFactory {
             fatalError("Location must have coordinates")
         }
         
-        let endpoint = String(format: "locate-neighbourhood?q=%@,%@", location.coordinates!.lat, location.coordinates!.long)
+        let endpoint = String(format: "locate-neighbourhood?q=%@,%@", location.latitude!, location.longitude!)
         return completeUrl(with: endpoint)
     }
     
@@ -136,7 +136,7 @@ struct URLFactory {
             fatalError("Location must have coordinates")
         }
         
-        let endpoint = String(format: StopSearch.byLocationRadius.rawValue, location.coordinates!.lat, location.coordinates!.long, dateString(for: period))
+        let endpoint = String(format: StopSearch.byLocationRadius.rawValue, location.latitude!, location.longitude!, dateString(for: period))
         return completeUrl(with: endpoint)
     }
     

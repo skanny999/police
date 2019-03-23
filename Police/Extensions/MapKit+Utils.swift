@@ -11,7 +11,7 @@ import MapKit
 
 extension MKMapRect {
     
-    private var coordinates:(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
+    var coordinates:(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
         
         let topLeft = self.origin.coordinate
         let bottomRightPoint = MKMapPoint(x: self.maxX, y: self.maxY)

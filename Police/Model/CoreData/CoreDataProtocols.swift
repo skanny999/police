@@ -46,15 +46,15 @@ extension Managed where Self: NSManagedObject {
 
 protocol Locatable {
     
-    var latitude: String? { get set }
-    var longitude: String? { get set }
+    var latitude: NSNumber? { get set }
+    var longitude: NSNumber? { get set }
 }
 
 extension Locatable {
     
-    var coordinates: (lat: String, long: String)? {
+    var coordinates: (lat: Double, long: Double)? {
         
-        guard let lat = latitude, let long = longitude else { return nil }
+        guard let lat = latitude?.doubleValue, let long = longitude?.doubleValue else { return nil }
         return (lat, long)
     }
     

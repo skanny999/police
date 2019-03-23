@@ -46,8 +46,8 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(crime?.persistentId == "fsdfskdjfslkdjfsldkfsdlskd")
             XCTAssertTrue(crime?.streetName == "On or near Wharf Street North")
             XCTAssertTrue(crime?.year == "2017")
-            XCTAssertTrue(crime?.latitude == "52.640961")
-            XCTAssertTrue(crime?.longitude == "-1.126371")
+            XCTAssertTrue(crime?.latitude == 52.640961, crime?.latitude?.stringValue ?? "no value")
+            XCTAssertTrue(crime?.longitude == -1.126371, crime?.longitude?.stringValue ?? "no value")
             XCTAssertTrue(crime?.outcomes?.first?.category == .underInvestigation)
             XCTAssertTrue(crime?.outcomes?.first?.date == "2017-05")
             XCTAssertTrue(crime?.outcomes?.first?.personId == nil)
@@ -68,8 +68,8 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(crime?.persistentId == "fsdfskdjfslkdjfsldkfsdlskd")
             XCTAssertTrue(crime?.streetName == "On or near Wharf Street North")
             XCTAssertTrue(crime?.year == "2017")
-            XCTAssertTrue(crime?.latitude == "52.640961")
-            XCTAssertTrue(crime?.longitude == "-1.126371")
+            XCTAssertTrue(crime?.latitude == 52.640961)
+            XCTAssertTrue(crime?.longitude == -1.126371)
             
             let outcomes = crime?.outcomes?.sorted {$0.date! < $1.date!}
 
@@ -99,8 +99,8 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(neighbourhood?.longDescription == longDescription, neighbourhood?.longDescription ?? "nil")
             XCTAssertTrue(neighbourhood?.name == "City Centre",neighbourhood?.name ?? "nil")
             XCTAssertTrue(neighbourhood?.population == "0",neighbourhood?.population ?? "nil")
-            XCTAssertTrue(neighbourhood?.coordinates?.lat == "52.6389", neighbourhood?.coordinates?.lat ?? "nil")
-            XCTAssertTrue(neighbourhood?.coordinates?.long == "-1.13619", neighbourhood?.coordinates?.long ?? "nil")
+            XCTAssertTrue(neighbourhood?.latitude == 52.6389)
+            XCTAssertTrue(neighbourhood?.longitude == -1.13619)
             //Contact
             XCTAssertTrue(neighbourhood?.contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk", neighbourhood?.contact?.email ?? "nil")
             XCTAssertTrue(neighbourhood?.contact?.telephone == "101", neighbourhood?.contact?.telephone ?? "nil")
@@ -114,8 +114,8 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(neighbourhood?.places?.first?.address == "74 Belgrave Gate\n, Leicester", neighbourhood?.places?.first?.address ?? "nil")
             XCTAssertTrue(neighbourhood?.places?.first?.typeCode == "station", neighbourhood?.places?.first?.typeCode ?? "nil")
             XCTAssertTrue(neighbourhood?.places?.first?.longDescription == nil, neighbourhood?.places?.first?.longDescription ?? "nil")
-            XCTAssertTrue(neighbourhood?.places?.first?.coordinates?.lat == nil, neighbourhood?.places?.first?.coordinates?.lat ?? "nil")
-            XCTAssertTrue(neighbourhood?.places?.first?.coordinates?.long == nil, neighbourhood?.places?.first?.coordinates?.long ?? "nil")
+            XCTAssertTrue(neighbourhood?.places?.first?.latitude == nil)
+            XCTAssertTrue(neighbourhood?.places?.first?.longitude == nil)
         }
         
         // Edited data
@@ -128,8 +128,8 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(neighbourhood?.longDescription == longDescription, neighbourhood?.longDescription ?? "nil")
             XCTAssertTrue(neighbourhood?.name == "City Centre",neighbourhood?.name ?? "nil")
             XCTAssertTrue(neighbourhood?.population == "0",neighbourhood?.population ?? "nil")
-            XCTAssertTrue(neighbourhood?.coordinates?.lat == "52.6389", neighbourhood?.coordinates?.lat ?? "nil")
-            XCTAssertTrue(neighbourhood?.coordinates?.long == "-1.13619", neighbourhood?.coordinates?.long ?? "nil")
+            XCTAssertTrue(neighbourhood?.latitude == 52.6389, neighbourhood?.latitude?.stringValue ?? "nil")
+            XCTAssertTrue(neighbourhood?.longitude == -1.13619, neighbourhood?.longitude?.stringValue ?? "nil")
             //Contact
             XCTAssertTrue(neighbourhood?.contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk", neighbourhood?.contact?.email ?? "nil")
             XCTAssertTrue(neighbourhood?.contact?.telephone == "010", neighbourhood?.contact?.telephone ?? "nil")
@@ -145,15 +145,15 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(locations?.first?.address == "74 Belgrave Gate\n, Leicester", locations?.first?.address ?? "nil")
             XCTAssertTrue(locations?.first?.typeCode == "station", locations?.first?.typeCode ?? "nil")
             XCTAssertTrue(locations?.first?.longDescription == nil, locations?.first?.longDescription ?? "nil")
-            XCTAssertTrue(locations?.first?.coordinates?.lat == nil, locations?.first?.coordinates?.lat ?? "nil")
-            XCTAssertTrue(locations?.first?.coordinates?.long == nil, locations?.first?.coordinates?.long ?? "nil")
+            XCTAssertTrue(locations?.first?.latitude == nil, locations?.first?.latitude?.stringValue ?? "nil")
+            XCTAssertTrue(locations?.first?.longitude == nil, locations?.first?.longitude?.stringValue ?? "nil")
             XCTAssertTrue(locations?.last?.name == "Random House", locations?.last?.name ?? "nil")
             XCTAssertTrue(locations?.last?.postcode == "LE1 3GG", locations?.last?.postcode ?? "nil")
             XCTAssertTrue(locations?.last?.address == "74 Belgrave Gate\n, Leicester", locations?.last?.address ?? "nil")
             XCTAssertTrue(locations?.last?.typeCode == "station", locations?.last?.typeCode ?? "nil")
             XCTAssertTrue(locations?.last?.longDescription == "It's a random house", locations?.last?.longDescription ?? "nil")
-            XCTAssertTrue(locations?.last?.coordinates?.lat == "-1.0967", locations?.last?.coordinates?.lat ?? "nil")
-            XCTAssertTrue(locations?.last?.coordinates?.long == "53.214", locations?.last?.coordinates?.long ?? "nil")
+            XCTAssertTrue(locations?.last?.latitude == -1.0967, locations?.last?.latitude?.stringValue ?? "nil")
+            XCTAssertTrue(locations?.last?.longitude == 53.214, locations?.last?.longitude?.stringValue ?? "nil")
         }
     }
     
@@ -374,8 +374,8 @@ class CoreDataModelTest: XCTestCase {
                 XCTAssertTrue(stopAndSearch?.stripSearch == false)
                 XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
                 XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
-                XCTAssertTrue(stopAndSearch?.latitude == "52.264860")
-                XCTAssertTrue(stopAndSearch?.longitude == "0.699943")
+                XCTAssertTrue(stopAndSearch?.latitude == 52.264860)
+                XCTAssertTrue(stopAndSearch?.longitude == 0.699943)
                 XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
 
             }
@@ -408,8 +408,8 @@ class CoreDataModelTest: XCTestCase {
                 XCTAssertTrue(stopAndSearch?.stripSearch == false)
                 XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
                 XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
-                XCTAssertTrue(stopAndSearch?.latitude == "52.264860")
-                XCTAssertTrue(stopAndSearch?.longitude == "0.699943")
+                XCTAssertTrue(stopAndSearch?.latitude == 52.264860)
+                XCTAssertTrue(stopAndSearch?.longitude == 0.699943)
                 XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
                 
             }

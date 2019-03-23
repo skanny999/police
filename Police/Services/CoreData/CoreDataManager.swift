@@ -80,8 +80,12 @@ final class CoreDataManager {
     
     func allCrimes() -> [Crime] {
         
+        let context = CoreDataManager.shared().container.viewContext
+    
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Crime")
         fetchRequest.sortDescriptors = []
-        return try! CoreDataManager.shared().container.viewContext.fetch(fetchRequest) as! [Crime]
+        return try! context.fetch(fetchRequest) as! [Crime]
     }
+    
+    
 }

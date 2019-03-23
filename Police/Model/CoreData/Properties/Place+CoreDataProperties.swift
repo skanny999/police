@@ -24,8 +24,8 @@ extension Place {
     @NSManaged public var postcode: String?
     @NSManaged public var telephone: String?
     @NSManaged public var typeCode: String?
-    @NSManaged public var latitude: String?
-    @NSManaged public var longitude: String?
+    @NSManaged public var latitude: NSNumber?
+    @NSManaged public var longitude: NSNumber?
     @NSManaged public var neighbourhood: Neighbourhood?
 
 }

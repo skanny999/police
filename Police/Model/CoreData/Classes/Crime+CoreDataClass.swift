@@ -14,6 +14,7 @@ import MapKit
 
 @objc(Crime)
 public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
+
     
     var colour: UIColor {
         return self.category?.colour ?? .red
@@ -21,7 +22,7 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
     
     public var coordinate: CLLocationCoordinate2D {
         
-        return CLLocationCoordinate2D(latitude: Double(latitude!)!, longitude: Double(longitude!)!)
+        return CLLocationCoordinate2D(latitude: latitude!.doubleValue , longitude: longitude!.doubleValue)
     }
     
     public var title: String? {
@@ -71,8 +72,8 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
         self.locationTypeCode = json[Key.locationType].string
         self.locationSubtypeCode = json[Key.locationSubtype].string
         self.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
-        self.latitude = json[Key.location][Key.latitude].string
-        self.longitude = json[Key.location][Key.longitude].string
+        self.latitude = json[Key.location][Key.latitude].string.number
+        self.longitude = json[Key.location][Key.longitude].string.number
         if let period = Period(fromMonth: json[Key.date].string) {
             self.month = period.month
             self.year = period.year

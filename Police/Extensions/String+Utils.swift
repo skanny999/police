@@ -68,7 +68,9 @@ extension String {
 
 extension Optional where Wrapped == String {
     
-
-    
+    var number: NSNumber? {
+        
+        guard let numberString = self, let double = Double(numberString) else { return nil }
+        return NSNumber(value: double)
+    }
 }
-

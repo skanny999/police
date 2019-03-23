@@ -23,8 +23,8 @@ extension Event {
     @NSManaged public var startDate: NSDate?
     @NSManaged public var title: String?
     @NSManaged public var typeCode: String?
-    @NSManaged public var latitude: String?
-    @NSManaged public var longitude: String?
+    @NSManaged public var latitude: NSNumber?
+    @NSManaged public var longitude: NSNumber?
     @NSManaged public var contact: Contact?
     @NSManaged public var neighbourhood: Neighbourhood?
 }

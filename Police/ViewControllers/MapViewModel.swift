@@ -47,7 +47,7 @@ extension MapViewModel: MapViewControllerDelegate {
         switch mode {
         case .crime:
             print(mode)
-            findCrimes()
+            fetchCrimes()
         case .police:
             print(mode)
             // make call for police
@@ -55,6 +55,33 @@ extension MapViewModel: MapViewControllerDelegate {
             break
         }
     }
+    
+    
+    func fetchCrimes() {
+        
+        guard let crimes = CoreDataProvider.crimesWithin(mapRect: mapView.visibleMapRect) else { return }
+                
+                DispatchQueue.main.async {
+                    
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    
+                    
+                    for crime in crimes {
+                        
+                        if CLLocationCoordinate2DIsValid(crime.coordinate) {
+                            
+                            let annotation = Annotation(with: crime)
+                            
+                            self.mapView.addAnnotation(annotation)
+                        }
+                    }
+                    
+                }
+                
+                
+                
+            }
+
     
     
     func findCrimes() {

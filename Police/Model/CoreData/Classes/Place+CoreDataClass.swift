@@ -39,7 +39,7 @@ public class Place: NSManagedObject, Locatable {
         self.address = json[Key.address].string
         self.typeCode = json[Key.type].string
         self.longDescription = json[Key.description].string
-        self.latitude = json[Key.latitude].string
-        self.longitude = json[Key.longitude].string
+        self.latitude = json[Key.latitude].string.number
+        self.longitude = json[Key.longitude].string.number
     }
 }

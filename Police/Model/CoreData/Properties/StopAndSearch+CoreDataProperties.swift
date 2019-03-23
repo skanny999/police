@@ -34,7 +34,7 @@ extension StopAndSearch {
     @NSManaged public var stripSearch: NSNumber?
     @NSManaged public var suspectEthnicity: String?
     @NSManaged public var typeCode: String?
-    @NSManaged public var latitude: String?
-    @NSManaged public var longitude: String?
+    @NSManaged public var latitude: NSNumber?
+    @NSManaged public var longitude: NSNumber?
 
 }
