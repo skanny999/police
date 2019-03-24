@@ -28,7 +28,6 @@
 		8B56E2B022077A620061D1CF /* Crime.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2AF22077A620061D1CF /* Crime.json */; };
 		8B56E2B222077D1E0061D1CF /* CrimeEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2B122077D1E0061D1CF /* CrimeEdited.json */; };
 		8B5A492722274D6400AC389F /* StopAndSearchEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A492622274D6400AC389F /* StopAndSearchEdited.json */; };
-		8B5EF4622242B7CF006C47D4 /* ModelProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5EF4612242B7CF006C47D4 /* ModelProtocols.swift */; };
 		8B7827E3221B72E4008DE3E0 /* AllContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E2221B72E4008DE3E0 /* AllContacts.json */; };
 		8B7827E5221B74DC008DE3E0 /* PartialContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E4221B74DC008DE3E0 /* PartialContacts.json */; };
 		8B7827E7221CAB52008DE3E0 /* Priorities.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E6221CAB52008DE3E0 /* Priorities.json */; };
@@ -130,7 +129,6 @@
 		8B56E2B122077D1E0061D1CF /* CrimeEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CrimeEdited.json; sourceTree = "<group>"; };
 		8B5A492622274D6400AC389F /* StopAndSearchEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StopAndSearchEdited.json; sourceTree = "<group>"; };
 		8B5DB06222442A3600FE0324 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		8B5EF4612242B7CF006C47D4 /* ModelProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelProtocols.swift; sourceTree = "<group>"; };
 		8B7827E2221B72E4008DE3E0 /* AllContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContacts.json; sourceTree = "<group>"; };
 		8B7827E4221B74DC008DE3E0 /* PartialContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartialContacts.json; sourceTree = "<group>"; };
 		8B7827E6221CAB52008DE3E0 /* Priorities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Priorities.json; sourceTree = "<group>"; };
@@ -474,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */,
-				8B5EF4612242B7CF006C47D4 /* ModelProtocols.swift */,
 				8B3DD0122217095D00B98FE5 /* Classes */,
 				8B3DD0142217098C00B98FE5 /* Properties */,
 				8B155EC221F1319C00783C23 /* Police.xcdatamodeld */,
@@ -719,7 +716,6 @@
 				8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */,
 				8B1A2F33223813AE0022F6C0 /* MapViewModel.swift in Sources */,
 				8BEBCB5A21F8DC840004AFDE /* Place+CoreDataProperties.swift in Sources */,
-				8B5EF4622242B7CF006C47D4 /* ModelProtocols.swift in Sources */,
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
 				8BEBCB6621F8DC840004AFDE /* Force+CoreDataProperties.swift in Sources */,
 				8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */,

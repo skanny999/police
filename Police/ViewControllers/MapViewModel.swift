@@ -24,7 +24,6 @@ class MapViewModel: NSObject {
     private var location: CLLocation?
     private var shouldRefreshData = false
     private var mapAnnotations: [Annotation] = []
-    private var lastZoomLevel: Int = 100000
 
     init(with mapview: MKMapView) {
         
@@ -44,28 +43,6 @@ class MapViewModel: NSObject {
 
 extension MapViewModel: MapViewControllerDelegate {
     
-    func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer) {
-        
-        let location = sender.location(in: mapView)
-        
-        if !isAnnotation(location) {
-            
-            retrieveData()
-        }
-    }
-    
-    private func isAnnotation(_ location: CGPoint) -> Bool {
-        
-        var isAnnotation = false
-        for annotation in mapView.annotations {
-            if let annotationView = mapView.view(for: annotation), annotationView.frame.contains(location) {
-                isAnnotation = true
-            }
-        }
-        return isAnnotation
-    }
-    
-    
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
         
         mapMode = mode
@@ -74,11 +51,7 @@ extension MapViewModel: MapViewControllerDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        if mapView.zoomLevel >= lastZoomLevel {
-            retrieveData()
-        }
-        lastZoomLevel = mapView.zoomLevel
-
+        retrieveData()
     }
 
     
@@ -86,8 +59,6 @@ extension MapViewModel: MapViewControllerDelegate {
 
         DispatchQueue.main.async {
             let annotations = annotables.map { Annotation(with: $0) }
-            
-//            self.mapView.removeAnnotations(self.mapView.annotations)
             self.mapView.addAnnotations(annotations)
             self.mapAnnotations.append(contentsOf: annotations)
 
@@ -112,13 +83,13 @@ private extension MapViewModel {
         case .none:
             break
         }
-        
     }
 
     
     func fetchSavedCrimes() {
-
-        if let crimes = CoreDataProvider.crimesWithin(mapView: mapView, excluding: mapAnnotations) {
+        
+        let crimesOnMap = mapAnnotations.compactMap { $0.origin as? Crime }
+        if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapView.visibleMapRect, excluding: crimesOnMap) {
             displayAnnotations(crimes)
         }
     }
@@ -139,17 +110,14 @@ private extension MapViewModel {
                     if updated {
                         self?.fetchSavedCrimes()
                     }
-                    
                 })
             }
         }
     }
-    
 }
 
 extension MapViewModel: MKMapViewDelegate {
 
-    
     private func findLocations(with text: String) {
         
         findMapItems(with: text)
@@ -170,21 +138,6 @@ extension MapViewModel: MKMapViewDelegate {
             }
         }
     }
-    
-//    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-//
-//        waitForViewToSettle {[weak self] in
-//            print("retrieving data: \(Date())")
-//            self?.retrieveData()
-//        }
-//    }
-    
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        retrieveData()
-    }
-    
-
-
 
     func zoom(into location: CLLocation) {
         
@@ -201,17 +154,7 @@ extension MapViewModel: MKMapViewDelegate {
         }
          return nil
     }
-    
-    func waitForViewToSettle(completion: @escaping () -> Void ) {
-        shouldRefreshData = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if self.shouldRefreshData {
-                completion()
-                self.shouldRefreshData = false
-            }
-        }
-        shouldRefreshData = true
-    }
+
 }
 
 extension MapViewModel: SearchResultsDelegate {
@@ -255,46 +198,6 @@ extension MapViewModel: CLLocationManagerDelegate {
     }
 }
 
-//extension MapViewModel {
-//
-//    private func updatedAnnotations(from annotables: [Annotable]) -> (toBeAdded: [Annotation], toBeRemoved: [Annotation]) {
-//
-//        var annotationsToAdd: [Annotable] = []
-//        var commonAnnotations: [Annotable] = []
-//        var annotationsToRemove: [Annotable] = []
-
-//        if let currentlyVisibleAnnotations = visibleAnnotations {
-//
-//            for newAnnotation in annotables {
-//
-//                if currentlyVisibleAnnotations.contains(where: {$0 === newAnnotation} ) {
-////                    commonAnnotations.append(newAnnotation)
-//                } else {
-//                    annotationsToAdd.append(newAnnotation)
-//                }
-//            }
-//
-//            for annotation in currentlyVisibleAnnotations {
-//
-//                if !annotables.contains(where: {$0 === annotation}) {
-//                    annotationsToRemove.append(annotation)
-//                }
-//            }
-//
-//            for annotation in currentlyVisibleAnnotations {
-//
-//                annotationsToRemove = currentlyVisibleAnnotations.filter {_ in
-//                    !commonAnnotations.contains(where: { $0 === annotation })
-//                }
-//            }
-            
-//        } else {
-//            annotationsToAdd = annotables
-////        }
-//
-//        return (annotationsToAdd.map { Annotation(with: $0)}, annotables.map { Annotation(with: $0)} )
-//    }
-//}
 
 
 

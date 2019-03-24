@@ -13,16 +13,14 @@ import MapKit
 class CoreDataProvider {
     
     
-    static func crimesWithin(mapView: MKMapView, excluding annotations: [Annotation]) -> [Crime]? {
+    static func crimesWithin(mapViewArea: MKMapRect, excluding crimes: [Crime]) -> [Crime]? {
         
         let context = CoreDataManager.shared().container.viewContext
-        
         let fetchRequest = Crime.sortedFetchRequest
-        fetchRequest.predicate = PredicateFactory.predicateForMap(mapView, excluding: annotations)
+        fetchRequest.predicate = PredicateFactory.predicateForMap(mapViewArea, excluding: crimes)
         print(fetchRequest.predicate!)
-        let crimes = try? context.fetch(fetchRequest)
-        
-        return crimes
+
+        return try? context.fetch(fetchRequest)
     }
     
 }
