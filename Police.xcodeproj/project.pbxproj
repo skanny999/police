@@ -82,6 +82,7 @@
 		8BEBCBB022011A860004AFDE /* Neighbourhood.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7921FCB0170004AFDE /* Neighbourhood.json */; };
 		8BEBCBB122011A860004AFDE /* StopAndSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB7521FCB0160004AFDE /* StopAndSearch.json */; };
 		8BEBCBB222011A860004AFDE /* AllForces.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BEBCB8E21FD0D3D0004AFDE /* AllForces.json */; };
+		8BEBCF8F22470CD5006CEC1C /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCF8E22470CD5006CEC1C /* Array+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,7 @@
 		8BEBCBA3220105CE0004AFDE /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		8BEBCBA5220109E20004AFDE /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		8BEBCBA7220119460004AFDE /* FileExtractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtractorTest.swift; sourceTree = "<group>"; };
+		8BEBCF8E22470CD5006CEC1C /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				8BEBCBA5220109E20004AFDE /* String+Utils.swift */,
+				8BEBCF8E22470CD5006CEC1C /* Array+Utils.swift */,
 				8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */,
 				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
 				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
@@ -720,6 +723,7 @@
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
 				8BEBCB6621F8DC840004AFDE /* Force+CoreDataProperties.swift in Sources */,
 				8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */,
+				8BEBCF8F22470CD5006CEC1C /* Array+Utils.swift in Sources */,
 				8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */,
 				8BEBCB6E21FCAB090004AFDE /* URLFactory.swift in Sources */,
 				8BEBCB6521F8DC840004AFDE /* Force+CoreDataClass.swift in Sources */,
@@ -846,7 +850,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -901,7 +905,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

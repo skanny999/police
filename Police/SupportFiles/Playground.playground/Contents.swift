@@ -1,5 +1,34 @@
 import UIKit
 
+
+var newArray = [1, 2, 3, 4, 5]
+let oldArray = [3, 4, 5, 6, 7]
+
+var toBeAdded: [Int] = []
+var commonItems: [Int] = []
+var toBeDeleted: [Int] = []
+
+for item in newArray {
+
+    if oldArray.contains(item) {
+        commonItems.append(item)
+    } else {
+        toBeAdded.append(item)
+    }
+}
+
+toBeDeleted = oldArray.filter {
+    !commonItems.contains($0)
+}
+
+
+
+toBeAdded
+commonItems
+toBeDeleted
+
+
+
 class Oggetto {
     
     let nome: String
@@ -45,6 +74,12 @@ while quantities.count > 0 {
 }
 
 sums
+
+
+
+
+
+
 
 
 

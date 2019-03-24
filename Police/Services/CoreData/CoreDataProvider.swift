@@ -12,21 +12,13 @@ import MapKit
 
 class CoreDataProvider {
     
-    static func crimesWithin(mapRect: MKMapRect, completion: @escaping ([Crime]?) -> Void) {
-        
-        CoreDataManager.performViewTask({ (context) in
-            let fetchRequest = Crime.sortedFetchRequest
-            fetchRequest.predicate = PredicateFactory.predicateForMapRect(mapRect)
-            let crimes = try? context.fetch(fetchRequest)
-            completion(crimes)
-        })
-    }
     
-    static func crimesWithin(mapRect: MKMapRect) -> [Crime]? {
+    static func crimesWithin(mapView: MKMapView, excluding annotations: [Annotation]) -> [Crime]? {
         
         let context = CoreDataManager.shared().container.viewContext
+        
         let fetchRequest = Crime.sortedFetchRequest
-        fetchRequest.predicate = PredicateFactory.predicateForMapRect(mapRect)
+        fetchRequest.predicate = PredicateFactory.predicateForMap(mapView, excluding: annotations)
         print(fetchRequest.predicate!)
         let crimes = try? context.fetch(fetchRequest)
         

@@ -22,11 +22,15 @@ class Annotation: NSObject, Annotable {
     
     var colour: UIColor
     
+    var origin: Managed?
+    
     init(with object: Annotable) {
         
         self.title = object.title ?? ""
         self.coordinate = object.coordinate
         self.colour = object.colour
+        self.origin = object as? Managed
+        
         super.init()
     }
     

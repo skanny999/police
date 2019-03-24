@@ -22,6 +22,9 @@ class MapViewModel: NSObject {
     private var mapMode: Mode = .none
     private let locationManager = CLLocationManager()
     private var location: CLLocation?
+    private var shouldRefreshData = false
+    private var mapAnnotations: [Annotation] = []
+    private var lastZoomLevel: Int = 100000
 
     init(with mapview: MKMapView) {
         
@@ -30,7 +33,6 @@ class MapViewModel: NSObject {
         mapView.delegate = self
         permissionForLocation()
         registerAnnotationViewClass()
-        
     }
     
     private func registerAnnotationViewClass() {
@@ -42,85 +44,108 @@ class MapViewModel: NSObject {
 
 extension MapViewModel: MapViewControllerDelegate {
     
-    func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
+    func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer) {
         
-        switch mode {
-        case .crime:
-            print(mode)
-            fetchCrimes()
-        case .police:
-            print(mode)
-            // make call for police
-        case .none:
-            break
+        let location = sender.location(in: mapView)
+        
+        if !isAnnotation(location) {
+            
+            retrieveData()
         }
     }
     
-    
-    func fetchCrimes() {
+    private func isAnnotation(_ location: CGPoint) -> Bool {
         
-        guard let crimes = CoreDataProvider.crimesWithin(mapRect: mapView.visibleMapRect) else { return }
-                
-                DispatchQueue.main.async {
-                    
-                    self.mapView.removeAnnotations(self.mapView.annotations)
-                    
-                    
-                    for crime in crimes {
-                        
-                        if CLLocationCoordinate2DIsValid(crime.coordinate) {
-                            
-                            let annotation = Annotation(with: crime)
-                            
-                            self.mapView.addAnnotation(annotation)
-                        }
-                    }
-                    
-                }
-                
-                
-                
+        var isAnnotation = false
+        for annotation in mapView.annotations {
+            if let annotationView = mapView.view(for: annotation), annotationView.frame.contains(location) {
+                isAnnotation = true
             }
+        }
+        return isAnnotation
+    }
+    
+    
+    func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
+        
+        mapMode = mode
+        retrieveData()
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        if mapView.zoomLevel >= lastZoomLevel {
+            retrieveData()
+        }
+        lastZoomLevel = mapView.zoomLevel
+
+    }
 
     
-    
-    func findCrimes() {
-        
-        let mapViewRect = mapView.visibleMapRect
-        
-        NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapViewRect)) { (data, error) in
+    private func displayAnnotations(_ annotables: [Annotable]) {
+
+        DispatchQueue.main.async {
+            let annotations = annotables.map { Annotation(with: $0) }
             
-            if let data = data {
-                
-            UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { [weak self] (updated) in
-                
-                let crimes = CoreDataManager.shared().allCrimes()
-                
-                if let mapview = self?.mapView {
-                    
-                    DispatchQueue.main.async {
-                        
-                        mapview.removeAnnotations(mapview.annotations)
-                        
-                        for crime in crimes {
-                            
-                            if CLLocationCoordinate2DIsValid(crime.coordinate) {
-                                
-                                let annotation = Annotation(with: crime)
-                                
-                                mapview.addAnnotation(annotation)
-                            }
-                            
-                        }
-                    }
-                }
-            })
-        }
+//            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.addAnnotations(annotations)
+            self.mapAnnotations.append(contentsOf: annotations)
+
+            print("Annotations refreshed")
         }
     }
 }
 
+// MARK: - Data Provider
 
+private extension MapViewModel {
+    
+    func retrieveData() {
+        
+        switch mapMode {
+        case .crime:
+            fetchSavedCrimes()
+            findNewCrimes()
+        case .police:
+            print(mapMode)
+        // make call for police
+        case .none:
+            break
+        }
+        
+    }
+
+    
+    func fetchSavedCrimes() {
+
+        if let crimes = CoreDataProvider.crimesWithin(mapView: mapView, excluding: mapAnnotations) {
+            displayAnnotations(crimes)
+        }
+    }
+    
+    func findNewCrimes() {
+        
+        NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapView.visibleMapRect)) { (data, error) in
+            
+            if let error = error {
+                print(error.debugDescription)
+                return
+            }
+            
+            if let data = data {
+                
+                UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { [weak self] (updated) in
+                    print("objects updated :\(Date())")
+                    if updated {
+                        self?.fetchSavedCrimes()
+                    }
+                    
+                })
+            }
+        }
+    }
+    
+}
 
 extension MapViewModel: MKMapViewDelegate {
 
@@ -146,10 +171,20 @@ extension MapViewModel: MKMapViewDelegate {
         }
     }
     
-    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        
-
+//    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+//
+//        waitForViewToSettle {[weak self] in
+//            print("retrieving data: \(Date())")
+//            self?.retrieveData()
+//        }
+//    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        retrieveData()
     }
+    
+
+
 
     func zoom(into location: CLLocation) {
         
@@ -163,19 +198,20 @@ extension MapViewModel: MKMapViewDelegate {
         if annotation.conforms(to: Annotable.self)  {
             
             return CrimeAnnotationView(annotation: annotation as! Annotable, reuseIdentifier: CrimeAnnotationView.reuseID)
-            
         }
          return nil
     }
     
-    
-//    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
-//
-//
-//
-//        return MKClusterAnnotation(memberAnnotations: memberAnnotations)
-//    }
-
+    func waitForViewToSettle(completion: @escaping () -> Void ) {
+        shouldRefreshData = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.shouldRefreshData {
+                completion()
+                self.shouldRefreshData = false
+            }
+        }
+        shouldRefreshData = true
+    }
 }
 
 extension MapViewModel: SearchResultsDelegate {
@@ -185,6 +221,8 @@ extension MapViewModel: SearchResultsDelegate {
         findMapItems(with: description)
     }
 }
+
+
 
 extension MapViewModel: CLLocationManagerDelegate {
     
@@ -216,6 +254,47 @@ extension MapViewModel: CLLocationManagerDelegate {
         }
     }
 }
+
+//extension MapViewModel {
+//
+//    private func updatedAnnotations(from annotables: [Annotable]) -> (toBeAdded: [Annotation], toBeRemoved: [Annotation]) {
+//
+//        var annotationsToAdd: [Annotable] = []
+//        var commonAnnotations: [Annotable] = []
+//        var annotationsToRemove: [Annotable] = []
+
+//        if let currentlyVisibleAnnotations = visibleAnnotations {
+//
+//            for newAnnotation in annotables {
+//
+//                if currentlyVisibleAnnotations.contains(where: {$0 === newAnnotation} ) {
+////                    commonAnnotations.append(newAnnotation)
+//                } else {
+//                    annotationsToAdd.append(newAnnotation)
+//                }
+//            }
+//
+//            for annotation in currentlyVisibleAnnotations {
+//
+//                if !annotables.contains(where: {$0 === annotation}) {
+//                    annotationsToRemove.append(annotation)
+//                }
+//            }
+//
+//            for annotation in currentlyVisibleAnnotations {
+//
+//                annotationsToRemove = currentlyVisibleAnnotations.filter {_ in
+//                    !commonAnnotations.contains(where: { $0 === annotation })
+//                }
+//            }
+            
+//        } else {
+//            annotationsToAdd = annotables
+////        }
+//
+//        return (annotationsToAdd.map { Annotation(with: $0)}, annotables.map { Annotation(with: $0)} )
+//    }
+//}
 
 
 

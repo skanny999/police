@@ -12,14 +12,20 @@ import MapKit
 
 class PredicateFactory {
     
-    static func predicateForMapRect(_ mapRect: MKMapRect) -> NSPredicate {
+    static func predicateForMap(_ mapview: MKMapView, excluding annotations: [Annotation]) -> NSPredicate {
         
-        let topLat = mapRect.coordinates.topLeft.latitude.short
-        let topLong = mapRect.coordinates.topLeft.longitude.short
-        let bottomLat = mapRect.coordinates.bottomRight.latitude.short
-        let bottomLong = mapRect.coordinates.bottomRight.longitude.short
+        let topLat = mapview.visibleMapRect.coordinates.topLeft.latitude.short
+        let topLong = mapview.visibleMapRect.coordinates.topLeft.longitude.short
+        let bottomLat = mapview.visibleMapRect.coordinates.bottomRight.latitude.short
+        let bottomLong = mapview.visibleMapRect.coordinates.bottomRight.longitude.short
+        var crimes:[Crime] = []
+        for annotation in annotations {
+            if let crime = annotation.origin as? Crime {
+                crimes.append(crime)
+            }
+        }
         
-        return NSPredicate(format: "latitude <= %f AND longitude >= %f AND latitude >= %f AND longitude <= %f", topLat, topLong, bottomLat, bottomLong)
+        return NSPredicate(format: "latitude <= %f AND longitude >= %f AND latitude >= %f AND longitude <= %f AND (NOT SELF IN %@)", topLat, topLong, bottomLat, bottomLong, crimes)
     }
     
 }

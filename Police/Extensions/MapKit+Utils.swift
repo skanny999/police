@@ -29,6 +29,17 @@ extension MKMapRect {
         
         return "\(nw.latitude.short),\(nw.longitude.short):\(ne.latitude.short),\(ne.longitude.short):\(se.latitude.short),\(se.longitude.short):\(sw.latitude.short),\(sw.longitude.short)"
     }
+
+}
+
+
+extension MKMapView {
+    
+    var zoomLevel: Int {
+
+        return Int(self.visibleMapRect.size.width / Double(self.frame.size.width))
+    }
+    
 }
 
 extension MKAnnotationView {
