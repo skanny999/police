@@ -98,7 +98,7 @@ extension Updatable where Self: NSManagedObject {
     
     static func object(withId id: String, in context: NSManagedObjectContext) -> Self? {
         
-        return (try? context.fetch(fetchRequest(forId: id)).first as? Self) ?? nil
+        return try? context.fetch(fetchRequest(forId: id)).first as? Self ?? nil
 
     }
     

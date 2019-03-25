@@ -193,7 +193,9 @@ extension MapViewModel: CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             locationManager.requestLocation()
         case .restricted, .denied:
-            return
+            break
+            @unknown default:
+                fatalError()
         }
     }
 }
