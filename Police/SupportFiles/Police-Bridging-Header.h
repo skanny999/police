@@ -6,9 +6,5 @@
 //  Copyright © 2019 RiccardoScanavacca. All rights reserved.
 //
 
-
-
 #import "MKPolygon+GPC.h"
-
-
 

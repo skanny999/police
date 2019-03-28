@@ -1786,6 +1786,7 @@ void gpc_tristrip_clip(gpc_op op, gpc_polygon *subj, gpc_polygon *clip,
   vertex_node   *lt, *ltn, *rt, *rtn;
   h_state        horiz[2];
   vertex_type    cft;
+
   int            in[2], exists[2], parity[2]= {LEFT, LEFT};
   int            s, v, contributing, search, scanbeam= 0, sbt_entries= 0;
   int            vclass, bl, br, tl, tr;
@@ -2005,6 +2006,7 @@ void gpc_tristrip_clip(gpc_op op, gpc_polygon *subj, gpc_polygon *clip,
             cf= NULL;
             break;
           case IMN:
+#pragma clang diagnostic ignored "-Wuninitialized"
             if (cft == LED)
 	    {
               if (cf->bot.y != yb)
