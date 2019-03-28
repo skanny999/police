@@ -27,6 +27,7 @@
 		8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */; };
 		8B56E2B022077A620061D1CF /* Crime.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2AF22077A620061D1CF /* Crime.json */; };
 		8B56E2B222077D1E0061D1CF /* CrimeEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2B122077D1E0061D1CF /* CrimeEdited.json */; };
+		8B5746A3224C39630096B431 /* MKPolygon-GPC in Resources */ = {isa = PBXBuildFile; fileRef = 8B5746A2224C39630096B431 /* MKPolygon-GPC */; };
 		8B5A492722274D6400AC389F /* StopAndSearchEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A492622274D6400AC389F /* StopAndSearchEdited.json */; };
 		8B7827E3221B72E4008DE3E0 /* AllContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E2221B72E4008DE3E0 /* AllContacts.json */; };
 		8B7827E5221B74DC008DE3E0 /* PartialContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E4221B74DC008DE3E0 /* PartialContacts.json */; };
@@ -103,6 +104,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B0D5CD0224C3BAA00A639DC /* Police-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Police-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B136367223964E700ACB0B2 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeAnnotationView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProcessor.swift; sourceTree = "<group>"; };
 		8B56E2AF22077A620061D1CF /* Crime.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Crime.json; sourceTree = "<group>"; };
 		8B56E2B122077D1E0061D1CF /* CrimeEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CrimeEdited.json; sourceTree = "<group>"; };
+		8B5746A2224C39630096B431 /* MKPolygon-GPC */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "MKPolygon-GPC"; sourceTree = "<group>"; };
 		8B5A492622274D6400AC389F /* StopAndSearchEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StopAndSearchEdited.json; sourceTree = "<group>"; };
 		8B5DB06222442A3600FE0324 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8B7827E2221B72E4008DE3E0 /* AllContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContacts.json; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 			children = (
 				8BEBCAE121F65CBF0004AFDE /* Info.plist */,
 				8B5DB06222442A3600FE0324 /* Playground.playground */,
+				8B0D5CD0224C3BAA00A639DC /* Police-Bridging-Header.h */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -337,6 +341,7 @@
 				8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */,
 				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
 				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
+				8B5746A2224C39630096B431 /* MKPolygon-GPC */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 				8B1A2F2F2238139E0022F6C0 /* Main.storyboard in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
+				8B5746A3224C39630096B431 /* MKPolygon-GPC in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +872,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -920,6 +927,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -932,6 +940,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2GM46VBD99;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Police/SupportFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -939,8 +951,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.riccardoscanavacca.Police;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 			};
 			name = Debug;
 		};
@@ -951,6 +968,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2GM46VBD99;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Police/SupportFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -958,8 +979,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.riccardoscanavacca.Police;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
 			};
 			name = Release;
 		};
