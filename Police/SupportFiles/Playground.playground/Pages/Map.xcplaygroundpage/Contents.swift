@@ -5,6 +5,7 @@ import PlaygroundSupport
 import UIKit
 import MapKit
 import CoreLocation
+import Police
 
 extension MKPolygon {
     
@@ -54,8 +55,17 @@ class MapController: UIViewController, MKMapViewDelegate {
         let third = CLLocationCoordinate2DMake(51.4, 0.2)
         var coordinates = [first, second, third]
         let polygon = MKPolygon(coordinates: &coordinates, count: 3)
-        mapView.addOverlay(polygon)
+        
+        let prima = CLLocationCoordinate2DMake(51.6, 0.0)
+        let seconda = CLLocationCoordinate2DMake(51.4, 0.0)
+        let terza = CLLocationCoordinate2DMake(51.5, 0.3)
+        var coordinate = [prima, seconda, terza]
+        let secondoPoligono = MKPolygon(coordinates: &coordinates, count: 3)
+        let jointPolygon = polygon.fromUnion(with:secondoPoligono)
+        
+        mapView.addOverlay(jointPolygon)
     }
+
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         

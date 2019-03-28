@@ -29,6 +29,21 @@ class MapViewController: UIViewController {
         viewModel = MapViewModel(with: mapView)
         configureSearchResultsController()
         self.delegate = viewModel
+        
+        let first = CLLocationCoordinate2DMake(51.5, 0.0)
+        let second = CLLocationCoordinate2DMake(51.3, 0.0)
+        let third = CLLocationCoordinate2DMake(51.4, 0.2)
+        var coordinates = [first, second, third]
+        let polygon = MKPolygon(coordinates: &coordinates, count: 3)
+        
+        let prima = CLLocationCoordinate2DMake(51.6, 0.0)
+        let seconda = CLLocationCoordinate2DMake(51.4, 0.0)
+        let terza = CLLocationCoordinate2DMake(51.5, 0.3)
+        var coordinate = [prima, seconda, terza]
+        let secondoPoligono = MKPolygon(coordinates: &coordinate, count: 3)
+        let jointPolygon = polygon.fromUnion(with:secondoPoligono)
+        
+        mapView.addOverlay(jointPolygon!)
     }
     
     private func configureSearchResultsController() {

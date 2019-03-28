@@ -27,13 +27,15 @@
 		8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */; };
 		8B56E2B022077A620061D1CF /* Crime.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2AF22077A620061D1CF /* Crime.json */; };
 		8B56E2B222077D1E0061D1CF /* CrimeEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B56E2B122077D1E0061D1CF /* CrimeEdited.json */; };
-		8B5746A3224C39630096B431 /* MKPolygon-GPC in Resources */ = {isa = PBXBuildFile; fileRef = 8B5746A2224C39630096B431 /* MKPolygon-GPC */; };
 		8B5A492722274D6400AC389F /* StopAndSearchEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B5A492622274D6400AC389F /* StopAndSearchEdited.json */; };
 		8B7827E3221B72E4008DE3E0 /* AllContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E2221B72E4008DE3E0 /* AllContacts.json */; };
 		8B7827E5221B74DC008DE3E0 /* PartialContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E4221B74DC008DE3E0 /* PartialContacts.json */; };
 		8B7827E7221CAB52008DE3E0 /* Priorities.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E6221CAB52008DE3E0 /* Priorities.json */; };
 		8B7827E9221CC411008DE3E0 /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */; };
 		8B7827EB221DC170008DE3E0 /* Officers.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827EA221DC170008DE3E0 /* Officers.json */; };
+		8B87EE9D224CE73700BFF848 /* Police-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D5CD0224C3BAA00A639DC /* Police-Bridging-Header.h */; };
+		8B87EEA0224CE78400BFF848 /* MKPolygon+GPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B87EE9F224CE78400BFF848 /* MKPolygon+GPC.m */; };
+		8B87EEA3224CE78C00BFF848 /* gpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B87EEA1224CE78B00BFF848 /* gpc.c */; };
 		8B9117782203AD210024CCFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9117772203AD210024CCFA /* Constants.swift */; };
 		8B91177E2203B4CF0024CCFA /* PersistentContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177D2203B4CF0024CCFA /* PersistentContainerTest.swift */; };
 		8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */; };
@@ -130,7 +132,6 @@
 		8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProcessor.swift; sourceTree = "<group>"; };
 		8B56E2AF22077A620061D1CF /* Crime.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Crime.json; sourceTree = "<group>"; };
 		8B56E2B122077D1E0061D1CF /* CrimeEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CrimeEdited.json; sourceTree = "<group>"; };
-		8B5746A2224C39630096B431 /* MKPolygon-GPC */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "MKPolygon-GPC"; sourceTree = "<group>"; };
 		8B5A492622274D6400AC389F /* StopAndSearchEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StopAndSearchEdited.json; sourceTree = "<group>"; };
 		8B5DB06222442A3600FE0324 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8B7827E2221B72E4008DE3E0 /* AllContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContacts.json; sourceTree = "<group>"; };
@@ -138,6 +139,10 @@
 		8B7827E6221CAB52008DE3E0 /* Priorities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Priorities.json; sourceTree = "<group>"; };
 		8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
 		8B7827EA221DC170008DE3E0 /* Officers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Officers.json; sourceTree = "<group>"; };
+		8B87EE9E224CE78300BFF848 /* MKPolygon+GPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKPolygon+GPC.h"; sourceTree = "<group>"; };
+		8B87EE9F224CE78400BFF848 /* MKPolygon+GPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MKPolygon+GPC.m"; sourceTree = "<group>"; };
+		8B87EEA1224CE78B00BFF848 /* gpc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gpc.c; sourceTree = "<group>"; };
+		8B87EEA2224CE78B00BFF848 /* gpc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gpc.h; sourceTree = "<group>"; };
 		8B9117772203AD210024CCFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B91177D2203B4CF0024CCFA /* PersistentContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerTest.swift; sourceTree = "<group>"; };
 		8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Utils.swift"; sourceTree = "<group>"; };
@@ -341,7 +346,7 @@
 				8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */,
 				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
 				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
-				8B5746A2224C39630096B431 /* MKPolygon-GPC */,
+				8B87EEA5224CE80C00BFF848 /* MKPolygon+GPC */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -432,6 +437,17 @@
 				8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */,
 			);
 			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		8B87EEA5224CE80C00BFF848 /* MKPolygon+GPC */ = {
+			isa = PBXGroup;
+			children = (
+				8B87EE9E224CE78300BFF848 /* MKPolygon+GPC.h */,
+				8B87EE9F224CE78400BFF848 /* MKPolygon+GPC.m */,
+				8B87EEA1224CE78B00BFF848 /* gpc.c */,
+				8B87EEA2224CE78B00BFF848 /* gpc.h */,
+			);
+			path = "MKPolygon+GPC";
 			sourceTree = "<group>";
 		};
 		8B91177A2203AD370024CCFA /* Constants */ = {
@@ -643,7 +659,6 @@
 				8B1A2F2F2238139E0022F6C0 /* Main.storyboard in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
-				8B5746A3224C39630096B431 /* MKPolygon-GPC in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +723,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B87EE9D224CE73700BFF848 /* Police-Bridging-Header.h in Sources */,
 				8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */,
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
 				8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */,
@@ -732,8 +748,10 @@
 				8BAFD59422445C7700D2A544 /* PredicateFactory.swift in Sources */,
 				8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */,
 				8BEBCB7321FCAF150004AFDE /* JSONFiles.swift in Sources */,
+				8B87EEA0224CE78400BFF848 /* MKPolygon+GPC.m in Sources */,
 				8BEBCBAA22011A140004AFDE /* FileExtractor.swift in Sources */,
 				8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */,
+				8B87EEA3224CE78C00BFF848 /* gpc.c in Sources */,
 				8B1A2F33223813AE0022F6C0 /* MapViewModel.swift in Sources */,
 				8BEBCB5A21F8DC840004AFDE /* Place+CoreDataProperties.swift in Sources */,
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
@@ -953,7 +971,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Police/SupportFiles/Police-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -981,7 +999,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Police/SupportFiles/Police-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
