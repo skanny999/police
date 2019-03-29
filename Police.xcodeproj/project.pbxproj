@@ -39,9 +39,14 @@
 		8B9117782203AD210024CCFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9117772203AD210024CCFA /* Constants.swift */; };
 		8B91177E2203B4CF0024CCFA /* PersistentContainerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177D2203B4CF0024CCFA /* PersistentContainerTest.swift */; };
 		8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */; };
+		8BA404D4224D8AC800CC930B /* PointCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D3224D8AC800CC930B /* PointCoordinates.swift */; };
+		8BA404D7224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D5224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift */; };
+		8BA404D8224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D6224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift */; };
 		8BA4AC692240121300DD3721 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4AC682240121300DD3721 /* AnnotationObject.swift */; };
 		8BAFD592224459D200D2A544 /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAFD591224459D200D2A544 /* CoreDataProvider.swift */; };
 		8BAFD59422445C7700D2A544 /* PredicateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAFD59322445C7700D2A544 /* PredicateFactory.swift */; };
+		8BC6BB8A224D667D00F63B0B /* MKPolygon+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */; };
+		8BC6BB8C224D6C9500F63B0B /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6BB8B224D6C9500F63B0B /* UpdateManager.swift */; };
 		8BD71704223BC9020009E038 /* MapKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD71703223BC9020009E038 /* MapKit+Utils.swift */; };
 		8BDBCBAB2248099700752E48 /* AnnotationsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBCBAA2248099700752E48 /* AnnotationsProvider.swift */; };
 		8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */; };
@@ -146,9 +151,14 @@
 		8B9117772203AD210024CCFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8B91177D2203B4CF0024CCFA /* PersistentContainerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerTest.swift; sourceTree = "<group>"; };
 		8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numbers+Utils.swift"; sourceTree = "<group>"; };
+		8BA404D3224D8AC800CC930B /* PointCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCoordinates.swift; sourceTree = "<group>"; };
+		8BA404D5224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CrimesPolygon+CoreDataClass.swift"; path = "../CrimesPolygon+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8BA404D6224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CrimesPolygon+CoreDataProperties.swift"; path = "../CrimesPolygon+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8BA4AC682240121300DD3721 /* AnnotationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
 		8BAFD591224459D200D2A544 /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
 		8BAFD59322445C7700D2A544 /* PredicateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredicateFactory.swift; sourceTree = "<group>"; };
+		8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPolygon+Utils.swift"; sourceTree = "<group>"; };
+		8BC6BB8B224D6C9500F63B0B /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		8BD71703223BC9020009E038 /* MapKit+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+Utils.swift"; sourceTree = "<group>"; };
 		8BDBCBAA2248099700752E48 /* AnnotationsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsProvider.swift; sourceTree = "<group>"; };
 		8BEBCAE121F65CBF0004AFDE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -286,6 +296,7 @@
 				8BEBCB8C21FCFB3F0004AFDE /* Categories.swift */,
 				8BEBCB9321FE187A0004AFDE /* Structs.swift */,
 				8BA4AC682240121300DD3721 /* AnnotationObject.swift */,
+				8BA404D3224D8AC800CC930B /* PointCoordinates.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -346,6 +357,7 @@
 				8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */,
 				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
 				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
+				8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */,
 				8B87EEA5224CE80C00BFF848 /* MKPolygon+GPC */,
 			);
 			path = Extensions;
@@ -385,6 +397,7 @@
 		8B155EF621F1429400783C23 /* UpdateManager */ = {
 			isa = PBXGroup;
 			children = (
+				8BC6BB8B224D6C9500F63B0B /* UpdateManager.swift */,
 			);
 			path = UpdateManager;
 			sourceTree = "<group>";
@@ -400,6 +413,7 @@
 		8B3DD0122217095D00B98FE5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BA404D5224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift */,
 				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
 				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
 				8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */,
@@ -417,6 +431,7 @@
 		8B3DD0142217098C00B98FE5 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				8BA404D6224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift */,
 				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
 				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
 				8BEBCB3E21F8DC840004AFDE /* Event+CoreDataProperties.swift */,
@@ -727,6 +742,7 @@
 				8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */,
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
 				8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */,
+				8BC6BB8C224D6C9500F63B0B /* UpdateManager.swift in Sources */,
 				8B9117782203AD210024CCFA /* Constants.swift in Sources */,
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8B7827E9221CC411008DE3E0 /* NSDate+Utils.swift in Sources */,
@@ -754,6 +770,7 @@
 				8B87EEA3224CE78C00BFF848 /* gpc.c in Sources */,
 				8B1A2F33223813AE0022F6C0 /* MapViewModel.swift in Sources */,
 				8BEBCB5A21F8DC840004AFDE /* Place+CoreDataProperties.swift in Sources */,
+				8BA404D7224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift in Sources */,
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
 				8BEBCB6621F8DC840004AFDE /* Force+CoreDataProperties.swift in Sources */,
 				8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */,
@@ -769,6 +786,9 @@
 				8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */,
 				8B1A2F32223813AE0022F6C0 /* MapViewController.swift in Sources */,
 				8BEBCB5621F8DC840004AFDE /* Crime+CoreDataProperties.swift in Sources */,
+				8BC6BB8A224D667D00F63B0B /* MKPolygon+Utils.swift in Sources */,
+				8BA404D4224D8AC800CC930B /* PointCoordinates.swift in Sources */,
+				8BA404D8224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift in Sources */,
 				8BEBCB9421FE187A0004AFDE /* Structs.swift in Sources */,
 				8BEBCB6221F8DC840004AFDE /* Outcome+CoreDataProperties.swift in Sources */,
 				8B13636C224040ED00ACB0B2 /* ClusterAnnotationView.swift in Sources */,

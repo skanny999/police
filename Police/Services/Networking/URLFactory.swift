@@ -23,6 +23,17 @@ struct URLFactory {
         return completeUrl(with: lastUpdated)
     }
     
+    static func urlForObject<T: Managed>(ofType type: T, by area: MKMapRect) -> URL? {
+        
+        switch type {
+        case is Crime:
+            return urlForCrimesByArea(area)
+        default:
+            return nil
+        }
+    }
+    
+    
     // Forces
 
     static func urlForAllForces() -> URL {

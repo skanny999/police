@@ -59,9 +59,6 @@ extension String {
         let year = Calendar.current.component(.year, from:Date())
         return 2014 ... year ~= integer
     }
-    
-    
-
 }
 
 // MARK: - Optional String

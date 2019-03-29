@@ -13,8 +13,9 @@ import MapKit
 class CoreDataProvider {
     
     
-    static func crimesWithin(mapViewArea: MKMapRect, excluding crimes: [Crime]) -> [Crime]? {
+    static func crimesWithin(mapViewArea: MKMapRect, excluding currentAnnotations: [Annotable]) -> [Crime]? {
         
+        let crimes = currentAnnotations.compactMap { $0 as? Crime }
         let context = CoreDataManager.shared().container.viewContext
         let fetchRequest = Crime.sortedFetchRequest
         fetchRequest.predicate = PredicateFactory.predicateForMap(mapViewArea, excluding: crimes)

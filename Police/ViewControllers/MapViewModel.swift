@@ -22,8 +22,7 @@ class MapViewModel: NSObject {
     private var mapMode: Mode = .none
     private let locationManager = CLLocationManager()
     private var location: CLLocation?
-    private var shouldRefreshData = false
-    private var mapAnnotations: [Annotation] = []
+    private var currentlyShownAnnotations: [Annotable] = []
 
     init(with mapview: MKMapView) {
         
@@ -54,31 +53,14 @@ extension MapViewModel: MapViewControllerDelegate {
         retrieveData()
     }
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        // testing polygon
-        
-        print("overlay is Polygon \(overlay)")
-        
-        if let overlay = overlay as? MKPolygon {
-            
-            let renderer = MKPolygonRenderer(polygon: overlay)
-            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-            renderer.strokeColor = .orange
-            renderer.lineWidth = 2
-            return renderer
-        }
-        return MKOverlayRenderer()
-    }
 
     
-    private func displayAnnotations(_ annotables: [Annotable]) {
+    private func displayAnnotations(_ annotations: [Annotable]) {
 
         DispatchQueue.main.async {
-            let annotations = annotables.map { Annotation(with: $0) }
-            self.mapView.addAnnotations(annotations)
-            self.mapAnnotations.append(contentsOf: annotations)
 
-            print("Annotations refreshed")
+            self.mapView.addAnnotations(annotations)
+            self.currentlyShownAnnotations.append(contentsOf: annotations)
         }
     }
 }
@@ -100,11 +82,18 @@ private extension MapViewModel {
             break
         }
     }
-
+    
+    
+    func getNewCrimes(within mapRect: MKMapRect) {
+        
+        if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapRect, excluding: currentlyShownAnnotations) {
+            displayAnnotations(crimes)
+        }
+    }
     
     func fetchSavedCrimes() {
         
-        let crimesOnMap = mapAnnotations.compactMap { $0.origin as? Crime }
+        let crimesOnMap = currentlyShownAnnotations.compactMap { $0 as? Crime }
         if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapView.visibleMapRect, excluding: crimesOnMap) {
             displayAnnotations(crimes)
         }
