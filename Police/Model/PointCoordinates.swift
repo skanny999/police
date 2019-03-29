@@ -9,7 +9,9 @@
 import UIKit
 import Foundation
 
-class PointCoordinates: NSObject, NSCoding {
+class PointCoordinates: NSObject, NSSecureCoding {
+    
+    static var supportsSecureCoding: Bool = true
     
     private static let keyLatitude = "latitude_key"
     private static let keyLongitude = "longitude_key"

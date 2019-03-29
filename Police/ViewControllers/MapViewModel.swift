@@ -159,6 +159,21 @@ extension MapViewModel: MKMapViewDelegate {
         }
          return nil
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        print("overlay is Polygon \(overlay)")
+        
+        if let overlay = overlay as? MKPolygon {
+            
+            let renderer = MKPolygonRenderer(polygon: overlay)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+            renderer.strokeColor = .orange
+            renderer.lineWidth = 2
+            return renderer
+        }
+        return MKOverlayRenderer()
+    }
 
 }
 

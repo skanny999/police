@@ -35,15 +35,22 @@ class MapViewController: UIViewController {
         let third = CLLocationCoordinate2DMake(51.4, 0.2)
         var coordinates = [first, second, third]
         let polygon = MKPolygon(coordinates: &coordinates, count: 3)
+//        mapView.addOverlay(polygon)
         
-        let prima = CLLocationCoordinate2DMake(51.6, 0.0)
-        let seconda = CLLocationCoordinate2DMake(51.4, 0.0)
-        let terza = CLLocationCoordinate2DMake(51.5, 0.3)
-        var coordinate = [prima, seconda, terza]
-        let secondoPoligono = MKPolygon(coordinates: &coordinate, count: 3)
-        let jointPolygon = polygon.fromUnion(with:secondoPoligono)
+        if let data = coordinatesData(from: polygon) {
+
+            if let polygon = mapPolygon(form: data) {
+
+                for point in UnsafeBufferPointer(start: polygon.points(), count: polygon.pointCount) {
+
+                    print("latitude: \(point.y), longitude: \(point.x)")
+                }
+
+                mapView.addOverlay(polygon)
+            }
+        }
         
-        mapView.addOverlay(jointPolygon!)
+        
     }
     
     private func configureSearchResultsController() {
@@ -71,6 +78,64 @@ class MapViewController: UIViewController {
         
         delegate?.mapViewController(self, didTapButtonForMode: .police)
     }
+    
+}
+
+ // MARK: - Testing polygon
+
+extension MapViewController {
+    
+    func coordinatesData(from polygon: MKPolygon) -> NSData? {
+        
+        let coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: polygon.pointCount)
+        polygon.getCoordinates(coordsPointer, range: NSMakeRange(0, polygon.pointCount))
+        
+        var points: [PointCoordinates] = []
+        
+        for i in 0..<polygon.pointCount {
+            let latitude = coordsPointer[i].latitude
+            let longitude = coordsPointer[i].longitude
+            points.append(PointCoordinates(latitude: latitude, longitude: longitude))
+        }
+
+        do {
+            return try NSKeyedArchiver.archivedData(withRootObject: points as Array, requiringSecureCoding: false) as NSData
+        } catch  {
+            print(error)
+            return nil
+        }
+    }
+    
+    func mapPolygon(form data: NSData) -> MKPolygon? {
+        
+        guard let coordinates = data as Data? else { return nil }
+        
+        do {
+            let points = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, PointCoordinates.self] , from: coordinates)
+            
+            return polygon(from: points as! [PointCoordinates])
+            
+        } catch  {
+            print(error)
+            return nil
+        }
+    }
+    
+    func polygon(from points: [PointCoordinates]) -> MKPolygon {
+        
+        var locations: [CLLocationCoordinate2D] = []
+        for point in points {
+            let pointCoordinates = CLLocationCoordinate2DMake(point.latitude, point.longitude)
+            locations.append(pointCoordinates)
+        }
+        
+        points.forEach { print("latitude: \($0.latitude), longitude: \($0.longitude)") }
+        
+        return MKPolygon(coordinates: &locations, count: locations.count)
+    }
+    
+    
+    
     
 }
 

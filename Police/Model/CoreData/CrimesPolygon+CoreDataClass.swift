@@ -29,9 +29,15 @@ extension CrimesPolygon {
     
     func coordinatesData(from polygon: MKPolygon) -> NSData? {
         
+        let coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: polygon.pointCount)
+        polygon.getCoordinates(coordsPointer, range: NSMakeRange(0, polygon.pointCount))
+        
         var points: [PointCoordinates] = []
-        for point in UnsafeBufferPointer(start: polygon.points(), count: polygon.pointCount) {
-            points.append(PointCoordinates(latitude: point.x, longitude: point.y))
+        
+        for i in 0..<polygon.pointCount {
+            let latitude = coordsPointer[i].latitude
+            let longitude = coordsPointer[i].longitude
+            points.append(PointCoordinates(latitude: latitude, longitude: longitude))
         }
         
         do {
@@ -59,12 +65,15 @@ extension CrimesPolygon {
     
     func polygon(from points: [PointCoordinates]) -> MKPolygon {
         
-        var coordinates: [CLLocationCoordinate2D] = []
+        var locations: [CLLocationCoordinate2D] = []
         for point in points {
             let pointCoordinates = CLLocationCoordinate2DMake(point.latitude, point.longitude)
-            coordinates.append(pointCoordinates)
+            locations.append(pointCoordinates)
         }
-        return MKPolygon(coordinates: &coordinates, count: coordinates.count)
+        
+        points.forEach { print("latitude: \($0.latitude), longitude: \($0.longitude)") }
+        
+        return MKPolygon(coordinates: &locations, count: locations.count)
     }
     
     
