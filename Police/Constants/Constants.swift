@@ -12,3 +12,10 @@ struct AppStatus {
     
     static let isTesting = UserDefaults.standard.bool(forKey: "isTest") 
 }
+
+struct Const {
+    
+    //1st February 2016
+    static let firstPeriod = Date.date(fromDay: 1, month: 2, year: 2016)
+    
+}

@@ -10,6 +10,22 @@ import Foundation
 
 class UpdateManager {
     
+    class func updatePeriods() {
+        
+        NetworkProvider.getRequest(forUrl: URLFactory.dateLastUpdated()) { (data, error) in
+            if let error = error {
+                print(error.debugDescription)
+                return
+            }
+            if let data = data {
+                
+                
+                
+            }
+        }
+        
+    }
+    
     class func updateCrimes(within mapRect: MKMapRect, excluding: [Annotation], completion:@escaping (Error?) -> Void) {
         
         NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapRect)) { (data, error) in

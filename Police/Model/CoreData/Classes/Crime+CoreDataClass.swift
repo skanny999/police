@@ -74,7 +74,7 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
         self.streetName = json[Key.location][Key.streetName.street][Key.streetName.name].string
         self.latitude = json[Key.location][Key.latitude].string.number
         self.longitude = json[Key.location][Key.longitude].string.number
-        if let period = Period(fromMonth: json[Key.date].string) {
+        if let period = DatePeriod(fromMonth: json[Key.date].string) {
             self.month = period.month
             self.year = period.year
         }

@@ -24,4 +24,21 @@ class CoreDataProvider {
         return try? context.fetch(fetchRequest)
     }
     
+//    static func allPeriods() -> [Period] {
+//        
+//        let context = CoreDataManager.shared().container.viewContext
+//        
+//    }
+//    
+//    static func selectedPeriod() -> Period {
+//        
+//        
+//        
+//    }
+//    
+//    static func lastPeriod() -> Period {
+//        
+//        
+//    }
+    
 }

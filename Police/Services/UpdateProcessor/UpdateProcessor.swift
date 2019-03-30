@@ -59,12 +59,27 @@ class UpdateProcessor {
                 DispatchQueue.main.async {
                     completion(true)
                 }
+                
             } else {
+                
                 DispatchQueue.main.async {
                     completion(true)
                 }
             }
-
         }
+    }
+    
+    static func updatePeriods(withData data: Data) {
+        
+        CoreDataManager.performViewTask { (context) in
+            if let json = try? JSON(data: data),
+                let date = json["date"].string?.periodDate {
+                let dates = date.previousAvailableDates().compactMap { $0 as NSDate }
+                
+                // fetch periods
+            }
+        }
+        
+        
     }
 }

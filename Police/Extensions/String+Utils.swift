@@ -27,6 +27,24 @@ extension String {
         }
     }
     
+    var periodDate: Date? {
+
+        let date = self.split(separator: "-").dropLast()
+        
+            guard date.count == 2,
+            let month = date.last,
+                month.count == 2,
+            let monthNumber = Int(month),
+                monthNumber.isValidMonth,
+            let year = date.first,
+                year.count == 4,
+            let yearNumber = Int(year),
+                yearNumber.isValidYear
+            else { return nil }
+        
+        return Date.date(fromDay: 1, month: monthNumber, year: yearNumber)
+    }
+    
     var dateValue: NSDate? {
         
         let dateFormatter = DateFormatter()

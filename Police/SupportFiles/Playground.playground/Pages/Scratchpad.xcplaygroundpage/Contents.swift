@@ -75,6 +75,23 @@ while quantities.count > 0 {
 
 sums
 
+func date(fromDay day: Int, month: Int, year: Int) -> Date {
+    
+    var components = DateComponents()
+    components.day = 1
+    components.month = 2
+    components.year = 2016
+    return Calendar.current.date(from: components)!
+}
+
+
+print(createdDate)
+
+let newDate = Calendar.current.date(byAdding: .month, value: 1, to: createdDate)
+print(newDate)
+
+
+
 
 
 

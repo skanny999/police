@@ -15,19 +15,32 @@ import CoreLocation
 @objc(CrimesPolygon)
 public class CrimesPolygon: NSManagedObject {
     
-    func createCrimesPolygon(from polygon: MKPolygon, in context: NSManagedObjectContext) {
+    func createNewCrimesPolygon(from polygon: MKPolygon, in context: NSManagedObjectContext) {
         
         let crimePolygon = CrimesPolygon(entity: CrimesPolygon.entity(), insertInto: context)
         crimePolygon.coordinates = coordinatesData(from: polygon)
-        crimePolygon.period = "03-2019"
+        crimePolygon.period = "2019-03"
     }
     
-
+    var mapPolygon: MKPolygon? {
+        
+        guard let coordinates = coordinates as Data? else { return nil }
+        
+        do {
+            let points = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, PointCoordinates.self] , from: coordinates)
+            
+            return polygon(from: points as! [PointCoordinates])
+            
+        } catch  {
+            print(error)
+            return nil
+        }
+    }
 }
 
 extension CrimesPolygon {
     
-    func coordinatesData(from polygon: MKPolygon) -> NSData? {
+    private func coordinatesData(from polygon: MKPolygon) -> NSData? {
         
         let coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: polygon.pointCount)
         polygon.getCoordinates(coordsPointer, range: NSMakeRange(0, polygon.pointCount))
@@ -48,22 +61,7 @@ extension CrimesPolygon {
         }
     }
     
-    var mapPolygon: MKPolygon? {
-        
-        guard let coordinates = coordinates as Data? else { return nil }
-        
-        do {
-            let points = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, PointCoordinates.self] , from: coordinates)
-            
-            return polygon(from: points as! [PointCoordinates])
-            
-        } catch  {
-            print(error)
-            return nil
-        }
-    }
-    
-    func polygon(from points: [PointCoordinates]) -> MKPolygon {
+    private func polygon(from points: [PointCoordinates]) -> MKPolygon {
         
         var locations: [CLLocationCoordinate2D] = []
         for point in points {

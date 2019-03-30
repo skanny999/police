@@ -31,7 +31,7 @@
 		8B7827E3221B72E4008DE3E0 /* AllContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E2221B72E4008DE3E0 /* AllContacts.json */; };
 		8B7827E5221B74DC008DE3E0 /* PartialContacts.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E4221B74DC008DE3E0 /* PartialContacts.json */; };
 		8B7827E7221CAB52008DE3E0 /* Priorities.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827E6221CAB52008DE3E0 /* Priorities.json */; };
-		8B7827E9221CC411008DE3E0 /* NSDate+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */; };
+		8B7827E9221CC411008DE3E0 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7827E8221CC411008DE3E0 /* Date+Utils.swift */; };
 		8B7827EB221DC170008DE3E0 /* Officers.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B7827EA221DC170008DE3E0 /* Officers.json */; };
 		8B87EE9D224CE73700BFF848 /* Police-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D5CD0224C3BAA00A639DC /* Police-Bridging-Header.h */; };
 		8B87EEA0224CE78400BFF848 /* MKPolygon+GPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B87EE9F224CE78400BFF848 /* MKPolygon+GPC.m */; };
@@ -42,6 +42,8 @@
 		8BA404D4224D8AC800CC930B /* PointCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D3224D8AC800CC930B /* PointCoordinates.swift */; };
 		8BA404D7224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D5224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift */; };
 		8BA404D8224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D6224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift */; };
+		8BA404DB224FCEA200CC930B /* Period+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404D9224FCEA200CC930B /* Period+CoreDataClass.swift */; };
+		8BA404DC224FCEA200CC930B /* Period+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA404DA224FCEA200CC930B /* Period+CoreDataProperties.swift */; };
 		8BA4AC692240121300DD3721 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4AC682240121300DD3721 /* AnnotationObject.swift */; };
 		8BAFD592224459D200D2A544 /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAFD591224459D200D2A544 /* CoreDataProvider.swift */; };
 		8BAFD59422445C7700D2A544 /* PredicateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BAFD59322445C7700D2A544 /* PredicateFactory.swift */; };
@@ -142,7 +144,7 @@
 		8B7827E2221B72E4008DE3E0 /* AllContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AllContacts.json; sourceTree = "<group>"; };
 		8B7827E4221B74DC008DE3E0 /* PartialContacts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartialContacts.json; sourceTree = "<group>"; };
 		8B7827E6221CAB52008DE3E0 /* Priorities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Priorities.json; sourceTree = "<group>"; };
-		8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Utils.swift"; sourceTree = "<group>"; };
+		8B7827E8221CC411008DE3E0 /* Date+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		8B7827EA221DC170008DE3E0 /* Officers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Officers.json; sourceTree = "<group>"; };
 		8B87EE9E224CE78300BFF848 /* MKPolygon+GPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKPolygon+GPC.h"; sourceTree = "<group>"; };
 		8B87EE9F224CE78400BFF848 /* MKPolygon+GPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MKPolygon+GPC.m"; sourceTree = "<group>"; };
@@ -154,6 +156,8 @@
 		8BA404D3224D8AC800CC930B /* PointCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCoordinates.swift; sourceTree = "<group>"; };
 		8BA404D5224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CrimesPolygon+CoreDataClass.swift"; path = "../CrimesPolygon+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BA404D6224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CrimesPolygon+CoreDataProperties.swift"; path = "../CrimesPolygon+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8BA404D9224FCEA200CC930B /* Period+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8BA404DA224FCEA200CC930B /* Period+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Period+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8BA4AC682240121300DD3721 /* AnnotationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
 		8BAFD591224459D200D2A544 /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
 		8BAFD59322445C7700D2A544 /* PredicateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredicateFactory.swift; sourceTree = "<group>"; };
@@ -354,7 +358,7 @@
 			children = (
 				8BEBCBA5220109E20004AFDE /* String+Utils.swift */,
 				8BEBCF8E22470CD5006CEC1C /* Array+Utils.swift */,
-				8B7827E8221CC411008DE3E0 /* NSDate+Utils.swift */,
+				8B7827E8221CC411008DE3E0 /* Date+Utils.swift */,
 				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
 				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
 				8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */,
@@ -413,6 +417,7 @@
 		8B3DD0122217095D00B98FE5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BA404D9224FCEA200CC930B /* Period+CoreDataClass.swift */,
 				8BA404D5224D8BFE00CC930B /* CrimesPolygon+CoreDataClass.swift */,
 				8BEBCB3F21F8DC840004AFDE /* Crime+CoreDataClass.swift */,
 				8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */,
@@ -431,6 +436,7 @@
 		8B3DD0142217098C00B98FE5 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				8BA404DA224FCEA200CC930B /* Period+CoreDataProperties.swift */,
 				8BA404D6224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift */,
 				8BEBCB4021F8DC840004AFDE /* Crime+CoreDataProperties.swift */,
 				8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */,
@@ -745,11 +751,12 @@
 				8BC6BB8C224D6C9500F63B0B /* UpdateManager.swift in Sources */,
 				8B9117782203AD210024CCFA /* Constants.swift in Sources */,
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
-				8B7827E9221CC411008DE3E0 /* NSDate+Utils.swift in Sources */,
+				8B7827E9221CC411008DE3E0 /* Date+Utils.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
 				8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,
 				8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */,
+				8BA404DB224FCEA200CC930B /* Period+CoreDataClass.swift in Sources */,
 				8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */,
 				8BA4AC692240121300DD3721 /* AnnotationObject.swift in Sources */,
 				8BDBCBAB2248099700752E48 /* AnnotationsProvider.swift in Sources */,
@@ -793,6 +800,7 @@
 				8BEBCB6221F8DC840004AFDE /* Outcome+CoreDataProperties.swift in Sources */,
 				8B13636C224040ED00ACB0B2 /* ClusterAnnotationView.swift in Sources */,
 				8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */,
+				8BA404DC224FCEA200CC930B /* Period+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Period {
+struct DatePeriod {
     
     init?(fromMonth monthDate: String?) {
         

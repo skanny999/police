@@ -18,11 +18,38 @@ class Structs: XCTestCase {
     override func tearDown() {
         
     }
+    
+    func testPeriodsCreation() {
+        
+        let currentPeriodString = "2017-01-01"
+        
+        let currentPeriod: Date = currentPeriodString.periodDate!
+        let correctPeriodDate = Date.date(fromDay: 01, month: 01, year: 2017)
+        
+        XCTAssertTrue(currentPeriod == correctPeriodDate)
+        
+        let availablePeriods: [Date] = currentPeriod.previousAvailableDates()
+        
+        var correctPeriods = [Const.firstPeriod]
+        correctPeriods.append(Date.date(fromDay: 01, month: 03, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 04, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 05, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 06, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 07, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 08, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 09, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 10, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 11, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 12, year: 2016))
+        correctPeriods.append(Date.date(fromDay: 01, month: 01, year: 2017))
+        
+        XCTAssertTrue(availablePeriods == correctPeriods)
+    }
 
 
     func testPeriodStruct() {
         
-        let period1 = Period(fromMonth: "2016-12")
+        let period1 = DatePeriod(fromMonth: "2016-12")
         
         XCTAssertTrue(period1!.month == "12")
         XCTAssertTrue(period1!.year == "2016")
@@ -31,7 +58,7 @@ class Structs: XCTestCase {
         
         for monthString in badMonthStrings {
             
-            let period = Period(fromMonth: monthString)
+            let period = DatePeriod(fromMonth: monthString)
             XCTAssertNil(period)
         } 
     }
