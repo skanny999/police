@@ -23,7 +23,7 @@ class PersistentContainerTest: XCTestCase {
 
     func testExample() {
         
-        let persistentContainer = CoreDataManager.shared().container
+        let persistentContainer = CoreDataManager.shared.container
         
         XCTAssert(persistentContainer.persistentStoreDescriptions.first?.type == NSInMemoryStoreType)
         

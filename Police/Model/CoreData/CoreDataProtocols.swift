@@ -104,7 +104,7 @@ extension Updatable where Self: NSManagedObject {
     
     static func fetchAll() -> [Self] {
         
-        return (try? CoreDataManager.shared().container.viewContext.fetch(self.sortedFetchRequest) as [Self]) ?? []
+        return (try? CoreDataManager.shared.container.viewContext.fetch(self.sortedFetchRequest) as [Self]) ?? []
     }
     
     private static func fetchRequest(forId id: String) -> NSFetchRequest<NSFetchRequestResult> {

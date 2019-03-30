@@ -13,7 +13,7 @@ final class CoreDataManager {
     
     private static var manager: CoreDataManager?
     
-    public class func shared() -> CoreDataManager {
+    public static var shared: CoreDataManager {
         
         if manager == nil {
             manager = CoreDataManager()
@@ -50,7 +50,7 @@ final class CoreDataManager {
     
     static func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         
-        let backgroundContext = CoreDataManager.shared().backgroundContext
+        let backgroundContext = CoreDataManager.shared.backgroundContext
         backgroundContext.perform {
             block(backgroundContext)
         }
@@ -58,7 +58,7 @@ final class CoreDataManager {
     
     static func performViewTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
         
-        block(CoreDataManager.shared().container.viewContext)
+        block(CoreDataManager.shared.container.viewContext)
     }
     
     func save() {
@@ -80,7 +80,7 @@ final class CoreDataManager {
     
     func allCrimes() -> [Crime] {
         
-        let context = CoreDataManager.shared().container.viewContext
+        let context = CoreDataManager.shared.container.viewContext
     
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Crime")
         fetchRequest.sortDescriptors = []

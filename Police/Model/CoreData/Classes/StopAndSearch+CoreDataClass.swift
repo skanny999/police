@@ -84,7 +84,7 @@ public class StopAndSearch: NSManagedObject, Managed {
     
     static func object(withId id: String) -> StopAndSearch? {
         
-        return try! CoreDataManager.shared().container.viewContext.fetch(fetchRequest(forId: id)).first as? StopAndSearch
+        return try! CoreDataManager.shared.container.viewContext.fetch(fetchRequest(forId: id)).first as? StopAndSearch
     }
     
     private static func fetchRequest(forId id: String) -> NSFetchRequest<NSFetchRequestResult> {

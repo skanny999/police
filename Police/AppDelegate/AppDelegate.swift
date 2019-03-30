@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
 
-        CoreDataManager.shared().save()
+        CoreDataManager.shared.save()
     }
 
 

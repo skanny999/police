@@ -17,7 +17,7 @@ class UpdateProcessor {
             
             if let json = try? JSON(data: data) {
                 updatableClass.managedObject(withJson: json, in: context)
-                CoreDataManager.shared().save()
+                CoreDataManager.shared.save()
                 DispatchQueue.main.async {
                     completion(true)
                 }
@@ -41,7 +41,7 @@ class UpdateProcessor {
                     updatableClass.managedObject(withJson: objectData, in: context)
                 }
                 
-                CoreDataManager.shared().save()
+                CoreDataManager.shared.save()
                 DispatchQueue.main.async {
                     completion(true)
                 }
@@ -55,7 +55,7 @@ class UpdateProcessor {
             
             if let json = try? JSON(data: data) {
                 StopAndSearch.managedObject(withJson: json, in: context)
-                CoreDataManager.shared().save()
+                CoreDataManager.shared.save()
                 DispatchQueue.main.async {
                     completion(true)
                 }

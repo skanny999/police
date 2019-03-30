@@ -18,7 +18,7 @@ class CoreDataModelTest: XCTestCase {
     override func setUp() {
         
         if mockContainer == nil {
-           mockContainer = CoreDataManager.shared().container
+           mockContainer = CoreDataManager.shared.container
         }
     }
 
@@ -436,7 +436,7 @@ class CoreDataModelTest: XCTestCase {
         
         if let json = try? JSON(data: data),
             let objectId = json[objectClass.dataIdentifier].number?.stringValue ?? json[objectClass.dataIdentifier].string,
-            let object = objectClass.object(withId: objectId, in: CoreDataManager.shared().container.viewContext) {
+            let object = objectClass.object(withId: objectId, in: CoreDataManager.shared.container.viewContext) {
             
             return object
         }

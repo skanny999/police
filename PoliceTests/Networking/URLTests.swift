@@ -12,7 +12,7 @@ import XCTest
 
 class URLTests: XCTestCase {
     
-    let managedObjectContext = CoreDataManager.shared().container.viewContext
+    let managedObjectContext = CoreDataManager.shared.container.viewContext
     let location = Location(hasCoordinates: true, coordinates: ("52.629729","-1.131592"),
                             latitude: 52.629729 , longitude: -1.131592)
 
