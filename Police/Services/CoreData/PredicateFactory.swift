@@ -23,4 +23,10 @@ class PredicateFactory {
         return NSPredicate(format: "latitude <= %f AND longitude >= %f AND latitude >= %f AND longitude <= %f AND (NOT SELF IN %@)", topLat, topLong, bottomLat, bottomLong, crimes)
     }
     
+    
+    static func selectedPeriod() -> NSPredicate {
+        
+        return NSPredicate(format: "isSelected == 1")
+    }
+    
 }

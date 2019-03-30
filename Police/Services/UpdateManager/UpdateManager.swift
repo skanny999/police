@@ -19,8 +19,10 @@ class UpdateManager {
             }
             if let data = data {
                 
+                UpdateProcessor.updatePeriods(withData: data)
+                let allPeriods = CoreDataProvider.allPeriods()
                 
-                
+                allPeriods?.forEach { print($0.date!) }
             }
         }
         

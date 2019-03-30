@@ -47,11 +47,18 @@ extension Date {
         
         while previousAvailableDates.last ?? self < self {
             
-            let newDate = Calendar.current.date(byAdding: .month, value: 1, to: previousAvailableDates.last!)
-            previousAvailableDates.append(newDate!)
+            let date = Calendar.current.date(byAdding: .month, value: 1, to: previousAvailableDates.last!)!.offsettingDaylightSaving()
+            let newDate = Date.date(fromDay: date.component.day, month: date.component.month, year: date.component.year).offsettingDaylightSaving()
+            previousAvailableDates.append(newDate)
         }
         
         return previousAvailableDates
+    }
+    
+    
+    private func offsettingDaylightSaving() -> Date {
+        
+        return self.addingTimeInterval(TimeZone.current.daylightSavingTimeOffset(for: self))
     }
 }
 
