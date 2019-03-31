@@ -1,4 +1,5 @@
-{
+[
+    {
     "age_range": "over 34",
     "outcome": "A no further action disposal",
     "involved_person": true,
@@ -26,3 +27,4 @@
     "operation_name": null,
     "object_of_search": "Controlled drugs"
 }
+]

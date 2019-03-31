@@ -180,3 +180,24 @@ enum OutcomeCategory: String, CaseIterable {
         }
     }
 }
+
+enum StopAndSearchOutcomeCategory: String {
+    
+    case arrest = "Arrest"
+    case caution = "Caution (simple or conditional)"
+    case community = "Community resolution"
+    case penalty = "Penalty Notice for Disorder"
+    case summon = "Summons / charged by post"
+    case noFurtherAction = "A no further action disposal"
+    
+    var colour: UIColor {
+        switch self {
+        case .arrest:
+            return .red
+        case .caution, .community, .penalty, .summon:
+            return .orange
+        case .noFurtherAction:
+            return UIColor(red: 250/255, green: 220/255, blue: 85/255, alpha: 1)
+        }
+    }
+}

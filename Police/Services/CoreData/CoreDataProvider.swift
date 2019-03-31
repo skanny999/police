@@ -18,7 +18,20 @@ class CoreDataProvider {
         let crimes = currentAnnotations.compactMap { $0 as? Crime }
         let context = CoreDataManager.shared.container.viewContext
         let fetchRequest = Crime.sortedFetchRequest
-        fetchRequest.predicate = PredicateFactory.predicateForMap(mapViewArea, excluding: crimes)
+        fetchRequest.predicate = PredicateFactory.crimesForMap(mapViewArea, excluding: crimes)
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            print("Couldn't fetch crimes: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    static func stopAndSearch(mapViewArea: MKMapRect, excluding currentAnnotations: [Annotable]) -> [StopAndSearch]? {
+        let sasOnMap = currentAnnotations.compactMap { $0 as? StopAndSearch }
+        let context = CoreDataManager.shared.container.viewContext
+        let fetchRequest = StopAndSearch.sortedFetchRequest
+        fetchRequest.predicate = PredicateFactory.stopAndSearchForMap(mapViewArea, excluding: sasOnMap)
         do {
             return try context.fetch(fetchRequest)
         } catch {

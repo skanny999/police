@@ -359,7 +359,7 @@ class CoreDataModelTest: XCTestCase {
             
             if let json = try? JSON(data: data) {
                 let objectId = StopAndSearch.identifier(from: json)
-                let stopAndSearch = StopAndSearch.object(withId: objectId)
+                let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
                 
                 XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
                 XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
@@ -393,7 +393,7 @@ class CoreDataModelTest: XCTestCase {
             
             if let json = try? JSON(data: data) {
                 let objectId = StopAndSearch.identifier(from: json)
-                let stopAndSearch = StopAndSearch.object(withId: objectId)
+                let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
                 
                 XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
                 XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)

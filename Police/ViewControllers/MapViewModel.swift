@@ -48,13 +48,8 @@ extension MapViewModel: MapViewControllerDelegate {
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
         
         mapMode = mode
-//        retrieveData()
-        
-        if mode == .police {
-            let should = shouldUpdateData()
-        } else {
-            retrieveData()
-        }
+        retrieveData()
+
     }
     
     // testing polygons
@@ -101,20 +96,19 @@ extension MapViewModel: MapViewControllerDelegate {
 
 private extension MapViewModel {
     
-
-    
     func retrieveData() {
         
         switch mapMode {
         case .crime:
             displayCrimes()
         case .police:
-            print(mapMode)
-        // make call for police
+            displayPolice()
         case .none:
             break
         }
     }
+    
+    // MARK: - Crime
 
     func displayCrimes() {
         fetchSavedCrimes()
@@ -125,8 +119,7 @@ private extension MapViewModel {
     
     func fetchSavedCrimes() {
         
-        let crimesOnMap = currentlyShownAnnotations.compactMap { $0 as? Crime }
-        if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapView.visibleMapRect, excluding: crimesOnMap) {
+        if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapView.visibleMapRect, excluding: currentlyShownAnnotations) {
             displayAnnotations(crimes)
         }
     }
@@ -141,6 +134,40 @@ private extension MapViewModel {
             }
         }
     }
+    
+    // MARK: - Police
+    
+    func displayPolice() {
+        
+        fetchSavedStopAndSearch()
+        getNewStopAndSearch()
+        fetchSavedNeighbourhood()
+    }
+    
+    func fetchSavedStopAndSearch() {
+        
+        if let sas = CoreDataProvider.stopAndSearch(mapViewArea: mapView.visibleMapRect, excluding: currentlyShownAnnotations) {
+            displayAnnotations(sas)
+        }
+        
+    }
+    
+    func getNewStopAndSearch() {
+        
+        UpdateManager.updateStopAndSearch(within: mapView.visibleMapRect) { [weak self] (error) in
+            if error != nil {
+                print("Error updating crimes from beckend: \(error.debugDescription)")
+            } else {
+                self?.fetchSavedStopAndSearch()
+            }
+        }
+    }
+    
+    func fetchSavedNeighbourhood() {
+        
+        
+    }
+    
 }
 
 extension MapViewModel: MKMapViewDelegate {
@@ -184,14 +211,14 @@ extension MapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-        if let overlay = overlay as? MKPolygon {
-            
-            let renderer = MKPolygonRenderer(polygon: overlay)
-            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-            renderer.strokeColor = .orange
-            renderer.lineWidth = 2
-            return renderer
-        }
+//        if let overlay = overlay as? MKPolygon {
+//
+//            let renderer = MKPolygonRenderer(polygon: overlay)
+//            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+//            renderer.strokeColor = .orange
+//            renderer.lineWidth = 2
+//            return renderer
+//        }
         return MKOverlayRenderer()
     }
 }

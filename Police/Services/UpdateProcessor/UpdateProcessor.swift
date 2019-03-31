@@ -53,8 +53,14 @@ class UpdateProcessor {
         
         CoreDataManager.performBackgroundTask { (context) in
             
-            if let json = try? JSON(data: data) {
-                StopAndSearch.managedObject(withJson: json, in: context)
+            if let jsons = try? JSON(data: data).array {
+                if jsons.isEmpty {
+                    completion(false)
+                    return
+                }
+                for json in jsons {
+                   StopAndSearch.managedObject(withJson: json, in: context)
+                }
                 CoreDataManager.shared.save()
                 DispatchQueue.main.async {
                     completion(true)

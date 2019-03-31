@@ -8,19 +8,29 @@
 
 import Foundation
 import MapKit
+import CoreData
 
 
 class PredicateFactory {
     
-    static func predicateForMap(_ rect: MKMapRect, excluding crimes: [Crime]) -> NSPredicate {
+    static func crimesForMap(_ rect: MKMapRect, excluding crimes: [Crime]) -> NSPredicate {
+        
+        return predicateForMap(rect, excluding: crimes)
+    }
+    
+    static func stopAndSearchForMap(_ rect: MKMapRect, excluding sas: [StopAndSearch]) -> NSPredicate {
+        
+        return predicateForMap(rect, excluding: sas)
+    }
+    
+    private static func predicateForMap<T: NSManagedObject>(_ rect: MKMapRect, excluding objects: [T]) -> NSPredicate {
         
         let topLat = rect.coordinates.topLeft.latitude.short
         let topLong = rect.coordinates.topLeft.longitude.short
         let bottomLat = rect.coordinates.bottomRight.latitude.short
         let bottomLong = rect.coordinates.bottomRight.longitude.short
-
         
-        return NSPredicate(format: "latitude <= %f AND longitude >= %f AND latitude >= %f AND longitude <= %f AND (NOT SELF IN %@)", topLat, topLong, bottomLat, bottomLong, crimes)
+        return NSPredicate(format: "latitude <= %f AND longitude >= %f AND latitude >= %f AND longitude <= %f AND (NOT SELF IN %@)", topLat, topLong, bottomLat, bottomLong, objects)
     }
     
     

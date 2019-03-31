@@ -12,7 +12,34 @@ import CoreData
 import SwiftyJSON
 
 @objc(StopAndSearch)
-public class StopAndSearch: NSManagedObject, Managed {
+public class StopAndSearch: NSManagedObject, Managed, Annotable {
+    
+    var colour: UIColor {
+        
+        guard let outcome = self.outcomeCategory else { return .white }
+        return outcome.colour
+    }
+    
+    public var coordinate: CLLocationCoordinate2D {
+        
+        return CLLocationCoordinate2D(latitude: latitude!.doubleValue , longitude: longitude!.doubleValue)
+    }
+    
+    public var title: String? {
+        return self.objectOfSearch
+    }
+    
+    public var subtitle: String? {
+        
+        return self.outCome
+    }
+    
+    var outcomeCategory: StopAndSearchOutcomeCategory? {
+        
+        guard let outcome = self.outCome else { return nil }
+        return StopAndSearchOutcomeCategory(rawValue: outcome)
+    }
+    
     
     static var dataIdentifier: String = "datetime"
     static var objectIdentifier: String = "identifier"
@@ -65,12 +92,14 @@ public class StopAndSearch: NSManagedObject, Managed {
     
     static func identifier(from json: JSON) -> String {
         
+        
+        
         return "\(json[Key.dateTime].string!)\(json[Key.location][Key.latitude].string!)\(json[Key.location][Key.longitude].string!)"
     }
     
     static func managedObject(withJson json: JSON, in context: NSManagedObjectContext) {
 
-        if let object = StopAndSearch.object(withId: identifier(from: json)) {
+        if let object = StopAndSearch.object(withId: identifier(from: json), in: context) {
             
             update(object, with: json)
             
@@ -82,9 +111,9 @@ public class StopAndSearch: NSManagedObject, Managed {
         }
     }
     
-    static func object(withId id: String) -> StopAndSearch? {
+    static func object(withId id: String, in context: NSManagedObjectContext) -> StopAndSearch? {
         
-        return try! CoreDataManager.shared.container.viewContext.fetch(fetchRequest(forId: id)).first as? StopAndSearch
+        return try? context.fetch(fetchRequest(forId: id)).first as? StopAndSearch
     }
     
     private static func fetchRequest(forId id: String) -> NSFetchRequest<NSFetchRequestResult> {

@@ -20,16 +20,14 @@ class UpdateManager {
             if let data = data {
                 
                 UpdateProcessor.updatePeriods(withData: data)
-                let allPeriods = CoreDataProvider.allPeriods()
+
             }
         }
-        
     }
     
     class func updateCrimes(within mapRect: MKMapRect, completion:@escaping (Error?) -> Void) {
 
-        
-        NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapRect)) { (data, error) in
+        NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapRect, period: CoreDataProvider.selectedPeriod())) { (data, error) in
             
             if let error = error {
                 print(error.debugDescription)
@@ -48,10 +46,29 @@ class UpdateManager {
         }
     }
     
-    private func noNeedToUpdate(in mapRect: MKMapRect) -> Bool {
+    class func updateStopAndSearch(within mapRect: MKMapRect, completion: @escaping (Error?) -> Void) {
         
+        NetworkProvider.getRequest(forUrl: URLFactory.urlForStopAndSearchByArea(mapRect, period: CoreDataProvider.selectedPeriod())) { (data, error) in
+            if let error = error {
+                print(error.debugDescription)
+                completion(error)
+                return
+            }
+            
+            if let data = data {
+                
+                UpdateProcessor.updateStopAndSearch(fromData: data, completion: { (updated) in
+                    if (updated) {
+                        completion(nil)
+                    } else {
 
+                        completion(nil)
+                        print("Error: no data for this period")
+                    }
+                })
+            }
+        }
         
-        return false
+        
     }
 }

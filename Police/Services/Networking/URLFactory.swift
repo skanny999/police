@@ -10,6 +10,7 @@
 
 import Foundation
 import MapKit
+import CoreData
 
 struct URLFactory {
     
@@ -23,15 +24,19 @@ struct URLFactory {
         return completeUrl(with: lastUpdated)
     }
     
-    static func urlForObject<T: Managed>(ofType type: T, by area: MKMapRect) -> URL? {
-        
-        switch type {
-        case is Crime:
-            return urlForCrimesByArea(area)
-        default:
-            return nil
-        }
-    }
+//    static func urlForObject<T: NSManagedObject>(ofType type: T.Type, by area: MKMapRect) -> URL? {
+//
+//        let selectedPeriod = CoreDataProvider.selectedPeriod()
+//
+//        switch type {
+//        case is Crime:
+//            return urlForCrimesByArea(area, period: selectedPeriod)
+//        case is StopAndSearch:
+//            return urlForStopAndSearchByArea(area, period: selectedPeriod)
+//        default:
+//            fatalError("Url for object type \(type) not set")
+//        }
+//    }
     
     
     // Forces
@@ -74,9 +79,9 @@ struct URLFactory {
     }
     
     
-    static func urlForCrimesByArea(_ mapRect: MKMapRect) -> URL {
+    static func urlForCrimesByArea(_ mapRect: MKMapRect, period: Period?) -> URL {
         
-        let endpoint = String(format: Crimes.byArea.rawValue, mapRect.coordinatesString)
+        let endpoint = String(format: Crimes.byArea.rawValue, mapRect.coordinatesString, dateString(for: period))
         return completeUrl(with: endpoint)
         
     }
@@ -157,6 +162,11 @@ struct URLFactory {
         return completeUrl(with:endpoint)
     }
     
+    static func urlForStopAndSearchByArea(_ mapRect: MKMapRect, period: Period?) -> URL {
+        let endpoint = String(format: StopSearch.byArea.rawValue, mapRect.coordinatesString, dateString(for: period))
+        return completeUrl(with: endpoint)
+    }
+    
 }
 
 enum NeighborhoodInfoType: String {
@@ -177,8 +187,11 @@ private extension URLFactory {
     
     private static func dateString(for period: Period?) -> String {
         
-        guard let period = period else { return "" }
-        return String(format: Crimes.addDate.rawValue, period.stringDescription)
+        #warning("overridden for testing porpouses")
+        return "&date=2018-12&"
+        
+//        guard let period = period else { return "" }
+//        return String(format: Crimes.addDate.rawValue, period.stringDescription)
     }
 }
 
@@ -192,7 +205,7 @@ private enum Crimes: String {
     case byExactLocationId = "crimes-at-location?%@location_id=%@" //crimes-at-location?date=2017-02&location_id=884227
     case byExactLocation = "crimes-at-location?%@lat=%@&lng=%@" // crimes-at-location?date=2017-02&lat=52.629729&lng=-1.131592outcome
     case byLocationRadius = "crimes-street/all-crime?lat=%@&lng=%@%@" //crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2017-01
-    case byArea = "crimes-street/all-crime?poly=%@" //lat,long:lat,long:...
+    case byArea = "crimes-street/all-crime?poly=%@%@" //lat,long:lat,long:...
     case addDate = "&date=%@&" //year,month
 }
 
@@ -208,7 +221,7 @@ private enum StopSearch: String {
     case byExactLocationId = "stops-at-location?location_id=%@%@" //api/stops-at-location?location_id=883407&date=2017-01
     case byForceNoLocation = "stops-no-location?force=%@%@" // police force
     case byLocationRadius = "stops-street?lat=%@&lng=%@%@" //stops-street?lat=52.629729&lng=-1.131592&date=2018-06
-    case byArea = "stops-street?poly=%@" //lat,long:lat,long:...
+    case byArea = "stops-street?poly=%@%@" //lat,long:lat,long:...
     case addDate = "&date=%@-%@" //year,month
 }
 
