@@ -357,7 +357,7 @@ class CoreDataModelTest: XCTestCase {
             
             firstExpectation.fulfill()
             
-            if let json = try? JSON(data: data) {
+            if let json = try? JSON(data: data).array?.first {
                 let objectId = StopAndSearch.identifier(from: json)
                 let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
                 
@@ -391,7 +391,7 @@ class CoreDataModelTest: XCTestCase {
             
             secondExpectation.fulfill()
             
-            if let json = try? JSON(data: data) {
+            if let json = try? JSON(data: data).array?.first {
                 let objectId = StopAndSearch.identifier(from: json)
                 let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
                 
