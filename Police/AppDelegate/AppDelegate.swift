@@ -16,7 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UpdateManager.updatePeriods()
+        if !AppStatus.isTesting { //avoid loading the persistant container more than once which causes crashes
+            UpdateManager.updatePeriods()
+        }
+        
         return true
     }
 

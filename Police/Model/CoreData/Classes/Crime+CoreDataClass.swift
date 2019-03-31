@@ -80,8 +80,6 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
         }
         
         self.addOutcomes(from: json[Key.latestOutcome].array)
-        
-        print(self)
     }
     
     func addOutcomes(from jsons: [JSON]?) {

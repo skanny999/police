@@ -29,4 +29,9 @@ class PredicateFactory {
         return NSPredicate(format: "isSelected == 1")
     }
     
+    static func polygon(forPeriod period: Period) -> NSPredicate? {
+        
+        return NSPredicate(format: "period == %@", period.stringDescription)
+    }
+    
 }

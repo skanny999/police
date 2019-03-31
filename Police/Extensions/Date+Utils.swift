@@ -15,6 +15,18 @@ extension NSDate {
         let date = self as Date
         return (day: date.component.day, month: date.component.month, year: date.component.year , hour:date.component.hour)
     }
+    
+    var queryDescription: String {
+    
+        let month = self.component.month
+        
+        let monthString = 1...9 ~= month ? "0\(month)" : "\(month)"
+        let yearString = "\(self.component.year)"
+        
+        return "\(yearString)-\(monthString)"
+        
+        
+    }
 }
 
 
@@ -38,7 +50,7 @@ extension Date {
         components.day = day
         components.month = month
         components.year = year
-        return Calendar.current.date(from: components)!
+        return Calendar.current.date(from: components)!.offsettingDaylightSaving()
     }
     
     func previousAvailableDates() -> [Date] {
@@ -48,7 +60,7 @@ extension Date {
         while previousAvailableDates.last ?? self < self {
             
             let date = Calendar.current.date(byAdding: .month, value: 1, to: previousAvailableDates.last!)!.offsettingDaylightSaving()
-            let newDate = Date.date(fromDay: date.component.day, month: date.component.month, year: date.component.year).offsettingDaylightSaving()
+            let newDate = Date.date(fromDay: date.component.day, month: date.component.month, year: date.component.year)
             previousAvailableDates.append(newDate)
         }
         

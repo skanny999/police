@@ -55,19 +55,19 @@ struct URLFactory {
     
     //Crimes
     
-    static func urlForCrimesByExactLocationId(locationId: String, period: DatePeriod?) -> URL {
+    static func urlForCrimesByExactLocationId(locationId: String, period: Period?) -> URL {
         
         let endPoint = String(format: Crimes.byExactLocationId.rawValue, dateString(for: period), locationId)
         return completeUrl(with: endPoint)
     }
     
-    static func urlForCrimesByExactLocation(_ location: Locatable, period: DatePeriod?) -> URL {
+    static func urlForCrimesByExactLocation(_ location: Locatable, period: Period?) -> URL {
         
         let endpoint = String(format: Crimes.byExactLocation.rawValue, dateString(for: period), location.latitude!, location.longitude!)
         return completeUrl(with: endpoint)
     }
     
-    static func urlForCrimesByMileRadious(from location: Locatable, period: DatePeriod?) -> URL {
+    static func urlForCrimesByMileRadious(from location: Locatable, period: Period?) -> URL {
         
         let endpoint = String(format: Crimes.byLocationRadius.rawValue, location.latitude!, location.longitude!, dateString(for: period))
         return completeUrl(with: endpoint)
@@ -84,13 +84,13 @@ struct URLFactory {
     
     //Outcomes
     
-    static func urlForOutcomesByExactLocationId(locationId: String, period: DatePeriod?) -> URL {
+    static func urlForOutcomesByExactLocationId(locationId: String, period: Period?) -> URL {
         
         let endPoint = String(format: Outcomes.byLocationId.rawValue, dateString(for: period), locationId)
         return completeUrl(with: endPoint)
     }
     
-    static func urlForOutcomesByLocation(location: Locatable, period: DatePeriod?) -> URL {
+    static func urlForOutcomesByLocation(location: Locatable, period: Period?) -> URL {
         
         if !location.hasCoordinates {
             fatalError("Location must have coordinates")
@@ -133,7 +133,7 @@ struct URLFactory {
     
     //Stop and search
     
-    static func urlForStopAndSearch(fromLocationId locationId: String, period: DatePeriod?) -> URL {
+    static func urlForStopAndSearch(fromLocationId locationId: String, period: Period?) -> URL {
         
         let endpoint = String(format: StopSearch.byExactLocationId.rawValue, locationId, dateString(for: period))
         
@@ -141,7 +141,7 @@ struct URLFactory {
         return completeUrl(with: endpoint)
     }
     
-    static func urlForStopAndSearchByMileRadius(fromLocation location: Locatable, period: DatePeriod?) -> URL {
+    static func urlForStopAndSearchByMileRadius(fromLocation location: Locatable, period: Period?) -> URL {
         
         if !location.hasCoordinates {
             fatalError("Location must have coordinates")
@@ -151,7 +151,7 @@ struct URLFactory {
         return completeUrl(with: endpoint)
     }
     
-    static func urlForStopAnsSearchByPoliceForce(withIdentifier forceId: String, period: DatePeriod?) -> URL {
+    static func urlForStopAnsSearchByPoliceForce(withIdentifier forceId: String, period: Period?) -> URL {
         
         let endpoint = String(format: StopSearch.byForceNoLocation.rawValue, forceId, dateString(for: period))
         return completeUrl(with:endpoint)
@@ -175,10 +175,10 @@ private extension URLFactory {
         return URL(string:"\(self.baseUrl)\(endpoint)")!
     }
     
-    private static func dateString(for period: DatePeriod?) -> String {
+    private static func dateString(for period: Period?) -> String {
         
         guard let period = period else { return "" }
-        return String(format: Crimes.addDate.rawValue, period.year, period.month)
+        return String(format: Crimes.addDate.rawValue, period.stringDescription)
     }
 }
 
@@ -193,7 +193,7 @@ private enum Crimes: String {
     case byExactLocation = "crimes-at-location?%@lat=%@&lng=%@" // crimes-at-location?date=2017-02&lat=52.629729&lng=-1.131592outcome
     case byLocationRadius = "crimes-street/all-crime?lat=%@&lng=%@%@" //crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2017-01
     case byArea = "crimes-street/all-crime?poly=%@" //lat,long:lat,long:...
-    case addDate = "&date=%@-%@&" //year,month
+    case addDate = "&date=%@&" //year,month
 }
 
 private enum Outcomes: String {

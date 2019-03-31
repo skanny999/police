@@ -83,13 +83,25 @@ class UpdateProcessor {
                         
                         if !currentlySavedPeriodDates.contains(where: {$0 === date}) {
                             
-                            Period.createPeriod(fromDate: date, in: context)
+                            Period.createPeriod(fromDate: date,
+                                                isSelected: date == availableDates.last!,
+                                                in: context)
                         }
                     }
                     
                 } else {
                     
-                    availableDates.forEach { Period.createPeriod(fromDate: $0, in: context) }
+                    for date in availableDates {
+                        
+                        Period.createPeriod(fromDate: date,
+                                            isSelected: date == availableDates.last!,
+                                            in: context)
+                    }
+                }
+                do {
+                    try context.save()
+                } catch {
+                    print("Couldn't save processed periods: \(error.localizedDescription)")
                 }
             }
         }

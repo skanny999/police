@@ -32,7 +32,7 @@ public class CrimesPolygon: NSManagedObject {
             return polygon(from: points as! [PointCoordinates])
             
         } catch  {
-            print(error)
+            print("Error unarchiving polygon: \(error)")
             return nil
         }
     }
@@ -56,7 +56,7 @@ extension CrimesPolygon {
         do {
             return try NSKeyedArchiver.archivedData(withRootObject: points as Array, requiringSecureCoding: false) as NSData
         } catch  {
-            print(error)
+            print("Error archiving polygon: \(error)")
             return nil
         }
     }
@@ -68,8 +68,6 @@ extension CrimesPolygon {
             let pointCoordinates = CLLocationCoordinate2DMake(point.latitude, point.longitude)
             locations.append(pointCoordinates)
         }
-        
-        points.forEach { print("latitude: \($0.latitude), longitude: \($0.longitude)") }
         
         return MKPolygon(coordinates: &locations, count: locations.count)
     }

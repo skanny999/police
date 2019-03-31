@@ -65,7 +65,7 @@ extension SearchResultsController: MKLocalSearchCompleterDelegate {
     }
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        print(error)
+        print("couldnt complete search: \(error.localizedDescription)")
     }
 }
 

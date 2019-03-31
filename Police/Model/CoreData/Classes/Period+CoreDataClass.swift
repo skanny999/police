@@ -13,10 +13,17 @@ import CoreData
 @objc(Period)
 public class Period: NSManagedObject {
     
-    static func createPeriod(fromDate date: NSDate, in context: NSManagedObjectContext) {
+    static func createPeriod(fromDate date: NSDate, isSelected: Bool, in context: NSManagedObjectContext) {
         
         let period = Period(entity: self.entity(), insertInto: context)
         period.date = date
+        period.isSelected = isSelected
+        
+    }
+    
+    var stringDescription: String {
+        
+        return date!.queryDescription
     }
 
 }

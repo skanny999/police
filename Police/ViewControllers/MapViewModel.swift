@@ -23,6 +23,9 @@ class MapViewModel: NSObject {
     private let locationManager = CLLocationManager()
     private var location: CLLocation?
     private var currentlyShownAnnotations: [Annotable] = []
+    
+    //testing polygon
+    private var mapPolygon: MKPolygon?
 
     init(with mapview: MKMapView) {
         
@@ -45,12 +48,41 @@ extension MapViewModel: MapViewControllerDelegate {
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
         
         mapMode = mode
-        retrieveData()
+//        retrieveData()
+        
+        if mode == .police {
+            let should = shouldUpdateData()
+        } else {
+            retrieveData()
+        }
     }
+    
+    // testing polygons
+    
+    private func shouldUpdateData() -> Bool {
+        
+        var shouldReload = true
+
+        if let existingPoligon = mapPolygon, existingPoligon.intersects(mapView.visibleMapRect) {
+            
+            mapPolygon = existingPoligon.merge(with: mapView.visibleRectPolygon)
+            shouldReload = !MKMapRectEqualToRect(existingPoligon.boundingMapRect, mapPolygon!.boundingMapRect)
+            
+        } else {
+            
+            mapPolygon = mapView.visibleRectPolygon
+        }
+
+        return shouldReload
+    }
+    
+    
+    
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         retrieveData()
+
     }
     
 
@@ -69,12 +101,13 @@ extension MapViewModel: MapViewControllerDelegate {
 
 private extension MapViewModel {
     
+
+    
     func retrieveData() {
         
         switch mapMode {
         case .crime:
-            fetchSavedCrimes()
-            findNewCrimes()
+            displayCrimes()
         case .police:
             print(mapMode)
         // make call for police
@@ -82,12 +115,11 @@ private extension MapViewModel {
             break
         }
     }
-    
-    
-    func getNewCrimes(within mapRect: MKMapRect) {
-        
-        if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapRect, excluding: currentlyShownAnnotations) {
-            displayAnnotations(crimes)
+
+    func displayCrimes() {
+        fetchSavedCrimes()
+        if shouldUpdateData() {
+            getNewCrimes()
         }
     }
     
@@ -99,23 +131,13 @@ private extension MapViewModel {
         }
     }
     
-    func findNewCrimes() {
+    func getNewCrimes() {
         
-        NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapView.visibleMapRect)) { (data, error) in
-            
-            if let error = error {
-                print(error.debugDescription)
-                return
-            }
-            
-            if let data = data {
-                
-                UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { [weak self] (updated) in
-                    print("objects updated :\(Date())")
-                    if updated {
-                        self?.fetchSavedCrimes()
-                    }
-                })
+        UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
+            if error != nil {
+                print("Error updating crimes from beckend: \(error.debugDescription)")
+            } else {
+                self?.fetchSavedCrimes()
             }
         }
     }
@@ -162,8 +184,6 @@ extension MapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-        print("overlay is Polygon \(overlay)")
-        
         if let overlay = overlay as? MKPolygon {
             
             let renderer = MKPolygonRenderer(polygon: overlay)
@@ -174,8 +194,9 @@ extension MapViewModel: MKMapViewDelegate {
         }
         return MKOverlayRenderer()
     }
-
 }
+
+
 
 extension MapViewModel: SearchResultsDelegate {
     

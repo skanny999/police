@@ -39,7 +39,7 @@
     </entity>
     <entity name="CrimesPolygon" representedClassName="CrimesPolygon" syncable="YES">
         <attribute name="coordinates" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="period" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="period" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Period" inverseName="crimePolygon" inverseEntity="Period" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -92,6 +92,7 @@
     <entity name="Period" representedClassName="Period" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="crimePolygon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CrimesPolygon" inverseName="period" inverseEntity="CrimesPolygon" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -144,6 +145,6 @@
         <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="180"/>
         <element name="Priority" positionX="-142.6015625" positionY="-111.18359375" width="128" height="120"/>
         <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="330"/>
-        <element name="Period" positionX="-234" positionY="-459" width="128" height="75"/>
+        <element name="Period" positionX="-234" positionY="-459" width="128" height="90"/>
     </elements>
 </model>

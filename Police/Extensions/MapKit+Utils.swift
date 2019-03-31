@@ -11,13 +11,16 @@ import MapKit
 
 extension MKMapRect {
     
-    var coordinates:(topLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D) {
+    var coordinates:(topLeft: CLLocationCoordinate2D, bottomLeft: CLLocationCoordinate2D, bottomRight: CLLocationCoordinate2D, topRight: CLLocationCoordinate2D) {
         
         let topLeft = self.origin.coordinate
         let bottomRightPoint = MKMapPoint(x: self.maxX, y: self.maxY)
+        let bottomLeftPoint = MKMapPoint(x: self.minX, y: self.maxY)
+        let topRightPoint = MKMapPoint(x: self.maxX, y: self.minY)
         let bottomRight = CLLocationCoordinate2D(latitude: bottomRightPoint.coordinate.latitude, longitude: bottomRightPoint.coordinate.longitude)
-        
-        return (topLeft, bottomRight)
+        let bottomLeft = CLLocationCoordinate2D(latitude: bottomLeftPoint.coordinate.latitude, longitude: bottomLeftPoint.coordinate.longitude)
+        let topRight = CLLocationCoordinate2D(latitude: topRightPoint.coordinate.latitude, longitude: topRightPoint.coordinate.longitude)
+        return (topLeft, bottomLeft, bottomRight, topRight)
     }
     
     var coordinatesString: String {
@@ -38,6 +41,16 @@ extension MKMapView {
     var zoomLevel: Int {
 
         return Int(self.visibleMapRect.size.width / Double(self.frame.size.width))
+    }
+    
+    var visibleRectPolygon: MKPolygon {
+        
+        let coordinates = [self.visibleMapRect.coordinates.topLeft,
+                           self.visibleMapRect.coordinates.bottomLeft,
+                           self.visibleMapRect.coordinates.bottomRight,
+                           self.visibleMapRect.coordinates.topRight]
+        
+        return MKPolygon(coordinates: coordinates, count: coordinates.count)
     }
     
 }

@@ -21,14 +21,13 @@ class UpdateManager {
                 
                 UpdateProcessor.updatePeriods(withData: data)
                 let allPeriods = CoreDataProvider.allPeriods()
-                
-                allPeriods?.forEach { print($0.date!) }
             }
         }
         
     }
     
-    class func updateCrimes(within mapRect: MKMapRect, excluding: [Annotation], completion:@escaping (Error?) -> Void) {
+    class func updateCrimes(within mapRect: MKMapRect, completion:@escaping (Error?) -> Void) {
+
         
         NetworkProvider.getRequest(forUrl: URLFactory.urlForCrimesByArea(mapRect)) { (data, error) in
             
@@ -41,12 +40,18 @@ class UpdateManager {
             if let data = data {
                 
                 UpdateProcessor.updateObjects(ofType: Crime.self, fromData: data, completion: { (updated) in
-                    print("objects updated :\(Date())")
                     if updated {
                         completion(nil)
                     }
                 })
             }
         }
+    }
+    
+    private func noNeedToUpdate(in mapRect: MKMapRect) -> Bool {
+        
+
+        
+        return false
     }
 }

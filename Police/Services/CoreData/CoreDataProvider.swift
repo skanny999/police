@@ -19,7 +19,6 @@ class CoreDataProvider {
         let context = CoreDataManager.shared.container.viewContext
         let fetchRequest = Crime.sortedFetchRequest
         fetchRequest.predicate = PredicateFactory.predicateForMap(mapViewArea, excluding: crimes)
-        print(fetchRequest.predicate!)
         do {
             return try context.fetch(fetchRequest)
         } catch {
@@ -27,6 +26,37 @@ class CoreDataProvider {
             return nil
         }
     }
+    
+    static func currentPolygon() -> MKPolygon? {
+        
+        guard let selectedPeriod = CoreDataProvider.selectedPeriod() else { return nil }
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CrimePolygon")
+        request.sortDescriptors = []
+        request.predicate = PredicateFactory.polygon(forPeriod: selectedPeriod)
+        
+        let context = CoreDataManager.shared.container.viewContext
+        
+        do {
+            if let crimePolygone = try context.fetch(request).first as? CrimesPolygon {
+                return crimePolygone.mapPolygon
+            } else {
+                return nil
+            }
+            
+        } catch  {
+            print("Error retrieving polygone: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+
+    
+}
+
+// MARK: - Period
+
+extension CoreDataProvider {
     
     static func allPeriods() -> [Period]? {
         
@@ -44,9 +74,9 @@ class CoreDataProvider {
         
         let context = CoreDataManager.shared.container.viewContext
         do {
-            return try context.fetch(periodFetchRequest(predicate: PredicateFactory.selectedPeriod())).first as? Period ?? self.lastPeriod()
+            return try (context.fetch(periodFetchRequest(predicate: PredicateFactory.selectedPeriod())).first as? Period)
         } catch {
-            print("oCuldn't fetch selected period: \(error.localizedDescription)")
+            print("Couldn't fetch selected period: \(error.localizedDescription)")
         }
         return self.lastPeriod()
     }
@@ -55,9 +85,9 @@ class CoreDataProvider {
         
         let context = CoreDataManager.shared.container.viewContext
         do {
-            return try context.fetch(periodFetchRequest(predicate: nil)).first as? Period ?? nil
+            return try context.fetch(periodFetchRequest(predicate: nil)).first as? Period
         } catch {
-            print("Culdn't fetch last period: \(error.localizedDescription)")
+            print("Couldn't fetch last period: \(error.localizedDescription)")
         }
         return nil
     }
@@ -65,10 +95,11 @@ class CoreDataProvider {
     private static func periodFetchRequest(predicate: NSPredicate?) -> NSFetchRequest<NSFetchRequestResult> {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Period")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         request.sortDescriptors = [sortDescriptor]
         request.predicate = predicate
         return request
     }
+    
     
 }

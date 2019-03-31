@@ -25,7 +25,6 @@ class URLTests: XCTestCase {
         let urls = allURLs()
         
         for url in urls {
-            
             let expectation = self.expectation(description: "response")
             var success = false
             NetworkProvider.getRequest(forUrl: url) { (data , error) in
@@ -47,7 +46,10 @@ class URLTests: XCTestCase {
     
     func allURLs() -> [URL] {
         
-        let period = DatePeriod(fromMonth: "2016-08")
+        let date = Date.date(fromDay: 01, month: 8, year: 2016) as NSDate
+        
+        Period.createPeriod(fromDate: date, isSelected: true, in: managedObjectContext)
+        let period = CoreDataProvider.selectedPeriod()!
         
         return [URLFactory.dateLastUpdated(),
         URLFactory.urlForAllForces(),

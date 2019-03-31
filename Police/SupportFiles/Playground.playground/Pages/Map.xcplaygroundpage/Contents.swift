@@ -5,7 +5,6 @@ import PlaygroundSupport
 import UIKit
 import MapKit
 import CoreLocation
-import Police
 
 extension MKPolygon {
     
@@ -36,7 +35,7 @@ class MapController: UIViewController, MKMapViewDelegate {
     func configureMap() {
 
         let delta = 0.5
-        let frame = CGRect( x:0, y:0, width:600, height:600 )
+        let frame = CGRect( x:0, y:0, width:400, height:400 )
         mapView = MKMapView( frame: frame )
         var region = MKCoordinateRegion()
         region.center.latitude = 51.5
@@ -64,8 +63,13 @@ class MapController: UIViewController, MKMapViewDelegate {
         
         if let polygon = mapView.overlays.first as? MKPolygon {
             
-            if polygon.contains(point: mapView.centerCoordinate) {
-                print("It's the centre!!!")
+//            if polygon.contains(point: mapView.centerCoordinate) {
+//                print("It's the centre!!!")
+//            }
+            
+            if polygon.contains(mapView: mapView) {
+                
+                print("don't reload")
             }
         }
     }
