@@ -68,7 +68,91 @@ class UpdateManager {
                 })
             }
         }
+    }
+    
+    
+    class func dataForNeighbourhood(neigbourhood: (force: String, identifier: String), completion: @escaping ([Data]? , Error) -> Void ) {
         
+        var urls: [URL] = []
+
         
+    }
+    
+    class func updateNeighbourhood(withCentre center: CLLocationCoordinate2D, completion: @escaping (Error?) -> Void) {
+        
+        NetworkProvider.getRequest(forUrl: URLFactory.urlToLocateNeigbourhood(from: center)) { (data, error) in
+            
+            if let neighbourhoodId = UpdateProcessor.neighbourhoodId(fromData: data) {
+                
+                var dataToProcess: [Data] = []
+                
+                NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .specific), completion: { (neighbourhoodData, error) in
+                    if let error = error {
+                        completion(error)
+                        return
+                    }
+                    
+                    if let data = neighbourhoodData {
+                        dataToProcess.append(data)
+                    } else {
+                        return
+                    }
+                    
+                    NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .boudaries), completion: { (boudariesData, error) in
+                        if let error = error {
+                            completion(error)
+                            return
+                        }
+                        
+                        if let data = boudariesData {
+                            dataToProcess.append(data)
+                        } else {
+                            return
+                        }
+                        
+                        NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .team), completion: { (teamData, error) in
+                            if let error = error {
+                                completion(error)
+                                return
+                            }
+                            if let data = teamData {
+                                dataToProcess.append(data)
+                            } else {
+                                return
+                            }
+                            
+                            NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .events), completion: { (eventData, error) in
+                                if let error = error {
+                                    completion(error)
+                                    return
+                                }
+                                
+                                if let data = eventData {
+                                    dataToProcess.append(data)
+                                } else {
+                                    return
+                                }
+                                
+                                NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .priorities), completion: { (prioritiesData, error) in
+                                    if let error = error {
+                                        completion(error)
+                                        return
+                                    }
+                                    
+                                    if let data = prioritiesData {
+                                        dataToProcess.append(data)
+                                    } else {
+                                        return
+                                    }
+                                    
+                                    UpdateProcessor.processNeighbourhood(fromData: dataToProcess)
+                                    
+                                })
+                            })
+                        })
+                    })
+                })
+            }
+        }
     }
 }

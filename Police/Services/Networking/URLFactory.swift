@@ -119,19 +119,20 @@ struct URLFactory {
     
     // Neighbourood
     
-    static func urlForNeighbourhood(neighbourhoodId: String, policeForceId: String, infoType: NeighborhoodInfoType) -> URL {
+    static func urlForNeighbourhood(_ neighbourhood: (force: String, identifier: String), infotype: NeighborhoodInfoType) -> URL {
+        
+        return urlForNeighbourhood(neighbourhoodId: neighbourhood.identifier, policeForceId: neighbourhood.force, infoType: infotype)
+    }
+    
+    private static func urlForNeighbourhood(neighbourhoodId: String, policeForceId: String, infoType: NeighborhoodInfoType) -> URL {
         
         let endpoint = String(format: "%@/%@%@", policeForceId, neighbourhoodId, infoType.rawValue)
         return completeUrl(with: endpoint)
     }
     
-    static func urlToLocateNeigbourhood(from location: Locatable) -> URL {
+    static func urlToLocateNeigbourhood(from location: CLLocationCoordinate2D) -> URL {
         
-        if !location.hasCoordinates {
-            fatalError("Location must have coordinates")
-        }
-        
-        let endpoint = String(format: "locate-neighbourhood?q=%@,%@", location.latitude!, location.longitude!)
+        let endpoint = String(format: "locate-neighbourhood?q=%f,%f", location.latitude, location.longitude)
         return completeUrl(with: endpoint)
     }
     
@@ -169,7 +170,7 @@ struct URLFactory {
     
 }
 
-enum NeighborhoodInfoType: String {
+enum NeighborhoodInfoType: String, CaseIterable {
     case specific = "" //force, neighbourhoodId
     case boudaries = "/boundary" //as above
     case team = "/people" //as above

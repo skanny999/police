@@ -176,7 +176,14 @@ private extension MapViewModel {
     
     func fetchSavedNeighbourhood() {
         
-        // 
+        UpdateManager.updateNeighbourhood(withCentre: mapView.centerCoordinate) { (error) in
+            
+        }
+        
+        // get neighbourhood from centre
+        // get neighbourhood details
+        // show neighbourhood annotations
+        
     }
     
 }

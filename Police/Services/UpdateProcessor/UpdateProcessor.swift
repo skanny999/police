@@ -112,4 +112,41 @@ class UpdateProcessor {
             }
         }
     }
+    
+    static func neighbourhoodId(fromData data: Data?) -> (force:String, identifier: String)? {
+        
+        if let data = data,
+            let json = try? JSON(data: data),
+            let force = json["force"].string,
+            let identifier = json["neighbourhood"].string {
+            
+            return (force, identifier)
+        }
+        return nil
+    }
+    
+    static func processNeighbourhood(fromData datas: [Data]) {
+        
+        for (index, data) in datas.enumerated() {
+            
+            if let json = try? JSON(data: data) {
+                
+                if let locations = json["locations"].array {
+                    
+                    if !locations.isEmpty {
+                        print(locations)
+                    }
+                }
+                
+            } else {
+                
+                print("/n/n/n No data at index \(index)")
+            }
+            
+            
+        }
+        
+        
+        
+    }
 }
