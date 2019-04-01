@@ -50,7 +50,6 @@
 		8BC6BB8A224D667D00F63B0B /* MKPolygon+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */; };
 		8BC6BB8C224D6C9500F63B0B /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6BB8B224D6C9500F63B0B /* UpdateManager.swift */; };
 		8BD71704223BC9020009E038 /* MapKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD71703223BC9020009E038 /* MapKit+Utils.swift */; };
-		8BDBCBAB2248099700752E48 /* AnnotationsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBCBAA2248099700752E48 /* AnnotationsProvider.swift */; };
 		8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */; };
 		8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */; };
 		8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBCB3D21F8DC840004AFDE /* Event+CoreDataClass.swift */; };
@@ -164,7 +163,6 @@
 		8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPolygon+Utils.swift"; sourceTree = "<group>"; };
 		8BC6BB8B224D6C9500F63B0B /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
 		8BD71703223BC9020009E038 /* MapKit+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+Utils.swift"; sourceTree = "<group>"; };
-		8BDBCBAA2248099700752E48 /* AnnotationsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationsProvider.swift; sourceTree = "<group>"; };
 		8BEBCAE121F65CBF0004AFDE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BEBCB3B21F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neighbourhood+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8BEBCB3C21F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 		8B155EF321F1421A00783C23 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8BDBCBA92248097C00752E48 /* Annotations */,
 				8B155EF421F1422C00783C23 /* CoreData */,
 				8B155EF521F1424400783C23 /* Networking */,
 				8B155EF621F1429400783C23 /* UpdateManager */,
@@ -477,14 +474,6 @@
 				8B9117772203AD210024CCFA /* Constants.swift */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		8BDBCBA92248097C00752E48 /* Annotations */ = {
-			isa = PBXGroup;
-			children = (
-				8BDBCBAA2248099700752E48 /* AnnotationsProvider.swift */,
-			);
-			path = Annotations;
 			sourceTree = "<group>";
 		};
 		8BEBCB6821F9326F0004AFDE /* Frameworks */ = {
@@ -759,7 +748,6 @@
 				8BA404DB224FCEA200CC930B /* Period+CoreDataClass.swift in Sources */,
 				8BEBCB5321F8DC840004AFDE /* Event+CoreDataClass.swift in Sources */,
 				8BA4AC692240121300DD3721 /* AnnotationObject.swift in Sources */,
-				8BDBCBAB2248099700752E48 /* AnnotationsProvider.swift in Sources */,
 				8BEBCB5E21F8DC840004AFDE /* Priority+CoreDataProperties.swift in Sources */,
 				8B136368223964E700ACB0B2 /* SearchResultsController.swift in Sources */,
 				8BAFD592224459D200D2A544 /* CoreDataProvider.swift in Sources */,

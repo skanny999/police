@@ -197,7 +197,7 @@ enum StopAndSearchOutcomeCategory: String {
         case .caution, .community, .penalty, .summon:
             return .orange
         case .noFurtherAction:
-            return UIColor(red: 250/255, green: 220/255, blue: 85/255, alpha: 1)
+            return UIColor(red: 255/255, green: 254/255, blue: 244/255, alpha: 1)
         }
     }
 }

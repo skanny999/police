@@ -48,8 +48,15 @@ extension MapViewModel: MapViewControllerDelegate {
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
         
         mapMode = mode
+        resetAnnotations()
         retrieveData()
 
+    }
+    
+    private func resetAnnotations() {
+        
+        currentlyShownAnnotations = []
+        mapView.removeAnnotations(mapView.annotations)
     }
     
     // testing polygons
@@ -119,6 +126,8 @@ private extension MapViewModel {
     
     func fetchSavedCrimes() {
         
+        if mapMode != .crime { return }
+        
         if let crimes = CoreDataProvider.crimesWithin(mapViewArea: mapView.visibleMapRect, excluding: currentlyShownAnnotations) {
             displayAnnotations(crimes)
         }
@@ -146,6 +155,8 @@ private extension MapViewModel {
     
     func fetchSavedStopAndSearch() {
         
+        if mapMode != .police { return }
+        
         if let sas = CoreDataProvider.stopAndSearch(mapViewArea: mapView.visibleMapRect, excluding: currentlyShownAnnotations) {
             displayAnnotations(sas)
         }
@@ -158,14 +169,14 @@ private extension MapViewModel {
             if error != nil {
                 print("Error updating crimes from beckend: \(error.debugDescription)")
             } else {
-                self?.fetchSavedStopAndSearch()
+                   self?.fetchSavedStopAndSearch()
             }
         }
     }
     
     func fetchSavedNeighbourhood() {
         
-        
+        // 
     }
     
 }

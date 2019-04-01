@@ -35,6 +35,16 @@ class ClusterAnnotationView: MKAnnotationView {
         }
     }
     
+    fileprivate func addBorderTo(_ piePath: UIBezierPath) {
+        let borderLayer = CAShapeLayer()
+        borderLayer.path = piePath.cgPath // Reuse the Bezier path
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.strokeColor = UIColor.lightGray.cgColor
+        borderLayer.lineWidth = 0.5
+        borderLayer.frame = self.bounds
+        self.layer.addSublayer(borderLayer)
+    }
+    
     private func drawRation(for annotations: [Annotable]) -> UIImage {
         
         let groupedAnnotations = grouped(annotations)
@@ -61,6 +71,7 @@ class ClusterAnnotationView: MKAnnotationView {
                 piePath.addArc(withCenter: CGPoint(x: 20, y: 20), radius: 20,
                                startAngle: 0, endAngle: (CGFloat.pi * 2.0 * CGFloat(proportion)) / CGFloat(whole),
                                clockwise: true)
+                addBorderTo(piePath)
                 piePath.addLine(to: CGPoint(x: 20, y: 20))
                 piePath.close()
                 piePath.fill()
@@ -68,7 +79,10 @@ class ClusterAnnotationView: MKAnnotationView {
 
 
             UIColor(red: 200/255, green: 220/255, blue: 1, alpha: 1).setFill()
-            UIBezierPath(ovalIn: CGRect(x: 8, y: 8, width: 24, height: 24)).fill()
+            let centrepath = UIBezierPath(ovalIn: CGRect(x: 8, y: 8, width: 24, height: 24))
+            addBorderTo(centrepath)
+            centrepath.fill()
+            
             
             // Finally draw count text vertically and horizontally centered
             let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.black,
