@@ -15,6 +15,7 @@ class URLTests: XCTestCase {
     let managedObjectContext = CoreDataManager.shared.container.viewContext
     let location = Location(hasCoordinates: true, coordinates: ("52.629729","-1.131592"),
                             latitude: 52.629729 , longitude: -1.131592)
+    let locationCoordinates = CLLocationCoordinate2D(latitude: 52.629729, longitude: -1.131592)
 
     override func setUp() {
         
@@ -71,7 +72,7 @@ class URLTests: XCTestCase {
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .team),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .events),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .priorities),
-        URLFactory.urlToLocateNeigbourhood(from: location),
+        URLFactory.urlToLocateNeigbourhood(from: locationCoordinates),
         URLFactory.urlForStopAndSearch(fromLocationId: "884227", period: nil),
         URLFactory.urlForStopAndSearch(fromLocationId: "884227", period: period),
         URLFactory.urlForStopAndSearchByMileRadius(fromLocation: location, period: period),

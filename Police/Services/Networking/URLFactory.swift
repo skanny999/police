@@ -134,7 +134,7 @@ struct URLFactory {
         return urlForNeighbourhood(neighbourhoodId: neighbourhood.identifier, policeForceId: neighbourhood.force, infoType: infotype)
     }
     
-    private static func urlForNeighbourhood(neighbourhoodId: String, policeForceId: String, infoType: NeighborhoodInfoType) -> URL {
+    static func urlForNeighbourhood(neighbourhoodId: String, policeForceId: String, infoType: NeighborhoodInfoType) -> URL {
         
         let endpoint = String(format: "%@/%@%@", policeForceId, neighbourhoodId, infoType.rawValue)
         return completeUrl(with: endpoint)
