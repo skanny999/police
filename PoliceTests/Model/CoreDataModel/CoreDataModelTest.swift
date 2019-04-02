@@ -87,14 +87,21 @@ class CoreDataModelTest: XCTestCase {
     
     func testNeighbourhoodObject() {
         
+        let dataArray = [dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood),
+                        Data(), // add coordinates file for polygon to test
+                        dataFromFile(JSONFile.Officers.officers),
+                        dataFromFile(JSONFile.Events.events),
+                        dataFromFile(JSONFile.Priorities.priorities)]
+        
+        
         let longDescription = "<p>The Castle neighbourhood is a diverse covering all of the City Centre. In addition it covers De Montfort University, the University of Leicester, Leicester Royal Infirmary, the Leicester Tigers rugby ground and the Clarendon Park and Riverside communities.</p>\n<p>The Highcross and Haymarket shopping centres and Leicester's famous Market are all covered by this neighbourhood.</p>"
         
         // Original data
         let data = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
         
-        updateObject(type: Neighbourhood.self, withData: data) { [weak self] in
+        UpdateProcessor.updateNeighbourhood(withDataArray: dataArray, identifier: "NC04") { [weak self] (updated) in
             
-            let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: data)
+            let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: dataArray[0])
             XCTAssertTrue(neighbourhood?.identifier == "NC04", neighbourhood?.identifier ?? "nil")
             XCTAssertTrue(neighbourhood?.longDescription == longDescription, neighbourhood?.longDescription ?? "nil")
             XCTAssertTrue(neighbourhood?.name == "City Centre",neighbourhood?.name ?? "nil")
@@ -116,12 +123,86 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(neighbourhood?.places?.first?.longDescription == nil, neighbourhood?.places?.first?.longDescription ?? "nil")
             XCTAssertTrue(neighbourhood?.places?.first?.latitude == nil)
             XCTAssertTrue(neighbourhood?.places?.first?.longitude == nil)
+            
+            //Officers
+            
+            XCTAssertTrue(neighbourhood?.officers?.count == 12, "\(neighbourhood?.officers?.count ?? 0)")
+            let officers = neighbourhood?.officers?.sorted { $0.name! < $1.name! }
+            
+            let firstOfficerBio = "I started as a police community support officer in 2006; I have spent this time working in the city centre which I thoroughly enjoy.\nI am looking forward to the new challenges that come along.\nPlease feel free to speak to me about any issues, or even for just a social chat.\n"
+            
+            XCTAssertTrue(officers?.first?.name == "Alice Forfar")
+            XCTAssertTrue(officers?.first?.rank == "Sgt")
+            XCTAssertTrue(officers?.first?.bio == firstOfficerBio, officers?.first?.bio ?? "No bio")
+            XCTAssertTrue(officers?.first?.contact?.isEmpty ?? false)
+            XCTAssertTrue(officers?.last?.name == "Tim Jones")
+            XCTAssertTrue(officers?.last?.rank == "PCSO")
+            XCTAssertTrue(officers?.last?.bio == nil)
+            XCTAssertTrue(officers?.last?.contact?.isEmpty ?? false)
+
+            //Events
+            let events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
+            
+            XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
+            XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
+            XCTAssertTrue(events?.first?.address == "Merlin Heights Reception, Bath lane", events?.first?.address ?? "nil")
+            XCTAssertTrue(events?.first?.typeCode == "meeting", events?.first?.typeCode ?? "nil")
+            
+            if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
+                
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 18)
+                XCTAssertTrue(startDate.component.hour == 9)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 18)
+                XCTAssertTrue(endDate.component.hour == 10)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            XCTAssertTrue(events?.last?.title == "Community Engagement, Guru Nanak Gurdwara", events?.last?.title ?? "nil")
+            XCTAssertTrue(events?.last?.longDescription == nil, events?.last?.longDescription ?? "nil")
+            XCTAssertTrue(events?.last?.address == "Guru Nanak Gurdwara,", events?.last?.address ?? "nil")
+            XCTAssertTrue(events?.last?.typeCode == "meeting", events?.last?.typeCode ?? "nil")
+            
+            if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
+                
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 19)
+                XCTAssertTrue(startDate.component.hour == 11)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 19)
+                XCTAssertTrue(endDate.component.hour == 12)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            //Priorities
+            
+            XCTAssert(neighbourhood?.priorities?.count == 60)
+            
+            let priorities = neighbourhood?.priorities?.sorted { $0.issueDate!.compare($1.issueDate! as Date) == ComparisonResult.orderedDescending }
+            XCTAssert(priorities?.first?.issueDate?.component.day == 1)
+            XCTAssert(priorities?.first?.issueDate?.component.month == 2)
+            XCTAssert(priorities?.first?.issueDate?.component.year == 2019, "\(String(describing: priorities?.first?.issueDate?.component.year))")
+            XCTAssert(priorities?.first?.issue == "Robberies Once again we have growing concerns about the number of robberies we’ve seen in the City over the last month and have therefore made it a priority for us again this month. We have seen a number of cases reported where groups of suspects appear to work together to target lone males.\n")
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.action == nil)
+            
+            
         }
+
         
         // Edited data
-        let editedData = dataFromFile(JSONFile.Neighbourhood.neighbourhoodEdited)
+        let editedDataArray = [dataFromFile(JSONFile.Neighbourhood.neighbourhoodEdited),
+                                Data(), // add coordinates file for polygon to test
+                                dataFromFile(JSONFile.Officers.officers),
+                                dataFromFile(JSONFile.Events.events),
+                                dataFromFile(JSONFile.Priorities.priorities)]
         
-        updateObject(type: Neighbourhood.self, withData: editedData) { [weak self] in
+        UpdateProcessor.updateNeighbourhood(withDataArray: editedDataArray, identifier: "NC04") { [weak self] (updated) in
             
             let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: data)
             XCTAssertTrue(neighbourhood?.identifier == "NC04", neighbourhood?.identifier ?? "nil")
@@ -154,134 +235,11 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(locations?.last?.longDescription == "It's a random house", locations?.last?.longDescription ?? "nil")
             XCTAssertTrue(locations?.last?.latitude == -1.0967, locations?.last?.latitude?.stringValue ?? "nil")
             XCTAssertTrue(locations?.last?.longitude == 53.214, locations?.last?.longitude?.stringValue ?? "nil")
-        }
-    }
-    
-    // MARK: - Events
-    
-    func testEventsObject() {
-        
-        let neigbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
-        updateObject(type: Neighbourhood.self, withData: neigbourhoodData) { [weak self] in
             
-            let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: neigbourhoodData)
-            let eventsJson = try! JSON(data: self!.dataFromFile(JSONFile.Events.events)).array
-            neighbourhood?.addEvents(from: eventsJson)
+            //Officers
             
-            var events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
-            
-            XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
-            XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
-            XCTAssertTrue(events?.first?.address == "Merlin Heights Reception, Bath lane", events?.first?.address ?? "nil")
-            XCTAssertTrue(events?.first?.typeCode == "meeting", events?.first?.typeCode ?? "nil")
-            
-            if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
-                
-                XCTAssertTrue(startDate.component.month == 2)
-                XCTAssertTrue(startDate.component.day == 18)
-                XCTAssertTrue(startDate.component.hour == 9)
-                XCTAssertTrue(endDate.component.month == 2)
-                XCTAssertTrue(endDate.component.day == 18)
-                XCTAssertTrue(endDate.component.hour == 10)
-            } else {
-                XCTFail("Event date is nil")
-            }
-            
-            XCTAssertTrue(events?.last?.title == "Community Engagement, Guru Nanak Gurdwara", events?.last?.title ?? "nil")
-            XCTAssertTrue(events?.last?.longDescription == nil, events?.last?.longDescription ?? "nil")
-            XCTAssertTrue(events?.last?.address == "Guru Nanak Gurdwara,", events?.last?.address ?? "nil")
-            XCTAssertTrue(events?.last?.typeCode == "meeting", events?.last?.typeCode ?? "nil")
-            
-            if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
-                
-                XCTAssertTrue(startDate.component.month == 2)
-                XCTAssertTrue(startDate.component.day == 19)
-                XCTAssertTrue(startDate.component.hour == 11)
-                XCTAssertTrue(endDate.component.month == 2)
-                XCTAssertTrue(endDate.component.day == 19)
-                XCTAssertTrue(endDate.component.hour == 12)
-            } else {
-                XCTFail("Event date is nil")
-            }
-            
-            //repeat elements to test if the previous ones are deleted
-            
-            neighbourhood?.addEvents(from: eventsJson)
-            
-            events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
-            
-            XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
-            XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
-            XCTAssertTrue(events?.first?.address == "Merlin Heights Reception, Bath lane", events?.first?.address ?? "nil")
-            XCTAssertTrue(events?.first?.typeCode == "meeting", events?.first?.typeCode ?? "nil")
-            
-            if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
-                
-                XCTAssertTrue(startDate.component.month == 2)
-                XCTAssertTrue(startDate.component.day == 18)
-                XCTAssertTrue(startDate.component.hour == 9)
-                XCTAssertTrue(endDate.component.month == 2)
-                XCTAssertTrue(endDate.component.day == 18)
-                XCTAssertTrue(endDate.component.hour == 10)
-            } else {
-                XCTFail("Event date is nil")
-            }
-            
-            XCTAssertTrue(events?.last?.title == "Community Engagement, Guru Nanak Gurdwara", events?.last?.title ?? "nil")
-            XCTAssertTrue(events?.last?.longDescription == nil, events?.last?.longDescription ?? "nil")
-            XCTAssertTrue(events?.last?.address == "Guru Nanak Gurdwara,", events?.last?.address ?? "nil")
-            XCTAssertTrue(events?.last?.typeCode == "meeting", events?.last?.typeCode ?? "nil")
-            
-            if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
-                
-                XCTAssertTrue(startDate.component.month == 2)
-                XCTAssertTrue(startDate.component.day == 19)
-                XCTAssertTrue(startDate.component.hour == 11)
-                XCTAssertTrue(endDate.component.month == 2)
-                XCTAssertTrue(endDate.component.day == 19)
-                XCTAssertTrue(endDate.component.hour == 12)
-            } else {
-                XCTFail("Event date is nil")
-            }
-        }
-    }
-    
-    // MARK: - Priorities
-    
-    func testPriorities() {
-        
-        let neighbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
-        updateObject(type: Neighbourhood.self, withData: neighbourhoodData) { [weak self] in
-            let neighbourhood = self!.savedObject(ofType: Neighbourhood.self, withData: neighbourhoodData)
-            let prioritiesJson = try! JSON(data: self!.dataFromFile(JSONFile.Priorities.priorities)).array
-            neighbourhood.addPriorities(from: prioritiesJson)
-            XCTAssert(neighbourhood.priorities?.count == 60)
-            
-            let priorities = neighbourhood.priorities?.sorted { $0.issueDate!.compare($1.issueDate! as Date) == ComparisonResult.orderedDescending }
-            
-//            XCTAssert(priorities?.first == 60)
-            XCTAssert(priorities?.first?.issueDate?.component.day == 1)
-            XCTAssert(priorities?.first?.issueDate?.component.month == 2)
-            XCTAssert(priorities?.first?.issueDate?.component.year == 2019, "\(String(describing: priorities?.first?.issueDate?.component.year))")
-            XCTAssert(priorities?.first?.issue == "Robberies Once again we have growing concerns about the number of robberies we’ve seen in the City over the last month and have therefore made it a priority for us again this month. We have seen a number of cases reported where groups of suspects appear to work together to target lone males.\n")
-            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
-            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
-            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
-            XCTAssert(priorities?.first?.action == nil)
-        }
-    }
-    
-    func testOfficers() {
-        
-        let neighbourhoodData = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
-        updateObject(type: Neighbourhood.self, withData: neighbourhoodData) { [weak self] in
-            
-            let neighbourhood = self!.savedObject(ofType: Neighbourhood.self, withData: neighbourhoodData)
-            let officersJson = try! JSON(data: self!.dataFromFile(JSONFile.Officers.officers)).array
-            neighbourhood.addOfficers(form: officersJson)
-            
-            XCTAssertTrue(neighbourhood.officers?.count == 12, "\(neighbourhood.officers?.count ?? 0)")
-            let officers = neighbourhood.officers?.sorted { $0.name! < $1.name! }
+            XCTAssertTrue(neighbourhood?.officers?.count == 12, "\(neighbourhood?.officers?.count ?? 0)")
+            let officers = neighbourhood?.officers?.sorted { $0.name! < $1.name! }
             
             let firstOfficerBio = "I started as a police community support officer in 2006; I have spent this time working in the city centre which I thoroughly enjoy.\nI am looking forward to the new challenges that come along.\nPlease feel free to speak to me about any issues, or even for just a social chat.\n"
             
@@ -293,10 +251,61 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(officers?.last?.rank == "PCSO")
             XCTAssertTrue(officers?.last?.bio == nil)
             XCTAssertTrue(officers?.last?.contact?.isEmpty ?? false)
-
+            
+            //Events
+            let events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
+            
+            XCTAssertTrue(events?.first?.title == "Crime Prevention Sale, Merlin Heights", events?.first?.title ?? "nil")
+            XCTAssertTrue(events?.first?.longDescription == "Crime Prevention Sale\n", events?.first?.longDescription ?? "nil")
+            XCTAssertTrue(events?.first?.address == "Merlin Heights Reception, Bath lane", events?.first?.address ?? "nil")
+            XCTAssertTrue(events?.first?.typeCode == "meeting", events?.first?.typeCode ?? "nil")
+            
+            if let startDate = events?.first?.startDate, let endDate = events?.first?.endDate {
+                
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 18)
+                XCTAssertTrue(startDate.component.hour == 9)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 18)
+                XCTAssertTrue(endDate.component.hour == 10)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            XCTAssertTrue(events?.last?.title == "Community Engagement, Guru Nanak Gurdwara", events?.last?.title ?? "nil")
+            XCTAssertTrue(events?.last?.longDescription == nil, events?.last?.longDescription ?? "nil")
+            XCTAssertTrue(events?.last?.address == "Guru Nanak Gurdwara,", events?.last?.address ?? "nil")
+            XCTAssertTrue(events?.last?.typeCode == "meeting", events?.last?.typeCode ?? "nil")
+            
+            if let startDate = events?.last?.startDate, let endDate = events?.last?.endDate {
+                
+                XCTAssertTrue(startDate.component.month == 2)
+                XCTAssertTrue(startDate.component.day == 19)
+                XCTAssertTrue(startDate.component.hour == 11)
+                XCTAssertTrue(endDate.component.month == 2)
+                XCTAssertTrue(endDate.component.day == 19)
+                XCTAssertTrue(endDate.component.hour == 12)
+            } else {
+                XCTFail("Event date is nil")
+            }
+            
+            //Priorities
+            
+            XCTAssert(neighbourhood?.priorities?.count == 60)
+            
+            let priorities = neighbourhood?.priorities?.sorted { $0.issueDate!.compare($1.issueDate! as Date) == ComparisonResult.orderedDescending }
+            XCTAssert(priorities?.first?.issueDate?.component.day == 1)
+            XCTAssert(priorities?.first?.issueDate?.component.month == 2)
+            XCTAssert(priorities?.first?.issueDate?.component.year == 2019, "\(String(describing: priorities?.first?.issueDate?.component.year))")
+            XCTAssert(priorities?.first?.issue == "Robberies Once again we have growing concerns about the number of robberies we’ve seen in the City over the last month and have therefore made it a priority for us again this month. We have seen a number of cases reported where groups of suspects appear to work together to target lone males.\n")
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.actionDate?.component.day == nil)
+            XCTAssert(priorities?.first?.action == nil)
         }
     }
     
+  
     // MARK: - Contacts
     
     func testContactObject() {
@@ -447,7 +456,4 @@ class CoreDataModelTest: XCTestCase {
         
         return FileExtractor.extractJsonFile(withName: fileName, forClass: type(of: self))
     }
-    
-
-
 }
