@@ -62,9 +62,26 @@ class CoreDataProvider {
             return nil
         }
     }
-    
 
+}
+
+
+// MARK: - Neighbourhood
+
+extension CoreDataProvider {
     
+    static func neighbourhood(withId identifier: String) -> Neighbourhood? {
+        
+        let context = CoreDataManager.shared.container.viewContext
+        let fetchRequest = Neighbourhood.sortedFetchRequest
+        fetchRequest.predicate = PredicateFactory.neighbourhood(withId: identifier)
+        do {
+            return try context.fetch(fetchRequest).first
+        } catch {
+            print("Coudn't fetch neighbourood: \(error)")
+            return nil
+        }
+    }
 }
 
 // MARK: - Period

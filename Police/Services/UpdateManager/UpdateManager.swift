@@ -71,12 +71,6 @@ class UpdateManager {
     }
     
     
-    class func dataForNeighbourhood(neigbourhood: (force: String, identifier: String), completion: @escaping ([Data]? , Error) -> Void ) {
-        
-        var urls: [URL] = []
-
-        
-    }
     
     class func updateNeighbourhood(withCentre center: CLLocationCoordinate2D, completion: @escaping (Error?) -> Void) {
         
@@ -84,75 +78,58 @@ class UpdateManager {
             
             if let neighbourhoodId = UpdateProcessor.neighbourhoodId(fromData: data) {
                 
-                var dataToProcess: [Data] = []
-                
-                NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .specific), completion: { (neighbourhoodData, error) in
+                downloadDataForNeighbourhood(neigbourhood: neighbourhoodId, completion: { (dataArray, error) in
                     if let error = error {
+                        print(error)
                         completion(error)
                         return
                     }
                     
-                    if let data = neighbourhoodData {
-                        dataToProcess.append(data)
+                    if let dataArray = dataArray {
+                        
+                        UpdateProcessor.updateNeighbourhood(withDataArray: dataArray, identifier: neighbourhoodId.identifier, completion: { (updated) in
+                            completion(nil)
+                            return
+                        })
+                    }
+                    print("something went wrong updating neighbourhood")
+                    completion(nil)
+                })
+            }
+        }
+    }
+    
+    
+    private class func downloadDataForNeighbourhood(neigbourhood: (force: String, identifier: String), completion: @escaping ([Data]? , Error?) -> Void ) {
+        
+        var urls: [URL] = URLFactory.allUrlsForNeighbouhood(neigbourhood)
+        var neighbourhoodData: [Data] = []
+        
+        func downloadNext() {
+            
+            if urls.count == 0 {
+                
+                completion(neighbourhoodData, nil)
+                return
+                
+            } else {
+                
+                NetworkProvider.getRequest(forUrl: urls.removeFirst(), completion: { (data, error) in
+                    if let error = error {
+                        completion(nil, error)
+                        return
+                    }
+                    
+                    if let data = data {
+                        neighbourhoodData.append(data)
                     } else {
                         return
                     }
                     
-                    NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .boudaries), completion: { (boudariesData, error) in
-                        if let error = error {
-                            completion(error)
-                            return
-                        }
-                        
-                        if let data = boudariesData {
-                            dataToProcess.append(data)
-                        } else {
-                            return
-                        }
-                        
-                        NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .team), completion: { (teamData, error) in
-                            if let error = error {
-                                completion(error)
-                                return
-                            }
-                            if let data = teamData {
-                                dataToProcess.append(data)
-                            } else {
-                                return
-                            }
-                            
-                            NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .events), completion: { (eventData, error) in
-                                if let error = error {
-                                    completion(error)
-                                    return
-                                }
-                                
-                                if let data = eventData {
-                                    dataToProcess.append(data)
-                                } else {
-                                    return
-                                }
-                                
-                                NetworkProvider.getRequest(forUrl: URLFactory.urlForNeighbourhood(neighbourhoodId, infotype: .priorities), completion: { (prioritiesData, error) in
-                                    if let error = error {
-                                        completion(error)
-                                        return
-                                    }
-                                    
-                                    if let data = prioritiesData {
-                                        dataToProcess.append(data)
-                                    } else {
-                                        return
-                                    }
-                                    
-                                    UpdateProcessor.processNeighbourhood(fromData: dataToProcess)
-                                    
-                                })
-                            })
-                        })
-                    })
+                    downloadNext()
                 })
             }
         }
+        downloadNext()
     }
 }

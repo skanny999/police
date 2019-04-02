@@ -23,6 +23,11 @@ class PredicateFactory {
         return predicateForMap(rect, excluding: sas)
     }
     
+    static func neighbourhood(withId identifier: String) -> NSPredicate {
+        
+        return NSPredicate(format: "identifier == %@", identifier)
+    }
+    
     private static func predicateForMap<T: NSManagedObject>(_ rect: MKMapRect, excluding objects: [T]) -> NSPredicate {
         
         let topLat = rect.coordinates.topLeft.latitude.short

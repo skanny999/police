@@ -39,6 +39,11 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
         Contact.updateContacts(for: self, with: json)
         self.updatePlaces(from: json[Key.locations].array)
     }
+    
+    func addPolygon(from json: [JSON]?) {
+        
+        
+    }
 
     func updatePlaces(from json: [JSON]?) {
         

@@ -119,6 +119,16 @@ struct URLFactory {
     
     // Neighbourood
     
+    
+    static func allUrlsForNeighbouhood(_ neighbourhood: (force: String, identifier: String)) -> [URL] {
+        
+        return [self.urlForNeighbourhood(neighbourhood, infotype: .specific),
+                self.urlForNeighbourhood(neighbourhood, infotype: .boudaries),
+                self.urlForNeighbourhood(neighbourhood, infotype: .team),
+                self.urlForNeighbourhood(neighbourhood, infotype: .events),
+                self.urlForNeighbourhood(neighbourhood, infotype: .priorities)]
+    }
+    
     static func urlForNeighbourhood(_ neighbourhood: (force: String, identifier: String), infotype: NeighborhoodInfoType) -> URL {
         
         return urlForNeighbourhood(neighbourhoodId: neighbourhood.identifier, policeForceId: neighbourhood.force, infoType: infotype)

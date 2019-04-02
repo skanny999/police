@@ -30,6 +30,34 @@ class UpdateProcessor {
         }
     }
     
+    
+    static func updateNeighbourhood(withDataArray dataArray: [Data], identifier: String, completion: @escaping (Bool) -> Void) {
+        
+        CoreDataManager.performViewTask { (context) in
+            
+            if let neighbourhoodJson = try? JSON(data: dataArray[0]) {
+                
+                Neighbourhood.managedObject(withJson: neighbourhoodJson, in: context)
+                if let neighbourhood = Neighbourhood.object(withId: identifier, in: context) {
+                    
+                    let coordinates = try? JSON(data: dataArray[1]).array
+                    neighbourhood.addPolygon(from: coordinates)
+                    
+                    let force = try? JSON(data: dataArray[2]).array
+                    neighbourhood.addOfficers(form: force)
+                        
+                    let events = try? JSON(data: dataArray[3]).array
+                    neighbourhood.addEvents(from: events)
+                    
+                    let priorities = try? JSON(data: dataArray[4]).array
+                    neighbourhood.addPriorities(from: priorities)
+
+                    completion(true)
+                }
+            }
+        }
+    }
+    
     static func updateObjects<T: Updatable>(ofType updatableClass: T.Type, fromData data: Data, completion: @escaping (Bool) -> Void) {
         
         CoreDataManager.performBackgroundTask { (context) in
@@ -131,12 +159,7 @@ class UpdateProcessor {
             
             if let json = try? JSON(data: data) {
                 
-                if let locations = json["locations"].array {
-                    
-                    if !locations.isEmpty {
-                        print(locations)
-                    }
-                }
+                print(json)
                 
             } else {
                 
