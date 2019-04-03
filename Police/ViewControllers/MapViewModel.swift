@@ -45,12 +45,38 @@ class MapViewModel: NSObject {
 
 extension MapViewModel: MapViewControllerDelegate {
     
+    func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer) {
+
+        if thereIsAnAnnotation(on: sender.location(in: mapView)) {
+            return
+        }
+        
+        if mapView.overlays.count > 0 {
+            mapView.removeOverlays(mapView.overlays)
+        } else {
+            let location = mapView.convert(sender.location(in: mapView), toCoordinateFrom: mapView)
+            fetchNeighbourhood(forLocation: location)
+        }
+    }
+    
+    private func thereIsAnAnnotation(on location: CGPoint) -> Bool {
+        
+        var isAnnotation = false
+        for annotation in mapView.annotations {
+            if let annotationView = mapView.view(for: annotation), annotationView.frame.contains(location) {
+                isAnnotation = true
+            }
+        }
+        return isAnnotation
+    }
+
+    
+    
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
         
         mapMode = mode
         resetAnnotations()
         retrieveData()
-
     }
     
     private func resetAnnotations() {
@@ -58,24 +84,20 @@ extension MapViewModel: MapViewControllerDelegate {
         currentlyShownAnnotations = []
         mapView.removeAnnotations(mapView.annotations)
     }
-    
-    // testing polygons
+
     
     private func shouldUpdateData() -> Bool {
-        
-        var shouldReload = true
 
         if let existingPoligon = mapPolygon, existingPoligon.intersects(mapView.visibleMapRect) {
             
             mapPolygon = existingPoligon.merge(with: mapView.visibleRectPolygon)
-            shouldReload = !MKMapRectEqualToRect(existingPoligon.boundingMapRect, mapPolygon!.boundingMapRect)
+            return !MKMapRectEqualToRect(existingPoligon.boundingMapRect, mapPolygon!.boundingMapRect)
             
         } else {
             
             mapPolygon = mapView.visibleRectPolygon
+            return true
         }
-
-        return shouldReload
     }
     
     
@@ -84,7 +106,6 @@ extension MapViewModel: MapViewControllerDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         retrieveData()
-
     }
     
 
@@ -150,7 +171,6 @@ private extension MapViewModel {
         
         fetchSavedStopAndSearch()
         getNewStopAndSearch()
-        fetchSavedNeighbourhood()
     }
     
     func fetchSavedStopAndSearch() {
@@ -174,18 +194,31 @@ private extension MapViewModel {
         }
     }
     
-    func fetchSavedNeighbourhood() {
+    // MARK: - Neighbourhood
+    
+    func fetchNeighbourhood(forLocation location: CLLocationCoordinate2D) {
         
-        UpdateManager.updateNeighbourhood(withCentre: mapView.centerCoordinate) { (error) in
+        UpdateManager.updateNeighbourhood(withLocation: location) { [weak self] (error, neighbouhood) in
             
+            if let error = error {
+                print(error)
+            } else if let neighbourood = neighbouhood {
+                
+                DispatchQueue.main.async {
+                    self?.showNeighbourhood(neighbourood)
+                }
+            } else {
+                print("couldn't process neighbourood")
+            }
         }
-        
-        // get neighbourhood from centre
-        // get neighbourhood details
-        // show neighbourhood annotations
-        
     }
     
+    private func showNeighbourhood(_ neighbourood: Neighbourhood) {
+        
+        if let polygon = neighbourood.polygonData?.polygon {
+            mapView.addOverlay(polygon)
+        }
+    }
 }
 
 extension MapViewModel: MKMapViewDelegate {
@@ -211,6 +244,7 @@ extension MapViewModel: MKMapViewDelegate {
         }
     }
 
+
     func zoom(into location: CLLocation) {
         
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
@@ -229,14 +263,21 @@ extension MapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
-//        if let overlay = overlay as? MKPolygon {
-//
-//            let renderer = MKPolygonRenderer(polygon: overlay)
-//            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-//            renderer.strokeColor = .orange
-//            renderer.lineWidth = 2
-//            return renderer
-//        }
+        if let overlay = overlay as? MKPolygon {
+
+            let renderer = MKPolygonRenderer(polygon: overlay)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.2)
+            renderer.strokeColor = .blue
+            renderer.lineWidth = 1
+            
+            DispatchQueue.main.async {
+                mapView.setVisibleMapRect(overlay.boundingMapRect,
+                                          edgePadding: UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0),
+                                          animated: true)
+            }
+
+            return renderer
+        }
         return MKOverlayRenderer()
     }
 }

@@ -31,7 +31,7 @@ class UpdateProcessor {
     }
     
     
-    static func updateNeighbourhood(withDataArray dataArray: [Data], identifier: String, completion: @escaping (Bool) -> Void) {
+    static func updateNeighbourhood(withDataArray dataArray: [Data], identifier: String, completion: @escaping (Bool, Neighbourhood) -> Void) {
         
         CoreDataManager.performViewTask { (context) in
             
@@ -52,7 +52,7 @@ class UpdateProcessor {
                     let priorities = try? JSON(data: dataArray[4]).array
                     neighbourhood.addPriorities(from: priorities)
 
-                    completion(true)
+                    completion(true, neighbourhood)
                 }
             }
         }

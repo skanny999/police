@@ -147,7 +147,7 @@ class CoreDataModelTest: XCTestCase {
                 XCTAssertTrue(points[3].lon.short == -1.145376, "\(points[3].lon)")
                 
             } else {
-                XCTFail("no polynog")
+                XCTFail("no polygon")
             }
             
             

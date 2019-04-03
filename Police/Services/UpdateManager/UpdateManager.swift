@@ -72,28 +72,35 @@ class UpdateManager {
     
     
     
-    class func updateNeighbourhood(withCentre center: CLLocationCoordinate2D, completion: @escaping (Error?) -> Void) {
+    class func updateNeighbourhood(withLocation location: CLLocationCoordinate2D, completion: @escaping (Error?, Neighbourhood?) -> Void) {
         
-        NetworkProvider.getRequest(forUrl: URLFactory.urlToLocateNeigbourhood(from: center)) { (data, error) in
+        NetworkProvider.getRequest(forUrl: URLFactory.urlToLocateNeigbourhood(from: location)) { (data, error) in
             
             if let neighbourhoodId = UpdateProcessor.neighbourhoodId(fromData: data) {
+                
+                if let neighbourhood = CoreDataProvider.neighbourhood(withId: neighbourhoodId.identifier) {
+                    
+                    completion(nil, neighbourhood)
+                    return
+                }
                 
                 downloadDataForNeighbourhood(neigbourhood: neighbourhoodId, completion: { (dataArray, error) in
                     if let error = error {
                         print(error)
-                        completion(error)
+                        completion(error, nil)
                         return
                     }
                     
                     if let dataArray = dataArray {
                         
-                        UpdateProcessor.updateNeighbourhood(withDataArray: dataArray, identifier: neighbourhoodId.identifier, completion: { (updated) in
-                            completion(nil)
+                        UpdateProcessor.updateNeighbourhood(withDataArray: dataArray, identifier: neighbourhoodId.identifier, completion: { (updated, neighbourhood)  in
+                            completion(nil, neighbourhood)
                             return
                         })
+                    } else {
+                        print("something went wrong updating neighbourhood")
+                        completion(nil, nil)
                     }
-                    print("something went wrong updating neighbourhood")
-                    completion(nil)
                 })
             }
         }

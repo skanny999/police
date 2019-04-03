@@ -13,6 +13,8 @@ import MapKit
 protocol MapViewControllerDelegate {
     
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode)
+    func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer)
+
 }
 
 class MapViewController: UIViewController {
@@ -29,7 +31,7 @@ class MapViewController: UIViewController {
         viewModel = MapViewModel(with: mapView)
         configureSearchResultsController()
         self.delegate = viewModel
-    
+        configureGestureRecogniser()
     }
     
     private func configureSearchResultsController() {
@@ -46,6 +48,17 @@ class MapViewController: UIViewController {
         searchController?.dimsBackgroundDuringPresentation = true
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func configureGestureRecogniser() {
+        
+        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(mapTapped(sender:)))
+        mapView.addGestureRecognizer(gestureRecogniser)
+    }
+    
+    @objc private func mapTapped(sender: UITapGestureRecognizer) {
+        
+        delegate?.mapViewController(self, didTapMapWith: sender)
     }
     
     @IBAction func crimeButtonTapped(_ sender: Any) {
