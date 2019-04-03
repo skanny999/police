@@ -88,7 +88,7 @@ class CoreDataModelTest: XCTestCase {
     func testNeighbourhoodObject() {
         
         let dataArray = [dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood),
-                        Data(), // add coordinates file for polygon to test
+                        dataFromFile(JSONFile.Boudaries.neighbourhoodBoundaries),
                         dataFromFile(JSONFile.Officers.officers),
                         dataFromFile(JSONFile.Events.events),
                         dataFromFile(JSONFile.Priorities.priorities)]
@@ -123,6 +123,33 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(neighbourhood?.places?.first?.longDescription == nil, neighbourhood?.places?.first?.longDescription ?? "nil")
             XCTAssertTrue(neighbourhood?.places?.first?.latitude == nil)
             XCTAssertTrue(neighbourhood?.places?.first?.longitude == nil)
+            
+            //Boundaries
+            
+            if let boundarieData = neighbourhood?.polygonData,
+                let polygon = boundarieData.polygon {
+                
+                let coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: polygon.pointCount)
+                polygon.getCoordinates(coordsPointer, range: NSMakeRange(0, polygon.pointCount))
+                var points: [(lat: Double, lon: Double)] = []
+                for i in 0..<polygon.pointCount {
+                    points.append((coordsPointer[i].latitude, coordsPointer[i].longitude))
+                }
+                
+                XCTAssertTrue(points.count == 4, "\(points.count)")
+                XCTAssertTrue(points[0].lat.short == 52.639405, "\(points[0].lat)")
+                XCTAssertTrue(points[0].lon.short == -1.145862, "\(points[0].lon)")
+                XCTAssertTrue(points[1].lat.short == 52.638945, "\(points[1].lat)")
+                XCTAssertTrue(points[1].lon.short == -1.145706, "\(points[1].lon)")
+                XCTAssertTrue(points[2].lat.short == 52.638371, "\(points[2].lat)")
+                XCTAssertTrue(points[2].lon.short == -1.145576, "\(points[2].lon)")
+                XCTAssertTrue(points[3].lat.short == 52.637738, "\(points[3].lat)")
+                XCTAssertTrue(points[3].lon.short == -1.145376, "\(points[3].lon)")
+                
+            } else {
+                XCTFail("no polynog")
+            }
+            
             
             //Officers
             
@@ -386,7 +413,6 @@ class CoreDataModelTest: XCTestCase {
                 XCTAssertTrue(stopAndSearch?.latitude == 52.264860)
                 XCTAssertTrue(stopAndSearch?.longitude == 0.699943)
                 XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
-
             }
         }
         

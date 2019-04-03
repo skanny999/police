@@ -22,6 +22,8 @@
 		8B3DD01A221A2FEC00B98FE5 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD019221A2FEC00B98FE5 /* Events.json */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
 		8B3F604F2200B894001D6651 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */; };
+		8B4C41F222541DB1000368E4 /* NSData+MKPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */; };
+		8B4C41F42254238A000368E4 /* NeighbourhoodBoundaries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */; };
 		8B56E2A92207548C0061D1CF /* CoreDataModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */; };
 		8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */; };
 		8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */; };
@@ -133,6 +135,8 @@
 		8B3DD019221A2FEC00B98FE5 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSData+MKPolygon.swift"; sourceTree = "<group>"; };
+		8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodBoundaries.json; sourceTree = "<group>"; };
 		8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelTest.swift; sourceTree = "<group>"; };
 		8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocols.swift; sourceTree = "<group>"; };
 		8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProcessor.swift; sourceTree = "<group>"; };
@@ -360,6 +364,7 @@
 				8B91177F2203B7DE0024CCFA /* Numbers+Utils.swift */,
 				8BD71703223BC9020009E038 /* MapKit+Utils.swift */,
 				8BC6BB89224D667D00F63B0B /* MKPolygon+Utils.swift */,
+				8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */,
 				8B87EEA5224CE80C00BFF848 /* MKPolygon+GPC */,
 			);
 			path = Extensions;
@@ -497,6 +502,7 @@
 				8BEBCB7D21FCB0170004AFDE /* Outcome.json */,
 				8BEBCB7921FCB0170004AFDE /* Neighbourhood.json */,
 				8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */,
+				8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */,
 				8B3DD019221A2FEC00B98FE5 /* Events.json */,
 				8B7827E2221B72E4008DE3E0 /* AllContacts.json */,
 				8B7827E4221B74DC008DE3E0 /* PartialContacts.json */,
@@ -693,6 +699,7 @@
 				8B56E2B022077A620061D1CF /* Crime.json in Resources */,
 				8B3DD0162219B06400B98FE5 /* NeighbourhoodEdited.json in Resources */,
 				8BEBCBAC22011A860004AFDE /* SpecificForce.json in Resources */,
+				8B4C41F42254238A000368E4 /* NeighbourhoodBoundaries.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +783,7 @@
 				8BEBCB5721F8DC840004AFDE /* Officer+CoreDataClass.swift in Sources */,
 				8BEBCB5421F8DC840004AFDE /* Event+CoreDataProperties.swift in Sources */,
 				8BD71704223BC9020009E038 /* MapKit+Utils.swift in Sources */,
+				8B4C41F222541DB1000368E4 /* NSData+MKPolygon.swift in Sources */,
 				8BEBCB6321F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift in Sources */,
 				8BEBCB6121F8DC840004AFDE /* Outcome+CoreDataClass.swift in Sources */,
 				8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */,

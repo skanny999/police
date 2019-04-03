@@ -23,6 +23,7 @@ extension Neighbourhood {
     @NSManaged public var population: String?
     @NSManaged public var latitude: NSNumber?
     @NSManaged public var longitude: NSNumber?
+    @NSManaged public var polygonData: NSData?
     @NSManaged public var contact: Contact?
     @NSManaged public var events: Set<Event>?
     @NSManaged public var officers: Set<Officer>?

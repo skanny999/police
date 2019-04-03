@@ -42,7 +42,23 @@ public class Neighbourhood: NSManagedObject, Updatable, Locatable {
     
     func addPolygon(from json: [JSON]?) {
         
+        guard let polygonJson = json else { return }
         
+        var coordinates:[CLLocationCoordinate2D] = []
+        for json in polygonJson {
+            if let lat = json["latitude"].string,
+                let latitude = Double(lat),
+                let lon = json["longitude"].string,
+                let longitude = Double(lon) {
+                
+                coordinates.append(CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+            }
+            
+        }
+        
+
+        let polygon = MKPolygon(coordinates: &coordinates, count: coordinates.count)
+        self.polygonData = polygon.data
     }
 
     func updatePlaces(from json: [JSON]?) {

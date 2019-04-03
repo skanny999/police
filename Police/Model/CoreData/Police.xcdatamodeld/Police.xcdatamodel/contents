@@ -67,6 +67,7 @@
         <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="polygonData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="population" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="neighbourhood" inverseEntity="Contact" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="neighbourhood" inverseEntity="Event" syncable="YES"/>
@@ -139,12 +140,12 @@
         <element name="CrimesPolygon" positionX="-243" positionY="-468" width="128" height="75"/>
         <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="195"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
-        <element name="Neighbourhood" positionX="21.40625" positionY="-343.328125" width="128" height="225"/>
+        <element name="Neighbourhood" positionX="21.40625" positionY="-343.328125" width="128" height="240"/>
         <element name="Officer" positionX="105.046875" positionY="-36.625" width="128" height="135"/>
         <element name="Outcome" positionX="-271.21875" positionY="-376.51171875" width="128" height="103"/>
+        <element name="Period" positionX="-234" positionY="-459" width="128" height="90"/>
         <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="180"/>
         <element name="Priority" positionX="-142.6015625" positionY="-111.18359375" width="128" height="120"/>
         <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="330"/>
-        <element name="Period" positionX="-234" positionY="-459" width="128" height="90"/>
     </elements>
 </model>

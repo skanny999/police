@@ -41,4 +41,25 @@ extension MKPolygon {
         return self.fromUnion(with: polygon)
     }
     
+    var data: NSData? {
+        
+        let coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: self.pointCount)
+        self.getCoordinates(coordsPointer, range: NSMakeRange(0, self.pointCount))
+        
+        var points: [PointCoordinates] = []
+        
+        for i in 0..<self.pointCount {
+            let latitude = coordsPointer[i].latitude
+            let longitude = coordsPointer[i].longitude
+            points.append(PointCoordinates(latitude: latitude, longitude: longitude))
+        }
+        
+        do {
+            return try NSKeyedArchiver.archivedData(withRootObject: points as Array, requiringSecureCoding: false) as NSData
+        } catch  {
+            print("Error archiving polygon: \(error)")
+            return nil
+        }
+    }
+    
 }
