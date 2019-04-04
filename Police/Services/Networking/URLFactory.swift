@@ -198,11 +198,11 @@ private extension URLFactory {
     
     private static func dateString(for period: Period?) -> String {
         
-        #warning("overridden for testing porpouses")
-        return "&date=2018-12&"
+//        #warning("overridden for testing porpouses")
+//        return "&date=2018-12&"
         
-//        guard let period = period else { return "" }
-//        return String(format: Crimes.addDate.rawValue, period.stringDescription)
+        guard let period = period else { return "" }
+        return String(format: Crimes.addDate.rawValue, period.stringDescription)
     }
 }
 

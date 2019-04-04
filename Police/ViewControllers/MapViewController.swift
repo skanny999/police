@@ -19,44 +19,62 @@ protocol MapViewControllerDelegate {
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var neighbourhoodLabel: UILabel!
+    @IBOutlet weak var neighbourhoodDetailsButton: UIButton!
     
     var searchController: UISearchController?
 
     var viewModel: MapViewModel!
     var delegate: MapViewControllerDelegate?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = MapViewModel(with: mapView)
+        configureViewModel()
         configureSearchResultsController()
-        self.delegate = viewModel
         configureGestureRecogniser()
+    }
+    
+    private func configureViewModel() {
+        
+        viewModel = MapViewModel(with: mapView)
+        self.delegate = viewModel
+        viewModel.selecteNeighbourhoodDidChange = { (selectedNeighbourhood) in
+            DispatchQueue.main.async {
+                self.updateViewWith(selectedNeighbourhood)
+            }
+        }
     }
     
     private func configureSearchResultsController() {
 
         navigationItem.searchController = configuredSearchController()
-
+    }
+    
+    private func updateViewWith(_ neighbourhood: String?) {
+        
+        if let neighbourhood = neighbourhood {
+            neighbourhoodLabel.text = neighbourhood
+            hideSearchController()
+        } else {
+            showSearchController()
+        }
     }
     
     private func showSearchController() {
         
-        UIView.animate(withDuration: 0.5) { [weak self] in
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
             self?.navigationItem.searchController = self?.configuredSearchController()
+        }) { (completed) in
+            self.neighbourhoodLabel.text = nil
         }
-
-        
     }
     
     private func hideSearchController() {
         
         UIView.animate(withDuration: 0.5) { [weak self] in
-//            self?.searchController?.hidesNavigationBarDuringPresentation = true
             self?.navigationItem.searchController = nil
         }
-        
-        
-        
     }
     
     private var searchControllerIsShowing: Bool {
@@ -94,13 +112,11 @@ class MapViewController: UIViewController {
     @IBAction func crimeButtonTapped(_ sender: Any) {
         
         delegate?.mapViewController(self, didTapButtonForMode: .crime)
-        
     }
     
     @IBAction func policeButtonTapped(_ sender: Any) {
         
-//        delegate?.mapViewController(self, didTapButtonForMode: .police)
-        searchControllerIsShowing ? hideSearchController() : showSearchController()
+        delegate?.mapViewController(self, didTapButtonForMode: .police)
     }
     
 }

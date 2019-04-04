@@ -24,8 +24,13 @@ class MapViewModel: NSObject {
     private var location: CLLocation?
     private var currentlyShownAnnotations: [Annotable] = []
     
-    //testing polygon
     private var mapPolygon: MKPolygon?
+    
+    var selecteNeighbourhoodDidChange: ((String?) -> Void)?
+    
+    private var isShowingNeighbourhood: Bool {
+        return mapView.overlays.count > 0
+    }
 
     init(with mapview: MKMapView) {
         
@@ -33,7 +38,16 @@ class MapViewModel: NSObject {
         mapView = mapview
         mapView.delegate = self
         permissionForLocation()
+        positionMapNearUser()
+        mapView.showsUserLocation = false
         registerAnnotationViewClass()
+    }
+    
+    
+    private var selectedNeighbourhood: String? {
+        didSet {
+            selecteNeighbourhoodDidChange?(selectedNeighbourhood)
+        }
     }
     
     private func registerAnnotationViewClass() {
@@ -46,18 +60,32 @@ class MapViewModel: NSObject {
 extension MapViewModel: MapViewControllerDelegate {
     
     func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer) {
+        
+        let selectedPoint = sender.location(in: mapView)
 
-        if thereIsAnAnnotation(on: sender.location(in: mapView)) {
+        if thereIsAnAnnotation(on: selectedPoint) {
             return
         }
         
-        if mapView.overlays.count > 0 {
+        if isShowingNeighbourhood {
             mapView.removeOverlays(mapView.overlays)
+            selectedNeighbourhood = nil
+            retrieveData()
         } else {
-            let location = mapView.convert(sender.location(in: mapView), toCoordinateFrom: mapView)
+            let location = mapView.convert(selectedPoint, toCoordinateFrom: mapView)
             fetchNeighbourhood(forLocation: location)
         }
     }
+
+
+    
+    func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
+        
+        mapMode = mode
+        resetAnnotations()
+        retrieveData()
+    }
+    
     
     private func thereIsAnAnnotation(on location: CGPoint) -> Bool {
         
@@ -68,15 +96,6 @@ extension MapViewModel: MapViewControllerDelegate {
             }
         }
         return isAnnotation
-    }
-
-    
-    
-    func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
-        
-        mapMode = mode
-        resetAnnotations()
-        retrieveData()
     }
     
     private func resetAnnotations() {
@@ -105,7 +124,9 @@ extension MapViewModel: MapViewControllerDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
-        retrieveData()
+        if !isShowingNeighbourhood {
+            retrieveData()
+        }
     }
     
 
@@ -116,6 +137,12 @@ extension MapViewModel: MapViewControllerDelegate {
 
             self.mapView.addAnnotations(annotations)
             self.currentlyShownAnnotations.append(contentsOf: annotations)
+            
+            if self.isShowingNeighbourhood {
+                if let polygon = self.mapView.overlays.first as? MKPolygon {
+                    self.removeAnnotation(outside: polygon)
+                }
+            }
         }
     }
 }
@@ -180,7 +207,6 @@ private extension MapViewModel {
         if let sas = CoreDataProvider.stopAndSearch(mapViewArea: mapView.visibleMapRect, excluding: currentlyShownAnnotations) {
             displayAnnotations(sas)
         }
-        
     }
     
     func getNewStopAndSearch() {
@@ -189,7 +215,7 @@ private extension MapViewModel {
             if error != nil {
                 print("Error updating crimes from beckend: \(error.debugDescription)")
             } else {
-                   self?.fetchSavedStopAndSearch()
+                self?.fetchSavedStopAndSearch()
             }
         }
     }
@@ -213,11 +239,21 @@ private extension MapViewModel {
         }
     }
     
-    private func showNeighbourhood(_ neighbourood: Neighbourhood) {
+    func showNeighbourhood(_ neighbourood: Neighbourhood) {
         
         if let polygon = neighbourood.polygonData?.polygon {
             mapView.addOverlay(polygon)
+            selectedNeighbourhood = neighbourood.name
+            retrieveData()
         }
+    }
+    
+    func removeAnnotation(outside polygon: MKPolygon) {
+        
+        let toRemove = currentlyShownAnnotations.filter { !polygon.contains(point: $0.coordinate)}
+        currentlyShownAnnotations = currentlyShownAnnotations.filter { polygon.contains(point: $0.coordinate)}
+        mapView.removeAnnotations(toRemove)
+        
     }
 }
 
@@ -250,6 +286,17 @@ extension MapViewModel: MKMapViewDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func positionMapNearUser() {
+        
+        if let annotation = mapView.annotations.first as? MKUserLocation {
+            
+            let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+            let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+            
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

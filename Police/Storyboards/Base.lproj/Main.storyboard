@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sZ8-nQ-F0F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sZ8-nQ-F0F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,19 +14,52 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-Dk-5BS">
+                                <rect key="frame" x="0.0" y="-52" width="375" height="52"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cet-iX-Gey">
+                                        <rect key="frame" x="16" y="8" width="291" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyW-kP-ODl">
+                                        <rect key="frame" x="315" y="4" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Ywg-u0-YXR"/>
+                                            <constraint firstAttribute="width" constant="44" id="iWq-DB-05F"/>
+                                        </constraints>
+                                        <state key="normal" image="Circle-orange"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="cet-iX-Gey" firstAttribute="top" secondItem="Jze-Dk-5BS" secondAttribute="top" constant="8" id="3Q2-HY-6GS"/>
+                                    <constraint firstAttribute="bottom" secondItem="cet-iX-Gey" secondAttribute="bottom" constant="8" id="3qw-iG-NhE"/>
+                                    <constraint firstAttribute="trailing" secondItem="NyW-kP-ODl" secondAttribute="trailing" constant="16" id="IYf-X8-bRk"/>
+                                    <constraint firstItem="cet-iX-Gey" firstAttribute="leading" secondItem="Jze-Dk-5BS" secondAttribute="leading" constant="16" id="KuV-F1-pbS"/>
+                                    <constraint firstAttribute="bottom" secondItem="NyW-kP-ODl" secondAttribute="bottom" constant="4" id="OH8-yY-NKN"/>
+                                    <constraint firstItem="NyW-kP-ODl" firstAttribute="top" secondItem="Jze-Dk-5BS" secondAttribute="top" constant="4" id="hlc-Lm-IPG"/>
+                                    <constraint firstItem="NyW-kP-ODl" firstAttribute="leading" secondItem="cet-iX-Gey" secondAttribute="trailing" constant="8" id="nW8-Dl-Yen"/>
+                                    <constraint firstAttribute="height" constant="52" id="nt4-Gp-iQM"/>
+                                </constraints>
+                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-Bo-RCp">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2HS-hA-PXz"/>
-                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FBZ-E6-tlA"/>
-                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dtn-WW-lem"/>
-                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="emX-Fr-zcl"/>
+                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Aen-XP-4fC"/>
+                            <constraint firstItem="Jze-Dk-5BS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-52" id="JUi-EW-WvA"/>
+                            <constraint firstItem="Jze-Dk-5BS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WDL-Ae-5rc"/>
+                            <constraint firstItem="Jze-Dk-5BS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="epG-1H-yA0"/>
+                            <constraint firstAttribute="bottom" secondItem="qOv-Bo-RCp" secondAttribute="bottom" id="oFh-0x-j7k"/>
+                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qRX-Dn-FBI"/>
+                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="Jze-Dk-5BS" secondAttribute="bottom" id="yl0-Fy-2a0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -45,6 +77,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="qOv-Bo-RCp" id="x5r-G1-fow"/>
+                        <outlet property="neighbourhoodDetailsButton" destination="NyW-kP-ODl" id="xlc-c2-BDI"/>
+                        <outlet property="neighbourhoodLabel" destination="cet-iX-Gey" id="eCg-0d-BxA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,7 +138,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hvx-ZI-OE3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="gry-mr-M5e"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TTx-gZ-Zyd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="TTx-gZ-Zyd">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -118,4 +152,7 @@
             <point key="canvasLocation" x="1079.2" y="97.601199400299862"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Circle-orange" width="14" height="14"/>
+    </resources>
 </document>

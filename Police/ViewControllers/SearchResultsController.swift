@@ -27,9 +27,7 @@ class SearchResultsController: UITableViewController {
         super.viewDidLoad()
         configureCompleter()
     }
-    
 
-    
 
     
     private func configureCompleter() {
