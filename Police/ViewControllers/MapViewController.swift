@@ -14,7 +14,6 @@ protocol MapViewControllerDelegate {
     
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode)
     func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer)
-
 }
 
 class MapViewController: UIViewController {
@@ -36,6 +35,37 @@ class MapViewController: UIViewController {
     
     private func configureSearchResultsController() {
 
+        navigationItem.searchController = configuredSearchController()
+
+    }
+    
+    private func showSearchController() {
+        
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            self?.navigationItem.searchController = self?.configuredSearchController()
+        }
+
+        
+    }
+    
+    private func hideSearchController() {
+        
+        UIView.animate(withDuration: 0.5) { [weak self] in
+//            self?.searchController?.hidesNavigationBarDuringPresentation = true
+            self?.navigationItem.searchController = nil
+        }
+        
+        
+        
+    }
+    
+    private var searchControllerIsShowing: Bool {
+        
+        return navigationItem.searchController != nil
+    }
+    
+    func configuredSearchController() -> UISearchController {
+        
         let searchResultsController = Storyboard.searchResultsController()
         searchController = UISearchController(searchResultsController: searchResultsController)
         searchResultsController.mapView = mapView
@@ -46,8 +76,8 @@ class MapViewController: UIViewController {
         searchController?.searchBar.placeholder = "Find a location"
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.dimsBackgroundDuringPresentation = true
-        navigationItem.searchController = searchController
         definesPresentationContext = true
+        return searchController!
     }
     
     private func configureGestureRecogniser() {
@@ -64,11 +94,13 @@ class MapViewController: UIViewController {
     @IBAction func crimeButtonTapped(_ sender: Any) {
         
         delegate?.mapViewController(self, didTapButtonForMode: .crime)
+        
     }
     
     @IBAction func policeButtonTapped(_ sender: Any) {
         
-        delegate?.mapViewController(self, didTapButtonForMode: .police)
+//        delegate?.mapViewController(self, didTapButtonForMode: .police)
+        searchControllerIsShowing ? hideSearchController() : showSearchController()
     }
     
 }
