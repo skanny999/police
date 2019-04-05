@@ -92,6 +92,17 @@ class MapViewController: UIViewController {
         searchController?.searchResultsUpdater = searchResultsController
         searchController?.searchBar.sizeToFit()
         searchController?.searchBar.placeholder = "Find a location"
+        searchController?.searchBar.subviews.forEach({ view in
+            view.subviews.forEach({ view in
+                if let view = view as? UITextField, let backgroud = view.subviews.first {
+                    backgroud.backgroundColor = .white
+                    backgroud.layer.cornerRadius = 10
+                    backgroud.clipsToBounds = true
+                }
+            })
+        })
+
+
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
