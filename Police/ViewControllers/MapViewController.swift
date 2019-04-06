@@ -19,9 +19,10 @@ protocol MapViewControllerDelegate {
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var neighbourhoodLabel: UILabel!
     @IBOutlet weak var neighbourhoodDetailsButton: UIButton!
+    @IBOutlet weak var neighbourhoodLabel: UILabel!
     
+    @IBOutlet weak var neighbourhoodConstraint: NSLayoutConstraint!
     var searchController: UISearchController?
 
     var viewModel: MapViewModel!
@@ -53,27 +54,27 @@ class MapViewController: UIViewController {
     
     private func updateViewWith(_ neighbourhood: String?) {
         
-        if let neighbourhood = neighbourhood {
+        if let neighbourhood = neighbourhood?.capitalized.stripOutHtml() {
             neighbourhoodLabel.text = neighbourhood
-            hideSearchController()
+            showNeighbourhoodSelector()
         } else {
-            showSearchController()
+            hideNeighbourhoodSelector()
         }
     }
     
-    private func showSearchController() {
-        
+    private func hideNeighbourhoodSelector() {
+        neighbourhoodConstraint.constant = -44
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            self?.navigationItem.searchController = self?.configuredSearchController()
+            self?.view.layoutIfNeeded()
         }) { (completed) in
             self.neighbourhoodLabel.text = nil
         }
     }
     
-    private func hideSearchController() {
-        
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.navigationItem.searchController = nil
+    private func showNeighbourhoodSelector() {
+        neighbourhoodConstraint.constant = 0
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.view.layoutIfNeeded()
         }
     }
     
@@ -130,6 +131,10 @@ class MapViewController: UIViewController {
         delegate?.mapViewController(self, didTapButtonForMode: .police)
     }
     
+    @IBAction func neighbourhoodButtonPressed(_ sender: Any) {
+        
+        
+    }
 }
 
 

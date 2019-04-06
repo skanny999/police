@@ -90,6 +90,19 @@ extension Optional where Wrapped == String {
     }
 }
 
+extension Dictionary {
+    
+    var location: CLLocation? {
+        
+        if let locationDictionary = self as? [String: CLLocationDegrees],
+            let latitude = locationDictionary["latitude"],
+            let longitude = locationDictionary["longitude"] {
+            return CLLocation(latitude: latitude, longitude: longitude)
+        }
+        return nil
+    }
+}
+
 public extension UISearchBar {
     
     func setTextColor(color: UIColor) {

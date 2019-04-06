@@ -22,6 +22,7 @@ class MapViewModel: NSObject {
     private var mapMode: Mode = .none
     private let locationManager = CLLocationManager()
     private var location: CLLocation?
+    private var initialLocation: CLLocation?
     private var currentlyShownAnnotations: [Annotable] = []
     
     private var mapPolygon: MKPolygon?
@@ -281,21 +282,23 @@ extension MapViewModel: MKMapViewDelegate {
     }
 
 
-    func zoom(into location: CLLocation) {
-        
+    private func setMapLocation(_ location: CLLocation, animated: Bool) {
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: animated)
+    }
+    
+    func zoom(into location: CLLocation) {
+        
+        setMapLocation(location, animated: true)
     }
     
     func positionMapNearUser() {
         
-        if let annotation = mapView.annotations.first as? MKUserLocation {
-            
-            let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-            let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
-            mapView.setRegion(region, animated: true)
-            
+        if let locationDict = UserDefaults.standard.object(forKey: "LAST_LOCATION") as? [String: CLLocationDegrees],
+            let location = locationDict.location {
+            initialLocation = location
+            setMapLocation(location, animated: false)
         }
     }
     
@@ -344,6 +347,8 @@ extension MapViewModel: SearchResultsDelegate {
 extension MapViewModel: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if initialLocation != nil { return }
         
         if let location = locations.first {
             
