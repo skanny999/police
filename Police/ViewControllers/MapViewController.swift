@@ -19,8 +19,20 @@ protocol MapViewControllerDelegate {
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    
+    var crimeButton: UIBarButtonItem!
+    var policeButton: UIBarButtonItem!
+    var activityButton: UIBarButtonItem?
+    let activityIndicator = UIActivityIndicatorView()
+    let crimeImage = UIImage(named: "crime")!
+    let selectedCrimeImage = UIImage(named: "crime-selected")!
+    let policeImage = UIImage(named: "police")!
+    let selectedPoliceImage = UIImage(named: "police-selected")!
+    
+    
     @IBOutlet weak var neighbourhoodDetailsButton: UIButton!
     @IBOutlet weak var neighbourhoodLabel: UILabel!
+
     
     @IBOutlet weak var neighbourhoodConstraint: NSLayoutConstraint!
     var searchController: UISearchController?
@@ -34,6 +46,15 @@ class MapViewController: UIViewController {
         configureViewModel()
         configureSearchResultsController()
         configureGestureRecogniser()
+        configureBarButtonItems()
+    }
+    
+    private func configureBarButtonItems() {
+        crimeButton = UIBarButtonItem(image: crimeImage, style: .plain, target: self, action: #selector(crimeButtonTapped))
+        policeButton = UIBarButtonItem(image: policeImage, style: .plain, target: self, action: #selector(policeButtonTapped))
+        activityButton = UIBarButtonItem.init(customView: activityIndicator)
+        navigationItem.setLeftBarButton(crimeButton, animated: false)
+        navigationItem.setRightBarButton(policeButton, animated: false)
     }
     
     private func configureViewModel() {
@@ -64,18 +85,12 @@ class MapViewController: UIViewController {
     
     private func hideNeighbourhoodSelector() {
         neighbourhoodConstraint.constant = -44
-        UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        }) { (completed) in
-            self.neighbourhoodLabel.text = nil
-        }
+        self.neighbourhoodLabel.text = nil
     }
     
     private func showNeighbourhoodSelector() {
         neighbourhoodConstraint.constant = 0
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.view.layoutIfNeeded()
-        }
+
     }
     
     private var searchControllerIsShowing: Bool {
@@ -121,14 +136,20 @@ class MapViewController: UIViewController {
         delegate?.mapViewController(self, didTapMapWith: sender)
     }
     
-    @IBAction func crimeButtonTapped(_ sender: Any) {
-        
-        delegate?.mapViewController(self, didTapButtonForMode: .crime)
+    @objc private func crimeButtonTapped() {
+        if viewModel.mapMode != .crime {
+            delegate?.mapViewController(self, didTapButtonForMode: .crime)
+            crimeButton.image = selectedCrimeImage
+            policeButton.image = policeImage
+        }
     }
     
-    @IBAction func policeButtonTapped(_ sender: Any) {
-        
-        delegate?.mapViewController(self, didTapButtonForMode: .police)
+    @objc private func policeButtonTapped() {
+        if viewModel.mapMode != .police {
+            delegate?.mapViewController(self, didTapButtonForMode: .police)
+            policeButton.image = selectedPoliceImage
+            crimeButton.image = crimeImage
+        }
     }
     
     @IBAction func neighbourhoodButtonPressed(_ sender: Any) {

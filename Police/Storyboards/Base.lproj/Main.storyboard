@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-Dk-5BS" userLabel="neighbourhood view">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwS-1r-kvA">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zwS-1r-kvA">
                                         <rect key="frame" x="8" y="5" width="359" height="32"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="23"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,22 +79,16 @@
                     <navigationItem key="navigationItem" title="POLICE" id="tiG-Mb-t7M">
                         <barButtonItem key="leftBarButtonItem" title="Crime" id="x3o-78-GfB">
                             <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="crimeButtonTapped:" destination="BYZ-38-t0r" id="Ffc-Lb-OPE"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Policing" id="CCz-RP-zkk">
                             <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="policeButtonTapped:" destination="BYZ-38-t0r" id="KCU-xp-gFK"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="qOv-Bo-RCp" id="x5r-G1-fow"/>
                         <outlet property="neighbourhoodConstraint" destination="KKZ-7r-eHq" id="iZ8-QR-8dl"/>
                         <outlet property="neighbourhoodDetailsButton" destination="NyW-kP-ODl" id="xlc-c2-BDI"/>
-                        <outlet property="neighbourhoodLabel" destination="zwS-1r-kvA" id="iaQ-de-sze"/>
+                        <outlet property="neighbourhoodLabel" destination="zwS-1r-kvA" id="ZSW-PE-zTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

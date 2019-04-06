@@ -19,7 +19,7 @@ class MapViewModel: NSObject {
     
     private var mapView: MKMapView!
     
-    private var mapMode: Mode = .none
+    var mapMode: Mode = .none
     private let locationManager = CLLocationManager()
     private var location: CLLocation?
     private var initialLocation: CLLocation?
@@ -125,6 +125,8 @@ extension MapViewModel: MapViewControllerDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
+        print(mapView.zoomLevel)
+        
         if !isShowingNeighbourhood {
             retrieveData()
         }
@@ -170,6 +172,8 @@ private extension MapViewModel {
         fetchSavedCrimes()
         if shouldUpdateData() {
             getNewCrimes()
+        } else {
+            print("data already downloaded")
         }
     }
     
@@ -184,11 +188,17 @@ private extension MapViewModel {
     
     func getNewCrimes() {
         
+        if mapView.zoomLevel > 300 {
+            print("zoom in to retrieve data")
+            return
+        }
+        print("Retrieving data")
         UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
             if error != nil {
                 print("Error updating crimes from beckend: \(error.debugDescription)")
             } else {
                 self?.fetchSavedCrimes()
+                print("data retrieved")
             }
         }
     }
@@ -254,7 +264,6 @@ private extension MapViewModel {
         let toRemove = currentlyShownAnnotations.filter { !polygon.contains(point: $0.coordinate)}
         currentlyShownAnnotations = currentlyShownAnnotations.filter { polygon.contains(point: $0.coordinate)}
         mapView.removeAnnotations(toRemove)
-        
     }
 }
 
