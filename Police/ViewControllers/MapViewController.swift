@@ -183,21 +183,50 @@ class MapViewController: UIViewController {
     }
     
     @objc private func crimeButtonTapped() {
-        setNavigationItem(toButton: policeButton, forMode: viewModel.mapMode)
-        if viewModel.mapMode != .crime {
-            crimeButton.image = selectedCrimeImage
+
+        let newMode: Mode = viewModel.mapMode == .crime ? .none : .crime
+        setNavigationItem(toButton: policeButton, forMode: newMode)
+        
+        switch viewModel.mapMode {
+        case .crime:
+            crimeButton.image = crimeImage
+        case .police:
             policeButton.image = policeImage
-            delegate?.mapViewController(self, didTapButtonForMode: .crime)
+            crimeButton.image = selectedCrimeImage
+        case .none:
+            crimeButton.image = selectedCrimeImage
         }
+        
+        delegate?.mapViewController(self, didTapButtonForMode: newMode)
     }
     
     @objc private func policeButtonTapped() {
-        setNavigationItem(toButton: crimeButton, forMode: viewModel.mapMode)
-        if viewModel.mapMode != .police {
+        
+        let newMode: Mode = viewModel.mapMode == .police ? .none : .police
+        setNavigationItem(toButton: crimeButton, forMode: newMode)
+        
+        switch viewModel.mapMode {
+        case .crime:
             policeButton.image = selectedPoliceImage
             crimeButton.image = crimeImage
-            delegate?.mapViewController(self, didTapButtonForMode: .police)
+        case .police:
+            policeButton.image = policeImage
+        case .none:
+            policeButton.image = selectedPoliceImage
         }
+        
+        delegate?.mapViewController(self, didTapButtonForMode: newMode)
+        
+        
+//        setNavigationItem(toButton: crimeButton, forMode: viewModel.mapMode)
+//        if viewModel.mapMode != .police {
+//            policeButton.image = selectedPoliceImage
+//            crimeButton.image = crimeImage
+//            delegate?.mapViewController(self, didTapButtonForMode: .police)
+//        } else {
+//            policeButton.image = policeImage
+//            delegate?.mapViewController(self, didTapButtonForMode: .none)
+//        }
     }
     
     @IBAction func neighbourhoodButtonPressed(_ sender: Any) {
