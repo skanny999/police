@@ -16,13 +16,15 @@ protocol MapViewControllerDelegate {
     func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer)
 }
 
+
 class MapViewController: UIViewController {
+    
 
     @IBOutlet weak var mapView: MKMapView!
     
     var crimeButton: UIBarButtonItem!
     var policeButton: UIBarButtonItem!
-    var activityButton: UIBarButtonItem?
+    var activityButton: UIBarButtonItem!
     let activityIndicator = UIActivityIndicatorView()
     let crimeImage = UIImage(named: "crime")!
     let selectedCrimeImage = UIImage(named: "crime-selected")!
@@ -61,12 +63,50 @@ class MapViewController: UIViewController {
         
         viewModel = MapViewModel(with: mapView)
         self.delegate = viewModel
+        configureViewUpdater()
+    }
+    
+    private func configureViewUpdater() {
+        
         viewModel.selecteNeighbourhoodDidChange = { (selectedNeighbourhood) in
             DispatchQueue.main.async {
                 self.updateViewWith(selectedNeighbourhood)
             }
         }
+        
+        viewModel.dataIsLoading = { (isLoading) in
+            DispatchQueue.main.async {
+                self.updateActivityIndicator(status: isLoading)
+            }
+        }
     }
+    
+    private func updateActivityIndicator(status dataIsLoading: Bool) {
+        
+        let selectedMode = viewModel.mapMode
+        if selectedMode == .none { return }
+        let barButton: UIBarButtonItem = selectedMode == .crime ? crimeButton : policeButton
+        
+        func setNavigationItem(toButton button: UIBarButtonItem) {
+            selectedMode == .crime ? navigationItem.setLeftBarButton(button, animated: true) : navigationItem.setRightBarButton(button, animated: true)
+        }
+        
+        switch (dataIsLoading, activityIndicator.isAnimating) {
+        case (true, true):
+            return
+        case (true, false):
+            setNavigationItem(toButton: activityButton)
+            activityIndicator.startAnimating()
+        case (false, true):
+            setNavigationItem(toButton: barButton)
+            activityIndicator.stopAnimating()
+        case (false, false):
+            return
+        }
+    }
+    
+    
+    
     
     private func configureSearchResultsController() {
 

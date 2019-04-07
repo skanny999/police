@@ -24,13 +24,23 @@ class MapViewModel: NSObject {
     private var location: CLLocation?
     private var initialLocation: CLLocation?
     private var currentlyShownAnnotations: [Annotable] = []
-    
     private var mapPolygon: MKPolygon?
     
+    
+    // MARK: - View updater variables
     var selecteNeighbourhoodDidChange: ((String?) -> Void)?
+    var dataIsLoading: ((Bool) -> Void)?
     
     private var isShowingNeighbourhood: Bool {
         return mapView.overlays.count > 0
+    }
+    
+    var crimesCallsCounter: Int = 0 {
+        didSet{
+            let isLoading = crimesCallsCounter > 0
+            print(isLoading ? "data is loading:\(crimesCallsCounter)" : "data has finished loading \(crimesCallsCounter)")
+            dataIsLoading?(crimesCallsCounter > 0)
+        }
     }
 
     init(with mapview: MKMapView) {
@@ -103,10 +113,16 @@ extension MapViewModel: MapViewControllerDelegate {
         
         currentlyShownAnnotations = []
         mapView.removeAnnotations(mapView.annotations)
+        mapPolygon = nil
     }
 
     
     private func shouldUpdateData() -> Bool {
+        
+        if mapView.zoomLevel > 300 {
+            print("zoom closer to retrieve data")
+            return false
+        }
 
         if let existingPoligon = mapPolygon, existingPoligon.intersects(mapView.visibleMapRect) {
             
@@ -124,8 +140,6 @@ extension MapViewModel: MapViewControllerDelegate {
     
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
-        print(mapView.zoomLevel)
         
         if !isShowingNeighbourhood {
             retrieveData()
@@ -188,15 +202,14 @@ private extension MapViewModel {
     
     func getNewCrimes() {
         
-        if mapView.zoomLevel > 300 {
-            print("zoom in to retrieve data")
-            return
-        }
         print("Retrieving data")
+        crimesCallsCounter += 1
         UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
             if error != nil {
+                self?.crimesCallsCounter -= 1
                 print("Error updating crimes from beckend: \(error.debugDescription)")
             } else {
+                self?.crimesCallsCounter -= 1
                 self?.fetchSavedCrimes()
                 print("data retrieved")
             }
