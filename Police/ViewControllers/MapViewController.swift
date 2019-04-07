@@ -87,25 +87,31 @@ class MapViewController: UIViewController {
         if selectedMode == .none { return }
         let barButton: UIBarButtonItem = selectedMode == .crime ? crimeButton : policeButton
         
-        func setNavigationItem(toButton button: UIBarButtonItem) {
-            selectedMode == .crime ? navigationItem.setLeftBarButton(button, animated: true) : navigationItem.setRightBarButton(button, animated: true)
-        }
-        
         switch (dataIsLoading, activityIndicator.isAnimating) {
         case (true, true):
             return
         case (true, false):
-            setNavigationItem(toButton: activityButton)
+            setNavigationItem(toButton: activityButton, forMode: selectedMode)
             activityIndicator.startAnimating()
         case (false, true):
-            setNavigationItem(toButton: barButton)
+            setNavigationItem(toButton: barButton, forMode: selectedMode)
             activityIndicator.stopAnimating()
         case (false, false):
             return
         }
     }
     
-    
+    private func setNavigationItem(toButton button: UIBarButtonItem, forMode mode: Mode) {
+        
+        switch mode {
+        case .crime:
+            navigationItem.setLeftBarButton(button, animated: true)
+        case .police:
+            navigationItem.setRightBarButton(button, animated: true)
+        case .none:
+            return
+        }
+    }
     
     
     private func configureSearchResultsController() {
@@ -177,18 +183,20 @@ class MapViewController: UIViewController {
     }
     
     @objc private func crimeButtonTapped() {
+        setNavigationItem(toButton: policeButton, forMode: viewModel.mapMode)
         if viewModel.mapMode != .crime {
-            delegate?.mapViewController(self, didTapButtonForMode: .crime)
             crimeButton.image = selectedCrimeImage
             policeButton.image = policeImage
+            delegate?.mapViewController(self, didTapButtonForMode: .crime)
         }
     }
     
     @objc private func policeButtonTapped() {
+        setNavigationItem(toButton: crimeButton, forMode: viewModel.mapMode)
         if viewModel.mapMode != .police {
-            delegate?.mapViewController(self, didTapButtonForMode: .police)
             policeButton.image = selectedPoliceImage
             crimeButton.image = crimeImage
+            delegate?.mapViewController(self, didTapButtonForMode: .police)
         }
     }
     

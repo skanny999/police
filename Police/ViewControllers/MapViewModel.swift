@@ -35,11 +35,11 @@ class MapViewModel: NSObject {
         return mapView.overlays.count > 0
     }
     
-    var crimesCallsCounter: Int = 0 {
+    var networkCallsCounter: Int = 0 {
         didSet{
-            let isLoading = crimesCallsCounter > 0
-            print(isLoading ? "data is loading:\(crimesCallsCounter)" : "data has finished loading \(crimesCallsCounter)")
-            dataIsLoading?(crimesCallsCounter > 0)
+            let isLoading = networkCallsCounter > 0
+            print(isLoading ? "data is loading:\(networkCallsCounter)" : "data has finished loading \(networkCallsCounter)")
+            dataIsLoading?(networkCallsCounter > 0)
         }
     }
 
@@ -95,6 +95,7 @@ extension MapViewModel: MapViewControllerDelegate {
         mapMode = mode
         resetAnnotations()
         retrieveData()
+        dataIsLoading?(networkCallsCounter > 0)
     }
     
     
@@ -203,16 +204,15 @@ private extension MapViewModel {
     func getNewCrimes() {
         
         print("Retrieving data")
-        crimesCallsCounter += 1
+        networkCallsCounter += 1
         UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
             if error != nil {
-                self?.crimesCallsCounter -= 1
                 print("Error updating crimes from beckend: \(error.debugDescription)")
             } else {
-                self?.crimesCallsCounter -= 1
                 self?.fetchSavedCrimes()
                 print("data retrieved")
             }
+            self?.networkCallsCounter -= 1
         }
     }
     
@@ -235,12 +235,14 @@ private extension MapViewModel {
     
     func getNewStopAndSearch() {
         
+        networkCallsCounter += 1
         UpdateManager.updateStopAndSearch(within: mapView.visibleMapRect) { [weak self] (error) in
             if error != nil {
                 print("Error updating crimes from beckend: \(error.debugDescription)")
             } else {
                 self?.fetchSavedStopAndSearch()
             }
+            self?.networkCallsCounter -= 1
         }
     }
     
