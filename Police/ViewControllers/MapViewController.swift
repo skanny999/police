@@ -91,28 +91,43 @@ class MapViewController: UIViewController {
         case (true, true):
             return
         case (true, false):
-            setNavigationItem(toButton: activityButton, forMode: selectedMode)
+            setButton(barButton, isSpinner: true, forMode: selectedMode)
             activityIndicator.startAnimating()
         case (false, true):
-            setNavigationItem(toButton: barButton, forMode: selectedMode)
+            setButton(barButton, isSpinner: false, forMode: selectedMode)
             activityIndicator.stopAnimating()
         case (false, false):
             return
         }
     }
     
-    private func setNavigationItem(toButton button: UIBarButtonItem, forMode mode: Mode) {
+    
+    
+    private func setButton(_ button: UIBarButtonItem, isSpinner: Bool, forMode mode: Mode) {
         
+        let newButton = isSpinner ? activityButton : button
         switch mode {
         case .crime:
-            navigationItem.setLeftBarButton(button, animated: true)
+            navigationItem.setLeftBarButton(newButton, animated: true)
         case .police:
-            navigationItem.setRightBarButton(button, animated: true)
+            navigationItem.setRightBarButton(newButton, animated: true)
         case .none:
             return
         }
+        
     }
     
+    private func resetNavigationItemButton(_ button: UIBarButtonItem, forMode mode: Mode) {
+        
+        switch mode {
+        case .crime:
+            navigationItem.setRightBarButton(button, animated: true)
+        case .police:
+            navigationItem.setLeftBarButton(button, animated: true)
+        case .none:
+            return
+        }
+    }    
     
     private func configureSearchResultsController() {
 
@@ -138,11 +153,7 @@ class MapViewController: UIViewController {
         neighbourhoodConstraint.constant = 0
 
     }
-    
-    private var searchControllerIsShowing: Bool {
-        
-        return navigationItem.searchController != nil
-    }
+
     
     func configuredSearchController() -> UISearchController {
         
@@ -164,7 +175,6 @@ class MapViewController: UIViewController {
             })
         })
 
-
         searchController?.hidesNavigationBarDuringPresentation = false
         searchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
@@ -184,8 +194,8 @@ class MapViewController: UIViewController {
     
     @objc private func crimeButtonTapped() {
 
-        let newMode: Mode = viewModel.mapMode == .crime ? .none : .crime
-        setNavigationItem(toButton: policeButton, forMode: newMode)
+        let newMode: Mode = (viewModel.mapMode == .crime) ? .none : .crime
+        resetNavigationItemButton(policeButton, forMode: newMode)
         
         switch viewModel.mapMode {
         case .crime:
@@ -203,7 +213,7 @@ class MapViewController: UIViewController {
     @objc private func policeButtonTapped() {
         
         let newMode: Mode = viewModel.mapMode == .police ? .none : .police
-        setNavigationItem(toButton: crimeButton, forMode: newMode)
+        resetNavigationItemButton(crimeButton, forMode: newMode)
         
         switch viewModel.mapMode {
         case .crime:
@@ -216,17 +226,6 @@ class MapViewController: UIViewController {
         }
         
         delegate?.mapViewController(self, didTapButtonForMode: newMode)
-        
-        
-//        setNavigationItem(toButton: crimeButton, forMode: viewModel.mapMode)
-//        if viewModel.mapMode != .police {
-//            policeButton.image = selectedPoliceImage
-//            crimeButton.image = crimeImage
-//            delegate?.mapViewController(self, didTapButtonForMode: .police)
-//        } else {
-//            policeButton.image = policeImage
-//            delegate?.mapViewController(self, didTapButtonForMode: .none)
-//        }
     }
     
     @IBAction func neighbourhoodButtonPressed(_ sender: Any) {

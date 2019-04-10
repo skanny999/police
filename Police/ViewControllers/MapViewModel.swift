@@ -118,7 +118,7 @@ extension MapViewModel: MapViewControllerDelegate {
     }
 
     
-    private func shouldUpdateData() -> Bool {
+    private var viewIsZoomedIn: Bool {
         
         if mapView.zoomLevel > 300 {
             print("zoom closer to retrieve data")
@@ -185,7 +185,7 @@ private extension MapViewModel {
 
     func displayCrimes() {
         fetchSavedCrimes()
-        if shouldUpdateData() {
+        if viewIsZoomedIn {
             getNewCrimes()
         } else {
             print("data already downloaded")
@@ -203,16 +203,42 @@ private extension MapViewModel {
     
     func getNewCrimes() {
         
-        print("Retrieving data")
-        networkCallsCounter += 1
-        UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
-            if error != nil {
-                print("Error updating crimes from beckend: \(error.debugDescription)")
-            } else {
-                self?.fetchSavedCrimes()
-                print("data retrieved")
+        if let existingPoligon = mapPolygon, existingPoligon.intersects(mapView.visibleMapRect) {
+            
+            let tempMapPolygon = existingPoligon.merge(with: mapView.visibleRectPolygon)
+            if !MKMapRectEqualToRect(existingPoligon.boundingMapRect, tempMapPolygon.boundingMapRect) {
+                
+                print("Retrieving data")
+                networkCallsCounter += 1
+                UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
+                    if error != nil {
+                        print("Error updating crimes from beckend: \(error.debugDescription)")
+                    } else {
+                        self?.fetchSavedCrimes()
+                        self?.mapPolygon = tempMapPolygon
+                        print("data retrieved")
+                    }
+                    self?.networkCallsCounter -= 1
+                }
             }
-            self?.networkCallsCounter -= 1
+
+        } else {
+            
+            mapPolygon = mapView.visibleRectPolygon
+            
+            print("Retrieving data")
+            networkCallsCounter += 1
+            UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
+                if error != nil {
+                    print("Error updating crimes from beckend: \(error.debugDescription)")
+                } else {
+                    self?.fetchSavedCrimes()
+                    print("data retrieved")
+                }
+                self?.networkCallsCounter -= 1
+            }
+            
+            
         }
     }
     
