@@ -27,7 +27,11 @@ extension MKPolygon {
                            rect.coordinates.topRight]
         
         return MKPolygon(coordinates: &coordinates, count: coordinates.count)
+    }
+    
+    func contains(_ polygon: MKPolygon) -> Bool {
         
+        return MKMapRectEqualToRect(self.boundingMapRect, polygon.boundingMapRect)
     }
     
     
