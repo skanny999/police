@@ -17,31 +17,43 @@ enum Mode {
 
 class MapViewModel: NSObject {
     
-    private var mapView: MKMapView!
+    // MARK: - View updater variables
     
     var mapMode: Mode = .none
+    var selecteNeighbourhoodDidChange: ((String?) -> Void)?
+    var dataIsLoading: ((Bool) -> Void)?
+    
+    // MARK: - Private properties
+    
+    private var mapView: MKMapView!
     private let locationManager = CLLocationManager()
     private var location: CLLocation?
     private var initialLocation: CLLocation?
     private var currentlyShownAnnotations: [Annotable] = []
     private var mapPolygon: MKPolygon?
-    
-    
-    // MARK: - View updater variables
-    var selecteNeighbourhoodDidChange: ((String?) -> Void)?
-    var dataIsLoading: ((Bool) -> Void)?
-    
-    private var isShowingNeighbourhood: Bool {
-        return mapView.overlays.count > 0
-    }
-    
-    var networkCallsCounter: Int = 0 {
+    private var networkCallsCounter: Int = 0 {
         didSet{
-            let isLoading = networkCallsCounter > 0
-            print(isLoading ? "data is loading:\(networkCallsCounter)" : "data has finished loading \(networkCallsCounter)")
             dataIsLoading?(networkCallsCounter > 0)
         }
     }
+    
+    // MARK: - Computed Variables
+    
+    private var isShowingNeighbourhood: Bool {
+        
+        return mapView.overlays.count > 0
+    }
+    
+    private var viewIsZoomedIn: Bool {
+        
+        if mapView.zoomLevel > 300 {
+            print("zoom closer to retrieve data")
+            return false
+        }
+        return true
+    }
+    
+    // MARK: - Setup
 
     init(with mapview: MKMapView) {
         
@@ -54,13 +66,6 @@ class MapViewModel: NSObject {
         registerAnnotationViewClass()
     }
     
-    
-    private var selectedNeighbourhood: String? {
-        didSet {
-            selecteNeighbourhoodDidChange?(selectedNeighbourhood)
-        }
-    }
-    
     private func registerAnnotationViewClass() {
         
         mapView.register(CrimeAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
@@ -68,7 +73,10 @@ class MapViewModel: NSObject {
     }
 }
 
+
 extension MapViewModel: MapViewControllerDelegate {
+    
+    // Map View Controller Delegate
     
     func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer) {
         
@@ -80,14 +88,13 @@ extension MapViewModel: MapViewControllerDelegate {
         
         if isShowingNeighbourhood {
             mapView.removeOverlays(mapView.overlays)
-            selectedNeighbourhood = nil
+            selecteNeighbourhoodDidChange?(nil)
             retrieveData()
         } else {
             let location = mapView.convert(selectedPoint, toCoordinateFrom: mapView)
             fetchNeighbourhood(forLocation: location)
         }
     }
-
 
     
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode) {
@@ -98,6 +105,36 @@ extension MapViewModel: MapViewControllerDelegate {
         dataIsLoading?(networkCallsCounter > 0)
     }
     
+    // MARK: - Annotations
+    
+    private func displayAnnotations(_ annotations: [Annotable]) {
+        
+        DispatchQueue.main.async {
+            
+            self.mapView.addAnnotations(annotations)
+            self.currentlyShownAnnotations.append(contentsOf: annotations)
+            
+            if self.isShowingNeighbourhood {
+                if let polygon = self.mapView.overlays.first as? MKPolygon {
+                    self.removeAnnotationsOutsidePolygon(polygon)
+                }
+            }
+        }
+    }
+    
+    private func resetAnnotations() {
+        
+        currentlyShownAnnotations = []
+        mapView.removeAnnotations(mapView.annotations)
+        mapPolygon = nil
+    }
+    
+    private func removeAnnotationsOutsidePolygon(_ polygon: MKPolygon) {
+        
+        let toRemove = currentlyShownAnnotations.filter { !polygon.contains(point: $0.coordinate)}
+        currentlyShownAnnotations = currentlyShownAnnotations.filter { polygon.contains(point: $0.coordinate)}
+        mapView.removeAnnotations(toRemove)
+    }
     
     private func thereIsAnAnnotation(on location: CGPoint) -> Bool {
         
@@ -109,27 +146,12 @@ extension MapViewModel: MapViewControllerDelegate {
         }
         return isAnnotation
     }
-    
-    private func resetAnnotations() {
-        
-        currentlyShownAnnotations = []
-        mapView.removeAnnotations(mapView.annotations)
-        mapPolygon = nil
-    }
+}
 
+
+extension MapViewModel: MKMapViewDelegate {
     
-    private var viewIsZoomedIn: Bool {
-        
-        if mapView.zoomLevel > 300 {
-            print("zoom closer to retrieve data")
-            return false
-        }
-        
-        return true
-    }
-    
-    
-    
+    // MARK: - MapView Delegates
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
@@ -138,20 +160,64 @@ extension MapViewModel: MapViewControllerDelegate {
         }
     }
     
-
     
-    private func displayAnnotations(_ annotations: [Annotable]) {
-
-        DispatchQueue.main.async {
-
-            self.mapView.addAnnotations(annotations)
-            self.currentlyShownAnnotations.append(contentsOf: annotations)
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation.conforms(to: Annotable.self)  {
             
-            if self.isShowingNeighbourhood {
-                if let polygon = self.mapView.overlays.first as? MKPolygon {
-                    self.removeAnnotation(outside: polygon)
-                }
-            }
+            return CrimeAnnotationView(annotation: annotation as! Annotable, reuseIdentifier: CrimeAnnotationView.reuseID)
+        }
+        return nil
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        if let overlay = overlay as? MKPolygon {
+            
+            return rendererFor(overlay)
+        }
+        return MKOverlayRenderer()
+    }
+    
+    
+    fileprivate func rendererFor(_ overlay: MKPolygon) -> MKOverlayRenderer {
+        
+        let renderer = MKPolygonRenderer(polygon: overlay)
+        renderer.fillColor = UIColor.black.withAlphaComponent(0.2)
+        renderer.strokeColor = .blue
+        renderer.lineWidth = 1
+        
+        DispatchQueue.main.async {
+            self.mapView.setVisibleMapRect(overlay.boundingMapRect,
+                                           edgePadding: UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0),
+                                           animated: true)
+        }
+        return renderer
+    }
+    
+    
+    // MARK: - Map Location
+    
+    private func zoom(into location: CLLocation) {
+        
+        setMapLocation(location, animated: true)
+    }
+    
+    
+    private func setMapLocation(_ location: CLLocation, animated: Bool) {
+        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        mapView.setRegion(region, animated: animated)
+    }
+    
+    
+    private func positionMapNearUser() {
+        
+        if let locationDict = UserDefaults.standard.object(forKey: "LAST_LOCATION") as? [String: CLLocationDegrees],
+            let location = locationDict.location {
+            initialLocation = location
+            setMapLocation(location, animated: false)
         }
     }
 }
@@ -206,8 +272,6 @@ private extension MapViewModel {
         }
     }
     
-    
-    
     private func updateCrimes(for polygon: MKPolygon) {
         
         networkCallsCounter += 1
@@ -217,7 +281,6 @@ private extension MapViewModel {
             } else {
                 self?.fetchSavedCrimes()
                 self?.mapPolygon = polygon
-                print("data retrieved")
             }
             self?.networkCallsCounter -= 1
         }
@@ -241,7 +304,7 @@ private extension MapViewModel {
     }
     
     func getNewStopAndSearch() {
-        
+    
         networkCallsCounter += 1
         UpdateManager.updateStopAndSearch(within: mapView.visibleMapRect) { [weak self] (error) in
             if error != nil {
@@ -276,21 +339,22 @@ private extension MapViewModel {
         
         if let polygon = neighbourood.polygonData?.polygon {
             mapView.addOverlay(polygon)
-            selectedNeighbourhood = neighbourood.name
+            selecteNeighbourhoodDidChange?(neighbourood.name)
             retrieveData()
         }
     }
-    
-    func removeAnnotation(outside polygon: MKPolygon) {
-        
-        let toRemove = currentlyShownAnnotations.filter { !polygon.contains(point: $0.coordinate)}
-        currentlyShownAnnotations = currentlyShownAnnotations.filter { polygon.contains(point: $0.coordinate)}
-        mapView.removeAnnotations(toRemove)
-    }
 }
 
-extension MapViewModel: MKMapViewDelegate {
 
+// MARK: - Search
+
+extension MapViewModel: SearchResultsDelegate {
+    
+    func searchResultsController(_ sec: SearchResultsController, didSelectLocation description: String) {
+        
+        findMapItems(with: description)
+    }
+    
     private func findLocations(with text: String) {
         
         findMapItems(with: text)
@@ -303,79 +367,21 @@ extension MapViewModel: MKMapViewDelegate {
         let search = MKLocalSearch(request: request)
         
         search.start {  [weak self] (response, error) in
-    
+            
             if let response = response {
-                let responceLocation = CLLocation(latitude: response.boundingRegion.center.latitude, longitude: response.boundingRegion.center.longitude)
-                self?.location = responceLocation
-                self?.zoom(into: responceLocation)
+                let responseLocation = CLLocation(latitude: response.boundingRegion.center.latitude,
+                                                  longitude: response.boundingRegion.center.longitude)
+                self?.location = responseLocation
+                self?.zoom(into: responseLocation)
             }
         }
     }
-
-
-    private func setMapLocation(_ location: CLLocation, animated: Bool) {
-        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        let region = MKCoordinateRegion(center: location.coordinate, span: span)
-        mapView.setRegion(region, animated: animated)
-    }
-    
-    func zoom(into location: CLLocation) {
-        
-        setMapLocation(location, animated: true)
-    }
-    
-    func positionMapNearUser() {
-        
-        if let locationDict = UserDefaults.standard.object(forKey: "LAST_LOCATION") as? [String: CLLocationDegrees],
-            let location = locationDict.location {
-            initialLocation = location
-            setMapLocation(location, animated: false)
-        }
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if annotation.conforms(to: Annotable.self)  {
-            
-            return CrimeAnnotationView(annotation: annotation as! Annotable, reuseIdentifier: CrimeAnnotationView.reuseID)
-        }
-         return nil
-    }
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        if let overlay = overlay as? MKPolygon {
-
-            let renderer = MKPolygonRenderer(polygon: overlay)
-            renderer.fillColor = UIColor.black.withAlphaComponent(0.2)
-            renderer.strokeColor = .blue
-            renderer.lineWidth = 1
-            
-            DispatchQueue.main.async {
-                mapView.setVisibleMapRect(overlay.boundingMapRect,
-                                          edgePadding: UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0),
-                                          animated: true)
-            }
-
-            return renderer
-        }
-        return MKOverlayRenderer()
-    }
 }
 
-
-
-extension MapViewModel: SearchResultsDelegate {
-    
-    func searchResultsController(_ sec: SearchResultsController, didSelectLocation description: String) {
-        
-        findMapItems(with: description)
-    }
-}
-
-
+// MARK: - Location
 
 extension MapViewModel: CLLocationManagerDelegate {
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
