@@ -34,10 +34,11 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var neighbourhoodDetailsButton: UIButton!
     @IBOutlet weak var neighbourhoodLabel: UILabel!
-
     
     @IBOutlet weak var neighbourhoodConstraint: NSLayoutConstraint!
+    
     var searchController: UISearchController?
+    var detailsViewController: SelectionDetailsViewController!
 
     var viewModel: MapViewModel!
     var delegate: MapViewControllerDelegate?
@@ -62,6 +63,7 @@ class MapViewController: UIViewController {
     private func configureViewModel() {
         
         viewModel = MapViewModel(with: mapView)
+        viewModel.setDetailsController(detailsViewController)
         self.delegate = viewModel
         configureViewUpdater()
     }
@@ -230,7 +232,20 @@ class MapViewController: UIViewController {
     
     @IBAction func neighbourhoodButtonPressed(_ sender: Any) {
         
+        // did select neighbourhood
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "DETAILS_SEGUE" {
+            if let navigationController = segue.destination as? UINavigationController,
+                let detailsController = navigationController.viewControllers.first as? SelectionDetailsViewController {
+                detailsViewController = detailsController
+            } else {
+                fatalError("Couldn't set details controller")
+            }
+        }
     }
 }
 

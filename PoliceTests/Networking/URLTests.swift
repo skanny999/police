@@ -66,7 +66,7 @@ class URLTests: XCTestCase {
         URLFactory.urlForOutcomesByExactLocationId(locationId: "884227", period: period),
         URLFactory.urlForOutcomesByLocation(location: location, period: nil),
         URLFactory.urlForOutcomesByLocation(location: location, period: period),
-        URLFactory.urlForSpecificOutcome(forCrime: "590d68b69228a9ff95b675bb4af591b38de561aa03129dc09a03ef34f537588c"),
+        URLFactory.urlForOutcomes(forCrime: "590d68b69228a9ff95b675bb4af591b38de561aa03129dc09a03ef34f537588c"),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .specific),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .boudaries),
         URLFactory.urlForNeighbourhood(neighbourhoodId: "NC04", policeForceId: "leicestershire", infoType: .team),

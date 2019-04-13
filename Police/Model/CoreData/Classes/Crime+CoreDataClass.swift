@@ -78,6 +78,7 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
             self.month = period.month
             self.year = period.year
         }
+        self.latestOutcome = json[Key.latestOutcome].string
         
         self.addOutcomes(from: json[Key.latestOutcome].array)
     }

@@ -99,7 +99,7 @@ class CoreDataModelTest: XCTestCase {
         // Original data
         let data = dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood)
         
-        UpdateProcessor.updateNeighbourhood(withDataArray: dataArray, identifier: "NC04") { [weak self] (updated) in
+        UpdateProcessor.updateNeighbourhood(withDataArray: dataArray, identifier: "NC04") { [weak self] (updated, neighbourood)  in
             
             let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: dataArray[0])
             XCTAssertTrue(neighbourhood?.identifier == "NC04", neighbourhood?.identifier ?? "nil")
@@ -229,7 +229,7 @@ class CoreDataModelTest: XCTestCase {
                                 dataFromFile(JSONFile.Events.events),
                                 dataFromFile(JSONFile.Priorities.priorities)]
         
-        UpdateProcessor.updateNeighbourhood(withDataArray: editedDataArray, identifier: "NC04") { [weak self] (updated) in
+        UpdateProcessor.updateNeighbourhood(withDataArray: editedDataArray, identifier: "NC04") { [weak self] (updated, neighbourhood) in
             
             let neighbourhood = self?.savedObject(ofType: Neighbourhood.self, withData: data)
             XCTAssertTrue(neighbourhood?.identifier == "NC04", neighbourhood?.identifier ?? "nil")

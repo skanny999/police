@@ -22,6 +22,7 @@ class MapViewModel: NSObject {
     var mapMode: Mode = .none
     var selecteNeighbourhoodDidChange: ((String?) -> Void)?
     var dataIsLoading: ((Bool) -> Void)?
+    var detailsViewController: SelectionDetailsViewController!
     
     // MARK: - Private properties
     
@@ -71,12 +72,16 @@ class MapViewModel: NSObject {
         mapView.register(CrimeAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
+    
+    func setDetailsController(_ detailController: SelectionDetailsViewController) {
+        detailsViewController = detailController
+    }
 }
 
 
 extension MapViewModel: MapViewControllerDelegate {
     
-    // Map View Controller Delegate
+    // MapView Controller Delegate
     
     func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer) {
         
@@ -106,6 +111,40 @@ extension MapViewModel: MapViewControllerDelegate {
     }
     
     // MARK: - Annotations
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        guard let annotation = view.annotation else { return }
+        
+        if let annotations = view.annotation as? MKClusterAnnotation {
+            showDetailsForAnnotations(annotations)
+        } else  {
+            showDetailsForSingleAnnotation(annotation)
+        }
+    }
+    
+    fileprivate func showDetailsForAnnotations(_ annotations: MKClusterAnnotation) {
+        if let crimes = annotations.memberAnnotations as? [Crime] {
+            print(crimes)
+        } else if let sas = annotations.memberAnnotations as? [StopAndSearch] {
+            print(sas)
+        }
+    }
+    
+    fileprivate func showDetailsForSingleAnnotation(_ annotation: MKAnnotation) {
+        switch annotation {
+        case let crime as Crime:
+            UpdateManager.updateOutcomes(forCrime: crime) { (success) in
+                if let outcome = crime.outcomes?.first {
+                    print(outcome)
+                }
+            }
+        case let stopAndSearch as StopAndSearch:
+            print(stopAndSearch)
+        default:
+            break
+        }
+    }
     
     private func displayAnnotations(_ annotations: [Annotable]) {
         
@@ -325,7 +364,6 @@ private extension MapViewModel {
             if let error = error {
                 print(error)
             } else if let neighbourood = neighbouhood {
-                
                 DispatchQueue.main.async {
                     self?.showNeighbourhood(neighbourood)
                 }
@@ -382,7 +420,6 @@ extension MapViewModel: SearchResultsDelegate {
 
 extension MapViewModel: CLLocationManagerDelegate {
     
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if initialLocation != nil { return }
@@ -415,9 +452,3 @@ extension MapViewModel: CLLocationManagerDelegate {
         }
     }
 }
-
-
-
-
-
-

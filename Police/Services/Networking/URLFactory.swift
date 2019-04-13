@@ -105,9 +105,9 @@ struct URLFactory {
         return completeUrl(with: endpoint)
     }
     
-    static func urlForSpecificOutcome(forCrime crimeId: String) -> URL {
+    static func urlForOutcomes(forCrime crimeId: String) -> URL {
         
-        let endpoint = String(format: Outcomes.specificOutcome.rawValue, crimeId)
+        let endpoint = String(format: Outcomes.specificCrime.rawValue, crimeId)
         return completeUrl(with:endpoint)
     }
     
@@ -224,7 +224,7 @@ private enum Outcomes: String {
     case byLocationId = "outcomes-at-location?%@location_id=%@" //outcomes-at-location?date=2017-01&location_id=883498
     case byLocation = "outcomes-at-location?%@lat=%@&lng=%@" // outcomes-at-location?date=2017-01&lat=52.629729&lng=-1.131592
     case byArea = "outcomes-at-location?%@poly=%@" //date as above, lat,long:lat,long:...
-    case specificOutcome = "outcomes-for-crime/%@" // outcomes-for-crime/590d68b69228a9ff95b675bb4af591b38de561aa03129dc09a03ef34f537588c
+    case specificCrime = "outcomes-for-crime/%@" // outcomes-for-crime/590d68b69228a9ff95b675bb4af591b38de561aa03129dc09a03ef34f537588c
 }
 
 

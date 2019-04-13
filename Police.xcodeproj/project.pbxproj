@@ -22,6 +22,10 @@
 		8B3DD01A221A2FEC00B98FE5 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD019221A2FEC00B98FE5 /* Events.json */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
 		8B3F604F2200B894001D6651 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */; };
+		8B4B1B54226220C10096A08C /* SelectionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B53226220C10096A08C /* SelectionDetailsViewController.swift */; };
+		8B4B1B56226231B70096A08C /* CrimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B55226231B70096A08C /* CrimeViewModel.swift */; };
+		8B4B1B582262320A0096A08C /* CrimesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B572262320A0096A08C /* CrimesViewModel.swift */; };
+		8B4B1B5C22623BC50096A08C /* PoliceNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B5B22623BC50096A08C /* PoliceNavigationController.swift */; };
 		8B4C41F222541DB1000368E4 /* NSData+MKPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */; };
 		8B4C41F42254238A000368E4 /* NeighbourhoodBoundaries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */; };
 		8B56E2A92207548C0061D1CF /* CoreDataModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */; };
@@ -135,6 +139,10 @@
 		8B3DD019221A2FEC00B98FE5 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8B3F604C2200A1BC001D6651 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		8B4B1B53226220C10096A08C /* SelectionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionDetailsViewController.swift; sourceTree = "<group>"; };
+		8B4B1B55226231B70096A08C /* CrimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeViewModel.swift; sourceTree = "<group>"; };
+		8B4B1B572262320A0096A08C /* CrimesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimesViewModel.swift; sourceTree = "<group>"; };
+		8B4B1B5B22623BC50096A08C /* PoliceNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceNavigationController.swift; sourceTree = "<group>"; };
 		8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSData+MKPolygon.swift"; sourceTree = "<group>"; };
 		8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodBoundaries.json; sourceTree = "<group>"; };
 		8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelTest.swift; sourceTree = "<group>"; };
@@ -333,6 +341,10 @@
 				8B136367223964E700ACB0B2 /* SearchResultsController.swift */,
 				8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */,
 				8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */,
+				8B4B1B53226220C10096A08C /* SelectionDetailsViewController.swift */,
+				8B4B1B55226231B70096A08C /* CrimeViewModel.swift */,
+				8B4B1B572262320A0096A08C /* CrimesViewModel.swift */,
+				8B4B1B5B22623BC50096A08C /* PoliceNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -740,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B4B1B5C22623BC50096A08C /* PoliceNavigationController.swift in Sources */,
 				8B87EE9D224CE73700BFF848 /* Police-Bridging-Header.h in Sources */,
 				8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */,
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
@@ -759,6 +772,7 @@
 				8B136368223964E700ACB0B2 /* SearchResultsController.swift in Sources */,
 				8BAFD592224459D200D2A544 /* CoreDataProvider.swift in Sources */,
 				8BEBCB6021F8DC840004AFDE /* Contact+CoreDataProperties.swift in Sources */,
+				8B4B1B582262320A0096A08C /* CrimesViewModel.swift in Sources */,
 				8B155EBC21F1319C00783C23 /* AppDelegate.swift in Sources */,
 				8BEBCBA6220109E20004AFDE /* String+Utils.swift in Sources */,
 				8BEBCB5521F8DC840004AFDE /* Crime+CoreDataClass.swift in Sources */,
@@ -776,6 +790,7 @@
 				8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */,
 				8BEBCB6621F8DC840004AFDE /* Force+CoreDataProperties.swift in Sources */,
 				8BEBCB8D21FCFB3F0004AFDE /* Categories.swift in Sources */,
+				8B4B1B54226220C10096A08C /* SelectionDetailsViewController.swift in Sources */,
 				8BEBCF8F22470CD5006CEC1C /* Array+Utils.swift in Sources */,
 				8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */,
 				8BEBCB6E21FCAB090004AFDE /* URLFactory.swift in Sources */,
@@ -786,6 +801,7 @@
 				8B4C41F222541DB1000368E4 /* NSData+MKPolygon.swift in Sources */,
 				8BEBCB6321F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift in Sources */,
 				8BEBCB6121F8DC840004AFDE /* Outcome+CoreDataClass.swift in Sources */,
+				8B4B1B56226231B70096A08C /* CrimeViewModel.swift in Sources */,
 				8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */,
 				8B1A2F32223813AE0022F6C0 /* MapViewController.swift in Sources */,
 				8BEBCB5621F8DC840004AFDE /* Crime+CoreDataProperties.swift in Sources */,

@@ -26,6 +26,7 @@
         <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="extraContent" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latestOutcome" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="locationSubtypeCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -136,7 +137,7 @@
     </entity>
     <elements>
         <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="343"/>
-        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="240"/>
+        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="255"/>
         <element name="CrimesPolygon" positionX="-243" positionY="-468" width="128" height="75"/>
         <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="195"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>

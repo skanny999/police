@@ -20,7 +20,6 @@ class UpdateManager {
             if let data = data {
                 
                 UpdateProcessor.updatePeriods(withData: data)
-
             }
         }
     }
@@ -43,6 +42,22 @@ class UpdateManager {
                     }
                 })
             }
+        }
+    }
+    
+    class func updateOutcomes(forCrime crime: Crime, completion: @escaping (Bool) -> Void) {
+        
+        NetworkProvider.getRequest(forUrl: URLFactory.urlForOutcomes(forCrime: crime.persistentId!)) { (data, error) in
+            if error != nil {
+                completion(false)
+                return
+            }
+            
+            guard let data = data else { completion(false); return }
+            
+            UpdateProcessor.updateCrimeOutcome(crime, withData: data, completion: { (success) in
+                completion(success)
+            })
         }
     }
     

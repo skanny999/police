@@ -30,10 +30,27 @@ class UpdateProcessor {
         }
     }
     
+    static func updateCrimeOutcome(_ crime: Crime, withData data: Data, completion: @escaping (Bool) -> Void) {
+        
+        CoreDataManager.performBackgroundTask { (context) in
+            
+            if let json = try? JSON(data: data),
+                let jsonArray = json["outcomes"].array {
+                
+                let crime = Crime.object(withId: crime.identifier, in: context)
+                crime?.addOutcomes(from: jsonArray)
+                CoreDataManager.shared.save()
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
     
     static func updateNeighbourhood(withDataArray dataArray: [Data], identifier: String, completion: @escaping (Bool, Neighbourhood) -> Void) {
         
-        CoreDataManager.performViewTask { (context) in
+        CoreDataManager.performBackgroundTask { (context) in
             
             if let neighbourhoodJson = try? JSON(data: dataArray[0]) {
                 
@@ -51,7 +68,8 @@ class UpdateProcessor {
                     
                     let priorities = try? JSON(data: dataArray[4]).array
                     neighbourhood.addPriorities(from: priorities)
-
+                    
+                    CoreDataManager.shared.save()
                     completion(true, neighbourhood)
                 }
             }
@@ -106,7 +124,7 @@ class UpdateProcessor {
     
     static func updatePeriods(withData data: Data) {
         
-        CoreDataManager.performViewTask { (context) in
+        CoreDataManager.performBackgroundTask { (context) in
             if let json = try? JSON(data: data),
                 let date = json["date"].string?.periodDate {
                 let availableDates = date.previousAvailableDates().compactMap { $0 as NSDate }
@@ -132,11 +150,7 @@ class UpdateProcessor {
                                             in: context)
                     }
                 }
-                do {
-                    try context.save()
-                } catch {
-                    print("Couldn't save processed periods: \(error.localizedDescription)")
-                }
+                CoreDataManager.shared.save()
             }
         }
     }
