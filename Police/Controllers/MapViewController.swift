@@ -19,7 +19,8 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController {
     
-
+    @IBOutlet weak var containerViewHeightContstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var mapView: MKMapView!
     
     var crimeButton: UIBarButtonItem!
@@ -36,6 +37,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var neighbourhoodLabel: UILabel!
     
     @IBOutlet weak var neighbourhoodConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerPositionConstraint: NSLayoutConstraint!
     
     var searchController: UISearchController?
     var detailsViewController: SelectionDetailsViewController!
@@ -50,6 +52,8 @@ class MapViewController: UIViewController {
         configureSearchResultsController()
         configureGestureRecogniser()
         configureBarButtonItems()
+        containerViewHeightContstraint.constant = mapView.frame.height
+        containerPositionConstraint.constant = 0
     }
     
     private func configureBarButtonItems() {
@@ -80,6 +84,15 @@ class MapViewController: UIViewController {
             DispatchQueue.main.async {
                 self.updateActivityIndicator(status: isLoading)
             }
+        }
+        
+        viewModel.hideDetails = {
+            self.hideDetailsView()
+        }
+        
+        viewModel.showDetails = {
+            self.showDetailsView()
+            
         }
     }
     
@@ -154,6 +167,28 @@ class MapViewController: UIViewController {
     private func showNeighbourhoodSelector() {
         neighbourhoodConstraint.constant = 0
 
+    }
+    
+    private func hideDetailsView() {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.containerViewHeightContstraint.constant = self.mapView.frame.height
+            self.containerPositionConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+
+    }
+    
+    private func showDetailsView() {
+        
+        UIView.animate(withDuration: 0.5) {
+            self.containerViewHeightContstraint.constant = self.mapView.frame.height
+            self.containerPositionConstraint.constant = 0 - self.mapView.frame.height
+            self.view.layoutIfNeeded()
+        }
+
+        
+        
     }
 
     

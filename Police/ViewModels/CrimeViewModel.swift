@@ -8,9 +8,17 @@
 
 import Foundation
 
-struct CrimeViewModel {
+
+class CrimeViewModel: NSObject {
     
     let crime: Crime
+    
+    init(with crime: Crime) {
+        self.crime = crime
+        super.init()
+    }
+    
+    
     
     
     

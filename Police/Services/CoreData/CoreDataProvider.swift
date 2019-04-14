@@ -15,6 +15,7 @@ class CoreDataProvider {
     
     static func crimesWithin(mapViewArea: MKMapRect, excluding currentAnnotations: [Annotable]) -> [Crime]? {
         
+        #warning("Filter by currently selected period")
         let crimes = currentAnnotations.compactMap { $0 as? Crime }
         let context = CoreDataManager.shared.container.viewContext
         let fetchRequest = Crime.sortedFetchRequest

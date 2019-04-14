@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="72" id="KGk-i7-Jjw" customClass="CrimeSummaryCell" customModule="Police" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="72"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="71.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rcs-7C-5uY">
+                        <rect key="frame" x="20" y="8" width="56" height="55.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="MkD-VM-4cn"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="9Rv-B3-m47">
+                        <rect key="frame" x="92" y="8" width="238" height="56"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CRIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00F-Z8-eHp">
+                                <rect key="frame" x="0.0" y="0.0" width="43" height="28"/>
+                                <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="14"/>
+                                <color key="textColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6S-7m-1ls">
+                                <rect key="frame" x="0.0" y="28" width="44.5" height="28"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rcs-7C-5uY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="73r-DH-LvH"/>
+                    <constraint firstAttribute="trailing" secondItem="9Rv-B3-m47" secondAttribute="trailing" constant="20" id="Bpb-ev-gyh"/>
+                    <constraint firstItem="9Rv-B3-m47" firstAttribute="leading" secondItem="rcs-7C-5uY" secondAttribute="trailing" constant="16" id="PSQ-qo-BJu"/>
+                    <constraint firstItem="rcs-7C-5uY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ScW-cm-daA"/>
+                    <constraint firstAttribute="bottom" secondItem="9Rv-B3-m47" secondAttribute="bottom" constant="7.5" id="VeK-s2-HKt"/>
+                    <constraint firstItem="9Rv-B3-m47" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Yis-4u-Hq5"/>
+                    <constraint firstAttribute="bottom" secondItem="rcs-7C-5uY" secondAttribute="bottom" constant="8" id="mhh-QH-eTi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="crimeDescription" destination="R6S-7m-1ls" id="79p-FZ-tDY"/>
+                <outlet property="crimeImage" destination="rcs-7C-5uY" id="ATq-Mn-KwB"/>
+            </connections>
+            <point key="canvasLocation" x="69.565217391304358" y="44.866071428571423"/>
+        </tableViewCell>
+    </objects>
+</document>

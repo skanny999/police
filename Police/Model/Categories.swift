@@ -62,6 +62,10 @@ enum CrimeCategory: String, CaseIterable {
         }
     }
     
+    var image: UIImage {
+        return UIImage(named: "crime-selected")!
+    }
+    
     var gravity: CrimeGravity {
         
         switch self {

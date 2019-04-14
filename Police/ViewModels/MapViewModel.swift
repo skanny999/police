@@ -22,6 +22,9 @@ class MapViewModel: NSObject {
     var mapMode: Mode = .none
     var selecteNeighbourhoodDidChange: ((String?) -> Void)?
     var dataIsLoading: ((Bool) -> Void)?
+    var hideDetails: (() -> Void)?
+    var showDetails: (() -> Void)?
+    
     var detailsViewController: SelectionDetailsViewController!
     
     // MARK: - Private properties
@@ -75,9 +78,20 @@ class MapViewModel: NSObject {
     
     func setDetailsController(_ detailController: SelectionDetailsViewController) {
         detailsViewController = detailController
+        detailController.delegate = self
+        detailController.viewModel = nil
+        
     }
+
 }
 
+
+extension MapViewModel: Dismissable {
+    
+    func dismiss(_ viewController: SelectionDetailsViewController) {
+        hideDetails?()
+    }
+}
 
 extension MapViewModel: MapViewControllerDelegate {
     
@@ -125,7 +139,8 @@ extension MapViewModel: MapViewControllerDelegate {
     
     fileprivate func showDetailsForAnnotations(_ annotations: MKClusterAnnotation) {
         if let crimes = annotations.memberAnnotations as? [Crime] {
-            print(crimes)
+            detailsViewController.viewModel = CrimesViewModel(with: crimes)
+            showDetails?()
         } else if let sas = annotations.memberAnnotations as? [StopAndSearch] {
             print(sas)
         }

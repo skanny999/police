@@ -21,6 +21,7 @@ class UpdateProcessor {
                 DispatchQueue.main.async {
                     completion(true)
                 }
+                
             } else {
                 
                 DispatchQueue.main.async {
@@ -167,23 +168,4 @@ class UpdateProcessor {
         return nil
     }
     
-    static func processNeighbourhood(fromData datas: [Data]) {
-        
-        for (index, data) in datas.enumerated() {
-            
-            if let json = try? JSON(data: data) {
-                
-                print(json)
-                
-            } else {
-                
-                print("/n/n/n No data at index \(index)")
-            }
-            
-            
-        }
-        
-        
-        
-    }
 }
