@@ -63,13 +63,8 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-Bo-RCp">
                                 <rect key="frame" x="0.0" y="-4" width="375" height="558"/>
                             </mapView>
-                            <containerView contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-UE-z92">
-                                <rect key="frame" x="0.0" y="554" width="375" height="640"/>
-                                <color key="backgroundColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="640" id="QkY-1G-btI"/>
-                                </constraints>
+                            <containerView contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-UE-z92">
+                                <rect key="frame" x="0.0" y="554" width="375" height="558"/>
                                 <connections>
                                     <segue destination="caZ-lD-spQ" kind="embed" identifier="DETAILS_SEGUE" id="1je-NT-0lG"/>
                                 </connections>
@@ -80,6 +75,7 @@
                             <constraint firstItem="nEt-UE-z92" firstAttribute="trailing" secondItem="Jze-Dk-5BS" secondAttribute="trailing" id="3i4-nG-8h9"/>
                             <constraint firstItem="nEt-UE-z92" firstAttribute="leading" secondItem="Jze-Dk-5BS" secondAttribute="leading" id="Aah-I8-s5l"/>
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Aen-XP-4fC"/>
+                            <constraint firstItem="nEt-UE-z92" firstAttribute="height" secondItem="qOv-Bo-RCp" secondAttribute="height" id="BdZ-Cs-PEJ"/>
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="NyW-kP-ODl" secondAttribute="bottom" constant="-44" id="KKZ-7r-eHq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="Jze-Dk-5BS" secondAttribute="bottom" constant="-44" id="QZ4-5K-rUr"/>
                             <constraint firstItem="Jze-Dk-5BS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WDL-Ae-5rc"/>
@@ -100,7 +96,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerPositionConstraint" destination="wvm-ry-W37" id="fY6-Io-TLf"/>
-                        <outlet property="containerViewHeightContstraint" destination="QkY-1G-btI" id="r2g-R1-Chm"/>
                         <outlet property="mapView" destination="qOv-Bo-RCp" id="x5r-G1-fow"/>
                         <outlet property="neighbourhoodConstraint" destination="KKZ-7r-eHq" id="iZ8-QR-8dl"/>
                         <outlet property="neighbourhoodDetailsButton" destination="NyW-kP-ODl" id="xlc-c2-BDI"/>
@@ -192,7 +187,9 @@
         <scene sceneID="lRn-bx-ywW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="caZ-lD-spQ" customClass="PoliceNavigationController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nTJ-qL-5tz">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -209,24 +206,23 @@
         <!--Details-->
         <scene sceneID="uud-1U-lIf">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cA5-d1-8ZB" customClass="SelectionDetailsViewController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SQd-Vz-sjG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="cA5-d1-8ZB" customClass="SelectionDetailsViewController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SQd-Vz-sjG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-9G-d26">
-                                <rect key="frame" x="0.0" y="64" width="375" height="576"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PVc-9G-d26" firstAttribute="leading" secondItem="uHt-DC-mnd" secondAttribute="leading" id="QD3-Qo-gdZ"/>
-                            <constraint firstItem="uHt-DC-mnd" firstAttribute="trailing" secondItem="PVc-9G-d26" secondAttribute="trailing" id="eV6-h2-nz7"/>
-                            <constraint firstItem="PVc-9G-d26" firstAttribute="top" secondItem="uHt-DC-mnd" secondAttribute="top" id="qsz-2y-Gxu"/>
-                            <constraint firstItem="uHt-DC-mnd" firstAttribute="bottom" secondItem="PVc-9G-d26" secondAttribute="bottom" id="yVt-dm-bfb"/>
+                            <constraint firstItem="PVc-9G-d26" firstAttribute="leading" secondItem="SQd-Vz-sjG" secondAttribute="leading" id="QD3-Qo-gdZ"/>
+                            <constraint firstAttribute="trailing" secondItem="PVc-9G-d26" secondAttribute="trailing" id="eV6-h2-nz7"/>
+                            <constraint firstItem="PVc-9G-d26" firstAttribute="top" secondItem="SQd-Vz-sjG" secondAttribute="top" id="qsz-2y-Gxu"/>
+                            <constraint firstAttribute="bottom" secondItem="PVc-9G-d26" secondAttribute="bottom" id="yVt-dm-bfb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uHt-DC-mnd"/>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="2cj-Lf-zPj">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="P7d-fA-O6l">
@@ -235,6 +231,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="PVc-9G-d26" id="exd-kV-8Ef"/>
                     </connections>

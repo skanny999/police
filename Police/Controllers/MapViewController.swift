@@ -19,7 +19,7 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var containerViewHeightContstraint: NSLayoutConstraint!
+//    @IBOutlet weak var containerViewHeightContstraint: NSLayoutConstraint!
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -52,7 +52,7 @@ class MapViewController: UIViewController {
         configureSearchResultsController()
         configureGestureRecogniser()
         configureBarButtonItems()
-        containerViewHeightContstraint.constant = mapView.frame.height
+//        containerViewHeightContstraint.constant = mapView.frame.height
         containerPositionConstraint.constant = 0
     }
     
@@ -172,7 +172,7 @@ class MapViewController: UIViewController {
     private func hideDetailsView() {
         
         UIView.animate(withDuration: 0.5) {
-            self.containerViewHeightContstraint.constant = self.mapView.frame.height
+//            self.containerViewHeightContstraint.constant = self.mapView.frame.height
             self.containerPositionConstraint.constant = 0
             self.view.layoutIfNeeded()
         }
@@ -182,7 +182,7 @@ class MapViewController: UIViewController {
     private func showDetailsView() {
         
         UIView.animate(withDuration: 0.5) {
-            self.containerViewHeightContstraint.constant = self.mapView.frame.height
+//            self.containerViewHeightContstraint.constant = self.mapView.frame.height
             self.containerPositionConstraint.constant = 0 - self.mapView.frame.height
             self.view.layoutIfNeeded()
         }
