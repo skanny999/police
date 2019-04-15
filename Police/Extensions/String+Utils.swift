@@ -27,6 +27,40 @@ extension String {
         }
     }
     
+    var monthDescription: String? {
+        
+        guard self.isValidMonth else { return nil }
+        
+        switch self {
+        case "01":
+            return "January"
+        case "02":
+            return "February"
+        case "03":
+            return "March"
+        case "04":
+            return "April"
+        case "05":
+            return "May"
+        case "06":
+            return "June"
+        case "07":
+            return "July"
+        case "08":
+            return "August"
+        case "09":
+            return "September"
+        case "10":
+            return "October"
+        case "11":
+            return "November"
+        case "12":
+            return "December"
+        default:
+            return nil
+        }
+    }
+    
     var periodDate: Date? {
 
         let date = self.split(separator: "-").dropLast()
@@ -43,6 +77,25 @@ extension String {
             else { return nil }
         
         return Date.date(fromDay: 1, month: monthNumber, year: yearNumber)
+    }
+    
+    var dateDescription: String? {
+        
+        let date = self.split(separator: "-").dropLast()
+        
+        guard date.count == 2,
+            let month = date.last,
+            month.count == 2,
+            let monthNumber = Int(month),
+            monthNumber.isValidMonth,
+            let monthDescription = String(month).monthDescription,
+            let year = date.first,
+            year.count == 4,
+            let yearNumber = Int(year),
+            yearNumber.isValidYear
+            else { return nil }
+        
+        return "\(monthDescription) \(year)"
     }
     
     var dateValue: NSDate? {

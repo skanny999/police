@@ -38,9 +38,10 @@ class SelectionDetailsViewController: UIViewController {
 
         super.viewDidLoad()
 
-        tableView.register(CrimeSummaryCell.nib, forCellReuseIdentifier: CrimeSummaryCell.identifier)
-
-
+        tableView.register(CrimeDescriptionCell.nib, forCellReuseIdentifier: CrimeDescriptionCell.identifier)
+        tableView.register(PeriodCell.nib, forCellReuseIdentifier: PeriodCell.identifier)
+        tableView.register(LocationCell.nib, forCellReuseIdentifier: LocationCell.identifier)
+        tableView.register(OutcomeCell.nib, forCellReuseIdentifier: OutcomeCell.identifier)
     }
     
     func setDelegates() {

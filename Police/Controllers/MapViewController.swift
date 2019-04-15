@@ -19,8 +19,6 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController {
     
-//    @IBOutlet weak var containerViewHeightContstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var mapView: MKMapView!
     
     var crimeButton: UIBarButtonItem!
@@ -52,16 +50,6 @@ class MapViewController: UIViewController {
         configureSearchResultsController()
         configureGestureRecogniser()
         configureBarButtonItems()
-//        containerViewHeightContstraint.constant = mapView.frame.height
-        containerPositionConstraint.constant = 0
-    }
-    
-    private func configureBarButtonItems() {
-        crimeButton = UIBarButtonItem(image: crimeImage, style: .plain, target: self, action: #selector(crimeButtonTapped))
-        policeButton = UIBarButtonItem(image: policeImage, style: .plain, target: self, action: #selector(policeButtonTapped))
-        activityButton = UIBarButtonItem.init(customView: activityIndicator)
-        navigationItem.setLeftBarButton(crimeButton, animated: false)
-        navigationItem.setRightBarButton(policeButton, animated: false)
     }
     
     private func configureViewModel() {
@@ -72,6 +60,15 @@ class MapViewController: UIViewController {
         configureViewUpdater()
     }
     
+    private func configureBarButtonItems() {
+        crimeButton = UIBarButtonItem(image: crimeImage, style: .plain, target: self, action: #selector(crimeButtonTapped))
+        policeButton = UIBarButtonItem(image: policeImage, style: .plain, target: self, action: #selector(policeButtonTapped))
+        activityButton = UIBarButtonItem.init(customView: activityIndicator)
+        navigationItem.setLeftBarButton(crimeButton, animated: false)
+        navigationItem.setRightBarButton(policeButton, animated: false)
+    }
+    
+
     private func configureViewUpdater() {
         
         viewModel.selecteNeighbourhoodDidChange = { (selectedNeighbourhood) in
@@ -87,14 +84,19 @@ class MapViewController: UIViewController {
         }
         
         viewModel.hideDetails = {
-            self.hideDetailsView()
+            DispatchQueue.main.async {
+                self.hideDetailsView()
+            }
         }
         
         viewModel.showDetails = {
-            self.showDetailsView()
-            
+            DispatchQueue.main.async {
+                self.showDetailsView()
+            }
         }
     }
+    
+    // MARK: - BarButtons
     
     private func updateActivityIndicator(status dataIsLoading: Bool) {
         
@@ -117,7 +119,6 @@ class MapViewController: UIViewController {
     }
     
     
-    
     private func setButton(_ button: UIBarButtonItem, isSpinner: Bool, forMode mode: Mode) {
         
         let newButton = isSpinner ? activityButton : button
@@ -129,8 +130,8 @@ class MapViewController: UIViewController {
         case .none:
             return
         }
-        
     }
+    
     
     private func resetNavigationItemButton(_ button: UIBarButtonItem, forMode mode: Mode) {
         
@@ -149,50 +150,8 @@ class MapViewController: UIViewController {
         navigationItem.searchController = configuredSearchController()
     }
     
-    private func updateViewWith(_ neighbourhood: String?) {
-        
-        if let neighbourhood = neighbourhood?.capitalized.stripOutHtml() {
-            neighbourhoodLabel.text = neighbourhood
-            showNeighbourhoodSelector()
-        } else {
-            hideNeighbourhoodSelector()
-        }
-    }
     
-    private func hideNeighbourhoodSelector() {
-        neighbourhoodConstraint.constant = -44
-        self.neighbourhoodLabel.text = nil
-    }
-    
-    private func showNeighbourhoodSelector() {
-        neighbourhoodConstraint.constant = 0
-
-    }
-    
-    private func hideDetailsView() {
-        
-        UIView.animate(withDuration: 0.5) {
-//            self.containerViewHeightContstraint.constant = self.mapView.frame.height
-            self.containerPositionConstraint.constant = 0
-            self.view.layoutIfNeeded()
-        }
-
-    }
-    
-    private func showDetailsView() {
-        
-        UIView.animate(withDuration: 0.5) {
-//            self.containerViewHeightContstraint.constant = self.mapView.frame.height
-            self.containerPositionConstraint.constant = 0 - self.mapView.frame.height
-            self.view.layoutIfNeeded()
-        }
-
-        
-        
-    }
-
-    
-    func configuredSearchController() -> UISearchController {
+    private func configuredSearchController() -> UISearchController {
         
         let searchResultsController = Storyboard.searchResultsController()
         searchController = UISearchController(searchResultsController: searchResultsController)
@@ -200,22 +159,26 @@ class MapViewController: UIViewController {
         searchResultsController.delegate = viewModel
         searchResultsController.searchBar = searchController?.searchBar
         searchController?.searchResultsUpdater = searchResultsController
+        searchController?.hidesNavigationBarDuringPresentation = false
+        searchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
         searchController?.searchBar.sizeToFit()
         searchController?.searchBar.placeholder = "Find a location"
+        searchController?.searchBar.tintColor = .white
+        setSearchBarColor(.white)
+        return searchController!
+    }
+    
+    fileprivate func setSearchBarColor(_ colour: UIColor) {
         searchController?.searchBar.subviews.forEach({ view in
             view.subviews.forEach({ view in
                 if let view = view as? UITextField, let backgroud = view.subviews.first {
-                    backgroud.backgroundColor = .white
+                    backgroud.backgroundColor = colour
                     backgroud.layer.cornerRadius = 10
                     backgroud.clipsToBounds = true
                 }
             })
         })
-
-        searchController?.hidesNavigationBarDuringPresentation = false
-        searchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        return searchController!
     }
     
     private func configureGestureRecogniser() {
@@ -271,6 +234,19 @@ class MapViewController: UIViewController {
     }
     
     
+    
+    
+    private func updateViewWith(_ neighbourhood: String?) {
+        
+        if let neighbourhood = neighbourhood?.capitalized.stripOutHtml() {
+            neighbourhoodLabel.text = neighbourhood
+            showNeighbourhoodSelector()
+        } else {
+            hideNeighbourhoodSelector()
+        }
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "DETAILS_SEGUE" {
@@ -280,6 +256,36 @@ class MapViewController: UIViewController {
             } else {
                 fatalError("Couldn't set details controller")
             }
+        }
+    }
+}
+
+// MARK: - Animation
+
+extension MapViewController {
+    
+    private func hideNeighbourhoodSelector() {
+        neighbourhoodConstraint.constant = -44
+        self.neighbourhoodLabel.text = nil
+    }
+    
+    private func showNeighbourhoodSelector() {
+        neighbourhoodConstraint.constant = 0
+    }
+    
+    private func hideDetailsView() {
+        
+        UIView.animate(withDuration: 0.3) {
+            self.containerPositionConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func showDetailsView() {
+        
+        UIView.animate(withDuration: 0.3) {
+            self.containerPositionConstraint.constant = 0 - self.mapView.frame.height
+            self.view.layoutIfNeeded()
         }
     }
 }

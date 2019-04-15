@@ -80,9 +80,7 @@ class MapViewModel: NSObject {
         detailsViewController = detailController
         detailController.delegate = self
         detailController.viewModel = nil
-        
     }
-
 }
 
 
@@ -149,11 +147,14 @@ extension MapViewModel: MapViewControllerDelegate {
     fileprivate func showDetailsForSingleAnnotation(_ annotation: MKAnnotation) {
         switch annotation {
         case let crime as Crime:
-            UpdateManager.updateOutcomes(forCrime: crime) { (success) in
-                if let outcome = crime.outcomes?.first {
-                    print(outcome)
-                }
-            }
+            detailsViewController.viewModel = CrimeViewModel(with: crime)
+            showDetails?()
+            
+//            UpdateManager.updateOutcomes(forCrime: crime) { (success) in
+//                if let outcome = crime.outcomes?.first {
+//                    print(outcome)
+//                }
+//            }
         case let stopAndSearch as StopAndSearch:
             print(stopAndSearch)
         default:

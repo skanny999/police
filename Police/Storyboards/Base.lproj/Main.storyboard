@@ -223,6 +223,7 @@
                             <constraint firstItem="PVc-9G-d26" firstAttribute="top" secondItem="SQd-Vz-sjG" secondAttribute="top" id="qsz-2y-Gxu"/>
                             <constraint firstAttribute="bottom" secondItem="PVc-9G-d26" secondAttribute="bottom" id="yVt-dm-bfb"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="mlP-gs-fhK"/>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="2cj-Lf-zPj">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="P7d-fA-O6l">

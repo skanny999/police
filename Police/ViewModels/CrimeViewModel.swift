@@ -8,18 +8,170 @@
 
 import Foundation
 
+// MARK: - CellTypes
+
+enum CrimeViewModelItemType {
+    
+    case summary
+    case period
+    case locationDetails
+    case outcome
+}
+
+// MARK: - Cell protocol per section
+
+protocol CrimeViewModelItem {
+    
+    var type: CrimeViewModelItemType { get }
+    var rowCount: Int { get }
+    var sectionTitle: String { get }
+}
+
 
 class CrimeViewModel: NSObject {
     
-    let crime: Crime
+    var items = [CrimeViewModelItem]()
     
     init(with crime: Crime) {
-        self.crime = crime
         super.init()
+        
+        items.append(CrimeViewModelDescription(crime: crime))
+        items.append(CrimeViewModelPeriod(period: period(of: crime)))
+        items.append(CrimeViewModelLocation(location: crime.place))
+        if let outcomes = outcomes(for: crime) {
+            items.append(CrimeViewModelOutcome(outcomes: outcomes))
+        }
+    }
+    
+    // MARK: - helpers
+    
+    func period(of crime: Crime) -> String {
+        
+        let month = crime.month?.monthDescription ?? ""
+        return "\(month) \(crime.year ?? "")"
     }
     
     
+    func outcomes(for crime: Crime) -> [Outcome]? {
+            
+        //retrieve outcomes
+        //refresh last section
+        return crime.outcomes?.sorted(by: {$0.date! > $1.date!})
+    }
+}
+
+// MARK: - DataSource
+
+extension CrimeViewModel: Displayable {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return items[section].sectionTitle
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items[section].rowCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.section]
+        
+        switch item.type {
+        case .summary:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: CrimeDescriptionCell.identifier, for: indexPath) as? CrimeDescriptionCell {
+                cell.item = item
+                return cell
+            }
+        case .period:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: PeriodCell.identifier, for: indexPath) as? PeriodCell {
+                cell.item = item
+                return cell
+            }
+        case .locationDetails:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: LocationCell.identifier, for: indexPath) as? LocationCell {
+                cell.item = item
+                return cell
+            }
+        case .outcome:
+            return UITableViewCell()
+        }
+        return UITableViewCell()
+    }
     
     
+}
+
+// MARK: - Cell ViewModels
+
+struct CrimeViewModelDescription: CrimeViewModelItem {
     
+    let crime: Crime
+    
+    var type: CrimeViewModelItemType {
+        return .summary
+    }
+    
+    var rowCount: Int {
+        return 1
+    }
+    
+    var sectionTitle: String {
+        return "Description"
+    }
+    
+    
+}
+
+struct CrimeViewModelPeriod: CrimeViewModelItem {
+    
+    let period: String
+    
+    var type: CrimeViewModelItemType {
+        return .period
+    }
+    
+    var rowCount: Int {
+        return 1
+    }
+    
+    var sectionTitle: String {
+        return "Period"
+    }
+}
+
+struct CrimeViewModelLocation: CrimeViewModelItem {
+    
+    let location: String
+    
+    var type: CrimeViewModelItemType {
+        return .locationDetails
+    }
+    
+    var rowCount: Int {
+        return 1
+    }
+    
+    var sectionTitle: String {
+        return "Location"
+    }
+}
+
+struct CrimeViewModelOutcome: CrimeViewModelItem {
+    
+    let outcomes: [Outcome]
+    
+    var type: CrimeViewModelItemType {
+        return .outcome
+    }
+    
+    var rowCount: Int {
+        return outcomes.count
+    }
+    
+    var sectionTitle: String {
+        return "Outcome"
+    }
 }

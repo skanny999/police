@@ -44,6 +44,11 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
         return CrimeCategory(rawValue: code)
     }
     
+    var place: String {
+        
+        return self.streetName ?? "No location available"
+    }
+    
     struct Key {
         
         static let category = "category"

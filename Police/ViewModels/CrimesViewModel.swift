@@ -9,42 +9,27 @@
 import Foundation
 import UIKit
 
-enum CrimeViewModelItemType {
-    
-    case summary
-    case period
-    case details
-    case outcome
-}
-
-protocol CrimeViewModelItem {
-    
-    var type: CrimeViewModelItemType { get }
-    var rowCount: Int { get }
-}
-
 
 class CrimesViewModel: NSObject, Displayable {
 
-    var crimesList: CrimeViewModelItem
+    var items = [CrimeViewModelItem]()
     
     init(with crimes: [Crime]) {
-        
-        crimesList = CrimeViewModelSummary(with: crimes)
         super.init()
+        items.append(CrimeViewModelSummary(crimes: crimes))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return crimesList.rowCount
+        return items.first!.rowCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let list = crimesList as? CrimeViewModelSummary,
-            let cell = tableView.dequeueReusableCell(withIdentifier: CrimeSummaryCell.identifier, for: indexPath) as? CrimeSummaryCell {
-            
-            let crime = list.crimes[indexPath.row]
-            cell.configure(with: crime)
+        let crimeList = items.first!
+        if let list = crimeList as? CrimeViewModelSummary,
+            let cell = tableView.dequeueReusableCell(withIdentifier: CrimeDescriptionCell.identifier, for: indexPath) as? CrimeDescriptionCell {
+            let crimeItem = list.crimes[indexPath.row]
+            cell.configure(with: crimeItem)
             return cell
         }
         
@@ -54,15 +39,11 @@ class CrimesViewModel: NSObject, Displayable {
 }
 
 
+// MARK: - CellViewModel
 
-
-class CrimeViewModelSummary: CrimeViewModelItem {
+struct CrimeViewModelSummary: CrimeViewModelItem {
     
     let crimes: [Crime]
-    
-    init(with crimes: [Crime]) {
-        self.crimes = crimes
-    }
     
     var type: CrimeViewModelItemType {
         return .summary
@@ -70,6 +51,10 @@ class CrimeViewModelSummary: CrimeViewModelItem {
     
     var rowCount: Int {
         return crimes.count
+    }
+    
+    var sectionTitle: String {
+        return "Crimes"
     }
  
 }

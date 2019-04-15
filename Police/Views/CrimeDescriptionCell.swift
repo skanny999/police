@@ -8,10 +8,18 @@
 
 import UIKit
 
-class CrimeSummaryCell: UITableViewCell {
+class CrimeDescriptionCell: UITableViewCell, Loadable {
 
     @IBOutlet weak var crimeDescription: UILabel!
     @IBOutlet weak var crimeImage: UIImageView!
+    
+    var item: CrimeViewModelItem? {
+        didSet {
+            guard let item = item as? CrimeViewModelDescription else { return }
+            configure(with: item.crime)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,15 +31,4 @@ class CrimeSummaryCell: UITableViewCell {
         crimeImage.image = crime.category?.image
     }
 
-    
-    class var identifier: String {
-        
-        return String(describing: self)
-    }
-    
-    class var nib: UINib {
-        
-        return UINib(nibName: identifier, bundle: nil)
-    }
-    
 }

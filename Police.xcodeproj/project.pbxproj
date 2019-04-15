@@ -27,10 +27,17 @@
 		8B4B1B582262320A0096A08C /* CrimesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B572262320A0096A08C /* CrimesViewModel.swift */; };
 		8B4B1B5C22623BC50096A08C /* PoliceNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B5B22623BC50096A08C /* PoliceNavigationController.swift */; };
 		8B4B1B62226358AB0096A08C /* PoliceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B61226358AB0096A08C /* PoliceCellViewModel.swift */; };
-		8B4B1B65226363E20096A08C /* CrimeSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B63226363E20096A08C /* CrimeSummaryCell.swift */; };
-		8B4B1B66226363E20096A08C /* CrimeSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B4B1B64226363E20096A08C /* CrimeSummaryCell.xib */; };
+		8B4B1B65226363E20096A08C /* CrimeDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4B1B63226363E20096A08C /* CrimeDescriptionCell.swift */; };
+		8B4B1B66226363E20096A08C /* CrimeDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B4B1B64226363E20096A08C /* CrimeDescriptionCell.xib */; };
 		8B4C41F222541DB1000368E4 /* NSData+MKPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */; };
 		8B4C41F42254238A000368E4 /* NeighbourhoodBoundaries.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */; };
+		8B514FC2226518E3005D5DF6 /* CellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B514FC1226518E3005D5DF6 /* CellProtocol.swift */; };
+		8B514FC522651D03005D5DF6 /* PeriodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B514FC322651D03005D5DF6 /* PeriodCell.swift */; };
+		8B514FC622651D03005D5DF6 /* PeriodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B514FC422651D03005D5DF6 /* PeriodCell.xib */; };
+		8B514FC922651D22005D5DF6 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B514FC722651D22005D5DF6 /* LocationCell.swift */; };
+		8B514FCA22651D22005D5DF6 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B514FC822651D22005D5DF6 /* LocationCell.xib */; };
+		8B514FCD22651D43005D5DF6 /* OutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B514FCB22651D43005D5DF6 /* OutcomeCell.swift */; };
+		8B514FCE22651D43005D5DF6 /* OutcomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B514FCC22651D43005D5DF6 /* OutcomeCell.xib */; };
 		8B56E2A92207548C0061D1CF /* CoreDataModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */; };
 		8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */; };
 		8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */; };
@@ -147,10 +154,17 @@
 		8B4B1B572262320A0096A08C /* CrimesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimesViewModel.swift; sourceTree = "<group>"; };
 		8B4B1B5B22623BC50096A08C /* PoliceNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceNavigationController.swift; sourceTree = "<group>"; };
 		8B4B1B61226358AB0096A08C /* PoliceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceCellViewModel.swift; sourceTree = "<group>"; };
-		8B4B1B63226363E20096A08C /* CrimeSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeSummaryCell.swift; sourceTree = "<group>"; };
-		8B4B1B64226363E20096A08C /* CrimeSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CrimeSummaryCell.xib; sourceTree = "<group>"; };
+		8B4B1B63226363E20096A08C /* CrimeDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrimeDescriptionCell.swift; sourceTree = "<group>"; };
+		8B4B1B64226363E20096A08C /* CrimeDescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CrimeDescriptionCell.xib; sourceTree = "<group>"; };
 		8B4C41F122541DB1000368E4 /* NSData+MKPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSData+MKPolygon.swift"; sourceTree = "<group>"; };
 		8B4C41F32254238A000368E4 /* NeighbourhoodBoundaries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodBoundaries.json; sourceTree = "<group>"; };
+		8B514FC1226518E3005D5DF6 /* CellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProtocol.swift; sourceTree = "<group>"; };
+		8B514FC322651D03005D5DF6 /* PeriodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodCell.swift; sourceTree = "<group>"; };
+		8B514FC422651D03005D5DF6 /* PeriodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodCell.xib; sourceTree = "<group>"; };
+		8B514FC722651D22005D5DF6 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		8B514FC822651D22005D5DF6 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		8B514FCB22651D43005D5DF6 /* OutcomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeCell.swift; sourceTree = "<group>"; };
+		8B514FCC22651D43005D5DF6 /* OutcomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutcomeCell.xib; sourceTree = "<group>"; };
 		8B56E2A82207548C0061D1CF /* CoreDataModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModelTest.swift; sourceTree = "<group>"; };
 		8B56E2AB220758260061D1CF /* CoreDataProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProtocols.swift; sourceTree = "<group>"; };
 		8B56E2AD2207626F0061D1CF /* UpdateProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProcessor.swift; sourceTree = "<group>"; };
@@ -474,8 +488,15 @@
 			children = (
 				8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */,
 				8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */,
-				8B4B1B63226363E20096A08C /* CrimeSummaryCell.swift */,
-				8B4B1B64226363E20096A08C /* CrimeSummaryCell.xib */,
+				8B514FC1226518E3005D5DF6 /* CellProtocol.swift */,
+				8B4B1B63226363E20096A08C /* CrimeDescriptionCell.swift */,
+				8B4B1B64226363E20096A08C /* CrimeDescriptionCell.xib */,
+				8B514FC322651D03005D5DF6 /* PeriodCell.swift */,
+				8B514FC422651D03005D5DF6 /* PeriodCell.xib */,
+				8B514FC722651D22005D5DF6 /* LocationCell.swift */,
+				8B514FC822651D22005D5DF6 /* LocationCell.xib */,
+				8B514FCB22651D43005D5DF6 /* OutcomeCell.swift */,
+				8B514FCC22651D43005D5DF6 /* OutcomeCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -709,10 +730,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B514FCA22651D22005D5DF6 /* LocationCell.xib in Resources */,
+				8B514FC622651D03005D5DF6 /* PeriodCell.xib in Resources */,
 				8B1A2F2F2238139E0022F6C0 /* Main.storyboard in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
-				8B4B1B66226363E20096A08C /* CrimeSummaryCell.xib in Resources */,
+				8B514FCE22651D43005D5DF6 /* OutcomeCell.xib in Resources */,
+				8B4B1B66226363E20096A08C /* CrimeDescriptionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +808,7 @@
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
 				8B9117802203B7DE0024CCFA /* Numbers+Utils.swift in Sources */,
 				8BC6BB8C224D6C9500F63B0B /* UpdateManager.swift in Sources */,
+				8B514FC922651D22005D5DF6 /* LocationCell.swift in Sources */,
 				8B9117782203AD210024CCFA /* Constants.swift in Sources */,
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8B7827E9221CC411008DE3E0 /* Date+Utils.swift in Sources */,
@@ -820,12 +845,13 @@
 				8B4B1B54226220C10096A08C /* SelectionDetailsViewController.swift in Sources */,
 				8BEBCF8F22470CD5006CEC1C /* Array+Utils.swift in Sources */,
 				8B155EC421F1319C00783C23 /* Police.xcdatamodeld in Sources */,
-				8B4B1B65226363E20096A08C /* CrimeSummaryCell.swift in Sources */,
+				8B4B1B65226363E20096A08C /* CrimeDescriptionCell.swift in Sources */,
 				8BEBCB6E21FCAB090004AFDE /* URLFactory.swift in Sources */,
 				8BEBCB6521F8DC840004AFDE /* Force+CoreDataClass.swift in Sources */,
 				8BEBCB5721F8DC840004AFDE /* Officer+CoreDataClass.swift in Sources */,
 				8BEBCB5421F8DC840004AFDE /* Event+CoreDataProperties.swift in Sources */,
 				8BD71704223BC9020009E038 /* MapKit+Utils.swift in Sources */,
+				8B514FC522651D03005D5DF6 /* PeriodCell.swift in Sources */,
 				8B4C41F222541DB1000368E4 /* NSData+MKPolygon.swift in Sources */,
 				8BEBCB6321F8DC840004AFDE /* StopAndSearch+CoreDataClass.swift in Sources */,
 				8BEBCB6121F8DC840004AFDE /* Outcome+CoreDataClass.swift in Sources */,
@@ -834,6 +860,7 @@
 				8B1A2F32223813AE0022F6C0 /* MapViewController.swift in Sources */,
 				8BEBCB5621F8DC840004AFDE /* Crime+CoreDataProperties.swift in Sources */,
 				8BC6BB8A224D667D00F63B0B /* MKPolygon+Utils.swift in Sources */,
+				8B514FCD22651D43005D5DF6 /* OutcomeCell.swift in Sources */,
 				8BA404D4224D8AC800CC930B /* PointCoordinates.swift in Sources */,
 				8BA404D8224D8BFE00CC930B /* CrimesPolygon+CoreDataProperties.swift in Sources */,
 				8BEBCB9421FE187A0004AFDE /* Structs.swift in Sources */,
@@ -841,6 +868,7 @@
 				8B13636C224040ED00ACB0B2 /* ClusterAnnotationView.swift in Sources */,
 				8BEBCB5221F8DC840004AFDE /* Neighbourhood+CoreDataProperties.swift in Sources */,
 				8BA404DC224FCEA200CC930B /* Period+CoreDataProperties.swift in Sources */,
+				8B514FC2226518E3005D5DF6 /* CellProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
