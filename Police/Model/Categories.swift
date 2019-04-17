@@ -185,6 +185,24 @@ enum OutcomeCategory: String, CaseIterable {
     }
 }
 
+enum stopAndSearchCrimeCategory: String {
+    
+    case theft = "Article for use in theft"
+    case damage = "Articles for use in criminal damage"
+    case drugs = "Controlled drugs"
+    case firearms = "Firearms"
+    case weapon = "Offensive weapons"
+    case stolenGoods = "Stolen goods"
+    case generalOffence = "Evidence of offences under the Act"
+    case threat = "Anything to threaten or harm anyone"
+    case firework = "Fireworks"
+    
+    var image: UIImage {
+        return UIImage(named: "crime-selected")!
+    }
+    
+}
+
 enum StopAndSearchOutcomeCategory: String {
     
     case arrest = "Arrest"

@@ -74,5 +74,18 @@ extension Date {
     }
 }
 
+extension Optional where Wrapped == NSDate {
+    
+    var longDescription: String? {
+        
+        guard let date = self as Date? else { return nil }
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        
+        return formatter.string(from: date)
+    }
+}
+
 
 

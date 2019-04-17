@@ -30,23 +30,6 @@ class CrimeViewModelTest: XCTestCase {
         let json = try! JSON(data: data)
         crime.update(with: json)
     }
-    
-//    categoryCode = "anti-social-behaviour";
-//    extraContent = "";
-//    identifier = 54164419;
-//    latestOutcome = nil;
-//    latitude = "52.640961";
-//    locationId = 0;
-//    locationSubtypeCode = "";
-//    locationTypeCode = Force;
-//    longitude = "-1.126371";
-//    month = 01;
-//    outcomes =     (
-//    "0x600002f2ab80 <x-coredata:///Outcome/t0781F517-DA33-452A-AC6B-DBB550BD7E1D3>"
-//    );
-//    persistentId = fsdfskdjfslkdjfsldkfsdlskd;
-//    streetName = "On or near Wharf Street North";
-//    year = 2017;
 
     override func tearDown() {
         container = nil

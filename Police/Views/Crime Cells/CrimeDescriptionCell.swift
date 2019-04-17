@@ -37,7 +37,6 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
         crimeDescription.text = crime.category?.description
         crimeImage.image = crime.category?.image
     }
-
 }
 
 
@@ -48,5 +47,4 @@ class CrimeSummaryCell: CrimeDescriptionCell {
         self.accessoryType = .disclosureIndicator
         self.isUserInteractionEnabled = true
     }
-    
 }
