@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-protocol Displayable: UITableViewDelegate, UITableViewDataSource {}
+protocol Displayable: UITableViewDataSource, UITableViewDelegate {}
 
 protocol Dismissable {
     func dismiss(_ viewController: SelectionDetailsViewController)
@@ -37,20 +36,33 @@ class SelectionDetailsViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
+        configureCells()
+        registerCells()
+        setDelegates()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("oucomeUpdate"), object: nil)
+    }
+    
+    private func configureCells() {
+        tableView?.estimatedRowHeight = 100
+        tableView?.rowHeight = UITableView.automaticDimension
+    }
+    
+    private func registerCells() {
         tableView.register(CrimeDescriptionCell.nib, forCellReuseIdentifier: CrimeDescriptionCell.identifier)
         tableView.register(PeriodCell.nib, forCellReuseIdentifier: PeriodCell.identifier)
         tableView.register(LocationCell.nib, forCellReuseIdentifier: LocationCell.identifier)
         tableView.register(OutcomeCell.nib, forCellReuseIdentifier: OutcomeCell.identifier)
     }
     
-    func setDelegates() {
+    private func setDelegates() {
         tableView.dataSource = viewModel
         tableView.delegate = viewModel
     }
-    
-    
-    
+        
+    @objc func reloadTableView() {
+            
+        }
 }
+
 
 

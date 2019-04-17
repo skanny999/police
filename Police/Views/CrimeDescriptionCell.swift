@@ -13,16 +13,23 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
     @IBOutlet weak var crimeDescription: UILabel!
     @IBOutlet weak var crimeImage: UIImageView!
     
-    var item: CrimeViewModelItem? {
+    var item: Crime? {
         didSet {
-            guard let item = item as? CrimeViewModelDescription else { return }
-            configure(with: item.crime)
+            guard let crime = item else { return }
+            configure(with: crime)
+        }
+    }
+    
+    var isSelectable: Bool? {
+        didSet {
+            self.isUserInteractionEnabled = isSelectable ?? false
+            self.accessoryType = isSelectable ?? false ? .disclosureIndicator : .none
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
     
     func configure(with crime: Crime) {
@@ -31,4 +38,15 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
         crimeImage.image = crime.category?.image
     }
 
+}
+
+
+class CrimeSummaryCell: CrimeDescriptionCell {
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.accessoryType = .disclosureIndicator
+        self.isUserInteractionEnabled = true
+    }
+    
 }

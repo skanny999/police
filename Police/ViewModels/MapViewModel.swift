@@ -25,7 +25,10 @@ class MapViewModel: NSObject {
     var hideDetails: (() -> Void)?
     var showDetails: (() -> Void)?
     
-    var detailsViewController: SelectionDetailsViewController!
+    var presenter: UINavigationController!
+    var detailsViewController: SelectionDetailsViewController! {
+        return presenter.viewControllers.first as? SelectionDetailsViewController
+    }
     
     // MARK: - Private properties
     
@@ -76,10 +79,10 @@ class MapViewModel: NSObject {
         mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
     
-    func setDetailsController(_ detailController: SelectionDetailsViewController) {
-        detailsViewController = detailController
-        detailController.delegate = self
-        detailController.viewModel = nil
+    func setPresenter(_ navigationController: UINavigationController) {
+        presenter = navigationController
+        detailsViewController.delegate = self
+        detailsViewController.viewModel = nil
     }
 }
 
@@ -137,8 +140,7 @@ extension MapViewModel: MapViewControllerDelegate {
     
     fileprivate func showDetailsForAnnotations(_ annotations: MKClusterAnnotation) {
         if let crimes = annotations.memberAnnotations as? [Crime] {
-            detailsViewController.viewModel = CrimesViewModel(with: crimes)
-            showDetails?()
+            showDetails(for: crimes)
         } else if let sas = annotations.memberAnnotations as? [StopAndSearch] {
             print(sas)
         }
@@ -147,18 +149,28 @@ extension MapViewModel: MapViewControllerDelegate {
     fileprivate func showDetailsForSingleAnnotation(_ annotation: MKAnnotation) {
         switch annotation {
         case let crime as Crime:
-            detailsViewController.viewModel = CrimeViewModel(with: crime)
-            showDetails?()
-            
-//            UpdateManager.updateOutcomes(forCrime: crime) { (success) in
-//                if let outcome = crime.outcomes?.first {
-//                    print(outcome)
-//                }
-//            }
+            showDetails(for: crime)
         case let stopAndSearch as StopAndSearch:
             print(stopAndSearch)
         default:
             break
+        }
+    }
+    
+    private func showDetails(for crimes: [Crime]) {
+        
+        let crimesViewModel = CrimesViewModel(with: crimes)
+        crimesViewModel.presenter = presenter
+        detailsViewController.viewModel = crimesViewModel
+        showDetails?()
+    }
+    
+    private func showDetails(for crime: Crime) {
+        UpdateManager.updateOutcomes(forCrime: crime) { (success) in
+            self.detailsViewController.viewModel = CrimeViewModel(with: crime)
+            DispatchQueue.main.async {
+                self.showDetails?()
+            }
         }
     }
     

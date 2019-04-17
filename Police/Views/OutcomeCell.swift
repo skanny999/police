@@ -13,7 +13,12 @@ class OutcomeCell: UITableViewCell, Loadable {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-
+    var item: Outcome? {
+        didSet {
+            guard let outcome = item else { return }
+            configure(with: outcome)
+        }
+    }
     
     
     override func awakeFromNib() {

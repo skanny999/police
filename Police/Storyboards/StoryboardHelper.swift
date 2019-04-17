@@ -22,4 +22,10 @@ class Storyboard {
         
     }
     
+    static func selectionDetailsController() -> SelectionDetailsViewController {
+        
+        return self.mainStoryboard().instantiateViewController(withIdentifier: "SelectionDetailsViewController") as! SelectionDetailsViewController
+        
+    }
+    
 }

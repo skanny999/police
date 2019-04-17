@@ -81,7 +81,7 @@ extension String {
     
     var dateDescription: String? {
         
-        let date = self.split(separator: "-").dropLast()
+        let date = self.split(separator: "-")
         
         guard date.count == 2,
             let month = date.last,

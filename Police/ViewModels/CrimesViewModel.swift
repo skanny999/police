@@ -14,6 +14,8 @@ class CrimesViewModel: NSObject, Displayable {
 
     var items = [CrimeViewModelItem]()
     
+    var presenter: UINavigationController!
+    
     init(with crimes: [Crime]) {
         super.init()
         items.append(CrimeViewModelSummary(crimes: crimes))
@@ -25,17 +27,34 @@ class CrimesViewModel: NSObject, Displayable {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let crimeList = items.first!
-        if let list = crimeList as? CrimeViewModelSummary,
+        if let item = items.first as? CrimeViewModelSummary,
             let cell = tableView.dequeueReusableCell(withIdentifier: CrimeDescriptionCell.identifier, for: indexPath) as? CrimeDescriptionCell {
-            let crimeItem = list.crimes[indexPath.row]
-            cell.configure(with: crimeItem)
+            let crime = item.crimes[indexPath.row]
+            cell.item = crime
+            cell.isSelectable = true
             return cell
         }
-        
        return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = items.first as? CrimeViewModelSummary {
+            let crime = item.crimes[indexPath.row]
+            UpdateManager.updateOutcomes(forCrime: crime) { (success) in
+                DispatchQueue.main.async {
+                    self.pushDetailsController(for: crime)
+                }
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    private func pushDetailsController(for crime: Crime) {
+        
+        let detailController = Storyboard.selectionDetailsController()
+        detailController.viewModel = CrimeViewModel(with: crime)
+        presenter.pushViewController(detailController, animated: true)
+    }
 }
 
 
@@ -56,5 +75,4 @@ struct CrimeViewModelSummary: CrimeViewModelItem {
     var sectionTitle: String {
         return "Crimes"
     }
- 
 }

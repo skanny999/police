@@ -35,15 +35,15 @@ class CrimeViewModel: NSObject {
     init(with crime: Crime) {
         super.init()
         
-        items.append(CrimeViewModelDescription(crime: crime))
+        items.append(CrimeViewModelSummary(crimes: [crime]))
         items.append(CrimeViewModelPeriod(period: period(of: crime)))
         items.append(CrimeViewModelLocation(location: crime.place))
-        if let outcomes = outcomes(for: crime) {
+        if let outcomes = outcomes(for: crime), !outcomes.isEmpty{
             items.append(CrimeViewModelOutcome(outcomes: outcomes))
         }
     }
     
-    // MARK: - helpers
+    // MARK: - helper
     
     func period(of crime: Crime) -> String {
         
@@ -53,10 +53,8 @@ class CrimeViewModel: NSObject {
     
     
     func outcomes(for crime: Crime) -> [Outcome]? {
-            
-        //retrieve outcomes
-        //refresh last section
-        return crime.outcomes?.sorted(by: {$0.date! > $1.date!})
+        guard let outcomes = crime.outcomes, !outcomes.isEmpty else { return nil }
+        return outcomes.sorted(by: {$0.date! > $1.date!})
     }
 }
 
@@ -81,8 +79,9 @@ extension CrimeViewModel: Displayable {
         
         switch item.type {
         case .summary:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: CrimeDescriptionCell.identifier, for: indexPath) as? CrimeDescriptionCell {
-                cell.item = item
+            if let item = item as? CrimeViewModelSummary,
+                let cell = tableView.dequeueReusableCell(withIdentifier: CrimeDescriptionCell.identifier, for: indexPath) as? CrimeDescriptionCell {
+                cell.item = item.crimes.first
                 return cell
             }
         case .period:
@@ -96,12 +95,14 @@ extension CrimeViewModel: Displayable {
                 return cell
             }
         case .outcome:
-            return UITableViewCell()
+            if let item = item as? CrimeViewModelOutcome,
+                let cell = tableView.dequeueReusableCell(withIdentifier: OutcomeCell.identifier, for: indexPath) as? OutcomeCell {
+                cell.item = item.outcomes[indexPath.row]
+                return cell
+            }
         }
         return UITableViewCell()
     }
-    
-    
 }
 
 // MARK: - Cell ViewModels
@@ -121,8 +122,6 @@ struct CrimeViewModelDescription: CrimeViewModelItem {
     var sectionTitle: String {
         return "Description"
     }
-    
-    
 }
 
 struct CrimeViewModelPeriod: CrimeViewModelItem {

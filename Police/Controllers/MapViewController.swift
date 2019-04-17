@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var containerPositionConstraint: NSLayoutConstraint!
     
     var searchController: UISearchController?
-    var detailsViewController: SelectionDetailsViewController!
+    var presenter: UINavigationController!
 
     var viewModel: MapViewModel!
     var delegate: MapViewControllerDelegate?
@@ -55,7 +55,7 @@ class MapViewController: UIViewController {
     private func configureViewModel() {
         
         viewModel = MapViewModel(with: mapView)
-        viewModel.setDetailsController(detailsViewController)
+        viewModel.setPresenter(presenter)
         self.delegate = viewModel
         configureViewUpdater()
     }
@@ -105,15 +105,13 @@ class MapViewController: UIViewController {
         let barButton: UIBarButtonItem = selectedMode == .crime ? crimeButton : policeButton
         
         switch (dataIsLoading, activityIndicator.isAnimating) {
-        case (true, true):
-            return
         case (true, false):
             setButton(barButton, isSpinner: true, forMode: selectedMode)
             activityIndicator.startAnimating()
         case (false, true):
             setButton(barButton, isSpinner: false, forMode: selectedMode)
             activityIndicator.stopAnimating()
-        case (false, false):
+        default:
             return
         }
     }
@@ -200,6 +198,7 @@ class MapViewController: UIViewController {
         switch viewModel.mapMode {
         case .crime:
             crimeButton.image = crimeImage
+            hideDetailsView()
         case .police:
             policeButton.image = policeImage
             crimeButton.image = selectedCrimeImage
@@ -221,6 +220,7 @@ class MapViewController: UIViewController {
             crimeButton.image = crimeImage
         case .police:
             policeButton.image = policeImage
+            hideDetailsView()
         case .none:
             policeButton.image = selectedPoliceImage
         }
@@ -250,9 +250,8 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "DETAILS_SEGUE" {
-            if let navigationController = segue.destination as? UINavigationController,
-                let detailsController = navigationController.viewControllers.first as? SelectionDetailsViewController {
-                detailsViewController = detailsController
+            if let navigationController = segue.destination as? UINavigationController {
+                presenter = navigationController
             } else {
                 fatalError("Couldn't set details controller")
             }

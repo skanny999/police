@@ -206,7 +206,7 @@
         <!--Details-->
         <scene sceneID="uud-1U-lIf">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="cA5-d1-8ZB" customClass="SelectionDetailsViewController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectionDetailsViewController" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="cA5-d1-8ZB" customClass="SelectionDetailsViewController" customModule="Police" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SQd-Vz-sjG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

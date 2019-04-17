@@ -12,7 +12,6 @@ import MapKit
 protocol SearchResultsDelegate {
     
     func searchResultsController(_ sec: SearchResultsController, didSelectLocation: String)
-    
 }
 
 class SearchResultsController: UITableViewController {
@@ -27,8 +26,7 @@ class SearchResultsController: UITableViewController {
         super.viewDidLoad()
         configureCompleter()
     }
-
-
+    
     
     private func configureCompleter() {
         
