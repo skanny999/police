@@ -1,97 +1,41 @@
 //
-//  CoreDataModelTest.swift
+//  NeighbourhoodModelTest.swift
 //  PoliceTests
 //
-//  Created by Riccardo on 03/02/2019.
+//  Created by Riccardo on 17/04/2019.
 //  Copyright © 2019 RiccardoScanavacca. All rights reserved.
 //
+
+import XCTest
 
 import XCTest
 import CoreData
 import SwiftyJSON
 @testable import Police
 
-class CoreDataModelTest: XCTestCase {
+class NeighbourhoodModelTest: XCTestCase {
     
     var mockContainer: NSPersistentContainer?
-
+    
     override func setUp() {
         
         if mockContainer == nil {
-           mockContainer = CoreDataManager.shared.container
+            mockContainer = CoreDataManager.shared.container
         }
     }
-
+    
     override func tearDown() {
         
         mockContainer = nil
     }
     
-    // MARK: - Crime
-    
-    func testCrimeObject() {
-        
-       var data = dataFromFile(JSONFile.Crimes.crime)
-        
-        updateObject(type: Crime.self, withData: data) { [weak self] in
-            
-            let crime = self?.savedObject(ofType: Crime.self, withData: data)
-            XCTAssertTrue(crime?.locationTypeCode == "Force")
-            XCTAssertTrue(crime?.category == .antiSocialBehaviour)
-            XCTAssertTrue(crime?.extraContent == "")
-            XCTAssertTrue(crime?.identifier == "54164419")
-            XCTAssertTrue(crime?.locationId == 0)
-            XCTAssertTrue(crime?.locationSubtypeCode == "")
-            XCTAssertTrue(crime?.month == "01")
-            XCTAssertTrue(crime?.persistentId == "fsdfskdjfslkdjfsldkfsdlskd")
-            XCTAssertTrue(crime?.streetName == "On or near Wharf Street North")
-            XCTAssertTrue(crime?.year == "2017")
-            XCTAssertTrue(crime?.latitude == 52.640961, crime?.latitude?.stringValue ?? "no value")
-            XCTAssertTrue(crime?.longitude == -1.126371, crime?.longitude?.stringValue ?? "no value")
-            XCTAssertTrue(crime?.outcomes?.first?.category == .underInvestigation)
-            XCTAssertTrue(crime?.outcomes?.first?.date == "2017-05")
-            XCTAssertTrue(crime?.outcomes?.first?.personId == nil)
-        }
-        
-        data = dataFromFile(JSONFile.Crimes.crimeEdited)
-        
-        updateObject(type: Crime.self, withData: data) { [weak self] in
-            
-            let crime = self?.savedObject(ofType: Crime.self, withData: data)
-            XCTAssertTrue(crime?.locationTypeCode == "Travel")
-            XCTAssertTrue(crime?.category == .antiSocialBehaviour)
-            XCTAssertTrue(crime?.extraContent == "")
-            XCTAssertTrue(crime?.identifier == "54164419")
-            XCTAssertTrue(crime?.locationId == 0)
-            XCTAssertTrue(crime?.locationSubtypeCode == "")
-            XCTAssertTrue(crime?.month == "01")
-            XCTAssertTrue(crime?.persistentId == "fsdfskdjfslkdjfsldkfsdlskd")
-            XCTAssertTrue(crime?.streetName == "On or near Wharf Street North")
-            XCTAssertTrue(crime?.year == "2017")
-            XCTAssertTrue(crime?.latitude == 52.640961)
-            XCTAssertTrue(crime?.longitude == -1.126371)
-            
-            let outcomes = crime?.outcomes?.sorted {$0.date! < $1.date!}
-
-            XCTAssertTrue(outcomes?.first?.category == .underInvestigation)
-            XCTAssertTrue(outcomes?.first?.date == "2017-05")
-            XCTAssertTrue(outcomes?.first?.personId == nil)
-            XCTAssertTrue(outcomes?.last?.category == .formalActionNotInPublicInterest)
-            XCTAssertTrue(outcomes?.last?.date == "2017-06")
-            XCTAssertTrue(outcomes?.last?.personId == nil)
-            
-        }
-    }
-
-    // MARK: - Neighbourhood
-    
     func testNeighbourhoodObject() {
         
         let dataArray = [dataFromFile(JSONFile.Neighbourhood.specificNeighbourhood),
-                        dataFromFile(JSONFile.Boudaries.neighbourhoodBoundaries),
-                        dataFromFile(JSONFile.Officers.officers),
-                        dataFromFile(JSONFile.Events.events),
-                        dataFromFile(JSONFile.Priorities.priorities)]
+                         dataFromFile(JSONFile.Boudaries.neighbourhoodBoundaries),
+                         dataFromFile(JSONFile.Officers.officers),
+                         dataFromFile(JSONFile.Events.events),
+                         dataFromFile(JSONFile.Priorities.priorities)]
         
         
         let longDescription = "<p>The Castle neighbourhood is a diverse covering all of the City Centre. In addition it covers De Montfort University, the University of Leicester, Leicester Royal Infirmary, the Leicester Tigers rugby ground and the Clarendon Park and Riverside communities.</p>\n<p>The Highcross and Haymarket shopping centres and Leicester's famous Market are all covered by this neighbourhood.</p>"
@@ -166,7 +110,7 @@ class CoreDataModelTest: XCTestCase {
             XCTAssertTrue(officers?.last?.rank == "PCSO")
             XCTAssertTrue(officers?.last?.bio == nil)
             XCTAssertTrue(officers?.last?.contact?.isEmpty ?? false)
-
+            
             //Events
             let events = neighbourhood?.events?.sorted { $0.title! > $1.title! }
             
@@ -220,14 +164,14 @@ class CoreDataModelTest: XCTestCase {
             
             
         }
-
+        
         
         // Edited data
         let editedDataArray = [dataFromFile(JSONFile.Neighbourhood.neighbourhoodEdited),
-                                Data(), // add coordinates file for polygon to test
-                                dataFromFile(JSONFile.Officers.officers),
-                                dataFromFile(JSONFile.Events.events),
-                                dataFromFile(JSONFile.Priorities.priorities)]
+                               Data(), // add coordinates file for polygon to test
+            dataFromFile(JSONFile.Officers.officers),
+            dataFromFile(JSONFile.Events.events),
+            dataFromFile(JSONFile.Priorities.priorities)]
         
         UpdateProcessor.updateNeighbourhood(withDataArray: editedDataArray, identifier: "NC04") { [weak self] (updated, neighbourhood) in
             
@@ -332,125 +276,6 @@ class CoreDataModelTest: XCTestCase {
         }
     }
     
-  
-    // MARK: - Contacts
-    
-    func testContactObject() {
-        
-        let partionaContactsJson = try! JSON(data: dataFromFile(JSONFile.Contacts.partialContacts))
-        let contact = Contact.newContacts(from: partionaContactsJson, in: mockContainer!.viewContext)
-        
-        XCTAssertTrue(contact?.twitter == "http://www.twitter.com/centralleicsNPA")
-        XCTAssertTrue(contact?.facebook == "http://www.facebook.com/leicspolice")
-        XCTAssertTrue(contact?.telephone == "101")
-        XCTAssertTrue(contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk")
-        XCTAssertTrue(contact?.address == "indirizzo")
-        XCTAssertTrue(contact?.blog == "diario")
-        XCTAssertTrue(contact?.eMessaging == nil)
-        XCTAssertTrue(contact?.fax == nil)
-        XCTAssertTrue(contact?.flickr == nil)
-        XCTAssertTrue(contact?.forum == nil)
-        XCTAssertTrue(contact?.googlePlus == nil)
-        XCTAssertTrue(contact?.mobile == "telefonino")
-        XCTAssertTrue(contact?.rss == "notizie")
-        XCTAssertTrue(contact?.website == "ilSito")
-        XCTAssertTrue(contact?.youtube == "iutubbe")
-        XCTAssertTrue(contact?.allContacts.count == 15)
-        
-        let emptyDict: [String: Any] = [:]
-        let emptyJson = JSON(arrayLiteral: emptyDict)
-        let emptyContact = Contact.newContacts(from: emptyJson, in: mockContainer!.viewContext)
-        XCTAssertTrue(emptyContact!.isEmpty)
-
-        
-        let allContactsJson = try! JSON(data: dataFromFile(JSONFile.Contacts.allContacts))
-        contact?.updateContacts(fromContactDetails: allContactsJson)
-        
-        XCTAssertTrue(contact?.twitter == "http://www.twitter.com/centralleicsNPA")
-        XCTAssertTrue(contact?.facebook == "http://www.facebook.com/leicspolice")
-        XCTAssertTrue(contact?.telephone == "101")
-        XCTAssertTrue(contact?.email == "centralleicester.npa@leicestershire.pnn.police.uk")
-        XCTAssertTrue(contact?.address == "indirizzo")
-        XCTAssertTrue(contact?.blog == "diario")
-        XCTAssertTrue(contact?.eMessaging == "messaggio")
-        XCTAssertTrue(contact?.fax == "ilFax")
-        XCTAssertTrue(contact?.flickr == "leFoto")
-        XCTAssertTrue(contact?.forum == "ilForum")
-        XCTAssertTrue(contact?.googlePlus == "googleSocial")
-        XCTAssertTrue(contact?.mobile == "telefonino")
-        XCTAssertTrue(contact?.rss == "notizie")
-        XCTAssertTrue(contact?.website == "ilSito")
-        XCTAssertTrue(contact?.youtube == "iutubbe")
-    }
-    
-    func testStopAndSearchObject() {
-        
-        var data = dataFromFile(JSONFile.StopAndSearch.original)
-        
-        let firstExpectation = self.expectation(description: "StopAndSearch")
-        
-        UpdateProcessor.updateStopAndSearch(fromData: data) { (completed) in
-            
-            firstExpectation.fulfill()
-            
-            if let json = try? JSON(data: data).array?.first {
-                let objectId = StopAndSearch.identifier(from: json)
-                let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
-                
-                XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
-                XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
-                XCTAssertTrue(stopAndSearch?.genderCode == "Male")
-                XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
-                XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
-                XCTAssertTrue(stopAndSearch?.officerEthnicity == "White")
-                XCTAssertTrue(stopAndSearch?.operationName == nil)
-                XCTAssertTrue(stopAndSearch?.outCome == "A no further action disposal")
-                XCTAssertTrue(stopAndSearch?.outcomeIsLinkedToSearch == false)
-                XCTAssertTrue(stopAndSearch?.personIsInvolved == true)
-                XCTAssertTrue(stopAndSearch?.stripSearch == false)
-                XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
-                XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
-                XCTAssertTrue(stopAndSearch?.latitude == 52.264860)
-                XCTAssertTrue(stopAndSearch?.longitude == 0.699943)
-                XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
-            }
-        }
-        
-        waitForExpectations(timeout: 3, handler: nil)
-        
-        let secondExpectation = self.expectation(description: "sasSecond")
-        
-        data = dataFromFile(JSONFile.StopAndSearch.edited)
-        
-        UpdateProcessor.updateStopAndSearch(fromData: data) { (completed) in
-            
-            secondExpectation.fulfill()
-            
-            if let json = try? JSON(data: data).array?.first {
-                let objectId = StopAndSearch.identifier(from: json)
-                let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
-                
-                XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
-                XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
-                XCTAssertTrue(stopAndSearch?.genderCode == "Female")
-                XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
-                XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
-                XCTAssertTrue(stopAndSearch?.officerEthnicity == "White")
-                XCTAssertTrue(stopAndSearch?.operationName == nil)
-                XCTAssertTrue(stopAndSearch?.outCome == "A no further action disposal")
-                XCTAssertTrue(stopAndSearch?.outcomeIsLinkedToSearch == false)
-                XCTAssertTrue(stopAndSearch?.personIsInvolved == true)
-                XCTAssertTrue(stopAndSearch?.stripSearch == false)
-                XCTAssertTrue(stopAndSearch?.suspectEthnicity == "White - English/Welsh/Scottish/Northern Irish/British")
-                XCTAssertTrue(stopAndSearch?.typeCode == "Person search")
-                XCTAssertTrue(stopAndSearch?.latitude == 52.264860)
-                XCTAssertTrue(stopAndSearch?.longitude == 0.699943)
-                XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
-                
-            }
-        }
-        waitForExpectations(timeout: 3, handler: nil)
-    }
     
     // MARK: - Generic helpers
     
@@ -461,7 +286,7 @@ class CoreDataModelTest: XCTestCase {
         UpdateProcessor.updateObject(ofType: T.self, fromData: data) { (completed) in
             expectation.fulfill()
         }
-
+        
         waitForExpectations(timeout: 3, handler: nil)
         completion()
     }

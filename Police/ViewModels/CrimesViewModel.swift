@@ -73,6 +73,6 @@ struct CrimeViewModelSummary: CrimeViewModelItem {
     }
     
     var sectionTitle: String {
-        return "Crimes"
+        return ""
     }
 }
