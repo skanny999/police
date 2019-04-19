@@ -8,21 +8,23 @@
 
 import UIKit
 
-class StopAndSearchSuspectCell: UITableViewCell {
+class StopAndSearchSuspectCell: UITableViewCell, Loadable {
     
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var ethnicityLabel: UILabel!
     
+    var item: StopAndSearchViewModelSuspect? {
+        
+        didSet {
+            genderLabel.text = item?.gender
+            ageLabel.text = item?.age
+            ethnicityLabel.text = item?.ethnicity
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

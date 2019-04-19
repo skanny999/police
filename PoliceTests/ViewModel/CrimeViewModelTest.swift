@@ -74,13 +74,4 @@ class CrimeViewModelTest: XCTestCase {
         XCTAssert(viewModel.items[3].type == .outcome)
     }
     
-    func testCellViewModel() {
-        
-        
-        
-        
-    }
-
- 
-
 }

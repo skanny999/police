@@ -12,7 +12,7 @@ import Foundation
 enum StopAndSearchItemType {
     case details
     case suspect
-    case dataPlace
+    case datePlace
     case outcome
 }
 
@@ -40,7 +40,6 @@ class StopAndSearchViewModel: NSObject {
         if let description = stopAndSearch.objectOfSearch,
             let legislation = stopAndSearch.legislation,
             let image = stopAndSearchCrimeCategory(rawValue: description)?.image {
-            
             items.append(StopAndSearchViewModelDescription(description: description,
                                                            legislation: legislation,
                                                            image: image))
@@ -48,19 +47,19 @@ class StopAndSearchViewModel: NSObject {
         
         if let gender = stopAndSearch.genderCode,
             let age = stopAndSearch.ageRange,
-            let ethnicity = stopAndSearch.suspectEthnicity {
-            
-            items.append(StopAndSearchViewModelSuspect(gender: gender, age: age, ethnicity: ethnicity))
+            let ethnicity = stopAndSearch.suspectEthnicity,
+            let etnicityDescription = Etnicity(rawValue: ethnicity)?.description {
+            items.append(StopAndSearchViewModelSuspect(gender: gender,
+                                                       age: age,
+                                                       ethnicity: etnicityDescription))
         }
         
         if let dateTime = stopAndSearch.dateTime.longDescription,
             let place = stopAndSearch.streetName {
-            
             items.append(StopAndSearchViewModelDatePlace(date: dateTime, place: place))
         }
         
         if let outcome = stopAndSearch.outCome {
-            
             items.append(StopAndSearchViewModelOutcome(outcome: outcome))
         }
     }
@@ -87,8 +86,35 @@ extension StopAndSearchViewModel: Displayable {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.section]
         
-        
-        
+        switch item.type {
+        case .details:
+            if let description = item as? StopAndSearchViewModelDescription,
+            let cell = tableView.dequeueReusableCell(withIdentifier: StopAndSearchDetailsCell.identifier, for: indexPath) as? StopAndSearchDetailsCell {
+                cell.item = description
+                return cell
+            }
+            
+        case .suspect:
+            if let suspect = item as? StopAndSearchViewModelSuspect,
+            let cell = tableView.dequeueReusableCell(withIdentifier: StopAndSearchSuspectCell.identifier, for: indexPath) as? StopAndSearchSuspectCell {
+                cell.item = suspect
+                return cell
+            }
+            
+        case .datePlace:
+            if let dateplace = item as? StopAndSearchViewModelDatePlace,
+            let cell = tableView.dequeueReusableCell(withIdentifier: StopAndSearchDatePlaceCell.identifier, for: indexPath) as? StopAndSearchDatePlaceCell {
+                cell.item = dateplace
+                return cell
+            }
+        case .outcome:
+            if let outcome = item as? StopAndSearchViewModelOutcome,
+            let cell = tableView.dequeueReusableCell(withIdentifier: StopAndSearchOutcomeCell.identifier, for: indexPath) as? StopAndSearchOutcomeCell {
+                cell.item = outcome
+                return cell
+            }
+        }
+        return UITableViewCell()
     }
 }
 
@@ -130,7 +156,7 @@ struct StopAndSearchViewModelDatePlace: StopAndSearchViewModelItem {
     let place: String
     
     var type: StopAndSearchItemType {
-        return .dataPlace
+        return .datePlace
     }
     
     var sectionTitle: String {

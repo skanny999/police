@@ -223,3 +223,48 @@ enum StopAndSearchOutcomeCategory: String {
         }
     }
 }
+
+enum Etnicity: String {
+    
+    case asianOther = "Asian/Asian British - Any other Asian background"
+    case asianBangladeshi = "Asian/Asian British - Bangladeshi"
+    case asianChinese = "Asian/Asian British - Chinese"
+    case asianIndian = "Asian/Asian British - Indian"
+    case asianPakistani = "Asian/Asian British - Pakistani"
+    case blackAfrican = "Black/African/Caribbean/Black British - African"
+    case blackOther = "Black/African/Caribbean/Black British - Any other Black/African/Caribbean background"
+    case blackCarribean = "Black/African/Caribbean/Black British - Caribbean"
+    case mixedOther = "Mixed/Multiple ethnic groups - Any other Mixed/Multiple ethnic background"
+    case mixedWhiteAsian = "Mixed/Multiple ethnic groups - White and Asian"
+    case mixedWhiteAfrican = "Mixed/Multiple ethnic groups - White and Black African"
+    case mixedWhiteCaribbean = "Mixed/Multiple ethnic groups - White and Black Caribbean"
+    case other = "Other ethnic group - Any other ethnic group"
+    case notStated = "Other ethnic group - Not stated"
+    case whiteOther = "White - Any other White background"
+    case whiteBritish = "White - English/Welsh/Scottish/Northern Irish/British"
+    case whiteIrish = "White - Irish"
+    
+    var description: String {
+        
+        switch self {
+        case .asianOther:           return "Asian"
+        case .asianBangladeshi:     return "Asian Bangladeshi"
+        case .asianChinese:         return "Asian Chinese"
+        case .asianIndian:          return "Asian Indian"
+        case .asianPakistani:       return "Asian Pakistani"
+        case .blackAfrican:         return "Black African"
+        case .blackOther:           return "Black"
+        case .blackCarribean:       return "Black Caribbean"
+        case .mixedOther:           return "Mixed"
+        case .mixedWhiteAsian:      return "Mixed White Asian"
+        case .mixedWhiteAfrican:    return "Mixed White African"
+        case .mixedWhiteCaribbean:  return "Mixed White Caribbean"
+        case .other:                return "Not defined"
+        case .notStated:            return "Not stated"
+        case .whiteOther:           return "White"
+        case .whiteBritish:         return "White British"
+        case .whiteIrish:           return "White Irish"
+
+        }
+    }
+}

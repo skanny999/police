@@ -8,11 +8,19 @@
 
 import UIKit
 
-class StopAndSearchDetailsCell: UITableViewCell {
+class StopAndSearchDetailsCell: UITableViewCell, Loadable {
 
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var legislationLabel: UILabel!
+    
+    var item: StopAndSearchViewModelDescription? {
+        didSet {
+            detailImageView.image = item?.image
+            descriptionLabel.text = item?.description
+            legislationLabel.text = item?.legislation
+        }
+    }
     
     
     override func awakeFromNib() {
@@ -20,10 +28,5 @@ class StopAndSearchDetailsCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 }

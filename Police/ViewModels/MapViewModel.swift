@@ -14,7 +14,6 @@ enum Mode {
     case crime, police, none
 }
 
-
 class MapViewModel: NSObject {
     
     // MARK: - View updater variables
@@ -140,7 +139,7 @@ extension MapViewModel: MapViewControllerDelegate {
     
     fileprivate func showDetailsForAnnotations(_ annotations: MKClusterAnnotation) {
         if let crimes = annotations.memberAnnotations as? [Crime] {
-            showDetails(for: crimes)
+            showDetails(forCrimes: crimes)
         } else if let sas = annotations.memberAnnotations as? [StopAndSearch] {
             print(sas)
         }
@@ -149,15 +148,15 @@ extension MapViewModel: MapViewControllerDelegate {
     fileprivate func showDetailsForSingleAnnotation(_ annotation: MKAnnotation) {
         switch annotation {
         case let crime as Crime:
-            showDetails(for: crime)
+            showDetails(forCrime: crime)
         case let stopAndSearch as StopAndSearch:
-            print(stopAndSearch)
+            showDetails(forSingleSearch: stopAndSearch)
         default:
             break
         }
     }
     
-    private func showDetails(for crimes: [Crime]) {
+    private func showDetails(forCrimes crimes: [Crime]) {
         
         let crimesViewModel = CrimesViewModel(with: crimes)
         crimesViewModel.presenter = presenter
@@ -165,12 +164,20 @@ extension MapViewModel: MapViewControllerDelegate {
         showDetails?()
     }
     
-    private func showDetails(for crime: Crime) {
+    private func showDetails(forCrime crime: Crime) {
         UpdateManager.updateOutcomes(forCrime: crime) { (success) in
             self.detailsViewController.viewModel = CrimeViewModel(with: crime)
             DispatchQueue.main.async {
                 self.showDetails?()
             }
+        }
+    }
+    
+    
+    private func showDetails(forSingleSearch search: StopAndSearch) {
+        detailsViewController.viewModel = StopAndSearchViewModel(with: search)
+        DispatchQueue.main.async {
+            self.showDetails?()
         }
     }
     

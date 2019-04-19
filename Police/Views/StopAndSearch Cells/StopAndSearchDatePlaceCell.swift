@@ -8,11 +8,17 @@
 
 import UIKit
 
-class StopAndSearchDatePlaceCell: UITableViewCell {
+class StopAndSearchDatePlaceCell: UITableViewCell, Loadable {
     
     @IBOutlet weak var dateTimeLabel: UILabel!
-    
     @IBOutlet weak var placeLabel: UILabel!
+    
+    var item: StopAndSearchViewModelDatePlace? {
+        didSet {
+            dateTimeLabel.text = item?.date
+            placeLabel.text = item?.place
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,9 +8,15 @@
 
 import UIKit
 
-class StopAndSearchOutcomeCell: UITableViewCell {
+class StopAndSearchOutcomeCell: UITableViewCell, Loadable {
     
     @IBOutlet weak var outcomeLabel: UILabel!
+    
+    var item: StopAndSearchViewModelOutcome? {
+        didSet {
+            outcomeLabel.text = item?.outcome
+        }
+    }
     
 
     override func awakeFromNib() {

@@ -23,8 +23,10 @@ class SelectionDetailsViewController: UIViewController {
     var viewModel: Displayable? {
         didSet {
             if tableView != nil {
-                setDelegates()
-                tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.setDelegates()
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -39,7 +41,6 @@ class SelectionDetailsViewController: UIViewController {
         configureCells()
         registerCells()
         setDelegates()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: Notification.Name("oucomeUpdate"), object: nil)
     }
     
     private func configureCells() {
@@ -48,10 +49,22 @@ class SelectionDetailsViewController: UIViewController {
     }
     
     private func registerCells() {
-        tableView.register(CrimeDescriptionCell.nib, forCellReuseIdentifier: CrimeDescriptionCell.identifier)
-        tableView.register(PeriodCell.nib, forCellReuseIdentifier: PeriodCell.identifier)
-        tableView.register(LocationCell.nib, forCellReuseIdentifier: LocationCell.identifier)
-        tableView.register(OutcomeCell.nib, forCellReuseIdentifier: OutcomeCell.identifier)
+        tableView.register(CrimeDescriptionCell.nib,
+                           forCellReuseIdentifier: CrimeDescriptionCell.identifier)
+        tableView.register(PeriodCell.nib,
+                           forCellReuseIdentifier: PeriodCell.identifier)
+        tableView.register(LocationCell.nib,
+                           forCellReuseIdentifier: LocationCell.identifier)
+        tableView.register(OutcomeCell.nib,
+                           forCellReuseIdentifier: OutcomeCell.identifier)
+        tableView.register(StopAndSearchDetailsCell.nib,
+                           forCellReuseIdentifier: StopAndSearchDetailsCell.identifier)
+        tableView.register(StopAndSearchSuspectCell.nib,
+                           forCellReuseIdentifier: StopAndSearchSuspectCell.identifier)
+        tableView.register(StopAndSearchDatePlaceCell.nib,
+                           forCellReuseIdentifier: StopAndSearchDatePlaceCell.identifier)
+        tableView.register(StopAndSearchOutcomeCell.nib,
+                           forCellReuseIdentifier: StopAndSearchOutcomeCell.identifier)
     }
     
     private func setDelegates() {

@@ -1,5 +1,40 @@
 import UIKit
 
+extension String {
+    
+    var dateValue: NSDate? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_GB")
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateString = self.count > 19 ? String(self[..<self.index(self.startIndex, offsetBy: 19)]) : self
+        
+        return  dateFormatter.date(from:dateString) as NSDate?
+    }
+}
+
+extension Optional where Wrapped == NSDate {
+    
+    var longDescription: String? {
+        
+        guard let date = self as Date? else { return nil }
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .medium
+        
+        return formatter.string(from: date)
+    }
+}
+
+
+let originalDateString = "2018-06-19T06:54:04+00:00"
+
+let formattedDateString = originalDateString.dateValue.longDescription
+
+print(formattedDateString!)
+
 
 var newArray = [1, 2, 3, 4, 5]
 let oldArray = [3, 4, 5, 6, 7]
@@ -85,10 +120,46 @@ func date(fromDay day: Int, month: Int, year: Int) -> Date {
 }
 
 
-print(createdDate)
+
 
 let newDate = Calendar.current.date(byAdding: .month, value: 1, to: createdDate)
 print(newDate)
+
+extension String {
+    
+    var dateValue: NSDate? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_GB")
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let dateString = self.count > 19 ? String(self[..<self.index(self.startIndex, offsetBy: 19)]) : self
+        
+        return  dateFormatter.date(from:dateString) as NSDate?
+    }
+}
+
+extension Optional where Wrapped == NSDate {
+    
+    var longDescription: String? {
+        
+        guard let date = self as Date? else { return nil }
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        
+        return formatter.string(from: date)
+    }
+}
+
+
+let originalDateString = "2018-06-19T06:54:04+00:00"
+
+let formattedDateString = originalDateString.dateValue.longDescription
+
+print(formattedDateString!)
+
+
 
 
 
