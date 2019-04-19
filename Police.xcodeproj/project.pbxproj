@@ -19,6 +19,14 @@
 		8B1A2F33223813AE0022F6C0 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A2F31223813AE0022F6C0 /* MapViewModel.swift */; };
 		8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A2F34223AB4AF0022F6C0 /* StoryboardHelper.swift */; };
 		8B212CCA2269D41600884241 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8B212CC92269D41500884241 /* Podfile */; };
+		8B212CCE2269E6D200884241 /* StopAndSearchDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CCC2269E6D200884241 /* StopAndSearchDetailsCell.swift */; };
+		8B212CCF2269E6D200884241 /* StopAndSearchDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B212CCD2269E6D200884241 /* StopAndSearchDetailsCell.xib */; };
+		8B212CD22269E70200884241 /* StopAndSearchSuspectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CD02269E70200884241 /* StopAndSearchSuspectCell.swift */; };
+		8B212CD32269E70200884241 /* StopAndSearchSuspectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B212CD12269E70200884241 /* StopAndSearchSuspectCell.xib */; };
+		8B212CD62269E73F00884241 /* StopAndSearchDatePlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CD42269E73F00884241 /* StopAndSearchDatePlaceCell.swift */; };
+		8B212CD72269E73F00884241 /* StopAndSearchDatePlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B212CD52269E73F00884241 /* StopAndSearchDatePlaceCell.xib */; };
+		8B212CDA2269E76400884241 /* StopAndSearchOutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CD82269E76400884241 /* StopAndSearchOutcomeCell.swift */; };
+		8B212CDB2269E76400884241 /* StopAndSearchOutcomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B212CD92269E76400884241 /* StopAndSearchOutcomeCell.xib */; };
 		8B3DD0162219B06400B98FE5 /* NeighbourhoodEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */; };
 		8B3DD01A221A2FEC00B98FE5 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD019221A2FEC00B98FE5 /* Events.json */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
@@ -164,6 +172,14 @@
 		8B1A2F31223813AE0022F6C0 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		8B1A2F34223AB4AF0022F6C0 /* StoryboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		8B212CC92269D41500884241 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8B212CCC2269E6D200884241 /* StopAndSearchDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchDetailsCell.swift; sourceTree = "<group>"; };
+		8B212CCD2269E6D200884241 /* StopAndSearchDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopAndSearchDetailsCell.xib; sourceTree = "<group>"; };
+		8B212CD02269E70200884241 /* StopAndSearchSuspectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchSuspectCell.swift; sourceTree = "<group>"; };
+		8B212CD12269E70200884241 /* StopAndSearchSuspectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopAndSearchSuspectCell.xib; sourceTree = "<group>"; };
+		8B212CD42269E73F00884241 /* StopAndSearchDatePlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchDatePlaceCell.swift; sourceTree = "<group>"; };
+		8B212CD52269E73F00884241 /* StopAndSearchDatePlaceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopAndSearchDatePlaceCell.xib; sourceTree = "<group>"; };
+		8B212CD82269E76400884241 /* StopAndSearchOutcomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchOutcomeCell.swift; sourceTree = "<group>"; };
+		8B212CD92269E76400884241 /* StopAndSearchOutcomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopAndSearchOutcomeCell.xib; sourceTree = "<group>"; };
 		8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodEdited.json; sourceTree = "<group>"; };
 		8B3DD019221A2FEC00B98FE5 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -611,6 +627,14 @@
 		8BDE2EF62267997100607F83 /* StopAndSearch Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8B212CCC2269E6D200884241 /* StopAndSearchDetailsCell.swift */,
+				8B212CCD2269E6D200884241 /* StopAndSearchDetailsCell.xib */,
+				8B212CD02269E70200884241 /* StopAndSearchSuspectCell.swift */,
+				8B212CD12269E70200884241 /* StopAndSearchSuspectCell.xib */,
+				8B212CD42269E73F00884241 /* StopAndSearchDatePlaceCell.swift */,
+				8B212CD52269E73F00884241 /* StopAndSearchDatePlaceCell.xib */,
+				8B212CD82269E76400884241 /* StopAndSearchOutcomeCell.swift */,
+				8B212CD92269E76400884241 /* StopAndSearchOutcomeCell.xib */,
 			);
 			path = "StopAndSearch Cells";
 			sourceTree = "<group>";
@@ -814,14 +838,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B212CCF2269E6D200884241 /* StopAndSearchDetailsCell.xib in Resources */,
 				8B514FCA22651D22005D5DF6 /* LocationCell.xib in Resources */,
 				8B514FC622651D03005D5DF6 /* PeriodCell.xib in Resources */,
+				8B212CD32269E70200884241 /* StopAndSearchSuspectCell.xib in Resources */,
 				8B212CCA2269D41600884241 /* Podfile in Resources */,
 				8B1A2F2F2238139E0022F6C0 /* Main.storyboard in Resources */,
 				8B155EC921F131A000783C23 /* LaunchScreen.storyboard in Resources */,
 				8B155EC621F1319F00783C23 /* Assets.xcassets in Resources */,
+				8B212CDB2269E76400884241 /* StopAndSearchOutcomeCell.xib in Resources */,
 				8B514FCE22651D43005D5DF6 /* OutcomeCell.xib in Resources */,
 				8B4B1B66226363E20096A08C /* CrimeDescriptionCell.xib in Resources */,
+				8B212CD72269E73F00884241 /* StopAndSearchDatePlaceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +1003,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B212CDA2269E76400884241 /* StopAndSearchOutcomeCell.swift in Sources */,
 				8B4B1B5C22623BC50096A08C /* PoliceNavigationController.swift in Sources */,
 				8B87EE9D224CE73700BFF848 /* Police-Bridging-Header.h in Sources */,
 				8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */,
@@ -987,6 +1016,7 @@
 				8B7827E9221CC411008DE3E0 /* Date+Utils.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
 				8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */,
+				8B212CD62269E73F00884241 /* StopAndSearchDatePlaceCell.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,
 				8BEBCB5821F8DC840004AFDE /* Officer+CoreDataProperties.swift in Sources */,
 				8BA404DB224FCEA200CC930B /* Period+CoreDataClass.swift in Sources */,
@@ -995,6 +1025,7 @@
 				8BEBCB5E21F8DC840004AFDE /* Priority+CoreDataProperties.swift in Sources */,
 				8B136368223964E700ACB0B2 /* SearchResultsController.swift in Sources */,
 				8BAFD592224459D200D2A544 /* CoreDataProvider.swift in Sources */,
+				8B212CCE2269E6D200884241 /* StopAndSearchDetailsCell.swift in Sources */,
 				8BEBCB6021F8DC840004AFDE /* Contact+CoreDataProperties.swift in Sources */,
 				8B4B1B582262320A0096A08C /* CrimesViewModel.swift in Sources */,
 				8B155EBC21F1319C00783C23 /* AppDelegate.swift in Sources */,
@@ -1031,6 +1062,7 @@
 				8BEBCB5F21F8DC840004AFDE /* Contact+CoreDataClass.swift in Sources */,
 				8BDE2EFA2267DF2D00607F83 /* StopAndSearchViewModel.swift in Sources */,
 				8B1A2F32223813AE0022F6C0 /* MapViewController.swift in Sources */,
+				8B212CD22269E70200884241 /* StopAndSearchSuspectCell.swift in Sources */,
 				8BEBCB5621F8DC840004AFDE /* Crime+CoreDataProperties.swift in Sources */,
 				8BC6BB8A224D667D00F63B0B /* MKPolygon+Utils.swift in Sources */,
 				8B514FCD22651D43005D5DF6 /* OutcomeCell.swift in Sources */,

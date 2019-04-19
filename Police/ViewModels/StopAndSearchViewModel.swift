@@ -30,7 +30,6 @@ extension StopAndSearchViewModelItem {
 }
 
 
-
 class StopAndSearchViewModel: NSObject {
     
     var items = [StopAndSearchViewModelItem]()
@@ -64,6 +63,32 @@ class StopAndSearchViewModel: NSObject {
             
             items.append(StopAndSearchViewModelOutcome(outcome: outcome))
         }
+    }
+}
+
+extension StopAndSearchViewModel: Displayable {
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return items[section].rowCount
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return items[section].sectionTitle
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.section]
+        
+        
+        
     }
 }
 
