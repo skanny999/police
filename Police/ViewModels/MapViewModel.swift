@@ -20,7 +20,7 @@ class MapViewModel: NSObject {
     // MARK: - View updater variables
     
     var mapMode: Mode = .none
-    var selecteNeighbourhoodDidChange: ((String?) -> Void)?
+    var selectedNeighbourhoodDidChange: ((String?) -> Void)?
     var dataIsLoading: ((Bool) -> Void)?
     var hideDetails: (() -> Void)?
     var showDetails: (() -> Void)?
@@ -108,7 +108,7 @@ extension MapViewModel: MapViewControllerDelegate {
         
         if isShowingNeighbourhood {
             mapView.removeOverlays(mapView.overlays)
-            selecteNeighbourhoodDidChange?(nil)
+            selectedNeighbourhoodDidChange?(nil)
             retrieveData()
         } else {
             let location = mapView.convert(selectedPoint, toCoordinateFrom: mapView)
@@ -405,7 +405,7 @@ private extension MapViewModel {
         
         if let polygon = neighbourood.polygonData?.polygon {
             mapView.addOverlay(polygon)
-            selecteNeighbourhoodDidChange?(neighbourood.name)
+            selectedNeighbourhoodDidChange?(neighbourood.name)
             retrieveData()
         }
     }

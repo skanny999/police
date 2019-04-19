@@ -71,7 +71,7 @@ class MapViewController: UIViewController {
 
     private func configureViewUpdater() {
         
-        viewModel.selecteNeighbourhoodDidChange = { (selectedNeighbourhood) in
+        viewModel.selectedNeighbourhoodDidChange = { (selectedNeighbourhood) in
             DispatchQueue.main.async {
                 self.updateViewWith(selectedNeighbourhood)
             }
@@ -230,7 +230,7 @@ class MapViewController: UIViewController {
     
     @IBAction func neighbourhoodButtonPressed(_ sender: Any) {
         
-        // did select neighbourhood
+
     }
     
     

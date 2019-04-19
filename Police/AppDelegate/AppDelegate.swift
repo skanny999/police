@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        Fabric.with([Crashlytics.self])
         if !AppStatus.isTesting { //avoid loading the persistant container more than once which causes crashes
             UpdateManager.updatePeriods()
         }
