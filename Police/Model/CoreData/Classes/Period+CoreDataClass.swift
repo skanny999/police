@@ -18,12 +18,20 @@ public class Period: NSManagedObject {
         let period = Period(entity: self.entity(), insertInto: context)
         period.date = date
         period.isSelected = isSelected
-        
     }
     
     var stringDescription: String {
         
         return date!.queryDescription
+    }
+    
+    func setToSelected() {
+        
+        if let allPeriods = CoreDataProvider.allPeriods() {
+            
+            allPeriods.forEach { $0.isSelected = false }
+        }
+        self.isSelected = true
     }
 
 }

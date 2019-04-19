@@ -10,6 +10,7 @@ import Foundation
 
 
 enum StopAndSearchItemType {
+    case summary
     case details
     case suspect
     case datePlace
@@ -113,6 +114,8 @@ extension StopAndSearchViewModel: Displayable {
                 cell.item = outcome
                 return cell
             }
+        case .summary:
+            break
         }
         return UITableViewCell()
     }

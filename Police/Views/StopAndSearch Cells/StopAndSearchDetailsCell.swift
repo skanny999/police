@@ -22,6 +22,13 @@ class StopAndSearchDetailsCell: UITableViewCell, Loadable {
         }
     }
     
+    var isSelectable: Bool? {
+        didSet {
+            self.isUserInteractionEnabled = isSelectable ?? false
+            self.accessoryType = isSelectable ?? false ? .disclosureIndicator : .none
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

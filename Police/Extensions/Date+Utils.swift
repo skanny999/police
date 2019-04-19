@@ -82,8 +82,8 @@ extension Optional where Wrapped == NSDate {
         
         let formatter = DateFormatter()
         formatter.dateStyle = .long
-        formatter.timeStyle = .medium
-        
+        formatter.timeStyle = .short
+
         return formatter.string(from: date)
     }
 }

@@ -29,7 +29,7 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
     
     func configure(with crime: Crime) {

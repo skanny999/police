@@ -54,11 +54,13 @@ class StopAndSearchCellViewModel: XCTestCase {
                 XCTAssert(suspect.ethnicity == "White British")
             case .datePlace:
                 let datePlace = item as! StopAndSearchViewModelDatePlace
-                XCTAssert(datePlace.date == "June 19, 2018 at 6:54:04 AM")
+                XCTAssert(datePlace.date == "19 June 2018 at 16:54")
                 XCTAssert(datePlace.place == "On or near Severn Road")
             case .outcome:
                 let outcome = item as! StopAndSearchViewModelOutcome
                 XCTAssert(outcome.outcome == "A no further action disposal")
+            case .summary:
+                break
             }
         }
     }

@@ -140,8 +140,8 @@ extension MapViewModel: MapViewControllerDelegate {
     fileprivate func showDetailsForAnnotations(_ annotations: MKClusterAnnotation) {
         if let crimes = annotations.memberAnnotations as? [Crime] {
             showDetails(forCrimes: crimes)
-        } else if let sas = annotations.memberAnnotations as? [StopAndSearch] {
-            print(sas)
+        } else if let searches = annotations.memberAnnotations as? [StopAndSearch] {
+            showDetails(forSearches: searches)
         }
     }
     
@@ -176,6 +176,15 @@ extension MapViewModel: MapViewControllerDelegate {
     
     private func showDetails(forSingleSearch search: StopAndSearch) {
         detailsViewController.viewModel = StopAndSearchViewModel(with: search)
+        DispatchQueue.main.async {
+            self.showDetails?()
+        }
+    }
+    
+    private func showDetails(forSearches searches: [StopAndSearch]) {
+        let searchesViewModel = StopAndSearchesViewModel(with: searches)
+        searchesViewModel.presenter = presenter
+        detailsViewController.viewModel = searchesViewModel
         DispatchQueue.main.async {
             self.showDetails?()
         }

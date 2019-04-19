@@ -28,6 +28,8 @@
 		8B212CDA2269E76400884241 /* StopAndSearchOutcomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CD82269E76400884241 /* StopAndSearchOutcomeCell.swift */; };
 		8B212CDB2269E76400884241 /* StopAndSearchOutcomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B212CD92269E76400884241 /* StopAndSearchOutcomeCell.xib */; };
 		8B212CDD2269FA6900884241 /* StopAndSearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CDC2269FA6900884241 /* StopAndSearchCellViewModel.swift */; };
+		8B212CDF226A28D100884241 /* StopAndSearchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CDE226A28D100884241 /* StopAndSearchesViewModel.swift */; };
+		8B212CE1226A781C00884241 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B212CE0226A781C00884241 /* InfoTableViewController.swift */; };
 		8B3DD0162219B06400B98FE5 /* NeighbourhoodEdited.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */; };
 		8B3DD01A221A2FEC00B98FE5 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DD019221A2FEC00B98FE5 /* Events.json */; };
 		8B3F604121F790CA001D6651 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3F604021F790CA001D6651 /* CoreDataManager.swift */; };
@@ -182,6 +184,8 @@
 		8B212CD82269E76400884241 /* StopAndSearchOutcomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchOutcomeCell.swift; sourceTree = "<group>"; };
 		8B212CD92269E76400884241 /* StopAndSearchOutcomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopAndSearchOutcomeCell.xib; sourceTree = "<group>"; };
 		8B212CDC2269FA6900884241 /* StopAndSearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchCellViewModel.swift; sourceTree = "<group>"; };
+		8B212CDE226A28D100884241 /* StopAndSearchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopAndSearchesViewModel.swift; sourceTree = "<group>"; };
+		8B212CE0226A781C00884241 /* InfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		8B3DD0152219B06400B98FE5 /* NeighbourhoodEdited.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NeighbourhoodEdited.json; sourceTree = "<group>"; };
 		8B3DD019221A2FEC00B98FE5 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
 		8B3F604021F790CA001D6651 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 				8B136367223964E700ACB0B2 /* SearchResultsController.swift */,
 				8B4B1B53226220C10096A08C /* SelectionDetailsViewController.swift */,
 				8B4B1B5B22623BC50096A08C /* PoliceNavigationController.swift */,
+				8B212CE0226A781C00884241 /* InfoTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				8B4B1B55226231B70096A08C /* CrimeViewModel.swift */,
 				8B4B1B572262320A0096A08C /* CrimesViewModel.swift */,
 				8BDE2EF92267DF2D00607F83 /* StopAndSearchViewModel.swift */,
+				8B212CDE226A28D100884241 /* StopAndSearchesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1018,6 +1024,7 @@
 				8BEBCB6C21FCAAB80004AFDE /* NetworkProvider.swift in Sources */,
 				8B7827E9221CC411008DE3E0 /* Date+Utils.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
+				8B212CDF226A28D100884241 /* StopAndSearchesViewModel.swift in Sources */,
 				8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */,
 				8B212CD62269E73F00884241 /* StopAndSearchDatePlaceCell.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,
@@ -1038,6 +1045,7 @@
 				8BAFD59422445C7700D2A544 /* PredicateFactory.swift in Sources */,
 				8B56E2AE2207626F0061D1CF /* UpdateProcessor.swift in Sources */,
 				8BEBCB7321FCAF150004AFDE /* JSONFiles.swift in Sources */,
+				8B212CE1226A781C00884241 /* InfoTableViewController.swift in Sources */,
 				8B87EEA0224CE78400BFF848 /* MKPolygon+GPC.m in Sources */,
 				8BEBCBAA22011A140004AFDE /* FileExtractor.swift in Sources */,
 				8BEBCB5121F8DC840004AFDE /* Neighbourhood+CoreDataClass.swift in Sources */,

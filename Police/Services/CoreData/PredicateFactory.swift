@@ -34,7 +34,7 @@ class PredicateFactory {
         let topLong = rect.coordinates.topLeft.longitude.short
         let bottomLat = rect.coordinates.bottomRight.latitude.short
         let bottomLong = rect.coordinates.bottomRight.longitude.short
-        
+        #warning("Add current period parameter")
         return NSPredicate(format: "latitude <= %f AND longitude >= %f AND latitude >= %f AND longitude <= %f AND (NOT SELF IN %@)", topLat, topLong, bottomLat, bottomLong, objects)
     }
     
