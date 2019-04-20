@@ -23,6 +23,7 @@ class MapViewModel: NSObject {
     var dataIsLoading: ((Bool) -> Void)?
     var hideDetails: (() -> Void)?
     var showDetails: (() -> Void)?
+    var showZoomInView: ((Bool) -> Void)?
     
     var presenter: UINavigationController!
     var detailsViewController: SelectionDetailsViewController! {
@@ -50,13 +51,9 @@ class MapViewModel: NSObject {
         return mapView.overlays.count > 0
     }
     
-    private var viewIsZoomedIn: Bool {
-        
-        if mapView.zoomLevel > 300 {
-            print("zoom closer to retrieve data")
-            return false
-        }
-        return true
+    private var shouldZoomIn: Bool {
+
+        return mapView.zoomLevel > 300
     }
     
     // MARK: - Setup
@@ -356,13 +353,12 @@ private extension MapViewModel {
     
     private func updateCrimes(for polygon: MKPolygon) {
         
-        if !viewIsZoomedIn {
-            
-            // show zoom in view
-            print("zoom closer")
+        showZoomInView?(shouldZoomIn)
+        
+        if shouldZoomIn {
             return
         }
-        
+
         networkCallsCounter += 1
         UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
             if error != nil {
@@ -393,11 +389,6 @@ private extension MapViewModel {
     }
     
     func getNewStopAndSearch() {
-        
-        if !viewIsZoomedIn {
-            print("zoom closer")
-            return
-        }
     
         networkCallsCounter += 1
         UpdateManager.updateStopAndSearch(within: mapView.visibleMapRect) { [weak self] (error) in

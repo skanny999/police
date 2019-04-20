@@ -20,6 +20,7 @@ protocol MapViewControllerDelegate {
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var zoomInImageView: UIImageView!
     
     var crimeButton: UIBarButtonItem!
     var policeButton: UIBarButtonItem!
@@ -58,6 +59,7 @@ class MapViewController: UIViewController {
         viewModel.setPresenter(presenter)
         self.delegate = viewModel
         configureViewUpdater()
+        zoomInImageView.alpha = 0.0
     }
     
     private func configureBarButtonItems() {
@@ -93,6 +95,10 @@ class MapViewController: UIViewController {
             DispatchQueue.main.async {
                 self.showDetailsView()
             }
+        }
+        
+        viewModel.showZoomInView = { (shouldShow) in
+            self.animateZoomInView(show: shouldShow)
         }
     }
     
@@ -194,18 +200,17 @@ class MapViewController: UIViewController {
 
         let newMode: Mode = (viewModel.mapMode == .crime) ? .none : .crime
         resetNavigationItemButton(policeButton, forMode: newMode)
+        hideDetailsView()
         
         switch viewModel.mapMode {
         case .crime:
             crimeButton.image = crimeImage
-            hideDetailsView()
         case .police:
             policeButton.image = policeImage
             crimeButton.image = selectedCrimeImage
         case .none:
             crimeButton.image = selectedCrimeImage
         }
-        
         delegate?.mapViewController(self, didTapButtonForMode: newMode)
     }
     
@@ -213,6 +218,7 @@ class MapViewController: UIViewController {
         
         let newMode: Mode = viewModel.mapMode == .police ? .none : .police
         resetNavigationItemButton(crimeButton, forMode: newMode)
+        hideDetailsView()
         
         switch viewModel.mapMode {
         case .crime:
@@ -220,11 +226,9 @@ class MapViewController: UIViewController {
             crimeButton.image = crimeImage
         case .police:
             policeButton.image = policeImage
-            hideDetailsView()
         case .none:
             policeButton.image = selectedPoliceImage
         }
-        
         delegate?.mapViewController(self, didTapButtonForMode: newMode)
     }
     
@@ -232,8 +236,6 @@ class MapViewController: UIViewController {
         
 
     }
-    
-    
     
     
     private func updateViewWith(_ neighbourhood: String?) {
@@ -286,6 +288,14 @@ extension MapViewController {
             self.containerPositionConstraint.constant = 0 - self.mapView.frame.height
             self.view.layoutIfNeeded()
         }
+    }
+    
+    private func animateZoomInView(show: Bool) {
+        
+        UIView.animate(withDuration: 0.3) {
+            self.zoomInImageView.alpha = show ? 1.0 : 0.0
+        }
+        
     }
 }
 

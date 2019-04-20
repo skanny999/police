@@ -69,6 +69,14 @@
                                     <segue destination="caZ-lD-spQ" kind="embed" identifier="DETAILS_SEGUE" id="1je-NT-0lG"/>
                                 </connections>
                             </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M26-J7-Afs">
+                                <rect key="frame" x="97.5" y="20" width="180" height="32"/>
+                                <color key="backgroundColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="miC-xr-cpT"/>
+                                    <constraint firstAttribute="height" constant="32" id="tAC-JY-jOK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -79,7 +87,9 @@
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="NyW-kP-ODl" secondAttribute="bottom" constant="-44" id="KKZ-7r-eHq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="Jze-Dk-5BS" secondAttribute="bottom" constant="-44" id="QZ4-5K-rUr"/>
                             <constraint firstItem="Jze-Dk-5BS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WDL-Ae-5rc"/>
+                            <constraint firstItem="qOv-Bo-RCp" firstAttribute="top" secondItem="M26-J7-Afs" secondAttribute="bottom" constant="-56" id="Xam-yC-baR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qOv-Bo-RCp" secondAttribute="bottom" id="XtS-92-4mZ"/>
+                            <constraint firstItem="M26-J7-Afs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dmr-9t-Mb3"/>
                             <constraint firstItem="Jze-Dk-5BS" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="epG-1H-yA0"/>
                             <constraint firstItem="qOv-Bo-RCp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qRX-Dn-FBI"/>
                             <constraint firstItem="nEt-UE-z92" firstAttribute="top" secondItem="qOv-Bo-RCp" secondAttribute="bottom" id="wvm-ry-W37"/>
@@ -100,6 +110,7 @@
                         <outlet property="neighbourhoodConstraint" destination="KKZ-7r-eHq" id="iZ8-QR-8dl"/>
                         <outlet property="neighbourhoodDetailsButton" destination="NyW-kP-ODl" id="xlc-c2-BDI"/>
                         <outlet property="neighbourhoodLabel" destination="zwS-1r-kvA" id="ZSW-PE-zTG"/>
+                        <outlet property="zoomInImageView" destination="M26-J7-Afs" id="Mz5-uT-dgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
