@@ -19,7 +19,7 @@ enum CrimeCategory: String, CaseIterable {
     case drugs = "drugs"
     case otherTheft = "other-theft"
     case weapon = "possession-of-weapons"
-    case publicOder = "public-order"
+    case publicOrder = "public-order"
     case robbery = "robbery"
     case shoplifting = "shoplifting"
     case theftFromPerson = "theft-from-the-person"
@@ -45,7 +45,7 @@ enum CrimeCategory: String, CaseIterable {
             return "Other theft"
         case .weapon:
             return "Possession of weapons"
-        case .publicOder:
+        case .publicOrder:
             return "Public order"
         case .robbery:
             return "Robbery"
@@ -69,7 +69,7 @@ enum CrimeCategory: String, CaseIterable {
     var gravity: CrimeGravity {
         
         switch self {
-        case .antiSocialBehaviour, .drugs, .publicOder, .shoplifting, .vehicle, .other:
+        case .antiSocialBehaviour, .drugs, .publicOrder, .shoplifting, .vehicle, .other:
             return .medium
         case .burglary, .arson, .bicicleTheft, .theftFromPerson, .otherTheft:
             return .bad
