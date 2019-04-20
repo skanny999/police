@@ -10,15 +10,9 @@ import UIKit
 
 protocol Displayable: UITableViewDataSource, UITableViewDelegate {}
 
-protocol Dismissable {
-    func dismiss(_ viewController: SelectionDetailsViewController)
-}
-
 class SelectionDetailsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var delegate: Dismissable?
     
     var viewModel: Displayable? {
         didSet {
@@ -33,7 +27,9 @@ class SelectionDetailsViewController: UIViewController {
     
     @IBAction func didTapCancel(_ sender: Any) {
         
-        delegate?.dismiss(self)
+        let nc = NotificationCenter.default
+        nc.post(name: NotificationName.dismissDetail, object: nil)
+        navigationController?.popViewController(animated: true)
     }
     override func viewDidLoad() {
 
@@ -75,6 +71,8 @@ class SelectionDetailsViewController: UIViewController {
     @objc func reloadTableView() {
             
         }
+    
+
 }
 
 

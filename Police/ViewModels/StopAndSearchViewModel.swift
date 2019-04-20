@@ -39,11 +39,10 @@ class StopAndSearchViewModel: NSObject {
         super.init()
         
         if let description = stopAndSearch.objectOfSearch,
-            let legislation = stopAndSearch.legislation,
-            let image = stopAndSearchCrimeCategory(rawValue: description)?.image {
+            let legislation = stopAndSearch.legislation {
             items.append(StopAndSearchViewModelDescription(description: description,
                                                            legislation: legislation,
-                                                           image: image))
+                                                           image: stopAndSearch.image ))
         }
         
         if let gender = stopAndSearch.genderCode,

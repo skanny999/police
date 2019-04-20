@@ -40,6 +40,15 @@ public class StopAndSearch: NSManagedObject, Managed, Annotable {
         return StopAndSearchOutcomeCategory(rawValue: outcome)
     }
     
+    var image: UIImage {
+        
+        if let objectOfSearch = self.objectOfSearch,
+            let image = StopAndSearchCrimeCategory(rawValue: objectOfSearch)?.image {
+            return image
+        }
+        return Image.generalCrime
+    }
+    
     
     static var dataIdentifier: String = "datetime"
     static var objectIdentifier: String = "identifier"

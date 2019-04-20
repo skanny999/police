@@ -19,17 +19,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ao-mC-rPh">
-                        <rect key="frame" x="20" y="8" width="280" height="27.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="12" y="12" width="296" height="19.5"/>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="18"/>
+                        <color key="textColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="3Ao-mC-rPh" secondAttribute="trailing" constant="20" id="1QX-TJ-NlL"/>
-                    <constraint firstAttribute="bottom" secondItem="3Ao-mC-rPh" secondAttribute="bottom" constant="8" id="ALN-6z-gL6"/>
-                    <constraint firstItem="3Ao-mC-rPh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wTE-zM-5r1"/>
-                    <constraint firstItem="3Ao-mC-rPh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="wbU-n0-8lE"/>
+                    <constraint firstAttribute="trailing" secondItem="3Ao-mC-rPh" secondAttribute="trailing" constant="12" id="1QX-TJ-NlL"/>
+                    <constraint firstAttribute="bottom" secondItem="3Ao-mC-rPh" secondAttribute="bottom" constant="12" id="ALN-6z-gL6"/>
+                    <constraint firstItem="3Ao-mC-rPh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="wTE-zM-5r1"/>
+                    <constraint firstItem="3Ao-mC-rPh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="wbU-n0-8lE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

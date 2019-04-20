@@ -55,19 +55,18 @@ extension MKMapView {
     
 }
 
-extension MKAnnotationView {
-    
-    func view(forAnnotation annotation: MKAnnotation) -> MKAnnotationView {
-        
-        self.tintColor = .purple
-        self.isEnabled = true
-        self.canShowCallout = true
-        self.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        self.annotation = annotation
-        self.image = UIImage(named: "Circle-orange")
-        
-        return self
-    }
-    
-
-}
+//extension MKAnnotationView {
+//    
+//    func view(forAnnotation annotation: MKAnnotation) -> MKAnnotationView {
+//        
+//        self.tintColor = .purple
+//        self.isEnabled = true
+//        self.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+//        self.annotation = annotation
+//        self.image = UIImage(named: "Circle-orange")
+//        
+//        return self
+//    }
+//    
+//
+//}

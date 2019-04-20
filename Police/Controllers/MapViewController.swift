@@ -45,6 +45,10 @@ class MapViewController: UIViewController {
     @IBOutlet weak var neighbourhoodConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerPositionConstraint: NSLayoutConstraint!
     
+    var isShowingDetails: Bool {
+        return containerPositionConstraint.constant != 0
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -198,10 +202,15 @@ class MapViewController: UIViewController {
     }
     
     @objc private func crimeButtonTapped() {
+        
+        if isShowingDetails {
+            hideDetailsView()
+            return
+        }
 
         let newMode: Mode = (viewModel.mapMode == .crime) ? .none : .crime
         resetNavigationItemButton(policeButton, forMode: newMode)
-        hideDetailsView()
+
         
         switch viewModel.mapMode {
         case .crime:
@@ -216,6 +225,11 @@ class MapViewController: UIViewController {
     }
     
     @objc private func policeButtonTapped() {
+        
+        if isShowingDetails {
+            hideDetailsView()
+            return
+        }
         
         let newMode: Mode = viewModel.mapMode == .police ? .none : .police
         resetNavigationItemButton(crimeButton, forMode: newMode)

@@ -53,6 +53,7 @@ class CrimesViewModel: NSObject, Displayable {
         
         let detailController = Storyboard.selectionDetailsController()
         detailController.viewModel = CrimeViewModel(with: crime)
+        
         presenter.pushViewController(detailController, animated: true)
     }
 }

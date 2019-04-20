@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B01CC58226B7CDC0068282B /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B01CC56226B7CDB0068282B /* Image.swift */; };
+		8B01CC59226B7CDC0068282B /* Colour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B01CC57226B7CDC0068282B /* Colour.swift */; };
 		8B136368223964E700ACB0B2 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B136367223964E700ACB0B2 /* SearchResultsController.swift */; };
 		8B13636C224040ED00ACB0B2 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */; };
 		8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B13636D2240498400ACB0B2 /* CrimeAnnotationView.swift */; };
@@ -148,6 +150,8 @@
 		6A3FC9431041CABA35E94C59 /* Pods_Police.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Police.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2100B664797BA6D8BC7E9D /* Pods-Police.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Police.debug.xcconfig"; path = "Target Support Files/Pods-Police/Pods-Police.debug.xcconfig"; sourceTree = "<group>"; };
 		837F4F7D565392385D4D0DC5 /* Pods-PoliceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PoliceTests.release.xcconfig"; path = "Target Support Files/Pods-PoliceTests/Pods-PoliceTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B01CC56226B7CDB0068282B /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		8B01CC57226B7CDC0068282B /* Colour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colour.swift; sourceTree = "<group>"; };
 		8B0D5CD0224C3BAA00A639DC /* Police-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Police-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B136367223964E700ACB0B2 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		8B13636B224040ED00ACB0B2 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
@@ -159,7 +163,6 @@
 		8B155EC821F131A000783C23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B155ECF21F131A000783C23 /* PoliceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PoliceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B155ED521F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B155EE021F131A000783C23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B1A2F2E2238139E0022F6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B1A2F30223813AE0022F6C0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8B1A2F31223813AE0022F6C0 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -270,7 +273,6 @@
 		8BEBCB9321FE187A0004AFDE /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		8BEBCB9721FE2E480004AFDE /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		8BEBCB9A21FF95A70004AFDE /* NetworkingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTest.swift; sourceTree = "<group>"; };
-		8BEBCB9D2200F53E0004AFDE /* PoliceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliceUITests.swift; sourceTree = "<group>"; };
 		8BEBCBA12200F8690004AFDE /* CategoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTest.swift; sourceTree = "<group>"; };
 		8BEBCBA3220105CE0004AFDE /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		8BEBCBA5220109E20004AFDE /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
@@ -319,7 +321,6 @@
 			children = (
 				8B155EBA21F1319C00783C23 /* Police */,
 				8B155ED221F131A000783C23 /* PoliceTests */,
-				8B155EDD21F131A000783C23 /* PoliceUITests */,
 				8B155EB921F1319C00783C23 /* Products */,
 				8BEBCB6821F9326F0004AFDE /* Frameworks */,
 				7026A464FEA04882EA2F2D87 /* Pods */,
@@ -363,15 +364,6 @@
 				8BEBCB9C21FFC3E30004AFDE /* SupportFiles */,
 			);
 			path = PoliceTests;
-			sourceTree = "<group>";
-		};
-		8B155EDD21F131A000783C23 /* PoliceUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8B155EE021F131A000783C23 /* Info.plist */,
-				8BEBCB9D2200F53E0004AFDE /* PoliceUITests.swift */,
-			);
-			path = PoliceUITests;
 			sourceTree = "<group>";
 		};
 		8B155EEC21F1400600783C23 /* Model */ = {
@@ -594,6 +586,8 @@
 		8B91177A2203AD370024CCFA /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				8B01CC57226B7CDC0068282B /* Colour.swift */,
+				8B01CC56226B7CDB0068282B /* Image.swift */,
 				8B9117772203AD210024CCFA /* Constants.swift */,
 			);
 			path = Constants;
@@ -941,6 +935,7 @@
 			files = (
 				8B212CDA2269E76400884241 /* StopAndSearchOutcomeCell.swift in Sources */,
 				8B4B1B5C22623BC50096A08C /* PoliceNavigationController.swift in Sources */,
+				8B01CC59226B7CDC0068282B /* Colour.swift in Sources */,
 				8B87EE9D224CE73700BFF848 /* Police-Bridging-Header.h in Sources */,
 				8B13636E2240498400ACB0B2 /* CrimeAnnotationView.swift in Sources */,
 				8BEBCB5D21F8DC840004AFDE /* Priority+CoreDataClass.swift in Sources */,
@@ -952,6 +947,7 @@
 				8B7827E9221CC411008DE3E0 /* Date+Utils.swift in Sources */,
 				8BEBCB5921F8DC840004AFDE /* Place+CoreDataClass.swift in Sources */,
 				8B212CDF226A28D100884241 /* StopAndSearchesViewModel.swift in Sources */,
+				8B01CC58226B7CDC0068282B /* Image.swift in Sources */,
 				8B1A2F35223AB4AF0022F6C0 /* StoryboardHelper.swift in Sources */,
 				8B212CD62269E73F00884241 /* StopAndSearchDatePlaceCell.swift in Sources */,
 				8B56E2AC220758260061D1CF /* CoreDataProtocols.swift in Sources */,

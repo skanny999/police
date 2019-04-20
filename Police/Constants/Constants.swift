@@ -19,3 +19,7 @@ struct Const {
     static let firstPeriod = Date.date(fromDay: 1, month: 2, year: 2016)
     
 }
+
+struct NotificationName {
+    static let dismissDetail = Notification.Name("UserLoggedIn")
+}

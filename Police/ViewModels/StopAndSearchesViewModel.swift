@@ -53,13 +53,11 @@ class StopAndSearchesViewModel: NSObject, Displayable {
     private func viewModelDescription(for search: StopAndSearch) -> StopAndSearchViewModelDescription? {
         
         guard   let objectOfSearch = search.objectOfSearch,
-                let legislation = search.legislation,
-                let image = stopAndSearchCrimeCategory(rawValue: objectOfSearch)?.image else {
-                return nil }
+                let legislation = search.legislation else { return nil }
         
         return StopAndSearchViewModelDescription(description: objectOfSearch,
                                                  legislation: legislation,
-                                                 image: image)
+                                                 image: search.image)
     }
     
     private func pushDetailsController(for search: StopAndSearch) {

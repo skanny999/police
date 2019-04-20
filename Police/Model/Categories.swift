@@ -29,41 +29,46 @@ enum CrimeCategory: String, CaseIterable {
     
     var description: String {
         switch self {
-        case .allCrime:
-            return "All crime"
-        case .antiSocialBehaviour:
-            return "Anti-social behaviour"
-        case .bicicleTheft:
-            return "Bicycle theft"
-        case .burglary:
-            return "Burglary"
-        case .arson:
-            return "Criminal damage and arson"
-        case .drugs:
-            return "Drugs"
-        case .otherTheft:
-            return "Other theft"
-        case .weapon:
-            return "Possession of weapons"
-        case .publicOrder:
-            return "Public order"
-        case .robbery:
-            return "Robbery"
-        case .shoplifting:
-            return "Shoplifting"
-        case .theftFromPerson:
-            return "Theft from the person"
-        case .vehicle:
-            return "Vehicle crime"
-        case .violent:
-            return "Violence and sexual offences"
-        case .other:
-            return "Other crime"
+        case .allCrime:             return "All crime"
+        case .antiSocialBehaviour:  return "Anti-social behaviour"
+        case .bicicleTheft:         return "Bicycle theft"
+        case .burglary:             return "Burglary"
+        case .arson:                return "Criminal damage and arson"
+        case .drugs:                return "Drugs"
+        case .otherTheft:           return "Other theft"
+        case .weapon:               return "Possession of weapons"
+        case .publicOrder:          return "Public order"
+        case .robbery:              return "Robbery"
+        case .shoplifting:          return "Shoplifting"
+        case .theftFromPerson:      return "Theft from the person"
+        case .vehicle:              return "Vehicle crime"
+        case .violent:              return "Violence and sexual offences"
+        case .other:                return "Other crime"
         }
     }
     
     var image: UIImage {
-        return UIImage(named: "crime-selected")!
+        switch self {
+
+        case .allCrime:             return Image.generalCrime
+        case .antiSocialBehaviour:  return Image.disorder
+        case .bicicleTheft:         return Image.bicycle
+        case .burglary:             return Image.burglary
+        case .arson:                return Image.arson
+        case .drugs:                return Image.drugs
+        case .otherTheft:           return Image.theft
+        case .weapon:               return Image.weapon
+        case .publicOrder:          return Image.disorder
+        case .robbery:              return Image.robbery
+        case .shoplifting:          return Image.theft
+        case .theftFromPerson:      return Image.theft
+        case .vehicle:              return Image.vehicle
+        case .violent:              return Image.violent
+        case .other:                return Image.generalCrime
+            
+            
+        }
+        
     }
     
     var gravity: CrimeGravity {
@@ -81,11 +86,12 @@ enum CrimeCategory: String, CaseIterable {
     var colour: UIColor {
         switch self.gravity {
         case .medium:
-            return UIColor(red: 250/255, green: 220/255, blue: 85/255, alpha: 1)
+            return Colour.yellow
         case .bad:
-            return .orange
+            return Colour.orange
+            
         case .veryBad:
-            return .red
+            return Colour.red
         }
     }
 }
@@ -185,7 +191,11 @@ enum OutcomeCategory: String, CaseIterable {
     }
 }
 
-enum stopAndSearchCrimeCategory: String {
+
+// MARK: - Stop and Search
+
+
+enum StopAndSearchCrimeCategory: String {
     
     case theft = "Article for use in theft"
     case damage = "Articles for use in criminal damage"
@@ -198,7 +208,17 @@ enum stopAndSearchCrimeCategory: String {
     case firework = "Fireworks"
     
     var image: UIImage {
-        return UIImage(named: "crime-selected")!
+        switch self {
+        case .theft:             return Image.theft
+        case .damage:            return Image.damage
+        case .drugs:             return Image.drugs
+        case .firearms:          return Image.firearms
+        case .weapon:            return Image.weapon
+        case .stolenGoods:       return Image.stolen
+        case .generalOffence:    return Image.generalCrime
+        case .threat:            return Image.threat
+        case .firework:          return Image.fireworks
+        }
     }
     
 }
@@ -215,11 +235,11 @@ enum StopAndSearchOutcomeCategory: String {
     var colour: UIColor {
         switch self {
         case .arrest:
-            return .red
+            return Colour.red
         case .caution, .community, .penalty, .summon:
-            return .orange
+            return Colour.orange
         case .noFurtherAction:
-            return UIColor(red: 255/255, green: 254/255, blue: 244/255, alpha: 1)
+            return Colour.white
         }
     }
 }

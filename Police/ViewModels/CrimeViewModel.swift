@@ -103,6 +103,12 @@ extension CrimeViewModel: Displayable {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = Colour.blue
+        }
+    }
 }
 
 // MARK: - Cell ViewModels

@@ -15,8 +15,14 @@ class CrimeAnnotationView: MKMarkerAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        canShowCallout = false
         if let annotation = annotation as? Annotable {
             markerTintColor = annotation.colour
+            if annotation.colour == Colour.white {
+                glyphTintColor = Colour.blue
+            }
+            
+            glyphImage = annotation.image
             clusteringIdentifier = "crime"
         }
     }

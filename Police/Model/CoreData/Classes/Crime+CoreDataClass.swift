@@ -34,6 +34,11 @@ public class Crime: NSManagedObject, Updatable, Locatable, Annotable {
         return ""
     }
     
+    public var image: UIImage {
+        
+        return self.category?.image ?? Image.generalCrime
+    }
+    
 
     static var dataIdentifier: String = "id"
     static var objectIdentifier: String = "identifier"

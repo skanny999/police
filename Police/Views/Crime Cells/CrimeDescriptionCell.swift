@@ -29,13 +29,17 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        crimeImage.layer.cornerRadius = 25.0
+        crimeImage.layer.masksToBounds = true
         
     }
     
     func configure(with crime: Crime) {
         
         crimeDescription.text = crime.category?.description
+        crimeImage.backgroundColor = crime.category?.colour
         crimeImage.image = crime.category?.image
+        crimeImage.tintColor = Colour.white
     }
 }
 

@@ -67,6 +67,7 @@ class MapViewModel: NSObject {
         positionMapNearUser()
         mapView.showsUserLocation = false
         registerAnnotationViewClass()
+        registerNotificationsObserver()
     }
     
     private func registerAnnotationViewClass() {
@@ -77,18 +78,20 @@ class MapViewModel: NSObject {
     
     func setPresenter(_ navigationController: UINavigationController) {
         presenter = navigationController
-        detailsViewController.delegate = self
         detailsViewController.viewModel = nil
     }
-}
-
-
-extension MapViewModel: Dismissable {
     
-    func dismiss(_ viewController: SelectionDetailsViewController) {
+    func registerNotificationsObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissDetailsViewController),
+                                               name: NotificationName.dismissDetail, object: nil)
+    }
+    
+    @objc func dismissDetailsViewController() {
+        deselectAnnotations()
         hideDetails?()
     }
 }
+
 
 extension MapViewModel: MapViewControllerDelegate {
     
@@ -126,8 +129,9 @@ extension MapViewModel: MapViewControllerDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         guard let annotation = view.annotation else { return }
-        
+        view.canShowCallout = false
         if let annotations = view.annotation as? MKClusterAnnotation {
+            view.canShowCallout = false
             showDetailsForAnnotations(annotations)
         } else  {
             showDetailsForSingleAnnotation(annotation)
@@ -199,6 +203,13 @@ extension MapViewModel: MapViewControllerDelegate {
                     self.removeAnnotationsOutsidePolygon(polygon)
                 }
             }
+        }
+    }
+    
+    private func deselectAnnotations() {
+        
+        if mapView.selectedAnnotations.count > 0 {
+            mapView.selectedAnnotations.forEach { mapView.deselectAnnotation($0, animated: true) }
         }
     }
     
