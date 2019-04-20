@@ -16,7 +16,8 @@ extension Crime {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Crime> {
         return NSFetchRequest<Crime>(entityName: "Crime")
     }
-
+    
+    @NSManaged public var periodId: String?
     @NSManaged public var categoryCode: String?
     @NSManaged public var extraContent: String?
     @NSManaged public var latestOutcome: String?
@@ -31,6 +32,7 @@ extension Crime {
     @NSManaged public var latitude: NSNumber?
     @NSManaged public var longitude: NSNumber?
     @NSManaged public var outcomes: Set<Outcome>?
+    
 
 }
 

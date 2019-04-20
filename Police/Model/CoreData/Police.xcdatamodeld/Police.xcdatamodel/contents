@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="blog" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,6 +33,7 @@
         <attribute name="locationTypeCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periodId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="persistentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
@@ -129,6 +130,7 @@
         <attribute name="outCome" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="outcomeIsLinkedToSearch" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="outcomeObject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periodId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="personIsInvolved" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stripSearch" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -137,7 +139,7 @@
     </entity>
     <elements>
         <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="343"/>
-        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="255"/>
+        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="270"/>
         <element name="CrimesPolygon" positionX="-243" positionY="-468" width="128" height="75"/>
         <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="195"/>
         <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
@@ -147,6 +149,6 @@
         <element name="Period" positionX="-234" positionY="-459" width="128" height="90"/>
         <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="180"/>
         <element name="Priority" positionX="-142.6015625" positionY="-111.18359375" width="128" height="120"/>
-        <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="330"/>
+        <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="345"/>
     </elements>
 </model>

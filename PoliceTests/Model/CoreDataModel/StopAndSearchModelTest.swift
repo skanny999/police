@@ -43,7 +43,7 @@ class StopAndSearchModelTest: XCTestCase {
                 let stopAndSearch = StopAndSearch.object(withId: objectId, in: CoreDataManager.shared.container.viewContext)
                 
                 XCTAssertTrue(stopAndSearch?.ageRange == "over 34")
-                XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 6)
+                XCTAssertTrue(stopAndSearch?.dateTime?.component.hour == 16)
                 XCTAssertTrue(stopAndSearch?.genderCode == "Male")
                 XCTAssertTrue(stopAndSearch?.legislation == "Misuse of Drugs Act 1971 (section 23)")
                 XCTAssertTrue(stopAndSearch?.objectOfSearch == "Controlled drugs")
@@ -58,6 +58,7 @@ class StopAndSearchModelTest: XCTestCase {
                 XCTAssertTrue(stopAndSearch?.latitude == 52.264860)
                 XCTAssertTrue(stopAndSearch?.longitude == 0.699943)
                 XCTAssertTrue(stopAndSearch?.streetName == "On or near Severn Road")
+                XCTAssert(stopAndSearch?.periodId == "2018-06")
             }
         }
         

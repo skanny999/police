@@ -88,6 +88,8 @@ public class StopAndSearch: NSManagedObject, Managed, Annotable {
         object.longitude = json[Key.location][Key.longitude].string.number
         object.streetName = json[Key.location][Key.street][Key.name].string
         object.identifier = identifier(from: json)
+        object.periodId = json[Key.dateTime].string?.dateValue?.queryDescription
+        
     }
     
     static func identifier(from json: JSON) -> String {

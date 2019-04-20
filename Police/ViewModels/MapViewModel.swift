@@ -325,9 +325,8 @@ private extension MapViewModel {
 
     func displayCrimes() {
         fetchSavedCrimes()
-        if viewIsZoomedIn {
-            getNewCrimes()
-        }
+        getNewCrimes()
+        
     }
     
     func fetchSavedCrimes() {
@@ -356,6 +355,13 @@ private extension MapViewModel {
     }
     
     private func updateCrimes(for polygon: MKPolygon) {
+        
+        if !viewIsZoomedIn {
+            
+            // show zoom in view
+            print("zoom closer")
+            return
+        }
         
         networkCallsCounter += 1
         UpdateManager.updateCrimes(within: mapView.visibleMapRect) { [weak self] (error) in
@@ -387,6 +393,11 @@ private extension MapViewModel {
     }
     
     func getNewStopAndSearch() {
+        
+        if !viewIsZoomedIn {
+            print("zoom closer")
+            return
+        }
     
         networkCallsCounter += 1
         UpdateManager.updateStopAndSearch(within: mapView.visibleMapRect) { [weak self] (error) in

@@ -18,6 +18,7 @@ extension StopAndSearch {
     }
     
     @NSManaged public var identifier: String?
+    @NSManaged public var periodId: String?
     @NSManaged public var ageRange: String?
     @NSManaged public var dateTime: NSDate?
     @NSManaged public var genderCode: String?
