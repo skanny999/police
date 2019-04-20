@@ -362,7 +362,6 @@ private extension MapViewModel {
     private func updateCrimes(for polygon: MKPolygon) {
         
         showZoomInView?(shouldZoomIn)
-        
         if shouldZoomIn {
             return
         }
@@ -397,6 +396,11 @@ private extension MapViewModel {
     }
     
     func getNewStopAndSearch() {
+        
+        showZoomInView?(shouldZoomIn)
+        if shouldZoomIn {
+            return
+        }
     
         networkCallsCounter += 1
         UpdateManager.updateStopAndSearch(within: mapView.visibleMapRect) { [weak self] (error) in

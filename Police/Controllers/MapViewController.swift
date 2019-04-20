@@ -52,6 +52,7 @@ class MapViewController: UIViewController {
         configureSearchResultsController()
         configureGestureRecogniser()
         configureBarButtonItems()
+        zoomInImageView.alpha = 0.0
     }
     
     private func configureViewModel() {
@@ -60,7 +61,6 @@ class MapViewController: UIViewController {
         viewModel.setPresenter(presenter)
         self.delegate = viewModel
         configureViewUpdater()
-        zoomInImageView.alpha = 0.0
     }
     
     private func configureBarButtonItems() {
