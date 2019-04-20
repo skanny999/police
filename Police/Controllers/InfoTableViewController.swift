@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol PeriodSelectorDelegate {
+    
+    func periodSelectorUpdated()
+}
+
+
 class InfoTableViewController: UITableViewController {
     
     
@@ -23,16 +29,27 @@ class InfoTableViewController: UITableViewController {
     var pickerIsShowing = false
     let periods = CoreDataProvider.allPeriods()
     
+    var delegate: PeriodSelectorDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePicker()
         configurePeriodLabel()
+        configureDelegate()
     }
 
     private func configurePeriodLabel() {
         
         if let periodDescription = CoreDataProvider.selectedPeriod()?.stringDescription.dateDescription {
             periodLabel.updateWithText(periodDescription)
+        }
+    }
+    
+    private func configureDelegate() {
+        
+         if let navigationController = tabBarController?.viewControllers?.first as? UINavigationController,
+            let mapViewController = navigationController.viewControllers.first as? MapViewController {
+            delegate = mapViewController.viewModel
         }
     }
     
@@ -111,6 +128,7 @@ extension InfoTableViewController: UIPickerViewDelegate, UIPickerViewDataSource 
             
             period.setToSelected()
             configurePeriodLabel()
+            delegate?.periodSelectorUpdated()
             animatePicker()
         }
     }

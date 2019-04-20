@@ -17,32 +17,33 @@ protocol MapViewControllerDelegate {
 }
 
 
+
 class MapViewController: UIViewController {
     
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var zoomInImageView: UIImageView!
+    var viewModel: MapViewModel!
+    var delegate: MapViewControllerDelegate?
+    
+    var searchController: UISearchController?
+    var presenter: UINavigationController!
     
     var crimeButton: UIBarButtonItem!
     var policeButton: UIBarButtonItem!
     var activityButton: UIBarButtonItem!
     let activityIndicator = UIActivityIndicatorView()
+    
     let crimeImage = UIImage(named: "crime")!
     let selectedCrimeImage = UIImage(named: "crime-selected")!
     let policeImage = UIImage(named: "police")!
     let selectedPoliceImage = UIImage(named: "police-selected")!
     
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var zoomInImageView: UIImageView!
     
     @IBOutlet weak var neighbourhoodDetailsButton: UIButton!
     @IBOutlet weak var neighbourhoodLabel: UILabel!
     
     @IBOutlet weak var neighbourhoodConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerPositionConstraint: NSLayoutConstraint!
-    
-    var searchController: UISearchController?
-    var presenter: UINavigationController!
-
-    var viewModel: MapViewModel!
-    var delegate: MapViewControllerDelegate?
     
     
     override func viewDidLoad() {
@@ -260,6 +261,7 @@ class MapViewController: UIViewController {
         }
     }
 }
+
 
 // MARK: - Animation
 

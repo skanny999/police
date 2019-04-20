@@ -302,6 +302,14 @@ extension MapViewModel: MKMapViewDelegate {
     }
 }
 
+extension MapViewModel: PeriodSelectorDelegate {
+    
+    func periodSelectorUpdated() {
+        resetAnnotations()
+        retrieveData()
+    }
+}
+
 // MARK: - Data Provider
 
 private extension MapViewModel {
@@ -437,6 +445,11 @@ extension MapViewModel: SearchResultsDelegate {
     func searchResultsController(_ sec: SearchResultsController, didSelectLocation description: String) {
         
         findMapItems(with: description)
+    }
+    
+    func searchResultsControllerBecameActive(_ sec: SearchResultsController) {
+        
+        hideDetails?()
     }
     
     private func findLocations(with text: String) {

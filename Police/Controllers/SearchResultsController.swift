@@ -12,6 +12,7 @@ import MapKit
 protocol SearchResultsDelegate {
     
     func searchResultsController(_ sec: SearchResultsController, didSelectLocation: String)
+    func searchResultsControllerBecameActive(_ sec: SearchResultsController)
 }
 
 class SearchResultsController: UITableViewController {
@@ -74,6 +75,8 @@ extension SearchResultsController: MKLocalSearchCompleterDelegate {
 extension SearchResultsController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        
+        delegate?.searchResultsControllerBecameActive(self)
         
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             searchCompleter.queryFragment = searchText
