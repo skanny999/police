@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_PoliceUITestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_PoliceUITestsVersionString[];
+FOUNDATION_EXPORT double SwiftRichStringVersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftRichStringVersionString[];
 
