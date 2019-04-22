@@ -36,6 +36,9 @@ class InfoTableViewController: UITableViewController {
         configurePicker()
         configurePeriodLabel()
         configureDelegate()
+        infoTextView.attributedText = InfoText.infoString
+        infoTextView.textColor = Colour.blue
+        tableView?.rowHeight = UITableView.automaticDimension
     }
 
     private func configurePeriodLabel() {
@@ -107,6 +110,12 @@ class InfoTableViewController: UITableViewController {
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = Colour.blue
+        }
+    }
 }
 
 extension InfoTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -158,8 +167,5 @@ extension InfoTableViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         
         return UIView()
     }
-    
-    
-    
-    
+
 }

@@ -16,7 +16,7 @@ class SelectionDetailsViewController: UIViewController {
     
     var viewModel: Displayable? {
         didSet {
-            if let tableView = tableView {
+            if tableView != nil {
                 setDataSource()
             }
         }

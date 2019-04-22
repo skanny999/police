@@ -8,15 +8,10 @@ target 'Police' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'SwiftyJSON'
+  pod 'SwiftRichString'
 
   target 'PoliceTests' do
     inherit! :search_paths
     # Pods for testing
   end
-
-  target 'PoliceUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

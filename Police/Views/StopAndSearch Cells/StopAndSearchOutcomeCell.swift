@@ -15,6 +15,7 @@ class StopAndSearchOutcomeCell: UITableViewCell, Loadable {
     var item: StopAndSearchViewModelOutcome? {
         didSet {
             outcomeLabel.text = item?.outcome
+            outcomeLabel.textColor = item?.colour != Colour.white ? item?.colour : Colour.blue
         }
     }
     

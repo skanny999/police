@@ -61,7 +61,7 @@ class StopAndSearchViewModel: NSObject {
         }
         
         if let outcome = stopAndSearch.outCome {
-            items.append(StopAndSearchViewModelOutcome(outcome: outcome))
+            items.append(StopAndSearchViewModelOutcome(outcome: outcome, colour:                                            stopAndSearch.colour))
         }
     }
     
@@ -177,6 +177,7 @@ struct StopAndSearchViewModelDatePlace: StopAndSearchViewModelItem {
 struct StopAndSearchViewModelOutcome: StopAndSearchViewModelItem {
     
     let outcome: String
+    let colour: UIColor
     
     var type: StopAndSearchItemType {
         return .outcome
