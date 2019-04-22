@@ -16,27 +16,42 @@ class SelectionDetailsViewController: UIViewController {
     
     var viewModel: Displayable? {
         didSet {
-            if tableView != nil {
-                DispatchQueue.main.async {
-                    self.setDelegates()
-                    self.tableView.reloadData()
-                }
+            if let tableView = tableView {
+                setDataSource()
             }
         }
     }
+
     
     @IBAction func didTapCancel(_ sender: Any) {
         
         let nc = NotificationCenter.default
         nc.post(name: NotificationName.dismissDetail, object: nil)
         navigationController?.popViewController(animated: true)
+        viewModel = nil
     }
+    
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
         configureCells()
         registerCells()
-        setDelegates()
+        setDataSource()
+    }
+    
+    
+    private func setDataSource() {
+        
+        if viewModel == nil {
+            setDataSourceForEmptyTableView()
+            navigationController?.popViewController(animated: true)
+        } else {
+            setViewModelDelegates()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     private func configureCells() {
@@ -63,15 +78,28 @@ class SelectionDetailsViewController: UIViewController {
                            forCellReuseIdentifier: StopAndSearchOutcomeCell.identifier)
     }
     
-    private func setDelegates() {
+    private func setViewModelDelegates() {
         tableView.dataSource = viewModel
         tableView.delegate = viewModel
     }
-        
-    @objc func reloadTableView() {
-            
-        }
     
+    private func setDataSourceForEmptyTableView() {
+        
+        tableView.dataSource = self
+    }
+}
+
+
+// MARK: - Data source for empty table view
+
+extension SelectionDetailsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
 
 }
 

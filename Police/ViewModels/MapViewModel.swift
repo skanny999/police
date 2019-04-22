@@ -124,6 +124,11 @@ extension MapViewModel: MapViewControllerDelegate {
         dataIsLoading?(networkCallsCounter > 0)
     }
     
+    func mapViewControllerDidHideDetails(_ mapViewController: MapViewController) {
+        
+        resetDetailsController()
+    }
+    
     // MARK: - Annotations
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -188,6 +193,14 @@ extension MapViewModel: MapViewControllerDelegate {
         detailsViewController.viewModel = searchesViewModel
         DispatchQueue.main.async {
             self.showDetails?()
+        }
+    }
+    
+    private func resetDetailsController() {
+        
+        if let detailControllers = presenter.viewControllers as? [SelectionDetailsViewController] {
+            print("Reset \(detailControllers.count) detail controller")
+            detailControllers.forEach { $0.viewModel = nil }
         }
     }
     

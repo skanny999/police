@@ -29,7 +29,7 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        crimeImage.layer.cornerRadius = 25.0
+        crimeImage.layer.cornerRadius = 30
         crimeImage.layer.masksToBounds = true
         
     }

@@ -14,6 +14,7 @@ protocol MapViewControllerDelegate {
     
     func mapViewController(_ mapViewController: MapViewController, didTapButtonForMode mode: Mode)
     func mapViewController(_ mapViewController: MapViewController, didTapMapWith sender: UITapGestureRecognizer)
+    func mapViewControllerDidHideDetails(_ mapViewController: MapViewController)
 }
 
 
@@ -292,9 +293,11 @@ extension MapViewController {
     
     private func hideDetailsView() {
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.containerPositionConstraint.constant = 0
             self.view.layoutIfNeeded()
+        }) { (finished) in
+            self.delegate?.mapViewControllerDidHideDetails(self)
         }
     }
     
