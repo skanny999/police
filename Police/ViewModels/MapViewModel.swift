@@ -52,8 +52,8 @@ class MapViewModel: NSObject {
     }
     
     private var shouldZoomIn: Bool {
-
-        return mapView.zoomLevel > 300
+        print(mapView.zoomLevel)
+        return mapView.zoomLevel > 100
     }
     
     // MARK: - Setup
