@@ -19,6 +19,7 @@ class StopAndSearchDetailsCell: UITableViewCell, Loadable {
             detailImageView.image = item?.image
             descriptionLabel.text = item?.description
             legislationLabel.text = item?.legislation
+            imageForDetails()
         }
     }
     
@@ -32,7 +33,25 @@ class StopAndSearchDetailsCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        isUserInteractionEnabled = isSelectable ?? false
+    }
+    
+    private func imageForDetails() {
+        
+        detailImageView.layer.cornerRadius = 30
+        detailImageView.layer.masksToBounds = true
+        detailImageView.image = item?.image
+        detailImageView.backgroundColor = item?.colour
+        
+        if item?.colour == Colour.white {
+
+            detailImageView.tintColor = Colour.blue
+            detailImageView.layer.borderWidth = 1
+            detailImageView.layer.borderColor = Colour.blue.cgColor
+            
+        } else {
+            detailImageView.tintColor = Colour.white
+        }
     }
 
     

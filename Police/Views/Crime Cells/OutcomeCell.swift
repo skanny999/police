@@ -23,7 +23,7 @@ class OutcomeCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        isUserInteractionEnabled = false
     }
 
     func configure(with outcome: Outcome) {

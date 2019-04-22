@@ -22,6 +22,6 @@ class LocationCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        isUserInteractionEnabled = false
     }
 }

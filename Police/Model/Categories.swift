@@ -50,7 +50,7 @@ enum CrimeCategory: String, CaseIterable {
     var image: UIImage {
         switch self {
 
-        case .allCrime:             return Image.generalCrime
+        case .allCrime:             return Image.otherCrime
         case .antiSocialBehaviour:  return Image.disorder
         case .bicicleTheft:         return Image.bicycle
         case .burglary:             return Image.burglary
@@ -64,7 +64,7 @@ enum CrimeCategory: String, CaseIterable {
         case .theftFromPerson:      return Image.theft
         case .vehicle:              return Image.vehicle
         case .violent:              return Image.violent
-        case .other:                return Image.generalCrime
+        case .other:                return Image.otherCrime
             
             
         }
@@ -215,7 +215,7 @@ enum StopAndSearchCrimeCategory: String {
         case .firearms:          return Image.firearms
         case .weapon:            return Image.weapon
         case .stolenGoods:       return Image.stolen
-        case .generalOffence:    return Image.generalCrime
+        case .generalOffence:    return Image.otherCrime
         case .threat:            return Image.threat
         case .firework:          return Image.fireworks
         }

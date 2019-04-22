@@ -42,7 +42,8 @@ class StopAndSearchViewModel: NSObject {
             let legislation = stopAndSearch.legislation {
             items.append(StopAndSearchViewModelDescription(description: description,
                                                            legislation: legislation,
-                                                           image: stopAndSearch.image ))
+                                                           image: stopAndSearch.image,
+                                                           colour: stopAndSearch.colour))
         }
         
         if let gender = stopAndSearch.genderCode,
@@ -61,6 +62,12 @@ class StopAndSearchViewModel: NSObject {
         
         if let outcome = stopAndSearch.outCome {
             items.append(StopAndSearchViewModelOutcome(outcome: outcome))
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = Colour.blue
         }
     }
 }
@@ -127,6 +134,7 @@ struct StopAndSearchViewModelDescription: StopAndSearchViewModelItem {
     let description: String
     let legislation: String
     let image: UIImage
+    let colour: UIColor
     
     var type: StopAndSearchItemType {
         return .details

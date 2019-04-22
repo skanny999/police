@@ -46,6 +46,7 @@ class StopAndSearchesViewModel: NSObject, Displayable {
                 self.pushDetailsController(for: search)
             }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Helper
@@ -57,7 +58,8 @@ class StopAndSearchesViewModel: NSObject, Displayable {
         
         return StopAndSearchViewModelDescription(description: objectOfSearch,
                                                  legislation: legislation,
-                                                 image: search.image)
+                                                 image: search.image,
+                                                 colour: search.colour)
     }
     
     private func pushDetailsController(for search: StopAndSearch) {

@@ -29,17 +29,24 @@ class CrimeDescriptionCell: UITableViewCell, Loadable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isUserInteractionEnabled = isSelectable ?? false
+    }
+    
+    private func configure(with crime: Crime) {
+        
+        crimeDescription.text = crime.category?.description
+        image(for: crime)
+    }
+    
+    private func image(for crime: Crime) {
+        
         crimeImage.layer.cornerRadius = 30
         crimeImage.layer.masksToBounds = true
         
-    }
-    
-    func configure(with crime: Crime) {
-        
-        crimeDescription.text = crime.category?.description
         crimeImage.backgroundColor = crime.category?.colour
         crimeImage.image = crime.category?.image
         crimeImage.tintColor = Colour.white
+        
     }
 }
 

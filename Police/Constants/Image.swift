@@ -28,5 +28,6 @@ struct Image {
     static let stolen = UIImage(named: "stolen")!
     static let threat = UIImage(named: "threat")!
     static let fireworks = UIImage(named: "fireworks")!
+    static let otherCrime = UIImage(named: "other_crime")!
     
 }
