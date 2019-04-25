@@ -52,7 +52,6 @@ class MapViewModel: NSObject {
     }
     
     private var shouldZoomIn: Bool {
-        print(mapView.zoomLevel)
         return mapView.zoomLevel > 100
     }
     
@@ -259,6 +258,7 @@ extension MapViewModel: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
+        showZoomInView?(false)
         if !isShowingNeighbourhood {
             retrieveData()
         }

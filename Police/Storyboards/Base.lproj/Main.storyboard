@@ -309,7 +309,7 @@
                                                         <constraint firstAttribute="height" constant="20" id="7Mo-Dv-NfO"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="21"/>
-                                                    <color key="textColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.1058823529" green="0.25098039220000001" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

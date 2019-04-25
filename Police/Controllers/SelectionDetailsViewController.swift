@@ -38,6 +38,7 @@ class SelectionDetailsViewController: UIViewController {
         configureCells()
         registerCells()
         setDataSource()
+        configureBackButton()
     }
     
     
@@ -47,11 +48,15 @@ class SelectionDetailsViewController: UIViewController {
             setDataSourceForEmptyTableView()
             navigationController?.popViewController(animated: true)
         } else {
-            setViewModelDelegates()
             DispatchQueue.main.async {
+                self.setViewModelDelegates()
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    private func configureBackButton() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     private func configureCells() {

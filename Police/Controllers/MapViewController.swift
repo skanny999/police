@@ -99,6 +99,7 @@ class MapViewController: UIViewController {
         
         viewModel.showDetails = {
             DispatchQueue.main.async {
+                self.animateZoomInView(show: false)
                 self.showDetailsView()
             }
         }
