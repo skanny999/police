@@ -1,0 +1,6 @@
+framework module Pods_PoliceTests {
+  umbrella header "Pods-PoliceTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

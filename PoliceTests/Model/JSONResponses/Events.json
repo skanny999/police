@@ -1,0 +1,20 @@
+[
+    {
+        "contact_details": {},
+        "description": "<p>Crime Prevention Sale<\/p>",
+        "end_date": "2019-02-18T10:00:00",
+        "title": "Crime Prevention Sale, Merlin Heights",
+        "address": "Merlin Heights Reception, Bath lane",
+        "type": "meeting",
+        "start_date": "2019-02-18T09:00:00"
+    },
+    {
+        "contact_details": {},
+        "description": null,
+        "end_date": "2019-02-19T12:00:00",
+        "title": "Community Engagement, Guru Nanak Gurdwara",
+        "address": "Guru Nanak Gurdwara,",
+        "type": "meeting",
+        "start_date": "2019-02-19T11:00:00"
+    }
+]

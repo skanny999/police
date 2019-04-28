@@ -1,0 +1,55 @@
+{
+  "default": {
+    "keyword": {
+      "fonts": [
+        {
+          "font": "./fonts/GillSans-SemiBold.otf",
+          "supported": ["en-GB"]
+        },
+        {
+          "font": "./fonts/GillSans-SemiBold.otf",
+          "supported": ["en-GB"]
+        }
+      ]
+    },
+
+    "title": {
+      "fonts": [
+        {
+          "font": "./fonts/GillSans-SemiBold.otf",
+          "supported": ["en-GB"]
+        }
+      ],
+      "color": "#d8d8d8"
+    },
+    "background": "./background.jpg",
+    "padding": 50
+  },
+
+  "data": [
+    {
+      "filter": "select",
+      "keyword": {
+        "color": "#d8d8d8"
+      }
+    },
+    {
+      "filter": "area",
+      "keyword": {
+        "color": "#d8d8d8"
+      }
+    },
+    {
+      "filter": "crime",
+      "keyword": {
+        "color": "#d8d8d8"
+      }
+    },
+    {
+      "filter": "sas",
+      "keyword": {
+        "color": "#d8d8d8"
+      }
+    }
+  ]
+}

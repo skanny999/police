@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="blog" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eMessaging" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebook" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fax" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flickr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forceUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="googlePlus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rss" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="youtube" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="contact" inverseEntity="Event" syncable="YES"/>
+        <relationship name="force" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Force" inverseName="contact" inverseEntity="Force" syncable="YES"/>
+        <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="contact" inverseEntity="Neighbourhood" syncable="YES"/>
+        <relationship name="officer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Officer" inverseName="contact" inverseEntity="Officer" syncable="YES"/>
+    </entity>
+    <entity name="Crime" representedClassName="Crime" syncable="YES">
+        <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="extraContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latestOutcome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="locationSubtypeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationTypeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periodId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="persistentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="outcomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Outcome" inverseName="crime" inverseEntity="Outcome" syncable="YES"/>
+    </entity>
+    <entity name="CrimesPolygon" representedClassName="CrimesPolygon" syncable="YES">
+        <attribute name="coordinates" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="period" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Period" inverseName="crimePolygon" inverseEntity="Period" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="event" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="events" inverseEntity="Neighbourhood" syncable="YES"/>
+    </entity>
+    <entity name="Force" representedClassName="Force" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="force" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="neighbourhoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="force" inverseEntity="Neighbourhood" syncable="YES"/>
+        <relationship name="officers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Officer" inverseName="force" inverseEntity="Officer" syncable="YES"/>
+    </entity>
+    <entity name="Neighbourhood" representedClassName="Neighbourhood" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="polygonData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="population" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="neighbourhood" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="neighbourhood" inverseEntity="Event" syncable="YES"/>
+        <relationship name="force" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Force" inverseName="neighbourhoods" inverseEntity="Force" syncable="YES"/>
+        <relationship name="officers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Officer" inverseName="neighbourhood" inverseEntity="Officer" syncable="YES"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="neighbourhood" inverseEntity="Place" syncable="YES"/>
+        <relationship name="priorities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Priority" inverseName="neighbourhood" inverseEntity="Priority" syncable="YES"/>
+    </entity>
+    <entity name="Officer" representedClassName="Officer" syncable="YES">
+        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="officer" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="force" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Force" inverseName="officers" inverseEntity="Force" syncable="YES"/>
+        <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="officers" inverseEntity="Neighbourhood" syncable="YES"/>
+    </entity>
+    <entity name="Outcome" representedClassName="Outcome" syncable="YES">
+        <attribute name="categoryCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="crime" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Crime" inverseName="outcomes" inverseEntity="Crime" syncable="YES"/>
+    </entity>
+    <entity name="Period" representedClassName="Period" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="crimePolygon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CrimesPolygon" inverseName="period" inverseEntity="CrimesPolygon" syncable="YES"/>
+    </entity>
+    <entity name="Place" representedClassName="Place" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="places" inverseEntity="Neighbourhood" syncable="YES"/>
+    </entity>
+    <entity name="Priority" representedClassName="Priority" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="actionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="issue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="issueDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="priorities" inverseEntity="Neighbourhood" syncable="YES"/>
+    </entity>
+    <entity name="StopAndSearch" representedClassName="StopAndSearch" syncable="YES">
+        <attribute name="ageRange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="genderCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="legislation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="objectOfSearch" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="officerEthnicity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="operationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="outCome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="outcomeIsLinkedToSearch" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="outcomeObject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periodId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="personIsInvolved" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="streetName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stripSearch" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="suspectEthnicity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeCode" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Contact" positionX="382.23046875" positionY="-583.3203125" width="128" height="343"/>
+        <element name="Crime" positionX="-446.5234375" positionY="-618.26171875" width="128" height="270"/>
+        <element name="CrimesPolygon" positionX="-243" positionY="-468" width="128" height="75"/>
+        <element name="Event" positionX="195.078125" positionY="-524.84765625" width="128" height="195"/>
+        <element name="Force" positionX="390.4921875" positionY="-23.65625" width="128" height="133"/>
+        <element name="Neighbourhood" positionX="21.40625" positionY="-343.328125" width="128" height="240"/>
+        <element name="Officer" positionX="105.046875" positionY="-36.625" width="128" height="135"/>
+        <element name="Outcome" positionX="-271.21875" positionY="-376.51171875" width="128" height="103"/>
+        <element name="Period" positionX="-234" positionY="-459" width="128" height="90"/>
+        <element name="Place" positionX="-154.9609375" positionY="-581.4140625" width="128" height="180"/>
+        <element name="Priority" positionX="-142.6015625" positionY="-111.18359375" width="128" height="120"/>
+        <element name="StopAndSearch" positionX="-438.48046875" positionY="-290.33984375" width="128" height="345"/>
+    </elements>
+</model>
