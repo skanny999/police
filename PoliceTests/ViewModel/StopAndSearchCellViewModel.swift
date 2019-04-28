@@ -46,7 +46,7 @@ class StopAndSearchCellViewModel: XCTestCase {
                 let details = item as! StopAndSearchViewModelDescription
                 XCTAssert(details.description == "Controlled drugs")
                 XCTAssert(details.legislation == "Misuse of Drugs Act 1971 (section 23)")
-                XCTAssert(details.image == UIImage(named: "crime-selected"))
+                XCTAssert(details.image == UIImage(named: "drugs"))
             case .suspect:
                 let suspect = item as! StopAndSearchViewModelSuspect
                 XCTAssert(suspect.gender == "Male")

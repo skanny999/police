@@ -36,13 +36,13 @@ class NetworkingTest: XCTestCase {
     }
     
     
-    func testTooLongGetRequest() {
-        
-        networkRequest(forUrl: Task.exceedResultLimit.url) { (error) in
-            
-            XCTAssert(error?.code == 503, "Error code was \(String(describing: error?.code))")
-        }
-    }
+//    func testTooLongGetRequest() {
+//        
+//        networkRequest(forUrl: Task.exceedResultLimit.url) { (error) in
+//            
+//            XCTAssert(error?.code == 503, "Error code was \(String(describing: error?.code))")
+//        }
+//    }
     
     func testTooManyCrimesGetRequest() {
         
