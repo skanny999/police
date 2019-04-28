@@ -34,7 +34,7 @@
                                             <constraint firstAttribute="height" constant="1" id="qQK-bF-eVo"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="center" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyW-kP-ODl">
+                                    <button opaque="NO" contentMode="center" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyW-kP-ODl">
                                         <rect key="frame" x="8" y="4" width="359" height="36"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="23"/>
