@@ -76,6 +76,18 @@ class MapViewController: UIViewController {
         navigationItem.setRightBarButton(policeButton, animated: false)
     }
     
+    private func configureUserTrackingButton() {
+        
+        let userTrackingButton = MKUserTrackingButton(mapView: mapView)
+        userTrackingButton.frame.origin = CGPoint(x: mapView.frame.width - (userTrackingButton.frame.width * 1.5) ,
+                                                  y: userTrackingButton.frame.width / 2)
+        userTrackingButton.layer.borderColor = Colour.blue.cgColor
+        userTrackingButton.layer.backgroundColor = Colour.white.cgColor
+        userTrackingButton.tintColor = Colour.blue.withAlphaComponent(0.8)
+        userTrackingButton.layer.borderWidth = 1
+        userTrackingButton.layer.cornerRadius = 5
+        mapView.addSubview(userTrackingButton)
+    }
 
     private func configureViewUpdater() {
         
@@ -105,7 +117,15 @@ class MapViewController: UIViewController {
         }
         
         viewModel.showZoomInView = { (shouldShow) in
-            self.animateZoomInView(show: shouldShow)
+            DispatchQueue.main.async {
+                self.animateZoomInView(show: shouldShow)
+            }
+        }
+        
+        viewModel.trackingUser = { (isTracking) in
+            DispatchQueue.main.async {
+                self.configureUserTrackingButton()
+            }
         }
     }
     
@@ -194,12 +214,17 @@ class MapViewController: UIViewController {
     
     private func configureGestureRecogniser() {
         
-        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(mapTapped(sender:)))
-        mapView.addGestureRecognizer(gestureRecogniser)
+        let zoom = UITapGestureRecognizer(target: self, action: nil)
+        zoom.numberOfTapsRequired = 2
+        mapView.addGestureRecognizer(zoom)
+        let showBorders = UITapGestureRecognizer(target: self, action: #selector(mapTapped(sender:)))
+        showBorders.numberOfTapsRequired = 1
+        showBorders.require(toFail: zoom)
+        mapView.addGestureRecognizer(showBorders)
     }
     
     @objc private func mapTapped(sender: UITapGestureRecognizer) {
-        
+
         delegate?.mapViewController(self, didTapMapWith: sender)
     }
     

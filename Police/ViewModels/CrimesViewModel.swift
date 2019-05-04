@@ -37,6 +37,8 @@ class CrimesViewModel: NSObject, Displayable {
        return UITableViewCell()
     }
     
+
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = items.first as? CrimeViewModelSummary {
             let crime = item.crimes[indexPath.row]
@@ -47,6 +49,16 @@ class CrimesViewModel: NSObject, Displayable {
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "CRIMES"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = Colour.blue
+        }
     }
     
     private func pushDetailsController(for crime: Crime) {

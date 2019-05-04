@@ -60,7 +60,7 @@
                                     <constraint firstAttribute="height" constant="44" id="nt4-Gp-iQM"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-Bo-RCp">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qOv-Bo-RCp">
                                 <rect key="frame" x="0.0" y="-4" width="375" height="558"/>
                             </mapView>
                             <containerView contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-UE-z92">

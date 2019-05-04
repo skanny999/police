@@ -38,10 +38,9 @@ class StopAndSearchViewModel: NSObject {
     init(with stopAndSearch: StopAndSearch) {
         super.init()
         
-        if let description = stopAndSearch.objectOfSearch,
-            let legislation = stopAndSearch.legislation {
+        if let description = stopAndSearch.objectOfSearch {
             items.append(StopAndSearchViewModelDescription(description: description,
-                                                           legislation: legislation,
+                                                           legislation: stopAndSearch.legislation,
                                                            image: stopAndSearch.image,
                                                            colour: stopAndSearch.colour))
         }
@@ -132,7 +131,7 @@ extension StopAndSearchViewModel: Displayable {
 struct StopAndSearchViewModelDescription: StopAndSearchViewModelItem {
     
     let description: String
-    let legislation: String
+    let legislation: String?
     let image: UIImage
     let colour: UIColor
     
