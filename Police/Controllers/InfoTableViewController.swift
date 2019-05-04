@@ -27,13 +27,14 @@ class InfoTableViewController: UITableViewController {
     
     let periodCellIndexPath = IndexPath(row: 0, section: 0)
     var pickerIsShowing = false
-    let periods = CoreDataProvider.allPeriods()
+    var periods: [Period]!
     
     var delegate: PeriodSelectorDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePicker()
+        periods = CoreDataProvider.allPeriods()
         configurePeriodLabel()
         configureDelegate()
         infoTextView.attributedText = InfoText.infoString
