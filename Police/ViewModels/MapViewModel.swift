@@ -24,6 +24,7 @@ class MapViewModel: NSObject {
     var hideDetails: (() -> Void)?
     var showDetails: (() -> Void)?
     var showZoomInView: ((Bool) -> Void)?
+    var trackingUser: ((Bool) -> Void)?
     
     var presenter: UINavigationController!
     var detailsViewController: SelectionDetailsViewController! {
@@ -130,9 +131,12 @@ extension MapViewModel: MapViewControllerDelegate {
     
     // MARK: - Annotations
     
+    
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        guard let annotation = view.annotation else { return }
+        guard let annotation = view.annotation, !annotation.isKind(of: MKUserLocation.self) else { return }
+
         view.canShowCallout = false
         if let annotations = view.annotation as? MKClusterAnnotation {
             view.canShowCallout = false
@@ -508,19 +512,21 @@ extension MapViewModel: SearchResultsDelegate {
 extension MapViewModel: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if initialLocation != nil { return }
-        
-        if let location = locations.first {
-            
-            zoom(into: location)
+            trackingUser?(true)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+
+        if status.rawValue == 4 {
+            trackingUser?(true)
         }
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
         print(error)
-        //deal with error
+
     }
     
     
