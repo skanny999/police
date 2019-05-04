@@ -34,6 +34,7 @@ class StopAndSearchDetailsCell: UITableViewCell, Loadable {
     override func awakeFromNib() {
         super.awakeFromNib()
         isUserInteractionEnabled = isSelectable ?? false
+        descriptionLabel.contentMode = .scaleToFill
     }
     
     private func imageForDetails() {

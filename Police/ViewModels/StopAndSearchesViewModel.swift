@@ -49,15 +49,25 @@ class StopAndSearchesViewModel: NSObject, Displayable {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "STOP AND SEARCH"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = Colour.blue
+        }
+    }
+    
     // MARK: - Helper
     
     private func viewModelDescription(for search: StopAndSearch) -> StopAndSearchViewModelDescription? {
         
-        guard   let objectOfSearch = search.objectOfSearch,
-                let legislation = search.legislation else { return nil }
+        guard   let objectOfSearch = search.objectOfSearch else { return nil }
         
         return StopAndSearchViewModelDescription(description: objectOfSearch,
-                                                 legislation: legislation,
+                                                 legislation: search.legislation,
                                                  image: search.image,
                                                  colour: search.colour)
     }
