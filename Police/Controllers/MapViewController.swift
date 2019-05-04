@@ -194,12 +194,17 @@ class MapViewController: UIViewController {
     
     private func configureGestureRecogniser() {
         
-        let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(mapTapped(sender:)))
-        mapView.addGestureRecognizer(gestureRecogniser)
+        let zoom = UITapGestureRecognizer(target: self, action: nil)
+        zoom.numberOfTapsRequired = 2
+        mapView.addGestureRecognizer(zoom)
+        let showBorders = UITapGestureRecognizer(target: self, action: #selector(mapTapped(sender:)))
+        showBorders.numberOfTapsRequired = 1
+        showBorders.require(toFail: zoom)
+        mapView.addGestureRecognizer(showBorders)
     }
     
     @objc private func mapTapped(sender: UITapGestureRecognizer) {
-        
+
         delegate?.mapViewController(self, didTapMapWith: sender)
     }
     
